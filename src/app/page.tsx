@@ -9,7 +9,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import dynamic from 'next/dynamic';
 import { SectionTracker } from "@/components/providers/section-tracker";
 import { Modal } from "@/components/ui/modal";
-import { Mail, Linkedin, Github, GraduationCap, Globe, ArrowRight } from "lucide-react";
+import { Mail, Linkedin, Github, GraduationCap, Globe, ArrowRight, Copy, CheckCircle } from "lucide-react";
 
 const Experience = dynamic(() => import("@/components/experience").then(mod => ({ default: mod.Experience })), {
   loading: () => <div className="py-24 text-center text-muted-foreground">Cargando experiencia...</div>
@@ -17,6 +17,14 @@ const Experience = dynamic(() => import("@/components/experience").then(mod => (
 
 export default function Home() {
   const [selectedProject, setSelectedProject] = useState<any>(null);
+
+  const [copied, setCopied] = useState(false);
+
+  const copyEmail = () => {
+    navigator.clipboard.writeText("alexis.martyniuk@gmail.com");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   const projects = [
     // ... (rest of the projects array remains same)
@@ -235,16 +243,30 @@ export default function Home() {
             <p className="mb-8 text-muted-foreground text-lg leading-relaxed">
               Estoy disponible para proyectos de arquitectura de datos, migración a la nube y consultoría estratégica para sistemas de alta complejidad.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-stretch">
               <a
                 href="mailto:alexis.martyniuk@gmail.com"
-                className="flex items-center justify-center gap-3 bg-primary px-8 py-5 rounded-2xl font-bold text-primary-foreground hover:bg-primary/90 transition-all shadow-xl shadow-primary/20 shrink-0"
+                className="flex items-center justify-center gap-3 bg-primary px-8 py-5 rounded-2xl font-bold text-primary-foreground hover:bg-primary/90 transition-all shadow-xl shadow-primary/20 flex-1 sm:flex-none"
               >
                 <Mail size={20} /> Agenda una llamada o escribime
               </a>
+              <button
+                onClick={copyEmail}
+                className="flex items-center justify-center gap-3 px-8 py-5 rounded-2xl border border-border bg-background hover:bg-muted transition-all font-bold min-w-[160px]"
+              >
+                {copied ? (
+                  <span className="text-emerald-500 flex items-center gap-2 italic">
+                    <CheckCircle size={18} /> ¡Copiado!
+                  </span>
+                ) : (
+                  <span className="flex items-center gap-2">
+                    <Copy size={18} /> Copiar Email
+                  </span>
+                )}
+              </button>
               <div className="flex justify-center gap-4">
-                <a href="https://linkedin.com/in/alexismartyniuk/" target="_blank" className="p-4 rounded-2xl border border-border bg-background hover:bg-muted transition-colors"><Linkedin /></a>
-                <a href="https://github.com/a-martyniuk" target="_blank" className="p-4 rounded-2xl border border-border bg-background hover:bg-muted transition-colors"><Github /></a>
+                <a href="https://linkedin.com/in/alexismartyniuk/" target="_blank" className="p-5 rounded-2xl border border-border bg-background hover:bg-muted transition-colors"><Linkedin /></a>
+                <a href="https://github.com/a-martyniuk" target="_blank" className="p-5 rounded-2xl border border-border bg-background hover:bg-muted transition-colors"><Github /></a>
               </div>
             </div>
           </div>
