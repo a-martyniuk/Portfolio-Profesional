@@ -31,7 +31,7 @@ export function Hero() {
                             </span>
                         </h1>
                         <p className="text-lg md:text-xl text-muted-foreground mb-10 leading-relaxed max-w-3xl mx-auto">
-                            Diseño y opero plataformas de datos que permiten a gobiernos, bancos y laboratorios tomar **decisiones críticas** con información confiable y en tiempo real.
+                            Diseño y opero plataformas de datos que permiten a gobiernos, bancos y laboratorios tomar decisiones críticas con información confiable y en tiempo real.
                         </p>
 
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
