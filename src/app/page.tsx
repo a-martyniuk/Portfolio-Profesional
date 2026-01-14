@@ -1,35 +1,49 @@
+'use client';
+
+import React, { useState } from 'react';
 import { Navbar } from "@/components/navbar";
 import { Hero } from "@/components/hero";
+import { CriticalDashboard } from "@/components/critical-dashboard";
 import { ProjectCard } from "@/components/project-card";
 import { SectionHeading } from "@/components/ui/section-heading";
 import dynamic from 'next/dynamic';
 import { SectionTracker } from "@/components/providers/section-tracker";
-import { Mail, Linkedin, Github, GraduationCap, Globe } from "lucide-react";
+import { Modal } from "@/components/ui/modal";
+import { Mail, Linkedin, Github, GraduationCap, Globe, ArrowRight } from "lucide-react";
 
 const Experience = dynamic(() => import("@/components/experience").then(mod => ({ default: mod.Experience })), {
   loading: () => <div className="py-24 text-center text-muted-foreground">Cargando experiencia...</div>
 });
 
 export default function Home() {
+  const [selectedProject, setSelectedProject] = useState<any>(null);
+
   const projects = [
+    // ... (rest of the projects array remains same)
     {
       title: "Modelo Analítico Corporativo (Laboratorios Bagó)",
       description: "Plataforma de datos de misión crítica para una de las mayores farmacéuticas de Argentina, que permitió aumentar en 20% la productividad y reducir tiempos de decisión operativa.",
       tags: ["Oracle", "ODI 12c", "AWS", "Snowflake"],
       link: "https://blogs.oracle.com/oracle-latinoamerica/post/laboratorios-bag-elev-su-produccin-en-un-20-con-el-apoyo-de-la-nube-de-oracle",
       image: "/images/projects/bago-dashboard.png",
+      details: "Migración de ecosistema legacy a una arquitectura moderna de datos. El proyecto incluyó la orquestación de flujos globales y la consolidación de inventarios y ventas en tiempo real.",
+      architecture: ["Sistemas Transaccionales", "Oracle ODI (ETL)", "AWS S3 Staging", "Snowflake DWH", "Dashboards Ejecutivos"]
     },
     {
       title: "Infraestructura de Estado (Ministerio de Seguridad)",
       description: "Plataforma provincial de análisis criminal utilizada por fuerzas de seguridad para asignación de recursos, detección de hotspots y toma de decisiones tácticas en tiempo real.",
       tags: ["PostgreSQL", "ArcGIS", "Python", "Sistemas de Misión Crítica"],
       image: "/images/projects/ministerio-heatmap.png",
+      details: "Desarrollo de una base de datos centralizada para el análisis criminal. Integración de capas geográficas para la visualización de delitos y patrullas en vivo.",
+      architecture: ["Reportes Policiales", "Python Scripts", "PostgreSQL PostGIS", "ArcGIS API", "Centros de Operaciones"]
     },
     {
       title: "Automatización y Redes de Alta Disponibilidad",
       description: "Implementación de ecosistemas IoT y redes WiFi Mesh para infraestructuras inteligentes, aplicando principios de automatización industrial y monitoreo proactivo.",
       tags: ["IoT", "Networking", "Automatización", "Sistemas Inteligentes"],
       image: "/images/projects/iot-network.png",
+      details: "Diseño de redes redundantes para entornos críticos. Uso de protocolos de comunicación industrial para asegurar un 99.9% de uptime en dispositivos conectados.",
+      architecture: ["Sensores/Dispositivos", "Protocolos MQTT/HTTP", "WiFi Mesh Nodes", "Monitoring Server", "Alert System"]
     },
   ];
 
@@ -63,6 +77,7 @@ export default function Home() {
       <Navbar />
 
       <Hero />
+      <CriticalDashboard />
 
       {/* Projects Section */}
       <section id="projects" className="py-24 bg-accent/30">
@@ -82,7 +97,11 @@ export default function Home() {
           />
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project) => (
-              <ProjectCard key={project.title} {...project} />
+              <ProjectCard
+                key={project.title}
+                {...project}
+                onClick={() => setSelectedProject(project)}
+              />
             ))}
           </div>
         </div>
@@ -247,6 +266,71 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* Project Detail Modal */}
+      <Modal
+        isOpen={!!selectedProject}
+        onClose={() => setSelectedProject(null)}
+        title={selectedProject?.title}
+      >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div className="space-y-6">
+            <div>
+              <h4 className="text-sm font-bold uppercase tracking-widest text-primary mb-4">Caso de Estudio</h4>
+              <p className="text-muted-foreground leading-relaxed">
+                {selectedProject?.details}
+              </p>
+            </div>
+
+            <div className="pt-6 border-t border-border/10">
+              <h4 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-6">Arquitectura Técnica</h4>
+              <div className="space-y-4">
+                {selectedProject?.architecture?.map((step: string, i: number) => (
+                  <div key={step} className="flex items-center gap-4">
+                    <div className="h-8 w-8 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-[10px] font-bold text-primary shrink-0">
+                      0{i + 1}
+                    </div>
+                    <div className="flex-1 text-sm font-medium">{step}</div>
+                    {i < selectedProject.architecture.length - 1 && (
+                      <div className="hidden md:block text-muted-foreground/30"><ArrowRight size={14} /></div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-6">
+            <div className="relative aspect-video rounded-2xl overflow-hidden border border-border shadow-2xl">
+              {selectedProject?.image && (
+                <img
+                  src={selectedProject.image}
+                  alt={selectedProject.title}
+                  className="w-full h-full object-cover"
+                />
+              )}
+            </div>
+
+            <div className="flex flex-wrap gap-2">
+              {selectedProject?.tags.map((tag: string) => (
+                <span key={tag} className="px-3 py-1 rounded-full bg-accent text-[10px] font-bold uppercase tracking-wider">
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            {selectedProject?.link && (
+              <a
+                href={selectedProject.link}
+                target="_blank"
+                className="inline-flex items-center gap-2 text-primary font-bold hover:underline"
+              >
+                Ver publicación oficial <ArrowRight size={16} />
+              </a>
+            )}
+          </div>
+        </div>
+      </Modal>
     </main>
   );
 }

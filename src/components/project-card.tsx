@@ -13,9 +13,10 @@ interface ProjectCardProps {
     tags: string[];
     link?: string;
     github?: string;
+    onClick?: () => void;
 }
 
-export function ProjectCard({ title, description, image, tags, link, github }: ProjectCardProps) {
+export function ProjectCard({ title, description, image, tags, link, github, onClick }: ProjectCardProps) {
     const { trackOracleClick, trackGitHubClick } = useAnalytics();
 
     const handleLinkClick = () => {
@@ -34,7 +35,8 @@ export function ProjectCard({ title, description, image, tags, link, github }: P
     return (
         <motion.div
             whileHover={{ y: -5 }}
-            className="group relative rounded-2xl border border-border bg-accent/50 overflow-hidden"
+            onClick={onClick}
+            className={`group relative rounded-2xl border border-border bg-accent/50 overflow-hidden ${onClick ? 'cursor-pointer' : ''}`}
         >
             <div className="aspect-video relative overflow-hidden">
                 <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10" />

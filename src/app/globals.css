@@ -3,19 +3,19 @@
 @theme {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-heading: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
-  
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  
+
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
-  
+
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
-  
+
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
-  
+
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
@@ -29,16 +29,17 @@
   :root {
     --background: #ffffff;
     --foreground: #0f172a;
-    
+
     --primary: #4f46e5;
     --primary-foreground: #ffffff;
-    
+
     --muted: #f1f5f9;
-    --muted-foreground: #475569; /* Slightly darker for better contrast */
-    
+    --muted-foreground: #475569;
+    /* Slightly darker for better contrast */
+
     --accent: #f8fafc;
     --accent-foreground: #0f1717;
-    
+
     --border: #e2e8f0;
     --input: #e2e8f0;
     --ring: #4f46e5;
@@ -47,16 +48,17 @@
   .dark {
     --background: #020617;
     --foreground: #f8fafc;
-    
+
     --primary: #6366f1;
     --primary-foreground: #ffffff;
-    
+
     --muted: #1e293b;
-    --muted-foreground: #cbd5e1; /* Slightly lighter for better contrast */
-    
+    --muted-foreground: #cbd5e1;
+    /* Slightly lighter for better contrast */
+
     --accent: #0f172a;
     --accent-foreground: #f8fafc;
-    
+
     --border: #1e293b;
     --input: #1e293b;
     --ring: #6366f1;
@@ -67,13 +69,92 @@
   :focus-visible {
     @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
   }
+
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground font-sans;
   }
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-heading tracking-tight;
+  }
+}
+
+/* Print Friendly Styles */
+@media print {
+
+  nav,
+  footer,
+  #contact,
+  .no-print,
+  #section-tracker,
+  .shadow-xl,
+  .backdrop-blur-md,
+  .bg-accent\/30 {
+    display: none !important;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  main {
+    padding: 2cm !important;
+  }
+
+  h1,
+  h2,
+  h3 {
+    color: black !important;
+    page-break-after: avoid;
+  }
+
+  section {
+    page-break-inside: avoid;
+    padding: 1rem 0 !important;
+    background: transparent !important;
+    border: none !important;
+  }
+
+  .text-muted-foreground {
+    color: #444 !important;
+  }
+
+  .container {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Force 1 column for print */
+  .grid {
+    display: block !important;
+  }
+
+  .mt-10,
+  .py-24,
+  .pb-20 {
+    margin-top: 1rem !important;
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+
+  /* Links */
+  a:after {
+    content: " (" attr(href) ")";
+    font-size: 0.8rem;
+    color: #666;
   }
 }
