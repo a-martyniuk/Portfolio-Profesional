@@ -113,11 +113,11 @@ export function CriticalDashboard() {
                         </div>
                     </div>
 
-                    <div className="space-y-2 font-mono text-[10px] min-h-[80px]">
+                    <div className="space-y-2 font-mono text-[10px] h-[100px] overflow-hidden relative">
                         <AnimatePresence mode="popLayout">
                             {logs.map((msg, i) => (
                                 <motion.div
-                                    key={msg}
+                                    key={`${msg}-${i}`}
                                     initial={{ opacity: 0, x: -10 }}
                                     animate={{ opacity: 1, x: 0 }}
                                     exit={{ opacity: 0, y: 10 }}
