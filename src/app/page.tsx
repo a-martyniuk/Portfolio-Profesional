@@ -9,13 +9,13 @@ export default function Home() {
   const projects = [
     {
       title: "Modelo Analítico Corporativo (Laboratorios Bagó)",
-      description: "Diseño de plataforma de datos crítica que aumentó un 20% la productividad de líneas productivas integrando Oracle, AWS y Snowflake. Resolución de cuellos de botella en tiempo real para procesos de manufactura farmacéutica.",
+      description: "Plataforma de datos de misión crítica para una de las mayores farmacéuticas de Argentina, que permitió aumentar en 20% la productividad y reducir tiempos de decisión operativa.",
       tags: ["Oracle", "ODI 12c", "AWS", "Snowflake"],
       link: "https://blogs.oracle.com/oracle-latinoamerica/post/laboratorios-bag-elev-su-produccin-en-un-20-con-el-apoyo-de-la-nube-de-oracle",
     },
     {
       title: "Infraestructura de Estado (Ministerio de Seguridad)",
-      description: "Diseño y operación de la plataforma provincial de análisis criminal utilizada para detectar hotspots delictivos y apoyar decisiones tácticas de seguridad pública a gran escala.",
+      description: "Plataforma provincial de análisis criminal utilizada por fuerzas de seguridad para asignación de recursos, detección de hotspots y toma de decisiones tácticas en tiempo real.",
       tags: ["PostgreSQL", "ArcGIS", "Python", "Sistemas de Misión Crítica"],
     },
     {
@@ -60,7 +60,15 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <SectionHeading
             title="Logros y Proyectos"
-            subtitle="Hitos destacados en mi carrera técnica y proyectos de alto impacto consultados por Oracle Latinoamérica."
+            subtitle={
+              <span>
+                Proyectos de misión crítica utilizados por organizaciones públicas y privadas.
+                <br />
+                <span className="inline-block mt-2 py-1 px-3 rounded-md bg-red-500/10 text-red-500 text-xs font-bold uppercase tracking-wider border border-red-500/20">
+                  Featured by Oracle
+                </span>
+              </span>
+            }
             centered
           />
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -82,7 +90,7 @@ export default function Home() {
             <div>
               <SectionHeading
                 title="Experticia Técnica"
-                subtitle="Desde mainframes COBOL/DB2 hasta nubes Snowflake/AWS: modernización de ecosistemas completos sin romper producción."
+                subtitle="Desde mainframes COBOL/DB2 hasta nubes Snowflake/AWS: modernización de ecosistemas completos sin romper operaciones críticas."
               />
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
                 {stack.map((item) => (
@@ -161,7 +169,7 @@ export default function Home() {
                 href="mailto:alexis.martyniuk@gmail.com"
                 className="flex items-center justify-center gap-3 bg-primary px-8 py-5 rounded-2xl font-bold text-primary-foreground hover:bg-primary/90 transition-all shadow-xl shadow-primary/20 shrink-0"
               >
-                <Mail size={20} /> Agendar Llamada por Email
+                <Mail size={20} /> Agenda una llamada o escribime
               </a>
               <div className="flex justify-center gap-4">
                 <a href="https://linkedin.com/in/alexismartyniuk/" target="_blank" className="p-4 rounded-2xl border border-border bg-background hover:bg-muted transition-colors"><Linkedin /></a>
