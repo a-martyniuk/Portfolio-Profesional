@@ -3,6 +3,7 @@ import { Hero } from "@/components/hero";
 import { ProjectCard } from "@/components/project-card";
 import { SectionHeading } from "@/components/ui/section-heading";
 import dynamic from 'next/dynamic';
+import { SectionTracker } from "@/components/providers/section-tracker";
 import { Mail, Linkedin, Github, GraduationCap, Globe } from "lucide-react";
 
 const Experience = dynamic(() => import("@/components/experience").then(mod => ({ default: mod.Experience })), {
@@ -58,6 +59,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen">
+      <SectionTracker />
       <Navbar />
 
       <Hero />

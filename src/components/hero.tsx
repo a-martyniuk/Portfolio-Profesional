@@ -10,7 +10,7 @@ export function Hero() {
     const { trackCTAClick } = useAnalytics();
 
     return (
-        <section className="relative pt-32 pb-20 overflow-hidden">
+        <section id="hero" className="relative pt-32 pb-20 overflow-hidden">
             {/* Background Decor */}
             <div className="absolute top-0 right-0 -z-10 h-full w-full opacity-30 dark:opacity-20 pointer-events-none">
                 <div className="absolute top-[-10%] right-[10%] h-[500px] w-[500px] rounded-full bg-primary/30 blur-[120px]" />
