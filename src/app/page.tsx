@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { Navbar } from "@/components/navbar";
 import { Hero } from "@/components/hero";
 import { CriticalDashboard } from "@/components/critical-dashboard";
@@ -9,6 +10,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import dynamic from 'next/dynamic';
 import { SectionTracker } from "@/components/providers/section-tracker";
 import { Modal } from "@/components/ui/modal";
+import { VisualEffects } from "@/components/visual-effects";
 import { Mail, Linkedin, Github, GraduationCap, Globe, ArrowRight, Copy, CheckCircle } from "lucide-react";
 
 const Experience = dynamic(() => import("@/components/experience").then(mod => ({ default: mod.Experience })), {
@@ -80,15 +82,23 @@ export default function Home() {
   ];
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen relative overflow-x-hidden">
       <SectionTracker />
+      <VisualEffects />
       <Navbar />
 
       <Hero />
       <CriticalDashboard />
 
       {/* Projects Section */}
-      <section id="projects" className="py-24 bg-accent/30">
+      <motion.section
+        id="projects"
+        className="py-24"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
         <div className="container mx-auto px-4">
           <SectionHeading
             title="Logros y Proyectos"
@@ -113,13 +123,20 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Experience Section */}
       <Experience />
 
       {/* Stack & Education Section */}
-      <section id="stack" className="py-24 border-y border-border bg-accent/10">
+      <motion.section
+        id="stack"
+        className="py-24 border-y border-border"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-16">
             {/* Technical Stack */}
@@ -183,10 +200,17 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Curated Code & Tools Section */}
-      <section id="curated-code" className="py-24 bg-accent/30 border-y border-border">
+      <motion.section
+        id="curated-code"
+        className="py-24 border-y border-border"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
         <div className="container mx-auto px-4">
           <SectionHeading
             title="Código Curado & Herramientas de Ingeniería"
@@ -231,52 +255,59 @@ export default function Home() {
             />
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-24">
+      <motion.section
+        id="contact"
+        className="py-24"
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
         <div className="container mx-auto px-4 text-center">
           <SectionHeading
             title="Hablemos de tu Próximo Desafío"
             subtitle="¿Necesitás a alguien que diseñe, implemente y mantenga tu plataforma de datos sin romper producción?"
             centered
           />
-          <div className="max-w-2xl mx-auto rounded-3xl border border-border bg-accent/30 p-8 md:p-12 relative overflow-hidden">
+          <div className="max-w-2xl mx-auto rounded-3xl border border-border/50 bg-accent/20 backdrop-blur-md p-8 md:p-12 relative overflow-hidden transition-all duration-300 hover:border-primary/30 hover:shadow-[0_0_50px_-15px_rgba(99,102,241,0.2)]">
             {/* Decorative blob */}
             <div className="absolute top-[-50%] left-[-20%] h-full w-full bg-primary/10 blur-[80px] -z-10" />
 
             <p className="mb-8 text-muted-foreground text-lg leading-relaxed">
               Estoy disponible para proyectos de arquitectura de datos, migración a la nube y consultoría estratégica para sistemas de alta complejidad.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center items-center">
               <a
                 href="mailto:alexis.martyniuk@gmail.com"
-                className="flex items-center justify-center gap-3 bg-primary px-8 py-5 rounded-2xl font-bold text-primary-foreground hover:bg-primary/90 transition-all shadow-xl shadow-primary/20 w-full sm:w-auto"
+                className="flex items-center justify-center gap-3 bg-primary px-6 h-16 rounded-2xl font-bold text-primary-foreground hover:bg-primary/90 transition-all shadow-xl shadow-primary/20 w-full sm:w-auto whitespace-nowrap"
               >
-                <Mail size={20} /> Agenda una llamada o escribime
+                <Mail size={18} /> Agenda una llamada o escribime
               </a>
               <button
                 onClick={copyEmail}
-                className="flex items-center justify-center gap-3 px-8 py-5 rounded-2xl border border-border bg-background hover:bg-muted transition-all font-bold w-full sm:w-auto min-w-[180px]"
+                className="flex items-center justify-center gap-3 px-6 h-16 rounded-2xl border border-border bg-background hover:bg-muted transition-all font-bold w-full sm:w-auto min-w-[180px] whitespace-nowrap"
               >
                 {copied ? (
                   <span className="text-emerald-500 flex items-center gap-2 italic">
                     <CheckCircle size={18} /> ¡Copiado!
                   </span>
                 ) : (
-                  <span className="flex items-center gap-2">
+                  <span className="flex items-center gap-2 text-muted-foreground">
                     <Copy size={18} /> Copiar Email
                   </span>
                 )}
               </button>
-              <div className="flex justify-center gap-4 w-full sm:w-auto">
-                <a href="https://linkedin.com/in/alexismartyniuk/" target="_blank" className="flex items-center justify-center p-5 rounded-2xl border border-border bg-background hover:bg-muted transition-colors"><Linkedin size={24} /></a>
-                <a href="https://github.com/a-martyniuk" target="_blank" className="flex items-center justify-center p-5 rounded-2xl border border-border bg-background hover:bg-muted transition-colors"><Github size={24} /></a>
+              <div className="flex items-center gap-3 h-16">
+                <a href="https://linkedin.com/in/alexismartyniuk/" target="_blank" className="flex items-center justify-center w-16 h-16 rounded-2xl border border-border bg-background hover:bg-muted transition-colors text-muted-foreground hover:text-primary"><Linkedin size={20} /></a>
+                <a href="https://github.com/a-martyniuk" target="_blank" className="flex items-center justify-center w-16 h-16 rounded-2xl border border-border bg-background hover:bg-muted transition-colors text-muted-foreground hover:text-foreground"><Github size={20} /></a>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Footer */}
       <footer className="py-12 border-t border-border">

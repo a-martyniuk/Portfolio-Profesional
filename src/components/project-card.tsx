@@ -34,9 +34,12 @@ export function ProjectCard({ title, description, image, tags, link, github, onC
 
     return (
         <motion.div
-            whileHover={{ y: -5 }}
+            whileHover={{
+                y: -8,
+                transition: { duration: 0.3 }
+            }}
             onClick={onClick}
-            className={`group relative rounded-2xl border border-border bg-accent/50 overflow-hidden ${onClick ? 'cursor-pointer' : ''}`}
+            className={`group relative rounded-2xl border border-border/50 bg-accent/40 backdrop-blur-sm overflow-hidden transition-all duration-300 hover:border-primary/50 hover:shadow-[0_0_30px_-10px_rgba(99,102,241,0.3)] ${onClick ? 'cursor-pointer' : ''}`}
         >
             <div className="aspect-video relative overflow-hidden">
                 <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10" />
