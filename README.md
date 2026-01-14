@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Alexis Martyniuk | Professional Portfolio
 
-## Getting Started
+High-performance professional portfolio built with Next.js 15, Tailwind CSS v4, and Vercel.
 
-First, run the development server:
+## 🚀 Key Features
+
+- **Next.js 15 (App Router)**: Utilizing the latest features of the Next.js framework.
+- **Tailwind CSS v4**: Modern, efficient styling with a custom design system.
+- **PostHog & Vercel Analytics**: Comprehensive tracking and performance monitoring.
+- **Glassmorphism UI**: Premium dark/light mode interface with smooth transitions.
+- **SEO Optimized**: Pre-configured metadata and high Lighthouse accessibility scores.
+- **Secure by Default**: Security headers and safe coding practices.
+
+## 🛠 Tech Stack
+
+- **Framework**: [Next.js](https://nextjs.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Analytics**: [Vercel](https://vercel.com/analytics), [PostHog](https://posthog.com/)
+
+## 🏁 Getting Started
+
+### 1. Installation
+
+```bash
+npm install
+```
+
+### 2. Run Locally
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 3. Environment Variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Create a `.env.local` file with the following keys:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```env
+NEXT_PUBLIC_POSTHOG_KEY=your_key
+NEXT_PUBLIC_POSTHOG_HOST=your_host
+```
 
-## Learn More
+## 📦 Deployment
 
-To learn more about Next.js, take a look at the following resources:
+The project is optimized for [Vercel](https://vercel.com/):
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Push your code to GitHub.
+2. Connect your repository to Vercel.
+3. Configure environment variables.
+4. Profit!
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+Developed by Alexis Martyniuk.
