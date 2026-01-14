@@ -48,7 +48,7 @@ export function ProjectCard({ title, description, image, tags, link, github, onC
                         src={image}
                         alt={title}
                         fill
-                        className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                 ) : (
                     <div className="w-full h-full bg-muted flex items-center justify-center text-muted-foreground">
