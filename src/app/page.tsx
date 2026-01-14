@@ -8,19 +8,19 @@ export default function Home() {
   const projects = [
     {
       title: "Real Estate Scraper Pro",
-      description: "Advanced multi-source real estate scraper with automated email notifications and data consolidation into Excel.",
-      tags: ["Python", "Playwright", "Pandas", "Automation"],
+      description: "Scraper inmobiliario avanzado multi-fuente con notificaciones por email automáticas y consolidación de datos en Excel.",
+      tags: ["Python", "Playwright", "Pandas", "Automatización"],
       github: "https://github.com",
     },
     {
       title: "ML Invoice Automator",
-      description: "SaaS-ready tool for Mercado Libre sellers to automate invoice downloads, cloud storage, and monthly reporting.",
+      description: "Herramienta lista para SaaS para vendedores de Mercado Libre que automatiza la descarga de facturas y reportes mensuales.",
       tags: ["Next.js", "OAuth2", "PostgreSQL", "Google Drive API"],
       link: "https://example.com",
     },
     {
       title: "GOG Galaxy Exporter",
-      description: "Local database extractor for GOG Galaxy gaming data with detailed metadata and cover art fetching.",
+      description: "Extractor de base de datos local para datos de juegos de GOG Galaxy con metadatos detallados y carátulas.",
       tags: ["SQLite", "TypeScript", "React"],
       github: "https://github.com",
     },
@@ -47,8 +47,8 @@ export default function Home() {
       <section id="projects" className="py-24 bg-accent/30">
         <div className="container mx-auto px-4">
           <SectionHeading
-            title="Featured Projects"
-            subtitle="A selection of my recent work in automation and web application development."
+            title="Proyectos Destacados"
+            subtitle="Una selección de mi trabajo reciente en automatización y desarrollo de aplicaciones web."
             centered
           />
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -65,12 +65,12 @@ export default function Home() {
           <div className="flex flex-col lg:flex-row gap-16 items-center">
             <div className="lg:w-1/2">
               <SectionHeading
-                title="Technical Expertise"
-                subtitle="Leveraging the latest technologies to build high-performance, scalable applications."
+                title="Experticia Técnica"
+                subtitle="Aprovechando las últimas tecnologías para crear aplicaciones escalables y de alto rendimiento."
               />
               <p className="text-muted-foreground mb-8">
-                My approach focuses on creating robust systems that solve real-world problems.
-                From complex scrapers to full-stack SaaS applications, I prioritize performance and user experience.
+                Mi enfoque se centra en crear sistemas robustos que resuelven problemas del mundo real.
+                Desde scrapers complejos hasta aplicaciones SaaS full-stack, priorizo el rendimiento y la experiencia del usuario.
               </p>
               <div className="grid grid-cols-2 gap-4">
                 {stack.map((item) => (
@@ -84,11 +84,11 @@ export default function Home() {
             <div className="lg:w-1/2 grid grid-cols-2 gap-4">
               <div className="aspect-square rounded-3xl bg-primary/5 border border-primary/10 flex flex-col items-center justify-center p-8 text-center">
                 <span className="text-4xl font-bold text-primary mb-2">99</span>
-                <span className="text-xs uppercase tracking-widest font-bold text-muted-foreground">Lighthouse Score</span>
+                <span className="text-xs uppercase tracking-widest font-bold text-muted-foreground">Puntaje Lighthouse</span>
               </div>
               <div className="aspect-square rounded-3xl bg-indigo-500/5 border border-indigo-500/10 flex flex-col items-center justify-center p-8 text-center mt-8">
                 <span className="text-4xl font-bold text-indigo-500 mb-2">Zero</span>
-                <span className="text-xs uppercase tracking-widest font-bold text-muted-foreground">Downtime CI/CD</span>
+                <span className="text-xs uppercase tracking-widest font-bold text-muted-foreground">CI/CD Sin Interrupciones</span>
               </div>
             </div>
           </div>
@@ -99,20 +99,20 @@ export default function Home() {
       <section id="contact" className="py-24">
         <div className="container mx-auto px-4 text-center">
           <SectionHeading
-            title="Get In Touch"
-            subtitle="Interested in collaborating or hiring for your next project?"
+            title="Ponte en Contacto"
+            subtitle="¿Interesado en colaborar o contratarme para tu próximo proyecto?"
             centered
           />
           <div className="max-w-xl mx-auto rounded-3xl border border-border bg-accent/30 p-8 md:p-12">
             <p className="mb-8 text-muted-foreground">
-              Always open to discussing new opportunities, SaaS ideas, or technical consulting.
+              Siempre estoy abierto a discutir nuevas oportunidades, ideas de SaaS o consultoría técnica.
             </p>
             <div className="flex flex-col gap-4">
               <a
                 href="mailto:contact@alexismartyniuk.com.ar"
                 className="w-full flex items-center justify-center gap-3 bg-primary py-4 rounded-2xl font-bold text-primary-foreground hover:bg-primary/90 transition-all"
               >
-                <Mail size={20} /> Send an Email
+                <Mail size={20} /> Enviar un Email
               </a>
               <div className="flex justify-center gap-4 mt-4">
                 <a href="#" className="p-4 rounded-2xl border border-border hover:bg-muted transition-colors"><Linkedin /></a>
@@ -127,11 +127,11 @@ export default function Home() {
       <footer className="py-12 border-t border-border">
         <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-muted-foreground text-sm">
-            © {new Date().getFullYear()} Alexis Martyniuk. All rights reserved.
+            © {new Date().getFullYear()} Alexis Martyniuk. Todos los derechos reservados.
           </p>
           <div className="flex gap-8 text-sm font-medium text-muted-foreground">
-            <a href="#" className="hover:text-foreground">Privacy Policy</a>
-            <a href="#" className="hover:text-foreground">Terms of Service</a>
+            <a href="#" className="hover:text-foreground">Política de Privacidad</a>
+            <a href="#" className="hover:text-foreground">Términos de Servicio</a>
           </div>
         </div>
       </footer>

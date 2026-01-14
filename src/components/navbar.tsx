@@ -7,10 +7,10 @@ import { Moon, Sun, Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const navLinks = [
-    { name: 'Projects', href: '#projects' },
+    { name: 'Proyectos', href: '#projects' },
     { name: 'Stack', href: '#stack' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Experiencia', href: '#experience' },
+    { name: 'Contacto', href: '#contact' },
 ];
 
 export function Navbar() {

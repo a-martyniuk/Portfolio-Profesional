@@ -16,9 +16,9 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Alexis Martyniuk | Professional Portfolio",
-  description: "Software Engineer specializing in modern web applications, Next.js, and automated systems.",
-  keywords: ["Software Engineer", "Next.js", "Portfolio", "Vercel", "Full-Stack Developer"],
+  title: "Alexis Martyniuk | Portfolio Profesional",
+  description: "Ingeniero de Software especializado en aplicaciones web modernas, Next.js y sistemas automatizados.",
+  keywords: ["Ingeniero de Software", "Next.js", "Portfolio", "Vercel", "Desarrollador Full-Stack"],
 };
 
 export default function RootLayout({
@@ -27,7 +27,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="es" suppressHydrationWarning>
       <body
         className={`${inter.variable} ${outfit.variable} antialiased selection:bg-indigo-500/30`}
       >
