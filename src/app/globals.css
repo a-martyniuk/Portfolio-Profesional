@@ -88,9 +88,10 @@
   }
 }
 
-/* Print Friendly Styles */
+/* Print Friendly Styles - Professional Technical Resume Layout */
 @media print {
 
+  /* Hide unnecessary web elements */
   nav,
   footer,
   #contact,
@@ -98,39 +99,26 @@
   #section-tracker,
   .shadow-xl,
   .backdrop-blur-md,
-  .bg-accent\/30 {
+  .bg-accent\/30,
+  button,
+  .cursor-pointer {
     display: none !important;
   }
 
   body {
     background: white !important;
     color: black !important;
+    font-size: 11pt !important;
+    line-height: 1.4 !important;
     padding: 0 !important;
     margin: 0 !important;
   }
 
   main {
-    padding: 2cm !important;
+    padding: 1.5cm !important;
   }
 
-  h1,
-  h2,
-  h3 {
-    color: black !important;
-    page-break-after: avoid;
-  }
-
-  section {
-    page-break-inside: avoid;
-    padding: 1rem 0 !important;
-    background: transparent !important;
-    border: none !important;
-  }
-
-  .text-muted-foreground {
-    color: #444 !important;
-  }
-
+  /* Reset layout constraints */
   .container {
     max-width: 100% !important;
     width: 100% !important;
@@ -138,23 +126,88 @@
     padding: 0 !important;
   }
 
-  /* Force 1 column for print */
+  /* Force single column for most sections but keep some structure */
   .grid {
     display: block !important;
   }
 
-  .mt-10,
-  .py-24,
-  .pb-20 {
-    margin-top: 1rem !important;
-    padding-top: 1.5rem !important;
-    padding-bottom: 1.5rem !important;
+  section {
+    page-break-inside: avoid;
+    margin-bottom: 2rem !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
   }
 
-  /* Links */
+  h1 {
+    font-size: 24pt !important;
+    margin-bottom: 0.5rem !important;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 0.5rem;
+  }
+
+  h2 {
+    font-size: 18pt !important;
+    margin-top: 1.5rem !important;
+    margin-bottom: 1rem !important;
+    border-bottom: 1px solid #eee;
+  }
+
+  h3 {
+    font-size: 14pt !important;
+    margin-top: 1rem !important;
+  }
+
+  .text-muted-foreground {
+    color: #444 !important;
+  }
+
+  /* Specific section fixes */
+  #hero {
+    text-align: left !important;
+    padding-top: 0 !important;
+  }
+
+  #hero h1 {
+    border: none;
+  }
+
+  /* Projects and Experience */
+  .grid-cols-1,
+  .md\:grid-cols-2,
+  .lg\:grid-cols-3 {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+  }
+
+  /* Project Cards in Print */
+  .group {
+    border-bottom: 1px solid #eee !important;
+    padding-bottom: 1rem !important;
+    margin-bottom: 1rem !important;
+    display: block !important;
+  }
+
+  .aspect-video {
+    display: none !important;
+    /* Don't print project images in resume */
+  }
+
+  /* Experience Timeline Fix */
+  .before\:bg-primary\/30 {
+    background-color: #eee !important;
+  }
+
   a:after {
-    content: " (" attr(href) ")";
-    font-size: 0.8rem;
-    color: #666;
+    content: " [" attr(href) "]";
+    font-size: 9pt;
+    color: #333;
+    font-weight: normal;
+  }
+
+  /* Page Break Control */
+  .page-break {
+    page-break-before: always;
   }
 }

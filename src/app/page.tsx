@@ -197,30 +197,35 @@ export default function Home() {
             <ProjectCard
               title="Descarga-Facturas-ML"
               description="Automatización que integra APIs de Mercado Libre y Google Drive para la gestión contable autónoma. Ahorro de tiempo manual mediante orquestación programada."
+              image="/images/projects/meli-automation.png"
               tags={["Python", "APIs", "Automatización de Negocio"]}
               github="https://github.com/a-martyniuk/Descarga-Facturas-ML"
             />
             <ProjectCard
               title="Orden-Archivos"
               description="CLI de alto rendimiento para la organización taxonómica de archivos. Enfoque en eficiencia de I/O y mantenimiento de sistemas de archivos limpios."
+              image="/images/projects/file-organizer.png"
               tags={["Python", "OS", "Ingeniería de Archivos"]}
               github="https://github.com/a-martyniuk/Orden-Archivos"
             />
             <ProjectCard
               title="GOG Galaxy Export HTML"
               description="Pipeline de extracción de datos locales (SQLite) de GOG Galaxy y generación de reportes web. Transformación de datos crudos en visualizaciones de usuario."
+              image="/images/projects/gog-pipeline.png"
               tags={["Python", "SQLite", "Data Extraction"]}
               github="https://github.com/a-martyniuk/GOG-Galaxy-Export-HTML"
             />
             <ProjectCard
               title="Portfolio Profesional"
               description="Desarrollo Full Stack con Next.js 15, Tailwind v4 y CI/CD. Demostración de capacidades de construcción de producto y UI/UX moderno."
+              image="/images/projects/portfolio-v2.png"
               tags={["Next.js", "React", "Product Building"]}
               github="https://github.com/a-martyniuk/Portfolio-Profesional"
             />
             <ProjectCard
               title="Brújula-QR"
               description="Experimento de navegación WebAR. Uso de sensores de dispositivo (giroscopio/GPS) para orientación en tiempo real sin apps nativas."
+              image="/images/projects/webar-compass.png"
               tags={["JavaScript", "Prototipo Experimental", "Sensores"]}
               github="https://github.com/a-martyniuk/Brujula-QR"
             />
