@@ -3,6 +3,7 @@ import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { PostHogProvider } from "@/components/providers/posthog-provider";
+import PostHogPageView from "@/components/providers/posthog-pageview";
 import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({
@@ -37,8 +38,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
-          <Analytics />
+          <PostHogProvider>
+            <PostHogPageView />
+            {children}
+            <Analytics />
+          </PostHogProvider>
         </ThemeProvider>
       </body>
     </html>
