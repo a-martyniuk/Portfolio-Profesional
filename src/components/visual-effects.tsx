@@ -1,36 +1,14 @@
 'use client';
 
-import React, { useEffect } from 'react';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import React from 'react';
 
 export function VisualEffects() {
-    const mouseX = useMotionValue(0);
-    const mouseY = useMotionValue(0);
-
-    const springConfig = { damping: 50, stiffness: 300 };
-    const spotlightX = useSpring(mouseX, springConfig);
-    const spotlightY = useSpring(mouseY, springConfig);
-
-    useEffect(() => {
-        const handleMouseMove = (e: MouseEvent) => {
-            mouseX.set(e.clientX);
-            mouseY.set(e.clientY);
-        };
-
-        window.addEventListener('mousemove', handleMouseMove);
-        return () => window.removeEventListener('mousemove', handleMouseMove);
-    }, [mouseX, mouseY]);
-
     return (
         <div className="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
-            {/* Dynamic Spotlight */}
-            <motion.div
-                className="absolute w-[1000px] h-[1000px] rounded-full opacity-[0.15] dark:opacity-[0.2]"
+            {/* Static Ambient Glow */}
+            <div
+                className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] rounded-full opacity-[0.15] dark:opacity-[0.2]"
                 style={{
-                    left: spotlightX,
-                    top: spotlightY,
-                    translateX: '-50%',
-                    translateY: '-50%',
                     background: 'radial-gradient(circle, var(--primary) 0%, transparent 70%)',
                     filter: 'blur(120px)',
                 }}
