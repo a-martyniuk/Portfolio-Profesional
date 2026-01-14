@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, Github } from 'lucide-react';
 import Image from 'next/image';
+import { useAnalytics } from '@/lib/analytics';
 
 interface ProjectCardProps {
     title: string;
@@ -15,6 +16,21 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ title, description, image, tags, link, github }: ProjectCardProps) {
+    const { trackOracleClick, trackGitHubClick } = useAnalytics();
+
+    const handleLinkClick = () => {
+        if (link?.includes('oracle')) {
+            trackOracleClick();
+        }
+    };
+
+    const handleGitHubClick = () => {
+        if (github) {
+            const repoName = github.split('/').pop() || title;
+            trackGitHubClick(repoName);
+        }
+    };
+
     return (
         <motion.div
             whileHover={{ y: -5 }}
@@ -33,12 +49,22 @@ export function ProjectCard({ title, description, image, tags, link, github }: P
                     <h3 className="text-xl font-heading font-bold">{title}</h3>
                     <div className="flex gap-2">
                         {github && (
-                            <a href={github} target="_blank" className="p-2 rounded-full hover:bg-muted transition-colors">
+                            <a
+                                href={github}
+                                target="_blank"
+                                onClick={handleGitHubClick}
+                                className="p-2 rounded-full hover:bg-muted transition-colors"
+                            >
                                 <Github size={18} />
                             </a>
                         )}
                         {link && (
-                            <a href={link} target="_blank" className="p-2 rounded-full hover:bg-muted transition-colors text-primary">
+                            <a
+                                href={link}
+                                target="_blank"
+                                onClick={handleLinkClick}
+                                className="p-2 rounded-full hover:bg-muted transition-colors text-primary"
+                            >
                                 <ExternalLink size={18} />
                             </a>
                         )}

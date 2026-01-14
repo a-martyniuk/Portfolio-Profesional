@@ -2,8 +2,12 @@ import { Navbar } from "@/components/navbar";
 import { Hero } from "@/components/hero";
 import { ProjectCard } from "@/components/project-card";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { Experience } from "@/components/experience";
+import dynamic from 'next/dynamic';
 import { Mail, Linkedin, Github, GraduationCap, Globe } from "lucide-react";
+
+const Experience = dynamic(() => import("@/components/experience").then(mod => ({ default: mod.Experience })), {
+  loading: () => <div className="py-24 text-center text-muted-foreground">Cargando experiencia...</div>
+});
 
 export default function Home() {
   const projects = [

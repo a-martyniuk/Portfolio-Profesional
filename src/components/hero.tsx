@@ -4,8 +4,11 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Github, Linkedin } from 'lucide-react';
 import Link from 'next/link';
+import { useAnalytics } from '@/lib/analytics';
 
 export function Hero() {
+    const { trackCTAClick } = useAnalytics();
+
     return (
         <section className="relative pt-32 pb-20 overflow-hidden">
             {/* Background Decor */}
@@ -37,12 +40,14 @@ export function Hero() {
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                             <Link
                                 href="#projects"
+                                onClick={() => trackCTAClick('Ver Proyectos Reales')}
                                 className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-primary text-primary-foreground font-bold flex items-center justify-center gap-2 hover:bg-primary/90 transition-all shadow-xl shadow-primary/20"
                             >
                                 Ver Proyectos Reales <ArrowRight size={18} />
                             </Link>
                             <Link
                                 href="#contact"
+                                onClick={() => trackCTAClick('Hablar Conmigo')}
                                 className="w-full sm:w-auto px-8 py-4 rounded-2xl border-2 border-primary/20 bg-background text-foreground font-bold flex items-center justify-center gap-2 hover:border-primary/50 transition-all"
                             >
                                 Hablar Conmigo
