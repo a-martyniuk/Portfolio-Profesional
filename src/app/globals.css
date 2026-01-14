@@ -34,7 +34,7 @@
     --primary-foreground: #ffffff;
     
     --muted: #f1f5f9;
-    --muted-foreground: #64748b;
+    --muted-foreground: #475569; /* Slightly darker for better contrast */
     
     --accent: #f8fafc;
     --accent-foreground: #0f1717;
@@ -52,7 +52,7 @@
     --primary-foreground: #ffffff;
     
     --muted: #1e293b;
-    --muted-foreground: #94a3b8;
+    --muted-foreground: #cbd5e1; /* Slightly lighter for better contrast */
     
     --accent: #0f172a;
     --accent-foreground: #f8fafc;
@@ -64,6 +64,9 @@
 }
 
 @layer base {
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
   * {
     @apply border-border;
   }

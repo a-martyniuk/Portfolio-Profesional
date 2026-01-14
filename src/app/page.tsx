@@ -16,16 +16,19 @@ export default function Home() {
       description: "Plataforma de datos de misión crítica para una de las mayores farmacéuticas de Argentina, que permitió aumentar en 20% la productividad y reducir tiempos de decisión operativa.",
       tags: ["Oracle", "ODI 12c", "AWS", "Snowflake"],
       link: "https://blogs.oracle.com/oracle-latinoamerica/post/laboratorios-bag-elev-su-produccin-en-un-20-con-el-apoyo-de-la-nube-de-oracle",
+      image: "/images/projects/bago-dashboard.png",
     },
     {
       title: "Infraestructura de Estado (Ministerio de Seguridad)",
       description: "Plataforma provincial de análisis criminal utilizada por fuerzas de seguridad para asignación de recursos, detección de hotspots y toma de decisiones tácticas en tiempo real.",
       tags: ["PostgreSQL", "ArcGIS", "Python", "Sistemas de Misión Crítica"],
+      image: "/images/projects/ministerio-heatmap.png",
     },
     {
       title: "Automatización y Redes de Alta Disponibilidad",
       description: "Implementación de ecosistemas IoT y redes WiFi Mesh para infraestructuras inteligentes, aplicando principios de automatización industrial y monitoreo proactivo.",
       tags: ["IoT", "Networking", "Automatización", "Sistemas Inteligentes"],
+      image: "/images/projects/iot-network.png",
     },
   ];
 

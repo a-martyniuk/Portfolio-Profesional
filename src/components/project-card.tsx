@@ -38,10 +38,18 @@ export function ProjectCard({ title, description, image, tags, link, github }: P
         >
             <div className="aspect-video relative overflow-hidden">
                 <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10" />
-                <div className="w-full h-full bg-muted flex items-center justify-center text-muted-foreground">
-                    {/* Placeholder if no image, but ideally we use generate_image later */}
-                    <span className="text-xs uppercase tracking-widest font-semibold">Project Preview</span>
-                </div>
+                {image ? (
+                    <Image
+                        src={image}
+                        alt={title}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                ) : (
+                    <div className="w-full h-full bg-muted flex items-center justify-center text-muted-foreground">
+                        <span className="text-xs uppercase tracking-widest font-semibold">Project Preview</span>
+                    </div>
+                )}
             </div>
 
             <div className="p-6">
