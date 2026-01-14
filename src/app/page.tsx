@@ -2,39 +2,51 @@ import { Navbar } from "@/components/navbar";
 import { Hero } from "@/components/hero";
 import { ProjectCard } from "@/components/project-card";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { Mail, Github, Linkedin, ExternalLink } from "lucide-react";
+import { Experience } from "@/components/experience";
+import { Mail, Linkedin, Github, GraduationCap, Globe } from "lucide-react";
 
 export default function Home() {
   const projects = [
     {
-      title: "Real Estate Scraper Pro",
-      description: "Scraper inmobiliario avanzado multi-fuente con notificaciones por email automáticas y consolidación de datos en Excel.",
-      tags: ["Python", "Playwright", "Pandas", "Automatización"],
-      github: "https://github.com",
+      title: "Modelo Analítico Corporativo (Laboratorios Bagó)",
+      description: "Diseño de plataforma de datos crítica que aumentó un 20% la productividad de líneas productivas integrando Oracle, AWS y Snowflake. Resolución de cuellos de botella en tiempo real para procesos de manufactura farmacéutica.",
+      tags: ["Oracle", "ODI 12c", "AWS", "Snowflake"],
+      link: "https://blogs.oracle.com/oracle-latinoamerica/post/laboratorios-bag-elev-su-produccin-en-un-20-con-el-apoyo-de-la-nube-de-oracle",
     },
     {
-      title: "ML Invoice Automator",
-      description: "Herramienta lista para SaaS para vendedores de Mercado Libre que automatiza la descarga de facturas y reportes mensuales.",
-      tags: ["Next.js", "OAuth2", "PostgreSQL", "Google Drive API"],
-      link: "https://example.com",
+      title: "Infraestructura de Estado (Ministerio de Seguridad)",
+      description: "Diseño y operación de la plataforma provincial de análisis criminal utilizada para detectar hotspots delictivos y apoyar decisiones tácticas de seguridad pública a gran escala.",
+      tags: ["PostgreSQL", "ArcGIS", "Python", "Sistemas de Misión Crítica"],
     },
     {
-      title: "GOG Galaxy Exporter",
-      description: "Extractor de base de datos local para datos de juegos de GOG Galaxy con metadatos detallados y carátulas.",
-      tags: ["SQLite", "TypeScript", "React"],
-      github: "https://github.com",
+      title: "Automatización y Redes de Alta Disponibilidad",
+      description: "Implementación de ecosistemas IoT y redes WiFi Mesh para infraestructuras inteligentes, aplicando principios de automatización industrial y monitoreo proactivo.",
+      tags: ["IoT", "Networking", "Automatización", "Sistemas Inteligentes"],
     },
   ];
 
   const stack = [
-    "Next.js 15 (App Router)",
-    "TypeScript",
-    "Tailwind CSS v4",
-    "Framer Motion",
+    "Oracle Data Integrator 12c",
+    "Python & PL/SQL",
+    "Snowflake & AWS",
+    "Power BI & Tableau",
+    "Mainframe (COBOL/DB2)",
     "PostgreSQL",
-    "Vercel Edge",
-    "PostHog Analytics",
-    "Stripe Payments",
+    "Next.js & TypeScript",
+    "Metodologías Ágiles (Scrum)",
+  ];
+
+  const education = [
+    {
+      degree: "Licenciatura en TICs para la Seguridad Pública",
+      school: "IUPFA - Instituto Universitario PFA",
+      status: "Tesis Pendiente",
+    },
+    {
+      degree: "Tecnicatura Superior en Análisis de Sistemas",
+      school: "CAEEP (2017 - 2019)",
+      status: "Completado",
+    },
   ];
 
   return (
@@ -47,8 +59,8 @@ export default function Home() {
       <section id="projects" className="py-24 bg-accent/30">
         <div className="container mx-auto px-4">
           <SectionHeading
-            title="Proyectos Destacados"
-            subtitle="Una selección de mi trabajo reciente en automatización y desarrollo de aplicaciones web."
+            title="Logros y Proyectos"
+            subtitle="Hitos destacados en mi carrera técnica y proyectos de alto impacto consultados por Oracle Latinoamérica."
             centered
           />
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -59,36 +71,70 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Stack Section */}
-      <section id="stack" className="py-24 border-y border-border">
+      {/* Experience Section */}
+      <Experience />
+
+      {/* Stack & Education Section */}
+      <section id="stack" className="py-24 border-y border-border bg-accent/10">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col lg:flex-row gap-16 items-center">
-            <div className="lg:w-1/2">
+          <div className="grid lg:grid-cols-2 gap-16">
+            {/* Technical Stack */}
+            <div>
               <SectionHeading
                 title="Experticia Técnica"
-                subtitle="Aprovechando las últimas tecnologías para crear aplicaciones escalables y de alto rendimiento."
+                subtitle="Desde mainframes COBOL/DB2 hasta nubes Snowflake/AWS: modernización de ecosistemas completos sin romper producción."
               />
-              <p className="text-muted-foreground mb-8">
-                Mi enfoque se centra en crear sistemas robustos que resuelven problemas del mundo real.
-                Desde scrapers complejos hasta aplicaciones SaaS full-stack, priorizo el rendimiento y la experiencia del usuario.
-              </p>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
                 {stack.map((item) => (
-                  <div key={item} className="flex items-center gap-2 text-sm font-medium">
-                    <div className="h-1.5 w-1.5 rounded-full bg-primary" />
-                    {item}
+                  <div key={item} className="flex items-center gap-3 p-4 rounded-xl border border-border bg-background hover:border-primary/50 transition-colors">
+                    <div className="h-2 w-2 rounded-full bg-primary" />
+                    <span className="text-sm font-medium">{item}</span>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="lg:w-1/2 grid grid-cols-2 gap-4">
-              <div className="aspect-square rounded-3xl bg-primary/5 border border-primary/10 flex flex-col items-center justify-center p-8 text-center">
-                <span className="text-4xl font-bold text-primary mb-2">99</span>
-                <span className="text-xs uppercase tracking-widest font-bold text-muted-foreground">Puntaje Lighthouse</span>
+
+            {/* Education & Languages */}
+            <div className="space-y-12">
+              <div>
+                <div className="flex items-center gap-2 mb-6">
+                  <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                    <GraduationCap size={24} />
+                  </div>
+                  <h3 className="text-2xl font-bold">Formación Académica</h3>
+                </div>
+                <div className="space-y-6">
+                  {education.map((edu) => (
+                    <div key={edu.degree} className="relative pl-6 before:absolute before:left-0 before:top-0 before:bottom-0 before:w-px before:bg-primary/30">
+                      <h4 className="font-bold text-foreground">{edu.degree}</h4>
+                      <p className="text-sm text-primary font-medium">{edu.school}</p>
+                      <span className="text-xs text-muted-foreground uppercase tracking-wider">{edu.status}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <div className="aspect-square rounded-3xl bg-indigo-500/5 border border-indigo-500/10 flex flex-col items-center justify-center p-8 text-center mt-8">
-                <span className="text-4xl font-bold text-indigo-500 mb-2">Zero</span>
-                <span className="text-xs uppercase tracking-widest font-bold text-muted-foreground">CI/CD Sin Interrupciones</span>
+
+              <div>
+                <div className="flex items-center gap-2 mb-6">
+                  <div className="p-2 rounded-lg bg-indigo-500/10 text-indigo-500">
+                    <Globe size={24} />
+                  </div>
+                  <h3 className="text-2xl font-bold">Idiomas</h3>
+                </div>
+                <div className="grid grid-cols-3 gap-4">
+                  <div className="text-center p-4 rounded-2xl border border-border bg-background">
+                    <p className="text-xs uppercase text-muted-foreground mb-1 text-nowrap">Español</p>
+                    <p className="font-bold">Nativo</p>
+                  </div>
+                  <div className="text-center p-4 rounded-2xl border border-border bg-background">
+                    <p className="text-xs uppercase text-muted-foreground mb-1 text-nowrap">Inglés</p>
+                    <p className="font-bold">C1</p>
+                  </div>
+                  <div className="text-center p-4 rounded-2xl border border-border bg-background">
+                    <p className="text-xs uppercase text-muted-foreground mb-1 text-nowrap">Portugués</p>
+                    <p className="font-bold">B1</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -99,24 +145,27 @@ export default function Home() {
       <section id="contact" className="py-24">
         <div className="container mx-auto px-4 text-center">
           <SectionHeading
-            title="Ponte en Contacto"
-            subtitle="¿Interesado en colaborar o contratarme para tu próximo proyecto?"
+            title="Hablemos de tu Próximo Desafío"
+            subtitle="¿Necesitás a alguien que diseñe, implemente y mantenga tu plataforma de datos sin romper producción?"
             centered
           />
-          <div className="max-w-xl mx-auto rounded-3xl border border-border bg-accent/30 p-8 md:p-12">
-            <p className="mb-8 text-muted-foreground">
-              Siempre estoy abierto a discutir nuevas oportunidades, ideas de SaaS o consultoría técnica.
+          <div className="max-w-2xl mx-auto rounded-3xl border border-border bg-accent/30 p-8 md:p-12 relative overflow-hidden">
+            {/* Decorative blob */}
+            <div className="absolute top-[-50%] left-[-20%] h-full w-full bg-primary/10 blur-[80px] -z-10" />
+
+            <p className="mb-8 text-muted-foreground text-lg leading-relaxed">
+              Estoy disponible para proyectos de arquitectura de datos, migración a la nube y consultoría estratégica para sistemas de alta complejidad.
             </p>
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="mailto:contact@alexismartyniuk.com.ar"
-                className="w-full flex items-center justify-center gap-3 bg-primary py-4 rounded-2xl font-bold text-primary-foreground hover:bg-primary/90 transition-all"
+                href="mailto:alexis.martyniuk@gmail.com"
+                className="flex items-center justify-center gap-3 bg-primary px-8 py-5 rounded-2xl font-bold text-primary-foreground hover:bg-primary/90 transition-all shadow-xl shadow-primary/20 shrink-0"
               >
-                <Mail size={20} /> Enviar un Email
+                <Mail size={20} /> Agendar Llamada por Email
               </a>
-              <div className="flex justify-center gap-4 mt-4">
-                <a href="#" className="p-4 rounded-2xl border border-border hover:bg-muted transition-colors"><Linkedin /></a>
-                <a href="#" className="p-4 rounded-2xl border border-border hover:bg-muted transition-colors"><Github /></a>
+              <div className="flex justify-center gap-4">
+                <a href="https://linkedin.com/in/alexismartyniuk/" target="_blank" className="p-4 rounded-2xl border border-border bg-background hover:bg-muted transition-colors"><Linkedin /></a>
+                <a href="https://github.com/a-martyniuk" target="_blank" className="p-4 rounded-2xl border border-border bg-background hover:bg-muted transition-colors"><Github /></a>
               </div>
             </div>
           </div>
@@ -126,12 +175,15 @@ export default function Home() {
       {/* Footer */}
       <footer className="py-12 border-t border-border">
         <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-muted-foreground text-sm">
-            © {new Date().getFullYear()} Alexis Martyniuk. Todos los derechos reservados.
-          </p>
+          <div className="flex items-center gap-2">
+            <span className="text-xl font-heading font-black tracking-tighter text-primary">AM.</span>
+            <p className="text-muted-foreground text-sm font-medium">
+              © {new Date().getFullYear()} Alexis Martyniuk.
+            </p>
+          </div>
           <div className="flex gap-8 text-sm font-medium text-muted-foreground">
-            <a href="#" className="hover:text-foreground">Política de Privacidad</a>
-            <a href="#" className="hover:text-foreground">Términos de Servicio</a>
+            <a href="https://linkedin.com/in/alexismartyniuk/" target="_blank" className="hover:text-foreground transition-colors">LinkedIn</a>
+            <a href="https://github.com/a-martyniuk" target="_blank" className="hover:text-foreground transition-colors">GitHub</a>
           </div>
         </div>
       </footer>

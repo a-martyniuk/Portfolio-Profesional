@@ -16,9 +16,9 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Alexis Martyniuk | Portfolio Profesional",
-  description: "Ingeniero de Software especializado en aplicaciones web modernas, Next.js y sistemas automatizados.",
-  keywords: ["Ingeniero de Software", "Next.js", "Portfolio", "Vercel", "Desarrollador Full-Stack"],
+  title: "Alexis Martyniuk | Analytics Engineer & ETL Expert",
+  description: "Especialista en Data Platforms, ETL y Business Intelligence con 15 años de experiencia. De Mainframe a la Nube (AWS/Snowflake).",
+  keywords: ["Data Engineer", "Analytics Engineer", "ETL", "Oracle ODI", "Snowflake", "AWS", "Python", "PL/SQL", "Alexis Martyniuk"],
 };
 
 export default function RootLayout({

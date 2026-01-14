@@ -25,22 +25,27 @@ export function Hero() {
                             Disponible para nuevos proyectos
                         </span>
                         <h1 className="text-5xl md:text-7xl font-heading font-extrabold tracking-tight mb-6">
-                            Desarrollador Full-Stack <br />
+                            Alexis Martyniuk — <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-indigo-400">
-                                Creando SaaS de Producción
+                                Analytics Engineer de Sistemas Críticos
                             </span>
                         </h1>
-                        <p className="text-lg md:text-xl text-muted-foreground mb-10 leading-relaxed max-w-2xl mx-auto">
-                            Gestiono mi propio sitio de producción en Next.js con CI/CD, analiticas y seguimiento de conversiones en Vercel.
-                            Ingeniería de software enfocada en rendimiento, escalabilidad y ROI.
+                        <p className="text-lg md:text-xl text-muted-foreground mb-10 leading-relaxed max-w-3xl mx-auto">
+                            Diseño arquitecturas de datos que convierten información compleja en **decisiones de negocio de alto impacto** para gobiernos, banca y laboratorios farmacéuticos.
                         </p>
 
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                             <Link
                                 href="#projects"
-                                className="w-full sm:w-auto px-8 py-3 rounded-full bg-primary text-primary-foreground font-semibold flex items-center justify-center gap-2 hover:bg-primary/90 transition-all shadow-lg shadow-primary/25"
+                                className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-primary text-primary-foreground font-bold flex items-center justify-center gap-2 hover:bg-primary/90 transition-all shadow-xl shadow-primary/20"
                             >
-                                Ver Proyectos <ArrowRight size={18} />
+                                Ver Proyectos Reales <ArrowRight size={18} />
+                            </Link>
+                            <Link
+                                href="#contact"
+                                className="w-full sm:w-auto px-8 py-4 rounded-2xl border-2 border-primary/20 bg-background text-foreground font-bold flex items-center justify-center gap-2 hover:border-primary/50 transition-all"
+                            >
+                                Hablar Conmigo
                             </Link>
                             <div className="flex items-center gap-2 mt-4 sm:mt-0">
                                 <a
