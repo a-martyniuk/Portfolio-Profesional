@@ -29,6 +29,22 @@ export default function Home() {
   };
 
   const projects = [
+    {
+      title: "MELI AIO (E-Commerce Suite)",
+      description: "Plataforma integral de gestión para Mercado Libre. Dashboard unificado para facturación, inventario y logística con automatización de fondo.",
+      tags: ["FastAPI", "Next.js", "PostgreSQL", "MercadoPago"],
+      image: "/images/projects/meli-dashboard.png",
+      details: "Automatización de procesos críticos de e-commerce. Sincronización de facturas en tiempo real, respaldo en Google Drive y análisis de inventario predictivo. Arquitectura Monorepo escalable.",
+      architecture: ["Backend FastAPI Async", "Cola de Tareas (Workers)", "Base de Datos PostgreSQL", "Frontend Next.js SSR", "Integración OAuth 2.0"]
+    },
+    {
+      title: "Scraper Inmobiliario (Market Intelligence)",
+      description: "Herramienta de análisis de mercado que consolida listings de Zonaprop, Argenprop y Mercado Libre en un dataset unificado.",
+      tags: ["Python", "Playwright", "Data Engineering", "Pandas"],
+      image: "/images/projects/scraper-dashboard.png",
+      details: "Motor de extracción de datos masivos con evasión de bloqueos (Stealth). Normalización de direcciones, detección de precios históricos y generación automática de reportes Excel.",
+      architecture: ["Orquestador Python", "Playwright (Headless Browser)", "Rotate Proxy / User-Agent", "Pandas Data Processing", "Exportación OpenPyXL"]
+    },
     // ... (rest of the projects array remains same)
     {
       title: "Modelo Analítico Corporativo (Laboratorios Bagó)",
