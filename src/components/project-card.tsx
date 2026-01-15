@@ -84,7 +84,7 @@ export function ProjectCard({ title, description, image, tags, link, github, onC
                     </div>
                 </div>
 
-                <p className="text-muted-foreground text-sm mb-6 line-clamp-2">
+                <p className="text-muted-foreground text-sm mb-6">
                     {description}
                 </p>
 
