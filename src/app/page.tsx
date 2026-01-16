@@ -146,6 +146,20 @@ export default function Home() {
       <Hero />
       <CriticalDashboard />
 
+      {/* Inspirational Quote */}
+      <section className="py-16 border-b border-border">
+        <div className="container mx-auto px-4">
+          <blockquote className="max-w-3xl mx-auto text-center">
+            <p className="text-lg md:text-xl italic text-muted-foreground/80 leading-relaxed">
+              &ldquo;La civilización avanza al aumentar el número de operaciones que podemos realizar sin tener que pensar en ellas.&rdquo;
+            </p>
+            <footer className="mt-4 text-sm text-muted-foreground/60">
+              — Alfred North Whitehead
+            </footer>
+          </blockquote>
+        </div>
+      </section>
+
       {/* Projects Section */}
       <motion.section
         id="projects"
