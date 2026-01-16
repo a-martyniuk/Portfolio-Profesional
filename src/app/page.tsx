@@ -87,14 +87,34 @@ export default function Home() {
   ];
 
   const skills = [
+    // Data Engineering & Analytics (Core expertise)
     { name: "Oracle Data Integrator 12c", level: 95, category: "Data" as const },
-    { name: "Python & PL/SQL", level: 90, category: "Backend" as const },
-    { name: "Snowflake & AWS", level: 85, category: "Cloud" as const },
-    { name: "Power BI & Tableau", level: 88, category: "Data" as const },
-    { name: "PostgreSQL", level: 92, category: "Backend" as const },
-    { name: "Next.js & TypeScript", level: 87, category: "Frontend" as const },
-    { name: "FastAPI & Node.js", level: 85, category: "Backend" as const },
-    { name: "Docker & CI/CD", level: 80, category: "Cloud" as const },
+    { name: "PL/SQL", level: 95, category: "Data" as const },
+    { name: "Python", level: 85, category: "Backend" as const },
+    { name: "Oracle SQL", level: 90, category: "Data" as const },
+    { name: "PostgreSQL", level: 85, category: "Data" as const },
+    { name: "Snowflake", level: 85, category: "Cloud" as const },
+    { name: "AWS Cloud", level: 75, category: "Cloud" as const },
+    { name: "Pentaho", level: 85, category: "Data" as const },
+    { name: "KNIME", level: 80, category: "Data" as const },
+
+    // Business Intelligence
+    { name: "Power BI", level: 90, category: "Data" as const },
+    { name: "Tableau", level: 85, category: "Data" as const },
+    { name: "Google Looker Studio", level: 75, category: "Data" as const },
+
+    // DevOps & Agile
+    { name: "GitHub", level: 85, category: "Cloud" as const },
+    { name: "Jira & Scrum", level: 85, category: "Backend" as const },
+
+    // Enterprise Systems
+    { name: "COBOL & Mainframe z/OS", level: 80, category: "Backend" as const },
+    { name: "DB2", level: 75, category: "Data" as const },
+
+    // Modern Web (Learning)
+    { name: "Next.js & React", level: 70, category: "Frontend" as const },
+    { name: "Docker", level: 75, category: "Cloud" as const },
+    { name: "Streamlit", level: 70, category: "Frontend" as const },
   ];
 
   const metrics = [
