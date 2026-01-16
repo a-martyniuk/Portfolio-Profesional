@@ -8,10 +8,13 @@ import { CriticalDashboard } from "@/components/critical-dashboard";
 import { ProjectCard } from "@/components/project-card";
 import { ProjectSlider } from "@/components/project-slider";
 import { SkillChart } from "@/components/skill-chart";
-import { InteractiveTimeline } from "@/components/interactive-timeline";
 import { MetricsGrid } from "@/components/animated-metrics";
 import { SectionHeading } from "@/components/ui/section-heading";
 import dynamic from 'next/dynamic';
+
+const Experience = dynamic(() => import("@/components/experience").then(mod => ({ default: mod.Experience })), {
+  loading: () => <div className="py-24 text-center text-muted-foreground">Cargando experiencia...</div>
+});
 import { SectionTracker } from "@/components/providers/section-tracker";
 import { Modal } from "@/components/ui/modal";
 import { VisualEffects } from "@/components/visual-effects";
@@ -105,48 +108,6 @@ export default function Home() {
     { value: 15, label: "Tecnologías Dominadas", suffix: "+" },
   ];
 
-  const timelineEvents = [
-    {
-      title: "Senior Data Engineer",
-      company: "Empresa Líder en Tecnología",
-      location: "Buenos Aires, Argentina",
-      period: "2022 - Presente",
-      description: "Liderando la arquitectura de datos y migración a la nube para sistemas de misión crítica.",
-      achievements: [
-        "Diseñé e implementé pipeline ETL que procesa 10M+ registros diarios",
-        "Reduje costos de infraestructura en 40% mediante optimización cloud",
-        "Lideré equipo de 5 ingenieros en proyecto de modernización"
-      ],
-      technologies: ["Snowflake", "AWS", "Python", "Airflow"]
-    },
-    {
-      title: "Data Engineer",
-      company: "Laboratorios Bagó",
-      location: "Buenos Aires, Argentina",
-      period: "2019 - 2022",
-      description: "Desarrollo de plataforma analítica corporativa que aumentó productividad en 20%.",
-      achievements: [
-        "Migré sistemas legacy a arquitectura moderna de datos",
-        "Implementé dashboards ejecutivos con Power BI",
-        "Proyecto destacado por Oracle en blog oficial"
-      ],
-      technologies: ["Oracle ODI", "AWS", "Power BI", "SQL"]
-    },
-    {
-      title: "Analista de Sistemas",
-      company: "Ministerio de Seguridad",
-      location: "Buenos Aires, Argentina",
-      period: "2017 - 2019",
-      description: "Desarrollo de infraestructura de análisis criminal para fuerzas de seguridad.",
-      achievements: [
-        "Creé base de datos centralizada para análisis criminal",
-        "Integré sistemas GIS para visualización geoespacial",
-        "Sistema utilizado por múltiples dependencias policiales"
-      ],
-      technologies: ["PostgreSQL", "ArcGIS", "Python", "PostGIS"]
-    },
-  ];
-
   const education = [
     {
       degree: "Licenciatura en TICs para la Seguridad Pública",
@@ -202,26 +163,8 @@ export default function Home() {
         </div>
       </motion.section>
 
-      {/* Experience Timeline */}
-      <motion.section
-        id="experience"
-        className="py-24"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      >
-        <div className="container mx-auto px-4">
-          <SectionHeading
-            title="Trayectoria Profesional"
-            subtitle="Experiencia construyendo sistemas de datos de misión crítica para organizaciones líderes."
-            centered
-          />
-          <div className="mt-12 max-w-4xl mx-auto">
-            <InteractiveTimeline events={timelineEvents} />
-          </div>
-        </div>
-      </motion.section>
+      {/* Experience Section */}
+      <Experience />
 
       {/* Stack & Education Section */}
       <motion.section
