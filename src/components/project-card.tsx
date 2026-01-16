@@ -69,6 +69,15 @@ export function ProjectCard({ title, description, image, alt, tags, link, github
                 )}
             </div>
 
+            {/* Live Demo Badge - Prominent for projects with live links */}
+            {link && (
+                <div className="absolute top-4 right-4 z-10">
+                    <div className="px-3 py-1.5 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 text-white text-xs font-bold uppercase tracking-wider shadow-lg animate-pulse">
+                        🔴 Live Demo
+                    </div>
+                </div>
+            )}
+
             <div className="p-6">
                 <div className="flex justify-between items-start mb-4">
                     <h3 className="text-xl font-heading font-bold">{title}</h3>
@@ -107,6 +116,19 @@ export function ProjectCard({ title, description, image, alt, tags, link, github
                         </span>
                     ))}
                 </div>
+
+                {/* Prominent Live Demo Button */}
+                {link && (
+                    <a
+                        href={link}
+                        target="_blank"
+                        onClick={handleLinkClick}
+                        className="mt-6 w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-gradient-to-r from-primary to-primary/80 text-primary-foreground font-bold hover:from-primary/90 hover:to-primary/70 transition-all shadow-lg hover:shadow-xl hover:scale-[1.02] group"
+                    >
+                        <ExternalLink size={18} className="group-hover:rotate-12 transition-transform" />
+                        Ver Demo en Vivo
+                    </a>
+                )}
             </div>
         </motion.div>
     );
