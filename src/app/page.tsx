@@ -245,46 +245,7 @@ export default function Home() {
             centered
           />
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <ProjectCard
-              title="Descarga-Facturas-ML"
-              description="Bot de automatización contable para Mercado Libre. Descarga facturas, clasifica por fecha y respalda en Google Drive automáticamente."
-              image="/images/projects/meli-automation.png"
-              alt="Bot de automatización Python para descarga de facturas de Mercado Libre con integración Google Drive"
-              tags={["Python", "APIs", "Automatización de Negocio"]}
-              github="https://github.com/a-martyniuk/Descarga-Facturas-ML"
-            />
-            <ProjectCard
-              title="Orden-Archivos"
-              description="Script de limpieza digital de alto rendimiento (O(1)). Organiza automáticamente archivos de escritorio y descargas en categorías lógicas."
-              image="/images/projects/file-organizer.png"
-              alt="Script Python de organización automática de archivos con algoritmo O(1)"
-              tags={["Python", "OS", "Ingeniería de Archivos"]}
-              github="https://github.com/a-martyniuk/Orden-Archivos"
-            />
-            <ProjectCard
-              title="GOG Galaxy Export HTML"
-              description="Extrae tu librería local de GOG Galaxy a un dashboard HTML interactivo y offline. Sin APIs ni dependencias externas."
-              image="/images/projects/gog-pipeline.png"
-              alt="Herramienta de extracción de datos SQLite de GOG Galaxy con exportación a HTML"
-              tags={["Python", "SQLite", "Data Extraction"]}
-              github="https://github.com/a-martyniuk/GOG-Galaxy-Export-HTML"
-            />
-            <ProjectCard
-              title="Portfolio Profesional"
-              description="Portafolio de alto rendimiento construido con Next.js 15 (App Router), Tailwind CSS v4 y React 19. Puntuación perfecta en Lighthouse."
-              image="/images/projects/portfolio-v2.png"
-              alt="Portfolio profesional con Next.js 15, React 19 y Tailwind CSS v4 optimizado para performance"
-              tags={["Next.js", "React", "Product Building"]}
-              github="https://github.com/a-martyniuk/Portfolio-Profesional"
-            />
-            <ProjectCard
-              title="Brújula-QR"
-              description="HUD de Navegación AR estilo Cyberpunk. Integra brújula GPS, Scanner QR y efectos visuales reactivos sin apps nativas."
-              image="/images/projects/webar-compass.png"
-              alt="Aplicación web AR con brújula GPS, scanner QR y efectos visuales usando sensores del navegador"
-              tags={["JavaScript", "Prototipo Experimental", "Sensores"]}
-              github="https://github.com/a-martyniuk/Brujula-QR"
-            />
+            {/* Most relevant: Data Engineering & ETL */}
             <ProjectCard
               title="SNIC Análisis Criminal"
               description="Dashboard de inteligencia de seguridad con ETL automatizado, mapas coropléticos interactivos y modelos predictivos sobre datos oficiales."
@@ -293,6 +254,51 @@ export default function Home() {
               tags={["Python", "Streamlit", "Docker", "Pandas"]}
               github="https://github.com/a-martyniuk/snic-analisis-criminal"
               link="https://alexismartyniuk-snic.streamlit.app/"
+            />
+            {/* Business Automation */}
+            <ProjectCard
+              title="Descarga-Facturas-ML"
+              description="Bot de automatización contable para Mercado Libre. Descarga facturas, clasifica por fecha y respalda en Google Drive automáticamente."
+              image="/images/projects/meli-automation.png"
+              alt="Bot de automatización Python para descarga de facturas de Mercado Libre con integración Google Drive"
+              tags={["Python", "APIs", "Automatización de Negocio"]}
+              github="https://github.com/a-martyniuk/Descarga-Facturas-ML"
+            />
+            {/* Data Extraction */}
+            <ProjectCard
+              title="GOG Galaxy Export HTML"
+              description="Extrae tu librería local de GOG Galaxy a un dashboard HTML interactivo y offline. Sin APIs ni dependencias externas."
+              image="/images/projects/gog-pipeline.png"
+              alt="Herramienta de extracción de datos SQLite de GOG Galaxy con exportación a HTML"
+              tags={["Python", "SQLite", "Data Extraction"]}
+              github="https://github.com/a-martyniuk/GOG-Galaxy-Export-HTML"
+            />
+            {/* Full-Stack Development */}
+            <ProjectCard
+              title="Portfolio Profesional"
+              description="Portafolio de alto rendimiento construido con Next.js 15 (App Router), Tailwind CSS v4 y React 19. Puntuación perfecta en Lighthouse."
+              image="/images/projects/portfolio-v2.png"
+              alt="Portfolio profesional con Next.js 15, React 19 y Tailwind CSS v4 optimizado para performance"
+              tags={["Next.js", "React", "Product Building"]}
+              github="https://github.com/a-martyniuk/Portfolio-Profesional"
+            />
+            {/* Utility Tools */}
+            <ProjectCard
+              title="Orden-Archivos"
+              description="Script de limpieza digital de alto rendimiento (O(1)). Organiza automáticamente archivos de escritorio y descargas en categorías lógicas."
+              image="/images/projects/file-organizer.png"
+              alt="Script Python de organización automática de archivos con algoritmo O(1)"
+              tags={["Python", "OS", "Ingeniería de Archivos"]}
+              github="https://github.com/a-martyniuk/Orden-Archivos"
+            />
+            {/* Experimental */}
+            <ProjectCard
+              title="Brújula-QR"
+              description="HUD de Navegación AR estilo Cyberpunk. Integra brújula GPS, Scanner QR y efectos visuales reactivos sin apps nativas."
+              image="/images/projects/webar-compass.png"
+              alt="Aplicación web AR con brújula GPS, scanner QR y efectos visuales usando sensores del navegador"
+              tags={["JavaScript", "Prototipo Experimental", "Sensores"]}
+              github="https://github.com/a-martyniuk/Brujula-QR"
             />
           </div>
         </div>
