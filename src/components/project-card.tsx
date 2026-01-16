@@ -10,13 +10,14 @@ interface ProjectCardProps {
     title: string;
     description: string;
     image?: string;
+    alt?: string;
     tags: string[];
     link?: string;
     github?: string;
     onClick?: () => void;
 }
 
-export function ProjectCard({ title, description, image, tags, link, github, onClick }: ProjectCardProps) {
+export function ProjectCard({ title, description, image, alt, tags, link, github, onClick }: ProjectCardProps) {
     const { trackOracleClick, trackGitHubClick } = useAnalytics();
 
     const handleLinkClick = () => {
@@ -57,7 +58,7 @@ export function ProjectCard({ title, description, image, tags, link, github, onC
                 {image ? (
                     <Image
                         src={image}
-                        alt={title}
+                        alt={alt || `${title} - Screenshot del proyecto`}
                         fill
                         className="object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-110"
                     />

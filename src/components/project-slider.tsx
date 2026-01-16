@@ -5,17 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { slideVariants } from '@/lib/animations';
 import { ProjectCard } from './project-card';
+import type { Project } from '@/types/project';
 
-interface Project {
-    title: string;
-    description: string;
-    tags: string[];
-    image: string;
-    details: string;
-    architecture: string[];
-    link?: string;
-    github?: string;
-}
 
 interface ProjectSliderProps {
     projects: Project[];

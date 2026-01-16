@@ -20,19 +20,10 @@ import { Modal } from "@/components/ui/modal";
 import { VisualEffects } from "@/components/visual-effects";
 import { Mail, Linkedin, Github, GraduationCap, Globe, ArrowRight, Copy, CheckCircle } from "lucide-react";
 import Image from "next/image";
+import type { Project } from '@/types/project';
 
 // Dynamic import removed - using InteractiveTimeline instead
 
-interface Project {
-  title: string;
-  description: string;
-  tags: string[];
-  image: string;
-  details: string;
-  architecture: string[];
-  link?: string;
-  github?: string;
-}
 
 export default function Home() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -51,6 +42,7 @@ export default function Home() {
       description: "Plataforma integral de gestión para Mercado Libre. Dashboard unificado para facturación, inventario y logística con automatización de fondo.",
       tags: ["FastAPI", "Next.js", "PostgreSQL", "MercadoPago"],
       image: "/images/projects/meli-dashboard.png",
+      alt: "Dashboard de gestión e-commerce MELI AIO con FastAPI y Next.js mostrando facturación e inventario",
       details: "Automatización de procesos críticos de e-commerce. Sincronización de facturas en tiempo real, respaldo en Google Drive y análisis de inventario predictivo. Arquitectura Monorepo escalable.",
       architecture: ["Backend FastAPI Async", "Cola de Tareas (Workers)", "Base de Datos PostgreSQL", "Frontend Next.js SSR", "Integración OAuth 2.0"]
     },
@@ -59,6 +51,7 @@ export default function Home() {
       description: "Herramienta de análisis de mercado que consolida listings de Zonaprop, Argenprop y Mercado Libre en un dataset unificado.",
       tags: ["Python", "Playwright", "Data Engineering", "Pandas"],
       image: "/images/projects/scraper-dashboard.png",
+      alt: "Scraper inmobiliario con Python y Playwright para análisis de mercado y extracción de datos",
       details: "Motor de extracción de datos masivos con evasión de bloqueos (Stealth). Normalización de direcciones, detección de precios históricos y generación automática de reportes Excel.",
       architecture: ["Orquestador Python", "Playwright (Headless Browser)", "Rotate Proxy / User-Agent", "Pandas Data Processing", "Exportación OpenPyXL"]
     },
@@ -69,6 +62,7 @@ export default function Home() {
       tags: ["Oracle", "ODI 12c", "AWS", "Snowflake"],
       link: "https://blogs.oracle.com/oracle-latinoamerica/post/laboratorios-bag-elev-su-produccin-en-un-20-con-el-apoyo-de-la-nube-de-oracle",
       image: "/images/projects/bago-dashboard.png",
+      alt: "Plataforma ETL Laboratorios Bagó con Oracle ODI, AWS y Snowflake - Dashboard analítico corporativo",
       details: "Migración de ecosistema legacy a una arquitectura moderna de datos. El proyecto incluyó la orquestación de flujos globales y la consolidación de inventarios y ventas en tiempo real.",
       architecture: ["Sistemas Transaccionales", "Oracle ODI (ETL)", "AWS S3 Staging", "Snowflake DWH", "Dashboards Ejecutivos"]
     },
@@ -77,6 +71,7 @@ export default function Home() {
       description: "Plataforma provincial de análisis criminal utilizada por fuerzas de seguridad para asignación de recursos, detección de hotspots y toma de decisiones tácticas en tiempo real.",
       tags: ["PostgreSQL", "ArcGIS", "Python", "Sistemas de Misión Crítica"],
       image: "/images/projects/ministerio-heatmap.png",
+      alt: "Sistema de análisis criminal con PostgreSQL PostGIS y ArcGIS mostrando mapas de calor geoespaciales",
       details: "Desarrollo de una base de datos centralizada para el análisis criminal. Integración de capas geográficas para la visualización de delitos y patrullas en vivo.",
       architecture: ["Reportes Policiales", "Python Scripts", "PostgreSQL PostGIS", "ArcGIS API", "Centros de Operaciones"]
     },
@@ -85,6 +80,7 @@ export default function Home() {
       description: "Implementación de ecosistemas IoT y redes WiFi Mesh para infraestructuras inteligentes, aplicando principios de automatización industrial y monitoreo proactivo.",
       tags: ["IoT", "Networking", "Automatización", "Sistemas Inteligentes"],
       image: "/images/projects/iot-network.png",
+      alt: "Infraestructura IoT y WiFi Mesh para automatización industrial con sensores y monitoreo",
       details: "Diseño de redes redundantes para entornos críticos. Uso de protocolos de comunicación industrial para asegurar un 99.9% de uptime en dispositivos conectados.",
       architecture: ["Sensores/Dispositivos", "Protocolos MQTT/HTTP", "WiFi Mesh Nodes", "Monitoring Server", "Alert System"]
     },
@@ -253,6 +249,7 @@ export default function Home() {
               title="Descarga-Facturas-ML"
               description="Bot de automatización contable para Mercado Libre. Descarga facturas, clasifica por fecha y respalda en Google Drive automáticamente."
               image="/images/projects/meli-automation.png"
+              alt="Bot de automatización Python para descarga de facturas de Mercado Libre con integración Google Drive"
               tags={["Python", "APIs", "Automatización de Negocio"]}
               github="https://github.com/a-martyniuk/Descarga-Facturas-ML"
             />
@@ -260,6 +257,7 @@ export default function Home() {
               title="Orden-Archivos"
               description="Script de limpieza digital de alto rendimiento (O(1)). Organiza automáticamente archivos de escritorio y descargas en categorías lógicas."
               image="/images/projects/file-organizer.png"
+              alt="Script Python de organización automática de archivos con algoritmo O(1)"
               tags={["Python", "OS", "Ingeniería de Archivos"]}
               github="https://github.com/a-martyniuk/Orden-Archivos"
             />
@@ -267,6 +265,7 @@ export default function Home() {
               title="GOG Galaxy Export HTML"
               description="Extrae tu librería local de GOG Galaxy a un dashboard HTML interactivo y offline. Sin APIs ni dependencias externas."
               image="/images/projects/gog-pipeline.png"
+              alt="Herramienta de extracción de datos SQLite de GOG Galaxy con exportación a HTML"
               tags={["Python", "SQLite", "Data Extraction"]}
               github="https://github.com/a-martyniuk/GOG-Galaxy-Export-HTML"
             />
@@ -274,6 +273,7 @@ export default function Home() {
               title="Portfolio Profesional"
               description="Portafolio de alto rendimiento construido con Next.js 15 (App Router), Tailwind CSS v4 y React 19. Puntuación perfecta en Lighthouse."
               image="/images/projects/portfolio-v2.png"
+              alt="Portfolio profesional con Next.js 15, React 19 y Tailwind CSS v4 optimizado para performance"
               tags={["Next.js", "React", "Product Building"]}
               github="https://github.com/a-martyniuk/Portfolio-Profesional"
             />
@@ -281,6 +281,7 @@ export default function Home() {
               title="Brújula-QR"
               description="HUD de Navegación AR estilo Cyberpunk. Integra brújula GPS, Scanner QR y efectos visuales reactivos sin apps nativas."
               image="/images/projects/webar-compass.png"
+              alt="Aplicación web AR con brújula GPS, scanner QR y efectos visuales usando sensores del navegador"
               tags={["JavaScript", "Prototipo Experimental", "Sensores"]}
               github="https://github.com/a-martyniuk/Brujula-QR"
             />
@@ -288,6 +289,7 @@ export default function Home() {
               title="SNIC Análisis Criminal"
               description="Dashboard de inteligencia de seguridad con ETL automatizado, mapas coropléticos interactivos y modelos predictivos sobre datos oficiales."
               image="/images/projects/snic-dashboard.png"
+              alt="Dashboard de análisis criminal con Streamlit, Python ETL y mapas coropléticos interactivos"
               tags={["Python", "Streamlit", "Docker", "Pandas"]}
               github="https://github.com/a-martyniuk/snic-analisis-criminal"
               link="https://alexismartyniuk-snic.streamlit.app/"
