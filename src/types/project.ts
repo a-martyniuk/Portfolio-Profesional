@@ -7,5 +7,6 @@ export interface Project {
     details: string;
     architecture: string[];
     link?: string;
+    linkType?: 'demo' | 'article';
     github?: string;
 }

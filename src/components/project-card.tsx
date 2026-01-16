@@ -13,11 +13,12 @@ interface ProjectCardProps {
     alt?: string;
     tags: string[];
     link?: string;
+    linkType?: 'demo' | 'article';
     github?: string;
     onClick?: () => void;
 }
 
-export function ProjectCard({ title, description, image, alt, tags, link, github, onClick }: ProjectCardProps) {
+export function ProjectCard({ title, description, image, alt, tags, link, linkType = 'demo', github, onClick }: ProjectCardProps) {
     const { trackOracleClick, trackGitHubClick } = useAnalytics();
 
     const handleLinkClick = () => {
@@ -69,11 +70,14 @@ export function ProjectCard({ title, description, image, alt, tags, link, github
                 )}
             </div>
 
-            {/* Live Demo Badge - Prominent for projects with live links */}
+            {/* Live Demo/Article Badge - Prominent for projects with links */}
             {link && (
                 <div className="absolute top-4 right-4 z-10">
-                    <div className="px-3 py-1.5 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 text-white text-xs font-bold uppercase tracking-wider shadow-lg animate-pulse">
-                        🔴 Live Demo
+                    <div className={`px-3 py-1.5 rounded-full text-white text-xs font-bold uppercase tracking-wider shadow-lg ${linkType === 'demo'
+                        ? 'bg-gradient-to-r from-green-500 to-emerald-500 animate-pulse'
+                        : 'bg-gradient-to-r from-blue-500 to-indigo-500'
+                        }`}>
+                        {linkType === 'demo' ? '🔴 Live Demo' : '📰 Artículo'}
                     </div>
                 </div>
             )}
@@ -117,7 +121,7 @@ export function ProjectCard({ title, description, image, alt, tags, link, github
                     ))}
                 </div>
 
-                {/* Prominent Live Demo Button */}
+                {/* Prominent Link Button */}
                 {link && (
                     <a
                         href={link}
@@ -126,7 +130,7 @@ export function ProjectCard({ title, description, image, alt, tags, link, github
                         className="mt-6 w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-gradient-to-r from-primary to-primary/80 text-primary-foreground font-bold hover:from-primary/90 hover:to-primary/70 transition-all shadow-lg hover:shadow-xl hover:scale-[1.02] group"
                     >
                         <ExternalLink size={18} className="group-hover:rotate-12 transition-transform" />
-                        Ver Demo en Vivo
+                        {linkType === 'demo' ? 'Ver Demo en Vivo' : 'Leer Artículo'}
                     </a>
                 )}
             </div>

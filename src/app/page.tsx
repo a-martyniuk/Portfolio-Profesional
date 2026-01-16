@@ -61,6 +61,7 @@ export default function Home() {
       description: "Plataforma de datos de misión crítica para una de las mayores farmacéuticas de Argentina, que permitió aumentar en 20% la productividad y reducir tiempos de decisión operativa.",
       tags: ["Oracle", "ODI 12c", "AWS", "Snowflake"],
       link: "https://blogs.oracle.com/oracle-latinoamerica/post/laboratorios-bag-elev-su-produccin-en-un-20-con-el-apoyo-de-la-nube-de-oracle",
+      linkType: "article" as const,
       image: "/images/projects/bago-dashboard.png",
       alt: "Plataforma ETL Laboratorios Bagó con Oracle ODI, AWS y Snowflake - Dashboard analítico corporativo",
       details: "Migración de ecosistema legacy a una arquitectura moderna de datos. El proyecto incluyó la orquestación de flujos globales y la consolidación de inventarios y ventas en tiempo real.",
@@ -288,6 +289,7 @@ export default function Home() {
               tags={["Python", "Streamlit", "Docker", "Pandas"]}
               github="https://github.com/a-martyniuk/snic-analisis-criminal"
               link="https://alexismartyniuk-snic.streamlit.app/"
+              linkType="demo"
             />
             {/* Business Automation */}
             <ProjectCard
