@@ -149,7 +149,7 @@ export default function Home() {
 
       {/* Inspirational Quote */}
       <motion.section
-        className="py-16 border-b border-border"
+        className="py-16 pb-12"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
@@ -163,10 +163,7 @@ export default function Home() {
             <footer className="text-sm text-muted-foreground/60 uppercase tracking-widest" style={{ fontVariant: 'small-caps' }}>
               — Alfred North Whitehead
             </footer>
-            <div className="pt-1">
-              <span className="text-muted-foreground/40">•</span>
-            </div>
-            <p className="text-lg md:text-xl text-primary font-semibold">
+            <p className="text-lg md:text-xl text-primary font-semibold pt-4">
               Diseño sistemas de datos para que eso ocurra.
             </p>
           </blockquote>
