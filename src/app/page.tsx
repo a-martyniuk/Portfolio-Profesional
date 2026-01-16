@@ -148,18 +148,30 @@ export default function Home() {
       <CriticalDashboard />
 
       {/* Inspirational Quote */}
-      <section className="py-16 border-b border-border">
+      <motion.section
+        className="py-16 border-b border-border"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
         <div className="container mx-auto px-4">
-          <blockquote className="max-w-3xl mx-auto text-center">
+          <blockquote className="max-w-3xl mx-auto text-center space-y-6">
             <p className="text-lg md:text-xl italic text-muted-foreground/80 leading-relaxed">
               &ldquo;La civilización avanza al aumentar el número de operaciones que podemos realizar sin tener que pensar en ellas.&rdquo;
             </p>
-            <footer className="mt-4 text-sm text-muted-foreground/60">
+            <footer className="text-sm text-muted-foreground/60 uppercase tracking-widest" style={{ fontVariant: 'small-caps' }}>
               — Alfred North Whitehead
             </footer>
+            <div className="pt-2">
+              <span className="text-muted-foreground/40">•</span>
+            </div>
+            <p className="text-base text-foreground/90 font-medium">
+              Diseño sistemas de datos para que eso ocurra.
+            </p>
           </blockquote>
         </div>
-      </section>
+      </motion.section>
 
       {/* Projects Section */}
       <motion.section
