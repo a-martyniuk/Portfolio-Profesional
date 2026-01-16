@@ -34,21 +34,32 @@ export function ProjectCard({ title, description, image, tags, link, github, onC
 
     return (
         <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             whileHover={{
-                y: -8,
-                transition: { duration: 0.3 }
+                y: -12,
+                rotateX: 2,
+                rotateY: 2,
+                scale: 1.02,
+                transition: { duration: 0.3, ease: 'easeOut' }
             }}
             onClick={onClick}
-            className={`group relative rounded-xl border border-border/50 bg-accent/40 backdrop-blur-sm overflow-hidden transition-all duration-300 hover:border-primary/50 hover:shadow-[0_0_30px_-10px_rgba(99,102,241,0.3)] ${onClick ? 'cursor-pointer' : ''}`}
+            className={`group relative rounded-2xl border border-border/50 bg-gradient-to-br from-accent/40 to-accent/20 backdrop-blur-sm overflow-hidden transition-all duration-300 hover:border-primary/50 hover:shadow-[0_0_40px_-10px_rgba(99,102,241,0.4)] ${onClick ? 'cursor-pointer' : ''}`}
+            style={{ transformStyle: 'preserve-3d' }}
         >
-            <div className="aspect-video relative overflow-hidden">
-                <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10" />
+            <div className="aspect-video relative overflow-hidden bg-muted">
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+                {/* Glow Effect */}
+                <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+
                 {image ? (
                     <Image
                         src={image}
                         alt={title}
                         fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        className="object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-110"
                     />
                 ) : (
                     <div className="w-full h-full bg-muted flex items-center justify-center text-muted-foreground">

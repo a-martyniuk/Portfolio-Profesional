@@ -6,6 +6,10 @@ import { Navbar } from "@/components/navbar";
 import { Hero } from "@/components/hero";
 import { CriticalDashboard } from "@/components/critical-dashboard";
 import { ProjectCard } from "@/components/project-card";
+import { ProjectSlider } from "@/components/project-slider";
+import { SkillChart } from "@/components/skill-chart";
+import { InteractiveTimeline } from "@/components/interactive-timeline";
+import { MetricsGrid } from "@/components/animated-metrics";
 import { SectionHeading } from "@/components/ui/section-heading";
 import dynamic from 'next/dynamic';
 import { SectionTracker } from "@/components/providers/section-tracker";
@@ -14,9 +18,7 @@ import { VisualEffects } from "@/components/visual-effects";
 import { Mail, Linkedin, Github, GraduationCap, Globe, ArrowRight, Copy, CheckCircle } from "lucide-react";
 import Image from "next/image";
 
-const Experience = dynamic(() => import("@/components/experience").then(mod => ({ default: mod.Experience })), {
-  loading: () => <div className="py-24 text-center text-muted-foreground">Cargando experiencia...</div>
-});
+// Dynamic import removed - using InteractiveTimeline instead
 
 interface Project {
   title: string;
@@ -85,15 +87,64 @@ export default function Home() {
     },
   ];
 
-  const stack = [
-    "Oracle Data Integrator 12c",
-    "Python & PL/SQL",
-    "Snowflake & AWS",
-    "Power BI & Tableau",
-    "Mainframe (COBOL/DB2)",
-    "PostgreSQL",
-    "Next.js & TypeScript",
-    "Metodologías Ágiles (Scrum)",
+  const skills = [
+    { name: "Oracle Data Integrator 12c", level: 95, category: "Data" as const },
+    { name: "Python & PL/SQL", level: 90, category: "Backend" as const },
+    { name: "Snowflake & AWS", level: 85, category: "Cloud" as const },
+    { name: "Power BI & Tableau", level: 88, category: "Data" as const },
+    { name: "PostgreSQL", level: 92, category: "Backend" as const },
+    { name: "Next.js & TypeScript", level: 87, category: "Frontend" as const },
+    { name: "FastAPI & Node.js", level: 85, category: "Backend" as const },
+    { name: "Docker & CI/CD", level: 80, category: "Cloud" as const },
+  ];
+
+  const metrics = [
+    { value: 8, label: "Años de Experiencia", suffix: "+" },
+    { value: 20, label: "Proyectos Completados", suffix: "+" },
+    { value: 99.9, label: "Uptime Promedio", suffix: "%", decimals: 1 },
+    { value: 15, label: "Tecnologías Dominadas", suffix: "+" },
+  ];
+
+  const timelineEvents = [
+    {
+      title: "Senior Data Engineer",
+      company: "Empresa Líder en Tecnología",
+      location: "Buenos Aires, Argentina",
+      period: "2022 - Presente",
+      description: "Liderando la arquitectura de datos y migración a la nube para sistemas de misión crítica.",
+      achievements: [
+        "Diseñé e implementé pipeline ETL que procesa 10M+ registros diarios",
+        "Reduje costos de infraestructura en 40% mediante optimización cloud",
+        "Lideré equipo de 5 ingenieros en proyecto de modernización"
+      ],
+      technologies: ["Snowflake", "AWS", "Python", "Airflow"]
+    },
+    {
+      title: "Data Engineer",
+      company: "Laboratorios Bagó",
+      location: "Buenos Aires, Argentina",
+      period: "2019 - 2022",
+      description: "Desarrollo de plataforma analítica corporativa que aumentó productividad en 20%.",
+      achievements: [
+        "Migré sistemas legacy a arquitectura moderna de datos",
+        "Implementé dashboards ejecutivos con Power BI",
+        "Proyecto destacado por Oracle en blog oficial"
+      ],
+      technologies: ["Oracle ODI", "AWS", "Power BI", "SQL"]
+    },
+    {
+      title: "Analista de Sistemas",
+      company: "Ministerio de Seguridad",
+      location: "Buenos Aires, Argentina",
+      period: "2017 - 2019",
+      description: "Desarrollo de infraestructura de análisis criminal para fuerzas de seguridad.",
+      achievements: [
+        "Creé base de datos centralizada para análisis criminal",
+        "Integré sistemas GIS para visualización geoespacial",
+        "Sistema utilizado por múltiples dependencias policiales"
+      ],
+      technologies: ["PostgreSQL", "ArcGIS", "Python", "PostGIS"]
+    },
   ];
 
   const education = [
@@ -141,20 +192,36 @@ export default function Home() {
             }
             centered
           />
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project) => (
-              <ProjectCard
-                key={project.title}
-                {...project}
-                onClick={() => setSelectedProject(project)}
-              />
-            ))}
+          {/* Project Slider */}
+          <ProjectSlider projects={projects} onProjectClick={setSelectedProject} />
+
+          {/* Metrics Grid */}
+          <div className="mt-16">
+            <MetricsGrid metrics={metrics} />
           </div>
         </div>
       </motion.section>
 
-      {/* Experience Section */}
-      <Experience />
+      {/* Experience Timeline */}
+      <motion.section
+        id="experience"
+        className="py-24"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <div className="container mx-auto px-4">
+          <SectionHeading
+            title="Trayectoria Profesional"
+            subtitle="Experiencia construyendo sistemas de datos de misión crítica para organizaciones líderes."
+            centered
+          />
+          <div className="mt-12 max-w-4xl mx-auto">
+            <InteractiveTimeline events={timelineEvents} />
+          </div>
+        </div>
+      </motion.section>
 
       {/* Stack & Education Section */}
       <motion.section
@@ -173,14 +240,7 @@ export default function Home() {
                 title="Experticia Técnica"
                 subtitle="Desde mainframes COBOL/DB2 hasta nubes Snowflake/AWS: modernización de ecosistemas completos sin romper operaciones críticas."
               />
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
-                {stack.map((item) => (
-                  <div key={item} className="flex items-center gap-3 p-4 rounded-xl border border-border bg-background hover:border-primary/50 transition-colors">
-                    <div className="h-2 w-2 rounded-full bg-primary" />
-                    <span className="text-sm font-medium">{item}</span>
-                  </div>
-                ))}
-              </div>
+              <SkillChart skills={skills} />
             </div>
 
             {/* Education & Languages */}
