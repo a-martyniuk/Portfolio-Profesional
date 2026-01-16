@@ -34,7 +34,7 @@ export function ProjectSlider({ projects, onProjectClick }: ProjectSliderProps) 
     return (
         <div className="relative w-full">
             {/* Slider Container */}
-            <div className="relative overflow-hidden min-h-[500px]">
+            <div className="relative min-h-[500px] pb-8">
                 <AnimatePresence initial={false} custom={direction} mode="wait">
                     <motion.div
                         key={page}
@@ -82,8 +82,8 @@ export function ProjectSlider({ projects, onProjectClick }: ProjectSliderProps) 
                         key={index}
                         onClick={() => setPage([index, index > projectIndex ? 1 : -1])}
                         className={`h-2 rounded-full transition-all ${index === projectIndex
-                                ? 'w-8 bg-primary'
-                                : 'w-2 bg-muted-foreground/30 hover:bg-muted-foreground/50'
+                            ? 'w-8 bg-primary'
+                            : 'w-2 bg-muted-foreground/30 hover:bg-muted-foreground/50'
                             }`}
                         aria-label={`Go to project ${index + 1}`}
                     />
