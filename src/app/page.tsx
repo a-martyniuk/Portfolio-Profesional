@@ -269,6 +269,14 @@ export default function Home() {
               tags={["JavaScript", "Prototipo Experimental", "Sensores"]}
               github="https://github.com/a-martyniuk/Brujula-QR"
             />
+            <ProjectCard
+              title="SNIC Análisis Criminal"
+              description="Dashboard de inteligencia de seguridad con ETL automatizado, mapas coropléticos interactivos y modelos predictivos sobre datos oficiales."
+              image="/images/projects/snic-dashboard.png"
+              tags={["Python", "Streamlit", "Docker", "Pandas"]}
+              github="https://github.com/a-martyniuk/snic-analisis-criminal"
+              link="https://alexismartyniuk-snic.streamlit.app/"
+            />
           </div>
         </div>
       </motion.section>
