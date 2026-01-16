@@ -5,7 +5,7 @@ import { useAnalytics } from '@/lib/analytics';
 
 export function SectionTracker() {
     const { trackSectionView } = useAnalytics();
-    const sectionTimes = useRef<Record<string, number>>({});
+    // const sectionTimes = useRef<Record<string, number>>({});
     const activeSection = useRef<string | null>(null);
     const startTime = useRef<number>(Date.now());
 

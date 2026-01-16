@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Activity, Database, CheckCircle, AlertTriangle, Terminal } from 'lucide-react';
+import { Activity, CheckCircle, Terminal } from 'lucide-react';
 
 const LOG_MESSAGES = [
     "Iniciando extracción ETL Batch_043...",

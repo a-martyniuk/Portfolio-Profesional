@@ -12,13 +12,25 @@ import { SectionTracker } from "@/components/providers/section-tracker";
 import { Modal } from "@/components/ui/modal";
 import { VisualEffects } from "@/components/visual-effects";
 import { Mail, Linkedin, Github, GraduationCap, Globe, ArrowRight, Copy, CheckCircle } from "lucide-react";
+import Image from "next/image";
 
 const Experience = dynamic(() => import("@/components/experience").then(mod => ({ default: mod.Experience })), {
   loading: () => <div className="py-24 text-center text-muted-foreground">Cargando experiencia...</div>
 });
 
+interface Project {
+  title: string;
+  description: string;
+  tags: string[];
+  image: string;
+  details: string;
+  architecture: string[];
+  link?: string;
+  github?: string;
+}
+
 export default function Home() {
-  const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const [copied, setCopied] = useState(false);
 
@@ -385,10 +397,11 @@ export default function Home() {
           <div className="space-y-6">
             <div className="relative aspect-video rounded-2xl overflow-hidden border border-border shadow-2xl">
               {selectedProject?.image && (
-                <img
+                <Image
                   src={selectedProject.image}
                   alt={selectedProject.title}
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover"
                 />
               )}
             </div>
