@@ -59,6 +59,9 @@ export function CriticalDashboard() {
                         <span className="text-3xl font-heading font-extrabold">{uptime.toFixed(2)}%</span>
                         <span className="text-xs text-muted-foreground font-medium">Uptime</span>
                     </div>
+                    <div className="mt-2">
+                        <span className="inline-block px-2 py-0.5 rounded-md bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-[10px] font-bold uppercase tracking-wider">Producción</span>
+                    </div>
                     <div className="mt-4 h-1 w-full bg-muted rounded-full overflow-hidden">
                         <motion.div
                             animate={{ width: `${uptime}%` }}
@@ -81,6 +84,9 @@ export function CriticalDashboard() {
                     <div className="flex items-baseline gap-1">
                         <span className="text-3xl font-heading font-extrabold">{load.toFixed(0)} GB/s</span>
                         <span className="text-xs text-muted-foreground font-medium">Throughput</span>
+                    </div>
+                    <div className="mt-2">
+                        <span className="inline-block px-2 py-0.5 rounded-md bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider">Pico Medido</span>
                     </div>
                     <div className="mt-4 flex gap-1 h-3 items-end">
                         {[...Array(12)].map((_, i) => (

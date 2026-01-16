@@ -163,10 +163,10 @@ export default function Home() {
             <footer className="text-sm text-muted-foreground/60 uppercase tracking-widest" style={{ fontVariant: 'small-caps' }}>
               — Alfred North Whitehead
             </footer>
-            <div className="pt-2">
+            <div className="pt-1">
               <span className="text-muted-foreground/40">•</span>
             </div>
-            <p className="text-base text-foreground/90 font-medium">
+            <p className="text-lg md:text-xl text-primary font-semibold">
               Diseño sistemas de datos para que eso ocurra.
             </p>
           </blockquote>
