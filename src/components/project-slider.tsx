@@ -53,30 +53,31 @@ export function ProjectSlider({ projects, onProjectClick }: ProjectSliderProps) 
             {/* Navigation Arrows */}
             <button
                 onClick={() => paginate(-1)}
-                className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-background/80 backdrop-blur-md border border-border hover:bg-muted transition-colors z-10 group"
+                className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 p-3 md:p-3 min-w-[48px] min-h-[48px] rounded-full bg-background/90 backdrop-blur-md border border-border hover:bg-muted transition-colors z-10 group flex items-center justify-center shadow-lg"
                 aria-label="Previous project"
             >
                 <ChevronLeft className="text-muted-foreground group-hover:text-foreground transition-colors" size={24} />
             </button>
             <button
                 onClick={() => paginate(1)}
-                className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-background/80 backdrop-blur-md border border-border hover:bg-muted transition-colors z-10 group"
+                className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 p-3 md:p-3 min-w-[48px] min-h-[48px] rounded-full bg-background/90 backdrop-blur-md border border-border hover:bg-muted transition-colors z-10 group flex items-center justify-center shadow-lg"
                 aria-label="Next project"
             >
                 <ChevronRight className="text-muted-foreground group-hover:text-foreground transition-colors" size={24} />
             </button>
 
             {/* Dots Indicator */}
-            <div className="flex justify-center gap-2 mt-8">
+            <div className="flex justify-center gap-3 mt-8 px-4">
                 {projects.map((_, index) => (
                     <button
                         key={index}
                         onClick={() => setPage([index, index > projectIndex ? 1 : -1])}
-                        className={`h-2 rounded-full transition-all ${index === projectIndex
-                            ? 'w-8 bg-primary'
-                            : 'w-2 bg-muted-foreground/30 hover:bg-muted-foreground/50'
+                        className={`h-3 rounded-full transition-all min-w-[12px] ${index === projectIndex
+                                ? 'w-8 bg-primary'
+                                : 'w-3 bg-muted-foreground/30 hover:bg-muted-foreground/50'
                             }`}
                         aria-label={`Go to project ${index + 1}`}
+                        aria-current={index === projectIndex ? 'true' : 'false'}
                     />
                 ))}
             </div>

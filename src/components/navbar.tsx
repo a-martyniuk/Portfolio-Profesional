@@ -52,16 +52,18 @@ export function Navbar() {
                 </div>
 
                 {/* Mobile Nav Toggle */}
-                <div className="flex md:hidden items-center gap-4">
+                <div className="flex md:hidden items-center gap-2">
                     <button
                         onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                        className="p-2 rounded-full hover:bg-muted transition-colors"
+                        className="p-3 rounded-full hover:bg-muted transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
+                        aria-label="Toggle theme"
                     >
-                        {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+                        {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
                     </button>
                     <button
                         onClick={() => setIsOpen(!isOpen)}
-                        className="p-2 rounded-md hover:bg-muted transition-colors"
+                        className="p-3 rounded-md hover:bg-muted transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
+                        aria-label={isOpen ? 'Close menu' : 'Open menu'}
                     >
                         {isOpen ? <X size={24} /> : <Menu size={24} />}
                     </button>
@@ -70,17 +72,19 @@ export function Navbar() {
 
             {/* Mobile Menu */}
             {isOpen && (
-                <div className="md:hidden border-t border-white/10 bg-background px-4 py-4 space-y-4">
-                    {navLinks.map((link) => (
-                        <Link
-                            key={link.name}
-                            href={link.href}
-                            onClick={() => setIsOpen(false)}
-                            className="block text-base font-medium text-muted-foreground hover:text-foreground transition-colors"
-                        >
-                            {link.name}
-                        </Link>
-                    ))}
+                <div className="md:hidden border-t border-white/10 bg-background">
+                    <div className="px-4 py-6 space-y-1">
+                        {navLinks.map((link) => (
+                            <Link
+                                key={link.name}
+                                href={link.href}
+                                onClick={() => setIsOpen(false)}
+                                className="block py-3 px-4 text-base font-medium text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors min-h-[44px] flex items-center"
+                            >
+                                {link.name}
+                            </Link>
+                        ))}
+                    </div>
                 </div>
             )}
         </nav>

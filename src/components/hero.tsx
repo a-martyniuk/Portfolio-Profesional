@@ -41,22 +41,22 @@ export function Hero() {
                             <Link
                                 href="#projects"
                                 onClick={() => trackCTAClick('Ver Proyectos Reales')}
-                                className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-primary text-primary-foreground font-bold flex items-center justify-center gap-2 hover:bg-primary/90 transition-all shadow-xl shadow-primary/20"
+                                className="w-full sm:w-auto px-8 py-4 min-h-[48px] rounded-2xl bg-primary text-primary-foreground font-bold flex items-center justify-center gap-2 hover:bg-primary/90 transition-all shadow-xl shadow-primary/20"
                             >
                                 Ver Proyectos Reales <ArrowRight size={18} />
                             </Link>
                             <Link
                                 href="#contact"
                                 onClick={() => trackCTAClick('Hablar Conmigo')}
-                                className="w-full sm:w-auto px-8 py-4 rounded-2xl border-2 border-primary/20 bg-background text-foreground font-bold flex items-center justify-center gap-2 hover:border-primary/50 transition-all"
+                                className="w-full sm:w-auto px-8 py-4 min-h-[48px] rounded-2xl border-2 border-primary/20 bg-background text-foreground font-bold flex items-center justify-center gap-2 hover:border-primary/50 transition-all"
                             >
                                 Hablar Conmigo
                             </Link>
-                            <div className="flex items-center gap-2 mt-4 sm:mt-0">
+                            <div className="flex items-center gap-3 mt-2 sm:mt-0">
                                 <a
                                     href="https://github.com"
                                     target="_blank"
-                                    className="p-3 rounded-full border border-border hover:bg-muted transition-colors"
+                                    className="p-3 min-w-[44px] min-h-[44px] rounded-full border border-border hover:bg-muted transition-colors flex items-center justify-center"
                                     aria-label="GitHub"
                                 >
                                     <Github size={20} />
@@ -64,7 +64,7 @@ export function Hero() {
                                 <a
                                     href="https://linkedin.com"
                                     target="_blank"
-                                    className="p-3 rounded-full border border-border hover:bg-muted transition-colors"
+                                    className="p-3 min-w-[44px] min-h-[44px] rounded-full border border-border hover:bg-muted transition-colors flex items-center justify-center"
                                     aria-label="LinkedIn"
                                 >
                                     <Linkedin size={20} />
