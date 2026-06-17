@@ -21,7 +21,7 @@ const outfit = Outfit({
 
 export const metadata: Metadata = {
   title: "Alexis Martyniuk | Senior Data Engineer",
-  description: "Senior Data Engineer y Arquitecto de Datos especializado en pipelines de datos (ETL/ELT), Microsoft Fabric, Snowflake, Azure y AWS. +8 años construyendo plataformas de datos de misión crítica en Argentina.",
+  description: "Senior Data Engineer especializado en pipelines de datos (ETL/ELT), Microsoft Fabric, Snowflake, Azure y AWS. +8 años construyendo plataformas de datos de misión crítica en Argentina.",
   keywords: [
     "Senior Data Engineer Argentina",
     "Data Engineer Portfolio",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     locale: 'es_AR',
     url: 'https://www.alexismartyniuk.com.ar',
     title: 'Alexis Martyniuk | Senior Data Engineer',
-    description: 'Senior Data Engineer y Arquitecto de Datos especializado en pipelines de datos, Microsoft Fabric, Snowflake y Azure. Portfolio de proyectos de datos enterprise.',
+    description: 'Senior Data Engineer especializado en pipelines de datos, Microsoft Fabric, Snowflake y Azure. Portfolio de proyectos de datos enterprise.',
     siteName: 'Alexis Martyniuk Portfolio',
     images: [
       {

@@ -4,7 +4,7 @@ export function generatePersonSchema() {
         "@type": "Person",
         name: "Alexis Martyniuk",
         jobTitle: "Senior Data Engineer",
-        description: "Senior Data Engineer y Arquitecto de Datos especializado en sistemas de datos críticos con más de 15 años de trayectoria en TI y 8 años liderando arquitecturas de datos en nubes y ambientes de misión crítica.",
+        description: "Senior Data Engineer especializado en sistemas de datos críticos con más de 15 años de trayectoria en TI y 8 años liderando plataformas de datos en nubes y ambientes de misión crítica.",
         url: "https://www.alexismartyniuk.com.ar",
         sameAs: [
             "https://linkedin.com/in/alexismartyniuk",

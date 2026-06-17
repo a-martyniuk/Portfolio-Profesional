@@ -16,8 +16,6 @@ export function Navbar() {
         setMounted(true);
     }, []);
 
-    if (!mounted) return null;
-
     const navLinks = [
         { name: t.nav.projects, href: '#projects' },
         { name: t.nav.stack, href: '#stack' },
@@ -49,7 +47,7 @@ export function Navbar() {
                         <button
                             onClick={() => setLanguage('es')}
                             className={`px-2 py-0.5 rounded transition-all cursor-pointer ${
-                                language === 'es' 
+                                mounted && language === 'es' 
                                     ? 'bg-primary text-primary-foreground' 
                                     : 'text-muted-foreground hover:text-foreground'
                             }`}
@@ -59,7 +57,7 @@ export function Navbar() {
                         <button
                             onClick={() => setLanguage('en')}
                             className={`px-2 py-0.5 rounded transition-all cursor-pointer ${
-                                language === 'en' 
+                                mounted && language === 'en' 
                                     ? 'bg-primary text-primary-foreground' 
                                     : 'text-muted-foreground hover:text-foreground'
                             }`}
@@ -73,43 +71,43 @@ export function Navbar() {
                         className="p-2 rounded-full hover:bg-muted transition-colors cursor-pointer"
                         aria-label="Toggle theme"
                     >
-                        {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+                        {mounted ? (theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />) : <div className="w-[18px] h-[18px]" />}
                     </button>
                 </div>
 
                 {/* Mobile Nav Toggle */}
                 <div className="flex md:hidden items-center gap-2">
-                    {/* Mobile Segmented Language Selector */}
-                    <div className="flex items-center rounded border border-border bg-muted/20 p-0.5 font-mono text-[10px] font-bold mr-1">
-                        <button
-                            onClick={() => setLanguage('es')}
-                            className={`px-2 py-1 rounded transition-all ${
-                                language === 'es' 
-                                    ? 'bg-primary text-primary-foreground' 
-                                    : 'text-muted-foreground hover:text-foreground'
-                            }`}
-                        >
-                            ES
-                        </button>
-                        <button
-                            onClick={() => setLanguage('en')}
-                            className={`px-2 py-1 rounded transition-all ${
-                                language === 'en' 
-                                    ? 'bg-primary text-primary-foreground' 
-                                    : 'text-muted-foreground hover:text-foreground'
-                            }`}
-                        >
-                            EN
-                        </button>
-                    </div>
-
+                {/* Mobile Segmented Language Selector */}
+                <div className="flex items-center rounded border border-border bg-muted/20 p-0.5 font-mono text-[10px] font-bold mr-1">
                     <button
-                        onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                        className="p-3 rounded-full hover:bg-muted transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center cursor-pointer"
-                        aria-label="Toggle theme"
+                        onClick={() => setLanguage('es')}
+                        className={`px-2 py-1 rounded transition-all ${
+                            mounted && language === 'es' 
+                                ? 'bg-primary text-primary-foreground' 
+                                : 'text-muted-foreground hover:text-foreground'
+                        }`}
                     >
-                        {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+                        ES
                     </button>
+                    <button
+                        onClick={() => setLanguage('en')}
+                        className={`px-2 py-1 rounded transition-all ${
+                            mounted && language === 'en' 
+                                ? 'bg-primary text-primary-foreground' 
+                                : 'text-muted-foreground hover:text-foreground'
+                        }`}
+                    >
+                        EN
+                    </button>
+                </div>
+
+                <button
+                    onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                    className="p-3 rounded-full hover:bg-muted transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center cursor-pointer"
+                    aria-label="Toggle theme"
+                >
+                    {mounted ? (theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />) : <div className="w-[20px] h-[20px]" />}
+                </button>
                     <button
                         onClick={() => setIsOpen(!isOpen)}
                         className="p-3 rounded-md hover:bg-muted transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center cursor-pointer"
