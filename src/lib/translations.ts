@@ -339,26 +339,14 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 github: "https://github.com/a-martyniuk/sql-reengineering-iso27001"
             },
             {
-                title: "GOG Galaxy Export HTML",
-                description: "Extrae tu librería local de GOG Galaxy a un dashboard HTML interactivo y offline. Sin APIs ni dependencias externas de red.",
-                image: "/images/projects/gog-pipeline.png",
-                alt: "Herramienta de extracción de datos SQLite de GOG Galaxy con exportación a HTML",
-                tags: ["Python", "SQLite", "Data Extraction"],
-                details: "Herramienta Python que lee la base de datos SQLite local de GOG Galaxy y genera un dashboard HTML estático e interactivo con la colección de juegos, sin necesidad de conexión a internet ni dependencias externas.",
-                architecture: ["GOG Galaxy SQLite (local)", "ETL Python", "Plantillas Jinja2", "Dashboard HTML (offline)"],
-                github: "https://github.com/a-martyniuk/GOG-Galaxy-Export-HTML"
-            },
-            {
-                title: "Portfolio Profesional",
-                description: "Portafolio de alto rendimiento construido con Next.js 15 (App Router), Tailwind CSS v4 y React 19. Puntuación perfecta en Lighthouse.",
-                image: "/images/projects/portfolio-v2.png",
-                alt: "Portfolio profesional con Next.js 15, React 19 y Tailwind CSS v4 optimizado para performance",
-                tags: ["Next.js", "React", "Tailwind v4"],
-                details: "Portfolio de alto rendimiento con Lighthouse score perfecto. Construido con Next.js 15 App Router, React 19, Tailwind CSS v4, soporte multiidioma (ES/EN), Vercel Analytics y Speed Insights integrados.",
-                architecture: ["Next.js 15 (App Router)", "React 19", "Tailwind CSS v4", "Vercel Analytics", "Soporte multiidioma (i18n)"],
-                github: "https://github.com/a-martyniuk/Portfolio-Profesional",
-                link: "https://www.alexismartyniuk.com.ar",
-                linkType: "demo"
+                title: "CABA Real Estate Scraper & Analyzer",
+                description: "Scraper inmobiliario automatizado para Buenos Aires con Playwright, Supabase, dashboard en React/Vite, algoritmos de detección de ofertas y alertas autocurativas en Telegram.",
+                image: "/images/projects/scraper-dashboard.png",
+                alt: "Dashboard de CABA Real Estate Scraper con mapa interactivo en React y métricas de mercado",
+                tags: ["Playwright", "Supabase", "Vite / React", "Telegram Bot"],
+                details: "Pipeline de datos automatizado (GitHub Actions) que extrae propiedades de múltiples portales (Cabaprop, Argenprop, Clarín). Calcula métricas de mercado a nivel de dirección para identificar oportunidades (>15% bajo el promedio local) y envía notificaciones en tiempo real vía Telegram. Incluye una UI en React con mapa interactivo y sistema de alertas autocurativas de portal roto.",
+                architecture: ["Scrapers Headless (Playwright)", "Base de Datos Supabase", "Algoritmos de Oportunidad (Python)", "Notificador de Alertas (Telegram API)", "Dashboard Map-based (React/Vite)"],
+                github: "https://github.com/a-martyniuk/caba-real-estate-scraper"
             }
         ],
         publications: [
@@ -674,26 +662,14 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 github: "https://github.com/a-martyniuk/sql-reengineering-iso27001"
             },
             {
-                title: "GOG Galaxy Export HTML",
-                description: "Extracts your local GOG Galaxy library to an offline, interactive HTML dashboard. No external APIs or network dependencies.",
-                image: "/images/projects/gog-pipeline.png",
-                alt: "SQLite data extraction tool for GOG Galaxy with HTML export",
-                tags: ["Python", "SQLite", "Data Extraction"],
-                details: "Python tool that reads GOG Galaxy's local SQLite database and generates a static, interactive HTML dashboard of the game collection, with no internet connection or external dependencies required.",
-                architecture: ["GOG Galaxy SQLite (local)", "Python ETL", "Jinja2 Templates", "HTML Dashboard (offline)"],
-                github: "https://github.com/a-martyniuk/GOG-Galaxy-Export-HTML"
-            },
-            {
-                title: "Professional Portfolio",
-                description: "High-performance portfolio built with Next.js 15 (App Router), Tailwind CSS v4, and React 19. Perfect score on Lighthouse.",
-                image: "/images/projects/portfolio-v2.png",
-                alt: "Professional portfolio with Next.js 15, React 19, and Tailwind CSS v4 optimized for performance",
-                tags: ["Next.js", "React", "Tailwind v4"],
-                details: "High-performance portfolio with a perfect Lighthouse score. Built with Next.js 15 App Router, React 19, Tailwind CSS v4, bilingual support (ES/EN), Vercel Analytics, and Speed Insights integrated.",
-                architecture: ["Next.js 15 (App Router)", "React 19", "Tailwind CSS v4", "Vercel Analytics", "i18n (ES/EN)"],
-                github: "https://github.com/a-martyniuk/Portfolio-Profesional",
-                link: "https://www.alexismartyniuk.com.ar",
-                linkType: "demo"
+                title: "CABA Real Estate Scraper & Analyzer",
+                description: "Automated real estate scraper for Buenos Aires with Playwright, Supabase, React/Vite dashboard, bargain detection algorithms, and self-healing Telegram alerts.",
+                image: "/images/projects/scraper-dashboard.png",
+                alt: "CABA Real Estate Scraper Dashboard with interactive React map and market metrics",
+                tags: ["Playwright", "Supabase", "Vite / React", "Telegram Bot"],
+                details: "Automated ETL pipeline (GitHub Actions) that extracts property listings from major portals (Cabaprop, Argenprop, Clarín). It computes neighborhood and address-level price averages to detect bargains (>15% below market), triggers real-time Telegram alerts, and displays data on a React map dashboard with self-healing degraded source checks.",
+                architecture: ["Headless Scrapers (Playwright)", "Supabase Storage & Sync", "Market Valuation Algorithms (Python)", "Telegram Notification Bot", "React/Vite Map UI"],
+                github: "https://github.com/a-martyniuk/caba-real-estate-scraper"
             }
         ],
         publications: [
