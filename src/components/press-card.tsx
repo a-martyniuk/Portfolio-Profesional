@@ -59,7 +59,7 @@ export function PressCard({ publication, featured = false }: PressCardProps) {
 
                 {/* Source Badge */}
                 <div className="absolute top-4 right-4 z-10 font-mono text-[9px] tracking-wider uppercase">
-                    <span className="px-2 py-0.5 rounded border font-bold bg-amber-500/10 text-amber-500 border-amber-500/20">
+                    <span className="px-2 py-0.5 rounded border font-bold bg-slate-400/10 text-slate-400 border-slate-400/20">
                         {publication.source}
                     </span>
                 </div>

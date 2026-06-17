@@ -46,10 +46,10 @@ export function ArticleClient({ htmlContent }: ArticleClientProps) {
     const readTimeText = language === 'es' ? `${readingTime} min de lectura` : `${readingTime} min read`;
 
     return (
-        <div className="min-h-screen bg-background text-foreground relative selection:bg-amber-500/30 font-sans pb-20 overflow-x-hidden">
+        <div className="min-h-screen bg-background text-foreground relative selection:bg-slate-400/30 font-sans pb-20 overflow-x-hidden">
             {/* Ambient Background Lights */}
             <div className="absolute top-[-10%] left-[-20%] w-[600px] h-[600px] bg-primary/5 dark:bg-primary/10 rounded-full blur-[150px] pointer-events-none -z-10" />
-            <div className="absolute top-[30%] right-[-10%] w-[500px] h-[500px] bg-amber-500/5 dark:bg-amber-500/5 rounded-full blur-[130px] pointer-events-none -z-10" />
+            <div className="absolute top-[30%] right-[-10%] w-[500px] h-[500px] bg-slate-400/5 dark:bg-slate-400/5 rounded-full blur-[130px] pointer-events-none -z-10" />
             <div className="absolute bottom-[10%] left-[-10%] w-[450px] h-[450px] bg-primary/5 dark:bg-primary/5 rounded-full blur-[120px] pointer-events-none -z-10" />
 
             {/* Reading Progress Bar */}

@@ -92,7 +92,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${outfit.variable} antialiased selection:bg-amber-500/30`}
+        className={`${inter.variable} ${outfit.variable} antialiased selection:bg-slate-400/30`}
       >
         <ThemeProvider
           attribute="class"

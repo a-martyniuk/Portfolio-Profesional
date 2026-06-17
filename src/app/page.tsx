@@ -40,7 +40,7 @@ function DataFlowDiagram({ language }: { language: 'es' | 'en' }) {
     {
       id: "landing",
       title: "01. Capa Landing",
-      icon: <Server className="w-5 h-5 text-amber-500" />,
+      icon: <Server className="w-5 h-5 text-slate-400" />,
       summary: "Ingesta diaria incremental (09:00 AM) desde Drive/FTPs. Schema Enforcement estricto: valida 11 columnas del archivo Excel o aborta el proceso.",
       rules: [
         "Planificación Automatizada: Ejecutado diariamente a las 9 AM ART en Microsoft Fabric.",
@@ -52,7 +52,7 @@ function DataFlowDiagram({ language }: { language: 'es' | 'en' }) {
     {
       id: "silver",
       title: "02. Capa Silver",
-      icon: <Cpu className="w-5 h-5 text-amber-500" />,
+      icon: <Cpu className="w-5 h-5 text-slate-400" />,
       summary: "Normalización de textos descriptivos, conversión de formatos de fecha, control de valores numéricos nulos y tipado universal.",
       rules: [
         "Normalización de Texto: Forzado a MAYÚSCULAS en campos agrupadores (MARCA, CATEGORÍA, BANDERA) para evitar duplicidad de casing.",
@@ -63,7 +63,7 @@ function DataFlowDiagram({ language }: { language: 'es' | 'en' }) {
     {
       id: "gold",
       title: "03. Capa Gold / Joins",
-      icon: <Database className="w-5 h-5 text-amber-500" />,
+      icon: <Database className="w-5 h-5 text-slate-400" />,
       summary: "Enriquecimiento de hechos con el Maestro de Productos mediante cruces secuenciales y control de huérfanos.",
       rules: [
         "Cruce Principal: Match exacto por EAN contra la dimensión de productos (dbo.dim_bdf_productos).",
@@ -74,7 +74,7 @@ function DataFlowDiagram({ language }: { language: 'es' | 'en' }) {
     {
       id: "combos",
       title: "04. Apertura de Combos",
-      icon: <Split className="w-5 h-5 text-amber-500" />,
+      icon: <Split className="w-5 h-5 text-slate-400" />,
       summary: "Desglose financiero en N filas para combos en clientes autorizados, distribuyendo EANs individuales y montos de forma segura.",
       rules: [
         "Condición de Activación: TIPO = 'COMBO' y Cliente pertenece al grupo autorizado (Farmacity, Leloir, Selma, Simplex, Farmaonline).",
@@ -87,7 +87,7 @@ function DataFlowDiagram({ language }: { language: 'es' | 'en' }) {
     {
       id: "audit",
       title: "05. Audit & Alertas",
-      icon: <AlertTriangle className="w-5 h-5 text-amber-500" />,
+      icon: <AlertTriangle className="w-5 h-5 text-slate-400" />,
       summary: "Sistema de calidad in situ. El pipeline se interrumpe y envía alertas de email automáticas ante la aparición de huérfanos.",
       rules: [
         "Control Final de Calidad: Una celda Spark final consulta las tablas dbo.audit_bdf_comboshuerfanos y dbo.audit_bdf_productoshuerfanos.",
@@ -101,7 +101,7 @@ function DataFlowDiagram({ language }: { language: 'es' | 'en' }) {
     {
       id: "landing",
       title: "01. Landing Layer",
-      icon: <Server className="w-5 h-5 text-amber-500" />,
+      icon: <Server className="w-5 h-5 text-slate-400" />,
       summary: "Incremental daily ingest (09:00 AM) from Drive/FTP. Strict Schema Enforcement checks 11 mandatory columns or aborts the run.",
       rules: [
         "Automated Scheduling: Executed daily at 9:00 AM ART in Microsoft Fabric scheduler.",
@@ -113,7 +113,7 @@ function DataFlowDiagram({ language }: { language: 'es' | 'en' }) {
     {
       id: "silver",
       title: "02. Silver Layer",
-      icon: <Cpu className="w-5 h-5 text-amber-500" />,
+      icon: <Cpu className="w-5 h-5 text-slate-400" />,
       summary: "Text normalization, date parsing, null values control, and universal key string conversion.",
       rules: [
         "Text Normalization: Enforces UPPERCASE on grouping fields (MARCA, CATEGORÍA, BANDERA) to avoid duplicates due to casing.",
@@ -124,7 +124,7 @@ function DataFlowDiagram({ language }: { language: 'es' | 'en' }) {
     {
       id: "gold",
       title: "03. Gold Layer / Joins",
-      icon: <Database className="w-5 h-5 text-amber-500" />,
+      icon: <Database className="w-5 h-5 text-slate-400" />,
       summary: "Enriching fact data with the Master Product catalog using sequential matching and orphan tracking.",
       rules: [
         "Primary Join: Exact match by EAN against the product dimension catalog (dbo.dim_bdf_productos).",
@@ -135,7 +135,7 @@ function DataFlowDiagram({ language }: { language: 'es' | 'en' }) {
     {
       id: "combos",
       title: "04. Combo Exploding",
-      icon: <Split className="w-5 h-5 text-amber-500" />,
+      icon: <Split className="w-5 h-5 text-slate-400" />,
       summary: "Splitting bundled transactions into N product rows for authorized retailers, managing pricing securely.",
       rules: [
         "Activation Condition: TIPO = 'COMBO' and Client belongs to the authorized group (Farmacity, Leloir, Selma, Simplex, Farmaonline).",
@@ -148,7 +148,7 @@ function DataFlowDiagram({ language }: { language: 'es' | 'en' }) {
     {
       id: "audit",
       title: "05. Audit & Alerts",
-      icon: <AlertTriangle className="w-5 h-5 text-amber-500" />,
+      icon: <AlertTriangle className="w-5 h-5 text-slate-400" />,
       summary: "Quality assurance system. The pipeline fails and triggers emails automatically if orphans are detected.",
       rules: [
         "Final Quality Check: A final Spark cell queries the audit tables dbo.audit_bdf_comboshuerfanos and dbo.audit_bdf_productoshuerfanos.",

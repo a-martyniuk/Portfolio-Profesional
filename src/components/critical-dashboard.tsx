@@ -6,10 +6,10 @@ import { Database, Cpu, BarChart3, CheckCircle2, Server, HelpCircle, Activity } 
 import { useLanguage } from '@/components/providers/language-provider';
 
 const STAGE_ICONS: Record<string, React.ReactNode> = {
-    ingestion: <Server className="w-5 h-5 text-amber-500" />,
-    transformation: <Cpu className="w-5 h-5 text-amber-500" />,
-    storage: <Database className="w-5 h-5 text-amber-500" />,
-    analytics: <BarChart3 className="w-5 h-5 text-amber-500" />
+    ingestion: <Server className="w-5 h-5 text-slate-400" />,
+    transformation: <Cpu className="w-5 h-5 text-slate-400" />,
+    storage: <Database className="w-5 h-5 text-slate-400" />,
+    analytics: <BarChart3 className="w-5 h-5 text-slate-400" />
 };
 
 export function CriticalDashboard() {
@@ -40,14 +40,14 @@ export function CriticalDashboard() {
             <div className="grid grid-cols-1 md:grid-cols-4 border border-border bg-background divide-y md:divide-y-0 md:divide-x divide-border">
                 {t.pipeline.stages.map((stage) => {
                     const isActive = stage.id === activeStageId;
-                    const icon = STAGE_ICONS[stage.id] || <Server className="w-5 h-5 text-amber-500" />;
+                    const icon = STAGE_ICONS[stage.id] || <Server className="w-5 h-5 text-slate-400" />;
                     return (
                         <button
                             key={stage.id}
                             onClick={() => setActiveStageId(stage.id)}
                             className={`p-6 text-left transition-all relative overflow-hidden group cursor-pointer ${
                                 isActive 
-                                ? 'bg-amber-500/5 dark:bg-amber-500/[0.03] border-l-2 md:border-l-0 md:border-t-2 border-primary' 
+                                ? 'bg-slate-400/5 dark:bg-slate-400/[0.03] border-l-2 md:border-l-0 md:border-t-2 border-primary' 
                                 : 'hover:bg-muted/30'
                             }`}
                         >
@@ -74,7 +74,7 @@ export function CriticalDashboard() {
 
             {/* Panel de Detalles */}
             <div className="border border-border border-t-0 bg-muted/10 p-6 sm:p-8 rounded-b-xl relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500/[0.01] rounded-full blur-3xl pointer-events-none" />
+                <div className="absolute top-0 right-0 w-64 h-64 bg-slate-400/[0.01] rounded-full blur-3xl pointer-events-none" />
                 
                 <AnimatePresence mode="wait">
                     <motion.div
@@ -142,7 +142,7 @@ export function CriticalDashboard() {
                                 <div className="space-y-4">
                                     {activeStage.metrics.map((metric, i) => (
                                         <div key={i} className="flex items-start gap-3">
-                                            <div className="p-0.5 rounded-full bg-amber-500/10 text-primary mt-0.5 shrink-0">
+                                            <div className="p-0.5 rounded-full bg-slate-400/10 text-primary mt-0.5 shrink-0">
                                                 <CheckCircle2 className="w-4 h-4" />
                                             </div>
                                             <span className="text-xs text-muted-foreground leading-relaxed">
@@ -154,7 +154,7 @@ export function CriticalDashboard() {
                             </div>
 
                             <div className="pt-4 border-t border-border">
-                                <div className="p-4 rounded border border-amber-500/20 bg-amber-500/[0.02] flex items-start gap-3">
+                                <div className="p-4 rounded border border-slate-400/20 bg-slate-400/[0.02] flex items-start gap-3">
                                     <HelpCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />
                                     <div>
                                         <span className="text-xs font-bold text-foreground block mb-1">
