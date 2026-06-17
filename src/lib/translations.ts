@@ -224,7 +224,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                     ],
                     projects: [
                         { name: 'ETL Observability: Auditoría & KPIs', desc: 'Reportes automatizados de cumplimiento de SLAs, tasas de éxito y análisis de desvíos.' },
-                        { name: 'SNIC Streamlit Dashboard', desc: 'Panel interactivo de análisis criminal provincial con mapas coropléticos y modelos predictivos.' }
+                        { name: 'SNIC Web Dashboard', desc: 'Panel interactivo de análisis criminal provincial con mapas coropléticos, correlaciones y modelos predictivos.' }
                     ]
                 }
             ]
@@ -291,14 +291,14 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
             },
             {
                 title: "SNIC Análisis Criminal",
-                description: "Dashboard de inteligencia de seguridad con ETL automatizado, mapas coropléticos interactivos y modelos predictivos sobre datos oficiales del SNIC.",
+                description: "Dashboard de inteligencia de seguridad con mapas coropléticos interactivos, análisis de correlación y modelos predictivos sobre datos oficiales del SNIC.",
                 image: "/images/projects/snic-dashboard.png",
-                alt: "Dashboard de análisis criminal con Streamlit, Python ETL y mapas coropléticos interactivos",
-                tags: ["Python", "Streamlit", "Docker", "Pandas"],
-                details: "Plataforma de análisis criminal con ETL automatizado sobre datos oficiales del SNIC. Incluye mapas coropléticos interactivos por municipio, análisis de series temporales de delitos y modelos predictivos básicos desplegados en Streamlit Cloud con Docker.",
-                architecture: ["Fuentes SNIC (CSV Oficiales)", "ETL Python (Pandas)", "PostgreSQL PostGIS", "Streamlit App", "Docker Container"],
+                alt: "Dashboard de análisis criminal con Next.js, Plotly, Service Workers y mapas coropléticos interactivos",
+                tags: ["Next.js", "Plotly.js", "PWA", "TypeScript"],
+                details: "Aplicación web moderna y optimizada (Next.js) de análisis criminal sobre datos oficiales del SNIC. Incluye mapas coropléticos, correlación de delitos con índices socioeconómicos (pobreza y densidad), proyecciones polinómicas y soporte offline PWA.",
+                architecture: ["Fuentes SNIC (CSV & GeoJSON locales)", "Next.js (App Router)", "Plotly.js (Visualización)", "Service Worker (Offline Caching)", "Vercel Cloud Deploy"],
                 github: "https://github.com/a-martyniuk/snic-analisis-criminal",
-                link: "https://alexismartyniuk-snic.streamlit.app/",
+                link: "https://snic-web.vercel.app/",
                 linkType: "demo"
             },
             {
@@ -543,7 +543,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                     ],
                     projects: [
                         { name: 'ETL Observability: Audit & KPIs', desc: 'Automated reports of SLA compliance, success rates, and deviation analysis.' },
-                        { name: 'SNIC Streamlit Dashboard', desc: 'Interactive provincial crime analysis panel with choropleth maps and predictive models.' }
+                        { name: 'SNIC Web Dashboard', desc: 'Interactive provincial crime analysis panel with choropleth maps, correlations, and predictive models.' }
                     ]
                 }
             ]
@@ -610,14 +610,14 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
             },
             {
                 title: "SNIC Crime Analysis",
-                description: "Security intelligence dashboard with automated ETL, interactive choropleth maps, and predictive models based on official SNIC data.",
+                description: "Security intelligence dashboard with interactive choropleth maps, correlation analysis, and predictive models based on official SNIC data.",
                 image: "/images/projects/snic-dashboard.png",
-                alt: "Crime analysis dashboard with Streamlit, Python ETL, and interactive choropleth maps",
-                tags: ["Python", "Streamlit", "Docker", "Pandas"],
-                details: "Crime analysis platform with automated ETL over official SNIC data. Includes interactive choropleth maps by municipality, crime time-series analysis, and basic predictive models deployed on Streamlit Cloud with Docker.",
-                architecture: ["SNIC Sources (Official CSVs)", "Python ETL (Pandas)", "PostgreSQL PostGIS", "Streamlit App", "Docker Container"],
+                alt: "Crime analysis dashboard with Next.js, Plotly, Service Workers, and interactive choropleth maps",
+                tags: ["Next.js", "Plotly.js", "PWA", "TypeScript"],
+                details: "Modern and optimized web application (Next.js) for crime analysis over official SNIC data. Includes choropleth maps, crime correlation with socioeconomic indices (poverty and density), polynomial projections, and offline PWA support.",
+                architecture: ["SNIC Sources (Local CSV & GeoJSON)", "Next.js (App Router)", "Plotly.js (Visualization)", "Service Worker (Offline Caching)", "Vercel Cloud Deploy"],
                 github: "https://github.com/a-martyniuk/snic-analisis-criminal",
-                link: "https://alexismartyniuk-snic.streamlit.app/",
+                link: "https://snic-web.vercel.app/",
                 linkType: "demo"
             },
             {
