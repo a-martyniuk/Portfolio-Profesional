@@ -8,6 +8,7 @@ import { CriticalDashboard } from "@/components/critical-dashboard";
 import { ProjectCard } from "@/components/project-card";
 import { ProjectSlider } from "@/components/project-slider";
 import { PressCard } from "@/components/press-card";
+import { ScraperDataFlowDiagram, MeliAioDataFlowDiagram } from "@/components/project-diagrams";
 import { SkillChart } from "@/components/skill-chart";
 import { MetricsGrid } from "@/components/animated-metrics";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -635,6 +636,18 @@ export default function Home() {
         {selectedProject && (selectedProject.title.includes("Digital Sales Tracking") || selectedProject.title.includes("Sell-Out")) && (
           <div className="mt-12 pt-12 border-t border-border/10">
             <DataFlowDiagram language={language} />
+          </div>
+        )}
+
+        {selectedProject && selectedProject.title.includes("Real Estate Scraper") && (
+          <div className="mt-12 pt-12 border-t border-border/10">
+            <ScraperDataFlowDiagram language={language} />
+          </div>
+        )}
+
+        {selectedProject && selectedProject.title.includes("MELI AIO") && (
+          <div className="mt-12 pt-12 border-t border-border/10">
+            <MeliAioDataFlowDiagram language={language} />
           </div>
         )}
       </Modal>
