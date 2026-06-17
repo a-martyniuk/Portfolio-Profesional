@@ -20,7 +20,7 @@ const categoryHeaders: Record<string, string> = {
     "Cloud Platforms & Enterprise Data": "CLOUD // ENTERPRISE DEPLOYMENTS",
     "Business Intelligence & Data Visualization": "ANALYTICS // VISUALIZATION & KPI",
     "DevOps, Versioning & Documentation": "DEV_OPS // INTEGRATION & QUALITY",
-    "Sistemas Legacy & Mainframe": "LEGACY // INFRASTRUCTURE & MAINHERITANCE"
+    "Sistemas Legacy & Mainframe": "LEGACY // MAINFRAME & INFRASTRUCTURE"
 };
 
 export function SkillChart({ skills }: SkillChartProps) {

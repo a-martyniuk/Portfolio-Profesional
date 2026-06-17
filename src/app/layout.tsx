@@ -37,14 +37,14 @@ export const metadata: Metadata = {
   authors: [{ name: "Alexis Martyniuk" }],
   creator: "Alexis Martyniuk",
   publisher: "Alexis Martyniuk",
-  metadataBase: new URL('https://alexismartyniuk.com'),
+  metadataBase: new URL('https://www.alexismartyniuk.com.ar'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     type: 'website',
     locale: 'es_AR',
-    url: 'https://alexismartyniuk.com',
+    url: 'https://www.alexismartyniuk.com.ar',
     title: 'Alexis Martyniuk | Senior Data Engineer & Data Architect',
     description: 'Senior Data Engineer y Arquitecto de Datos especializado en pipelines de datos, Microsoft Fabric, Snowflake y Azure. Portfolio de proyectos de datos enterprise.',
     siteName: 'Alexis Martyniuk Portfolio',

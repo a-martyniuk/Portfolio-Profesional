@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { ExternalLink, Github, ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
 import { useAnalytics } from '@/lib/analytics';
+import { useLanguage } from '@/components/providers/language-provider';
 
 interface ProjectCardProps {
     title: string;
@@ -20,6 +21,7 @@ interface ProjectCardProps {
 
 export function ProjectCard({ title, description, image, alt, tags, link, linkType = 'demo', github, onClick }: ProjectCardProps) {
     const { trackOracleClick, trackGitHubClick } = useAnalytics();
+    const { t } = useLanguage();
 
     const handleLinkClick = (e: React.MouseEvent) => {
         // Prevent click bubbling to card onClick if there's one
@@ -141,7 +143,7 @@ export function ProjectCard({ title, description, image, alt, tags, link, linkTy
                 {/* Expand / Learn More Action Link inside card if it's clickable */}
                 {onClick && (
                     <div className="mt-4 pt-3 border-t border-border/60 flex items-center justify-between text-[10px] font-mono text-muted-foreground group-hover:text-primary transition-colors">
-                        <span>{"// ESPECIFICACIONES COMPLETAS"}</span>
+                        <span>{`// ${t.titles.fullSpecs}`}</span>
                         <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                     </div>
                 )}

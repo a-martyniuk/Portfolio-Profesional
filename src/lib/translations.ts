@@ -61,6 +61,7 @@ export interface TranslationDict {
         copyEmail: string;
         copied: string;
         featuredOracle: string;
+        fullSpecs: string;
     };
     metrics: {
         experience: string;
@@ -137,7 +138,8 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
             contactCTA: "Agenda una llamada o escribime",
             copyEmail: "Copiar Email",
             copied: "¡Copiado!",
-            featuredOracle: "Destacado por Oracle"
+            featuredOracle: "Destacado por Oracle",
+            fullSpecs: "ESPECIFICACIONES COMPLETAS"
         },
         metrics: {
             experience: "Años de Experiencia",
@@ -242,11 +244,11 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
             {
                 title: "PepsiCo: Ingestor Multimarketplace",
                 description: "Ingesta automatizada y normalización de catálogos, stock y precios de marketplaces (iFood BR, Rappi LATAM, DiDi Food MX) para análisis competitivo de marcas PepsiCo.",
-                tags: ["Python", "APIs Ingestion", "Data Quality", "PyTest"],
+                tags: ["Python", "Ingesta de APIs", "Calidad de Datos", "PyTest"],
                 image: "/images/projects/pepsico-ingestor.png",
                 alt: "Estructura de ingesta multi-marketplace PepsiCo con Python y APIs",
                 details: "Desarrollo de scrapers modulares e interactivos para APIs móviles y web. Gestión de sesiones complejas, cookies dinámicas, rotación de proxies y normalización en CSV (UTF-8 BOM) con suite de testing robusta.",
-                architecture: ["API Ingestor Engine (Requests/OAuth2)", "Config-driven Runner (JSON configs)", "Data Normalizer & Transformer", "Encoding Handler (Excel UTF-8 BOM)", "Pruebas Unitarias PyTest"]
+                architecture: ["Motor Ingestor de APIs (Requests/OAuth2)", "Ejecutor Basado en Configuración (JSON)", "Normalizador y Transformador de Datos", "Manejador de Codificación (Excel UTF-8 BOM)", "Pruebas Unitarias PyTest"]
             },
             {
                 title: "ETL Observability: Auditoría & Monitor de KPIs",
@@ -286,7 +288,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 alt: "Versionado de esquemas Azure SQL y Database-as-Code con GitHub Actions",
                 tags: ["GitHub Actions", "PowerShell SMO", "Azure SQL", "GitOps"],
                 details: "Automatización completa de backup de esquemas DDL (tablas, vistas, stored procedures) mediante PowerShell SMO. Pipeline CI/CD con GitHub Actions que versiona los objetos de base de datos en cada deploy, garantizando trazabilidad e inmutabilidad bajo ISO 27001.",
-                architecture: ["GitHub Actions (CI/CD)", "PowerShell SMO", "Azure SQL Database", "DDL Schema Backup", "Log Immutability"],
+                architecture: ["GitHub Actions (CI/CD)", "PowerShell SMO", "Base de datos Azure SQL", "Respaldo de esquema DDL", "Inmutabilidad de logs"],
                 github: "https://github.com/a-martyniuk/azure-sql-version-control"
             },
             {
@@ -296,7 +298,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 alt: "Dashboard de análisis criminal con Next.js, Plotly, Service Workers y mapas coropléticos interactivos",
                 tags: ["Next.js", "Plotly.js", "PWA", "TypeScript"],
                 details: "Aplicación web moderna y optimizada (Next.js) de análisis criminal sobre datos oficiales del SNIC. Incluye mapas coropléticos, correlación de delitos con índices socioeconómicos (pobreza y densidad), proyecciones polinómicas y soporte offline PWA.",
-                architecture: ["Fuentes SNIC (CSV & GeoJSON locales)", "Next.js (App Router)", "Plotly.js (Visualización)", "Service Worker (Offline Caching)", "Vercel Cloud Deploy"],
+                architecture: ["Fuentes SNIC (CSV & GeoJSON locales)", "Next.js (App Router)", "Plotly.js (Visualización)", "Service Worker (Caché offline)", "Despliegue en la nube de Vercel"],
                 github: "https://github.com/a-martyniuk/snic-analisis-criminal",
                 link: "https://snic-web.vercel.app/",
                 linkType: "demo"
@@ -308,7 +310,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 alt: "MELI AIO Dashboard con backend en FastAPI y base PostgreSQL",
                 tags: ["FastAPI", "PostgreSQL", "OAuth 2.0", "Next.js"],
                 details: "Herramienta de gestión para vendedores de Mercado Libre. Backend FastAPI con autenticación OAuth 2.0 y rotación automática de tokens. Base de datos PostgreSQL para historial de ventas, inventario y generación automatizada de reportes de facturación.",
-                architecture: ["Mercado Libre API (OAuth 2.0)", "FastAPI Backend", "PostgreSQL (Inventario)", "Next.js Frontend", "Token Rotation Engine"],
+                architecture: ["Mercado Libre API (OAuth 2.0)", "Backend FastAPI", "PostgreSQL (Inventario)", "Frontend Next.js", "Motor de rotación de tokens"],
                 github: "https://github.com/a-martyniuk/meli-aio"
             },
             {
@@ -318,7 +320,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 alt: "Rediseño y reingeniería SQL Server bajo estándares de seguridad ISO 27001",
                 tags: ["SQL Server", "T-SQL", "ISO 27001", "Integrity"],
                 details: "Rediseño integral de bases de datos SQL Server bajo normativa ISO 27001. Refactorización de stored procedures a diseño modular, implementación de control transaccional, auditoría de accesos y checksums para verificación de integridad de datos sensibles.",
-                architecture: ["SQL Server Legacy DB", "T-SQL Stored Procedures (Modulares)", "Log Transaccional", "Checksum Integrity Queries", "ISO 27001 Compliance"],
+                architecture: ["Base de datos legacy SQL Server", "Procedimientos almacenados T-SQL (Modulares)", "Log transaccional", "Consultas de integridad con Checksums", "Cumplimiento ISO 27001"],
                 github: "https://github.com/a-martyniuk/sql-reengineering-iso27001"
             },
             {
@@ -328,7 +330,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 alt: "Herramienta de extracción de datos SQLite de GOG Galaxy con exportación a HTML",
                 tags: ["Python", "SQLite", "Data Extraction"],
                 details: "Herramienta Python que lee la base de datos SQLite local de GOG Galaxy y genera un dashboard HTML estático e interactivo con la colección de juegos, sin necesidad de conexión a internet ni dependencias externas.",
-                architecture: ["GOG Galaxy SQLite (local)", "Python ETL", "Jinja2 Templates", "HTML Dashboard (offline)"],
+                architecture: ["GOG Galaxy SQLite (local)", "ETL Python", "Plantillas Jinja2", "Dashboard HTML (offline)"],
                 github: "https://github.com/a-martyniuk/GOG-Galaxy-Export-HTML"
             },
             {
@@ -338,8 +340,10 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 alt: "Portfolio profesional con Next.js 15, React 19 y Tailwind CSS v4 optimizado para performance",
                 tags: ["Next.js", "React", "Tailwind v4"],
                 details: "Portfolio de alto rendimiento con Lighthouse score perfecto. Construido con Next.js 15 App Router, React 19, Tailwind CSS v4, soporte multiidioma (ES/EN), Vercel Analytics y Speed Insights integrados.",
-                architecture: ["Next.js 15 (App Router)", "React 19", "Tailwind CSS v4", "Vercel Analytics", "i18n (ES/EN)"],
-                github: "https://github.com/a-martyniuk/Portfolio-Profesional"
+                architecture: ["Next.js 15 (App Router)", "React 19", "Tailwind CSS v4", "Vercel Analytics", "Soporte multiidioma (i18n)"],
+                github: "https://github.com/a-martyniuk/Portfolio-Profesional",
+                link: "https://www.alexismartyniuk.com.ar",
+                linkType: "demo"
             }
         ],
         experience: [
@@ -456,7 +460,8 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
             contactCTA: "Schedule a call or write to me",
             copyEmail: "Copy Email",
             copied: "Copied!",
-            featuredOracle: "Featured by Oracle"
+            featuredOracle: "Featured by Oracle",
+            fullSpecs: "FULL SPECIFICATIONS"
         },
         metrics: {
             experience: "Years of Experience",
@@ -551,7 +556,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
         mainProjects: [
             {
                 title: "E-Commerce & Sell-Out Pipelines (BeOn)",
-                description: "Automated flows for commercial catalog ingestion (EANs) and sell-out integration for massive consumer goods brands (PepsiCo, Nutricia, Beiersdorf).",
+                description: "Automated flows for commercial catalog ingestion (EANs) and sell-out integration for leading FMCG brands (PepsiCo, Nutricia, Beiersdorf).",
                 tags: ["Microsoft Fabric", "PySpark", "OneLake", "REST APIs"],
                 image: "/images/projects/sellout-dashboard.png",
                 alt: "Sell-Out and Digital Shelf pipelines in Microsoft Fabric with PySpark and e-commerce APIs",
@@ -658,7 +663,9 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 tags: ["Next.js", "React", "Tailwind v4"],
                 details: "High-performance portfolio with a perfect Lighthouse score. Built with Next.js 15 App Router, React 19, Tailwind CSS v4, bilingual support (ES/EN), Vercel Analytics, and Speed Insights integrated.",
                 architecture: ["Next.js 15 (App Router)", "React 19", "Tailwind CSS v4", "Vercel Analytics", "i18n (ES/EN)"],
-                github: "https://github.com/a-martyniuk/Portfolio-Profesional"
+                github: "https://github.com/a-martyniuk/Portfolio-Profesional",
+                link: "https://www.alexismartyniuk.com.ar",
+                linkType: "demo"
             }
         ],
         experience: [

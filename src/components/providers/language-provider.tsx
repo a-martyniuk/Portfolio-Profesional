@@ -20,12 +20,16 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
         const storedLanguage = localStorage.getItem('portfolio-language') as Language;
         if (storedLanguage && (storedLanguage === 'es' || storedLanguage === 'en')) {
             setLanguageState(storedLanguage);
+            document.documentElement.lang = storedLanguage;
+        } else {
+            document.documentElement.lang = 'es';
         }
     }, []);
 
     const setLanguage = (lang: Language) => {
         setLanguageState(lang);
         localStorage.setItem('portfolio-language', lang);
+        document.documentElement.lang = lang;
     };
 
     const t = translations[language];
