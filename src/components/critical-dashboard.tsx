@@ -30,7 +30,7 @@ const PIPELINE_STAGES: PipelineStage[] = [
         ],
         projects: [
             { name: 'Digital Shelf & Sell-Out Seguros (BeOn)', desc: 'Descarga en streaming de datos comerciales y EANs mediante APIs de marketplaces.' },
-            { name: 'Scraper Inmobiliario', desc: 'Motor Playwright con rotación de proxies y evasión Stealth para captura de listings.' }
+            { name: 'PepsiCo: Ingestor Multimarketplace', desc: 'Scrapers configurables para iFood BR, Rappi y DiDi Food con rotación de proxies.' }
         ]
     },
     {
@@ -64,7 +64,7 @@ const PIPELINE_STAGES: PipelineStage[] = [
         ],
         projects: [
             { name: 'Azure SQL Version Control & GitOps', desc: 'Respaldo automático de esquemas DDL e inmutabilidad de logs mediante Actions y PowerShell SMO.' },
-            { name: 'Infraestructura de Estado (Seguridad)', desc: 'Base de datos centralizada de misión crítica para análisis criminal y capas geográficas (PostGIS).' }
+            { name: 'Reingeniería SQL & ISO 27001', desc: 'Rediseño seguro de bases de datos relacionales, stored procedures modulares y checksums.' }
         ]
     },
     {
@@ -77,11 +77,11 @@ const PIPELINE_STAGES: PipelineStage[] = [
         metrics: [
             '+20% productividad operativa y reducción de tiempos de decisión (Bagó)',
             '-90% en la carga manual de planillas comerciales (BeOn)',
-            'Análisis espacial y geo-procesamiento criminal optimizado en 15% (Seguridad)'
+            'Análisis de desvíos y KPIs del scheduler (ETL Observability)'
         ],
         projects: [
-            { name: 'SNIC Streamlit Dashboard', desc: 'Panel interactivo de análisis criminal provincial con mapas coropléticos y modelos predictivos.' },
-            { name: 'MELI AIO Dashboard', desc: 'Frontend Next.js y backend FastAPI para gestión predictiva de e-commerce.' }
+            { name: 'ETL Observability: Auditoría & KPIs', desc: 'Reportes automatizados de cumplimiento de SLAs, tasas de éxito y análisis de desvíos.' },
+            { name: 'SNIC Streamlit Dashboard', desc: 'Panel interactivo de análisis criminal provincial con mapas coropléticos y modelos predictivos.' }
         ]
     }
 ];

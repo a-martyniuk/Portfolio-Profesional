@@ -47,13 +47,22 @@ export default function Home() {
       architecture: ["APIs Marketplaces (VTEX, ML, Rappi)", "Notebooks PySpark (Fabric)", "OneLake (Delta Tables)", "Procedimientos T-SQL Idempotentes", "Control transaccional y Auditoría"]
     },
     {
-      title: "MELI AIO (E-Commerce Suite)",
-      description: "Plataforma integral de gestión para Mercado Libre. Dashboard unificado para facturación, inventario y logística con automatización de fondo.",
-      tags: ["FastAPI", "Next.js", "PostgreSQL", "MercadoPago"],
-      image: "/images/projects/meli-dashboard.png",
-      alt: "Dashboard de gestión e-commerce MELI AIO con FastAPI y Next.js mostrando facturación e inventario",
-      details: "Automatización de procesos críticos de e-commerce. Sincronización de facturas en tiempo real, respaldo en Google Drive y análisis de inventario predictivo. Arquitectura Monorepo escalable.",
-      architecture: ["Backend FastAPI Async", "Cola de Tareas (Workers)", "Base de Datos PostgreSQL", "Frontend Next.js SSR", "Integración OAuth 2.0"]
+      title: "PepsiCo: Ingestor Multimarketplace",
+      description: "Ingesta automatizada y normalización de catálogos, stock y precios de marketplaces (iFood BR, Rappi LATAM, DiDi Food MX) para análisis competitivo de marcas PepsiCo.",
+      tags: ["Python", "APIs Ingestion", "Data Quality", "PyTest"],
+      image: "/images/projects/pepsico-ingestor.png",
+      alt: "Estructura de ingesta multi-marketplace PepsiCo con Python y APIs",
+      details: "Desarrollo de scrapers modulares e interactivos para APIs móviles y web. Gestión de sesiones complejas, cookies dinámicas, rotación de proxies y normalización en CSV (UTF-8 BOM) con suite de testing robusta.",
+      architecture: ["API Ingestor Engine (Requests/OAuth2)", "Config-driven Runner (JSON configs)", "Data Normalizer & Transformer", "Encoding Handler (Excel UTF-8 BOM)", "Pruebas Unitarias PyTest"]
+    },
+    {
+      title: "ETL Observability: Auditoría & Monitor de KPIs",
+      description: "Solución de observabilidad de procesos críticos corporativos. Audita la ejecución diaria, calcula tasas de éxito, mide SLA y detecta desvíos de calendarización.",
+      tags: ["Python", "PowerShell", "Stored Procedures", "ETL Logs"],
+      image: "/images/projects/ecoreport-audit.png",
+      alt: "Dashboard de auditoría de pipelines ETL y logs de ejecución",
+      details: "Framework de auditoría para bases transaccionales e históricas (SQL Server). Análisis de logs para marcas CPG (Danone, Softys, Unilever, Essity), control de excepciones en ExecuteSP y reportes KPI de desviaciones.",
+      architecture: ["Extractor de Logs SQL (PowerShell/Python)", "Motor de Cálculo de KPIs de SLA", "Algoritmo de Gap Analysis (Schedules vs Logs)", "Log de Variación Diaria de Modelos", "Reportes Markdown Automatizados"]
     },
     {
       title: "Modelo Analítico Corporativo (Laboratorios Bagó)",
@@ -74,15 +83,6 @@ export default function Home() {
       alt: "Sistema de análisis criminal con PostgreSQL PostGIS y ArcGIS mostrando mapas de calor geoespacial",
       details: "Desarrollo de una base de datos centralizada para el análisis criminal (SNIC). Integración de capas geográficas para la visualización de delitos y patrullas en vivo.",
       architecture: ["Reportes Policiales", "Python Scripts", "PostgreSQL PostGIS", "ArcGIS API", "Centros de Operaciones"]
-    },
-    {
-      title: "Scraper Inmobiliario (Market Intelligence)",
-      description: "Herramienta de análisis de mercado que consolida listings de Zonaprop, Argenprop y Mercado Libre en un dataset unificado.",
-      tags: ["Python", "Playwright", "Data Engineering", "Pandas"],
-      image: "/images/projects/scraper-dashboard.png",
-      alt: "Scraper inmobiliario con Python y Playwright para análisis de mercado y extracción de datos",
-      details: "Motor de extracción de datos masivos con evasión de bloqueos (Stealth). Normalización de direcciones, detección de precios históricos y generación automática de reportes Excel.",
-      architecture: ["Orquestador Python", "Playwright (Headless Browser)", "Rotate Proxy / User-Agent", "Pandas Data Processing", "Exportación OpenPyXL"]
     },
   ];
 
@@ -332,14 +332,14 @@ export default function Home() {
               tags={["FastAPI", "PostgreSQL", "OAuth 2.0", "Next.js"]}
               github="https://github.com/a-martyniuk/meli-aio"
             />
-            {/* Business Automation */}
+            {/* Database Compliance */}
             <ProjectCard
-              title="Descarga-Facturas-ML"
-              description="Bot de automatización contable para Mercado Libre. Descarga facturas, clasifica por fecha y respalda en Google Drive automáticamente."
-              image="/images/projects/meli-automation.png"
-              alt="Bot de automatización Python para descarga de facturas de Mercado Libre con integración Google Drive"
-              tags={["Python", "APIs", "Automation"]}
-              github="https://github.com/a-martyniuk/Descarga-Facturas-ML"
+              title="Reingeniería SQL & ISO 27001"
+              description="Reestructuración de bases de datos relacionales bajo estándares de seguridad ISO 27001. Implementación de stored procedures T-SQL modulares, control transaccional de logs y queries de integridad mediante Checksums."
+              image="/images/projects/sql-reengineering.png"
+              alt="Rediseño y reingeniería SQL Server bajo estándares de seguridad ISO 27001"
+              tags={["SQL Server", "T-SQL", "ISO 27001", "Integrity"]}
+              github="https://github.com/a-martyniuk/sql-reengineering-iso27001"
             />
             {/* Data Extraction */}
             <ProjectCard
