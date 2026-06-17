@@ -63,7 +63,7 @@ export function Hero() {
                             <h1 className="text-4xl sm:text-6xl md:text-7xl font-heading font-extrabold tracking-tight mb-6 leading-tight">
                                 Alexis Martyniuk <br className="hidden md:block" />
                                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-amber-600 to-amber-500">
-                                    Senior Data Engineer & Data Architect
+                                    Senior Data Engineer
                                 </span>
                             </h1>
                             
