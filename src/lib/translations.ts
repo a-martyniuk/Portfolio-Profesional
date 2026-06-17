@@ -337,7 +337,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 details: "Rediseño integral de bases de datos SQL Server bajo normativa ISO 27001. Refactorización de stored procedures a diseño modular, implementación de control transaccional, auditoría de accesos y checksums para verificación de integridad de datos sensibles.",
                 architecture: ["Base de datos legacy SQL Server", "Procedimientos almacenados T-SQL (Modulares)", "Log transaccional", "Consultas de integridad con Checksums", "Cumplimiento ISO 27001"],
                 github: "https://github.com/a-martyniuk/sql-reengineering-iso27001",
-                link: "/articles/sql-reengineering-transactional-auditing.md",
+                link: "/articles/sql-reengineering-transactional-auditing",
                 linkType: "article"
             },
             {
@@ -349,7 +349,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 details: "Pipeline de datos automatizado (GitHub Actions) que extrae propiedades de múltiples portales (Cabaprop, Argenprop, Clarín). Calcula métricas de mercado a nivel de dirección para identificar oportunidades (>15% bajo el promedio local) y envía notificaciones en tiempo real vía Telegram. Incluye una UI en React con mapa interactivo y sistema de alertas autocurativas de portal roto.",
                 architecture: ["Scrapers Headless (Playwright)", "Base de Datos Supabase", "Algoritmos de Oportunidad (Python)", "Notificador de Alertas (Telegram API)", "Dashboard Map-based (React/Vite)"],
                 github: "https://github.com/a-martyniuk/caba-real-estate-scraper",
-                link: "/articles/caba-real-estate-scraper-postmortem.md",
+                link: "/articles/caba-real-estate-scraper-postmortem",
                 linkType: "article"
             }
         ],
@@ -664,7 +664,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 details: "Comprehensive SQL Server database redesign under ISO 27001 regulations. Refactoring of stored procedures to a modular design, implementation of transactional control, access auditing, and checksums for sensitive data integrity verification.",
                 architecture: ["Legacy SQL Server DB", "T-SQL Stored Procedures (Modular)", "Transactional Log", "Checksum Integrity Queries", "ISO 27001 Compliance"],
                 github: "https://github.com/a-martyniuk/sql-reengineering-iso27001",
-                link: "/articles/sql-reengineering-transactional-auditing.md",
+                link: "/articles/sql-reengineering-transactional-auditing",
                 linkType: "article"
             },
             {
@@ -676,7 +676,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 details: "Automated ETL pipeline (GitHub Actions) that extracts property listings from major portals (Cabaprop, Argenprop, Clarín). It computes neighborhood and address-level price averages to detect bargains (>15% below market), triggers real-time Telegram alerts, and displays data on a React map dashboard with self-healing degraded source checks.",
                 architecture: ["Headless Scrapers (Playwright)", "Supabase Storage & Sync", "Market Valuation Algorithms (Python)", "Telegram Notification Bot", "React/Vite Map UI"],
                 github: "https://github.com/a-martyniuk/caba-real-estate-scraper",
-                link: "/articles/caba-real-estate-scraper-postmortem.md",
+                link: "/articles/caba-real-estate-scraper-postmortem",
                 linkType: "article"
             }
         ],
