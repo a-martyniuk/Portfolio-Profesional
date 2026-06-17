@@ -233,13 +233,13 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
         },
         mainProjects: [
             {
-                title: "Pipelines de E-Commerce & Sell-Out (BeOn)",
-                description: "Flujos automatizados de ingesta e imputación de catálogos comerciales (EANs) e integración de sell-out para marcas de consumo masivo (PepsiCo, Nutricia, Beiersdorf).",
-                tags: ["Microsoft Fabric", "PySpark", "OneLake", "APIs REST"],
+                title: "Digital Sales Tracking: Pipelines de Sell-Out (BeOn)",
+                description: "Flujos unificados de ingesta diaria, validaciones de esquema (Schema Enforcement) e integración de sell-out para Beiersdorf (BDF), con lógica avanzada de apertura de combos.",
+                tags: ["Microsoft Fabric", "PySpark", "OneLake", "Data Quality", "ETL / ELT"],
                 image: "/images/projects/sellout-dashboard.png",
                 alt: "Pipelines de Sell-Out y Digital Shelf en Microsoft Fabric con PySpark y APIs de e-commerce",
-                details: "Desarrollo de flujos ETL/ELT incrementales desde Google Drive y APIs transaccionales complejas (OAuth2) con descargas en streaming de gran volumen e imputación de EANs. Arquitectura Medallion en OneLake.",
-                architecture: ["APIs Marketplaces (VTEX, ML, Rappi)", "Notebooks PySpark (Fabric)", "OneLake (Delta Tables)", "Procedimientos T-SQL Idempotentes", "Control transaccional y Auditoría"]
+                details: "Desarrollo de un pipeline de datos diario incremental (09:00 AM ART) en Microsoft Fabric que extrae datos de ventas y productos de Beiersdorf desde Google Drive y FTPs. El flujo implementa validaciones estrictas de esquema (11 columnas), estandarización de nulos y un complejo procesamiento de apertura de combos comerciales en N filas para retailers autorizados (Farmacity, Leloir, Selma, Simplex, Farmaonline), distribuyendo EANs individuales y garantizando que el Monto original se preserve únicamente en la primera fila para evitar duplicaciones financieras.",
+                architecture: ["Google Drive API (Landing Ingest)", "Silver Layer Delta (dbo.sl_bdf_sellouts)", "Join Dimensional & Fallback Match (EAN/Cliente)", "Apertura de Combos (Desglose en N-filas)", "Auditoría de Huérfanos (dbo.audit_bdf_comboshuerfanos)"]
             },
             {
                 title: "PepsiCo: Ingestor Multimarketplace",
@@ -555,13 +555,13 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
         },
         mainProjects: [
             {
-                title: "E-Commerce & Sell-Out Pipelines (BeOn)",
-                description: "Automated flows for commercial catalog ingestion (EANs) and sell-out integration for leading FMCG brands (PepsiCo, Nutricia, Beiersdorf).",
-                tags: ["Microsoft Fabric", "PySpark", "OneLake", "REST APIs"],
+                title: "Digital Sales Tracking: Sell-Out Pipelines (BeOn)",
+                description: "Unified daily ingestion pipelines, strict schema enforcement, and sell-out integration for Beiersdorf (BDF) with advanced commercial combo exploding logic.",
+                tags: ["Microsoft Fabric", "PySpark", "OneLake", "Data Quality", "ETL / ELT"],
                 image: "/images/projects/sellout-dashboard.png",
                 alt: "Sell-Out and Digital Shelf pipelines in Microsoft Fabric with PySpark and e-commerce APIs",
-                details: "Development of incremental ETL/ELT flows from Google Drive and complex transactional APIs (OAuth2) with high-volume streaming downloads and EAN mapping. Medallion architecture on OneLake.",
-                architecture: ["Marketplace APIs (VTEX, ML, Rappi)", "PySpark Notebooks (Fabric)", "OneLake (Delta Tables)", "Idempotent T-SQL Stored Procedures", "Transactional control and Auditing"]
+                details: "Development of an incremental daily data pipeline (09:00 AM ART) in Microsoft Fabric processing Beiersdorf sell-out sales and master catalogs from Google Drive and FTPs. The pipeline implements strict schema verification (11 mandatory columns), null normalization, and an advanced combo exploding algorithm that splits bundled transactions into individual product EANs for authorized retailers (Farmacity, Leloir, Selma, Simplex, Farmaonline), preserving the original sales amount only on the first row to prevent duplicate revenue reporting.",
+                architecture: ["Google Drive API (Landing Ingest)", "Silver Layer Delta (dbo.sl_bdf_sellouts)", "Join Dimensional & Fallback Match (EAN/Client)", "Combo Exploding (N-Row Breakdown & Split)", "Orphans Audit Tables (dbo.audit_bdf_comboshuerfanos)"]
             },
             {
                 title: "PepsiCo: Multi-Marketplace Ingestor",

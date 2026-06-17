@@ -18,10 +18,235 @@ const Experience = dynamic(() => import("@/components/experience").then(mod => (
 import { SectionTracker } from "@/components/providers/section-tracker";
 import { Modal } from "@/components/ui/modal";
 import { VisualEffects } from "@/components/visual-effects";
-import { Mail, Linkedin, Github, GraduationCap, Globe, ArrowRight, Copy, CheckCircle } from "lucide-react";
+import { Mail, Linkedin, Github, GraduationCap, Globe, ArrowRight, Copy, CheckCircle, Server, Cpu, Database, Split, AlertTriangle, ArrowDown } from "lucide-react";
 import Image from "next/image";
 import type { Project } from '@/types/project';
 import { useLanguage } from '@/components/providers/language-provider';
+
+interface DFDStep {
+  id: string;
+  title: string;
+  icon: React.ReactNode;
+  summary: string;
+  rules: string[];
+}
+
+function DataFlowDiagram({ language }: { language: 'es' | 'en' }) {
+  const [activeStep, setActiveStep] = useState(0);
+
+  const stepsEs: DFDStep[] = [
+    {
+      id: "landing",
+      title: "01. Capa Landing",
+      icon: <Server className="w-5 h-5 text-amber-500" />,
+      summary: "Ingesta diaria incremental (09:00 AM) desde Drive/FTPs. Schema Enforcement estricto: valida 11 columnas del archivo Excel o aborta el proceso.",
+      rules: [
+        "Planificación Automatizada: Ejecutado diariamente a las 9 AM ART en Microsoft Fabric.",
+        "Validación de Columnas: Requiere estrictamente 11 columnas específicas (FECHA, EAN, COD CLIENTE, UNIDADES, etc.).",
+        "Mapeo de Cliente: Extrae dinámicamente el nombre del retail del prefijo del archivo (ej. 'Farmacity_202603.xlsx' -> 'FARMACITY').",
+        "Control de Nulos: Limpieza de representaciones de nulos de Excel mapeándolas a NULL físico."
+      ]
+    },
+    {
+      id: "silver",
+      title: "02. Capa Silver",
+      icon: <Cpu className="w-5 h-5 text-amber-500" />,
+      summary: "Normalización de textos descriptivos, conversión de formatos de fecha, control de valores numéricos nulos y tipado universal.",
+      rules: [
+        "Normalización de Texto: Forzado a MAYÚSCULAS en campos agrupadores (MARCA, CATEGORÍA, BANDERA) para evitar duplicidad de casing.",
+        "Tipado Seguro: Conversión obligatoria de EAN y COD CLIENTE a String puro para evitar notación científica de Excel y joins inestables.",
+        "Fallback Numérico: Si el campo de Monto o unidades contiene valores nulos o 'nan', se inicializa por defecto en 0.0."
+      ]
+    },
+    {
+      id: "gold",
+      title: "03. Capa Gold / Joins",
+      icon: <Database className="w-5 h-5 text-amber-500" />,
+      summary: "Enriquecimiento de hechos con el Maestro de Productos mediante cruces secuenciales y control de huérfanos.",
+      rules: [
+        "Cruce Principal: Match exacto por EAN contra la dimensión de productos (dbo.dim_bdf_productos).",
+        "Cruce Fallback: Si no hay match por EAN, se busca coincidencia utilizando el COD CLIENTE del retail.",
+        "Detección de Huérfanos: Si ambos fallan, el registro es catalogado como huérfano y escrito en dbo.audit_bdf_productoshuerfanos."
+      ]
+    },
+    {
+      id: "combos",
+      title: "04. Apertura de Combos",
+      icon: <Split className="w-5 h-5 text-amber-500" />,
+      summary: "Desglose financiero en N filas para combos en clientes autorizados, distribuyendo EANs individuales y montos de forma segura.",
+      rules: [
+        "Condición de Activación: TIPO = 'COMBO' y Cliente pertenece al grupo autorizado (Farmacity, Leloir, Selma, Simplex, Farmaonline).",
+        "Multiplicación de Registros: El registro original se duplica N veces en base a la cantidad de componentes del combo en el Maestro.",
+        "Distribución de EANs: Cada registro resultante recibe secuencialmente el EAN individual del producto componente.",
+        "Preservación de Monto: El Monto y unidades originales se preservan únicamente en la primera fila. En las restantes se setea en NULL para evitar duplicación de ventas en Power BI.",
+        "Trazabilidad de Código: El código del combo base se copia en COD CLIENTE en todas las filas desglosadas."
+      ]
+    },
+    {
+      id: "audit",
+      title: "05. Audit & Alertas",
+      icon: <AlertTriangle className="w-5 h-5 text-amber-500" />,
+      summary: "Sistema de calidad in situ. El pipeline se interrumpe y envía alertas de email automáticas ante la aparición de huérfanos.",
+      rules: [
+        "Control Final de Calidad: Una celda Spark final consulta las tablas dbo.audit_bdf_comboshuerfanos y dbo.audit_bdf_productoshuerfanos.",
+        "Excepción del Pipeline: Si detecta registros huérfanos, lanza una excepción del sistema que marca el Job como Fallido.",
+        "Notificación Inmediata: Fabric Scheduler envía un mail de alerta con el listado de EANs faltantes en los catálogos oficiales."
+      ]
+    }
+  ];
+
+  const stepsEn: DFDStep[] = [
+    {
+      id: "landing",
+      title: "01. Landing Layer",
+      icon: <Server className="w-5 h-5 text-amber-500" />,
+      summary: "Incremental daily ingest (09:00 AM) from Drive/FTP. Strict Schema Enforcement checks 11 mandatory columns or aborts the run.",
+      rules: [
+        "Automated Scheduling: Executed daily at 9:00 AM ART in Microsoft Fabric scheduler.",
+        "Column Validation: Enforces exactly 11 mandatory columns (FECHA, EAN, COD CLIENTE, UNIDADES, etc.).",
+        "Dynamic Client Mapping: Automatically extracts the retail client name from the filename prefix (e.g. 'Farmacity_202603.xlsx' -> 'FARMACITY').",
+        "Null Standardization: Cleans Excel textual nulls mapping them into physical database NULLs."
+      ]
+    },
+    {
+      id: "silver",
+      title: "02. Silver Layer",
+      icon: <Cpu className="w-5 h-5 text-amber-500" />,
+      summary: "Text normalization, date parsing, null values control, and universal key string conversion.",
+      rules: [
+        "Text Normalization: Enforces UPPERCASE on grouping fields (MARCA, CATEGORÍA, BANDERA) to avoid duplicates due to casing.",
+        "Safe Typing: Forces EAN and COD CLIENTE to pure String to avoid Excel scientific notation issues and ensure stable joins.",
+        "Fallback Values: If amount or units contain null or 'nan' values, they default to 0.0."
+      ]
+    },
+    {
+      id: "gold",
+      title: "03. Gold Layer / Joins",
+      icon: <Database className="w-5 h-5 text-amber-500" />,
+      summary: "Enriching fact data with the Master Product catalog using sequential matching and orphan tracking.",
+      rules: [
+        "Primary Join: Exact match by EAN against the product dimension catalog (dbo.dim_bdf_productos).",
+        "Fallback Match: If EAN match fails, the pipeline attempts to match using the retail's COD CLIENTE.",
+        "Orphan Detection: If both matches fail, the record is flagged as an orphan and written to dbo.audit_bdf_productoshuerfanos."
+      ]
+    },
+    {
+      id: "combos",
+      title: "04. Combo Exploding",
+      icon: <Split className="w-5 h-5 text-amber-500" />,
+      summary: "Splitting bundled transactions into N product rows for authorized retailers, managing pricing securely.",
+      rules: [
+        "Activation Condition: TIPO = 'COMBO' and Client belongs to the authorized group (Farmacity, Leloir, Selma, Simplex, Farmaonline).",
+        "N-Row Replication: Duplicates the combo row based on the number of components specified in dbo.dim_bdf_combos.",
+        "EAN Distribution: Assigns the individual product component EAN to each split row sequentially.",
+        "Revenue Protection: Keeps the original sale Monto and units only on the first row. Other rows are set to NULL to prevent duplicate revenue in Power BI.",
+        "Combo Code Heritage: Inherits the original combo code into the COD CLIENTE column of all split rows for full traceability."
+      ]
+    },
+    {
+      id: "audit",
+      title: "05. Audit & Alerts",
+      icon: <AlertTriangle className="w-5 h-5 text-amber-500" />,
+      summary: "Quality assurance system. The pipeline fails and triggers emails automatically if orphans are detected.",
+      rules: [
+        "Final Quality Check: A final Spark cell queries the audit tables dbo.audit_bdf_comboshuerfanos and dbo.audit_bdf_productoshuerfanos.",
+        "Pipeline Exception: If orphans are found, it raises a system exception, failing the Fabric Job execution.",
+        "Immediate Notification: Fabric Scheduler triggers an automated alert email with the list of missing EANs."
+      ]
+    }
+  ];
+
+  const steps = language === 'es' ? stepsEs : stepsEn;
+  const activeData = steps[activeStep];
+
+  return (
+    <div className="space-y-6 font-sans">
+      <div className="flex flex-col gap-2">
+        <h4 className="text-sm font-bold uppercase tracking-widest text-primary">
+          {language === 'es' ? "Diagrama de Flujo de Datos (DFD) Interactivo" : "Interactive Data Flow Diagram (DFD)"}
+        </h4>
+        <p className="text-xs text-muted-foreground leading-relaxed">
+          {language === 'es' 
+            ? "Hacé clic en cada fase del pipeline Medallion para ver las reglas de negocio reales aplicadas en Microsoft Fabric."
+            : "Click on each phase of the Medallion pipeline to reveal the actual business rules applied in Microsoft Fabric."
+          }
+        </p>
+      </div>
+
+      {/* DFD Flow Timeline */}
+      <div className="flex flex-col lg:flex-row items-center justify-between gap-4 p-4 rounded-2xl border border-border/40 bg-muted/10">
+        {steps.map((step, index) => {
+          const isActive = index === activeStep;
+          return (
+            <React.Fragment key={step.id}>
+              {/* Step Node */}
+              <button
+                onClick={() => setActiveStep(index)}
+                className={`flex-1 w-full lg:w-auto p-4 rounded-xl border text-left transition-all relative ${
+                  isActive
+                    ? 'bg-primary/10 border-primary text-primary shadow-[0_0_15px_rgba(245,158,11,0.15)]'
+                    : 'bg-background border-border hover:border-primary/40 text-foreground hover:bg-muted/10'
+                }`}
+              >
+                <div className="flex items-center gap-3">
+                  <div className={`p-2 rounded-lg border transition-colors ${isActive ? 'bg-primary/20 border-primary/40' : 'bg-muted/40 border-border'}`}>
+                    {step.icon}
+                  </div>
+                  <div>
+                    <h5 className="font-heading font-bold text-xs uppercase tracking-wider">{step.title}</h5>
+                    <p className="text-[10px] text-muted-foreground truncate max-w-[150px]">{step.id.toUpperCase()}</p>
+                  </div>
+                </div>
+              </button>
+
+              {/* Connector Arrow (not after the last step) */}
+              {index < steps.length - 1 && (
+                <div className="text-muted-foreground/30 flex items-center justify-center shrink-0">
+                  <span className="hidden lg:block"><ArrowRight size={16} /></span>
+                  <span className="lg:hidden"><ArrowDown size={16} /></span>
+                </div>
+              )}
+            </React.Fragment>
+          );
+        })}
+      </div>
+
+      {/* Selected Node Details Card */}
+      <div className="p-6 rounded-2xl border border-border/50 bg-accent/20 backdrop-blur-md relative overflow-hidden transition-all duration-300">
+        <div className="absolute top-[-50%] left-[-20%] h-full w-full bg-primary/5 blur-[50px] -z-10" />
+        <div className="flex items-start gap-4">
+          <div className="p-2 rounded-lg bg-primary/10 text-primary border border-primary/20 shrink-0">
+            {activeData.icon}
+          </div>
+          <div className="space-y-4 flex-1">
+            <div>
+              <h5 className="font-heading font-extrabold text-sm text-foreground uppercase tracking-wider">
+                {activeData.title}
+              </h5>
+              <p className="text-xs text-muted-foreground leading-relaxed mt-1">
+                {activeData.summary}
+              </p>
+            </div>
+
+            <div className="space-y-2 border-t border-border/10 pt-4">
+              <h6 className="text-[10px] font-mono font-bold tracking-widest text-primary uppercase">
+                {language === 'es' ? "// REGLAS DE NEGOCIO DETALLADAS" : "// DETAILED BUSINESS RULES"}
+              </h6>
+              <ul className="space-y-2">
+                {activeData.rules.map((rule, i) => (
+                  <li key={i} className="text-xs text-muted-foreground leading-relaxed flex gap-2">
+                    <span className="text-primary select-none mt-0.5">▸</span>
+                    <span>{rule}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function Home() {
   const { t, language } = useLanguage();
@@ -378,6 +603,12 @@ export default function Home() {
             )}
           </div>
         </div>
+
+        {selectedProject && (selectedProject.title.includes("Digital Sales Tracking") || selectedProject.title.includes("Sell-Out")) && (
+          <div className="mt-12 pt-12 border-t border-border/10">
+            <DataFlowDiagram language={language} />
+          </div>
+        )}
       </Modal>
     </main>
   );
