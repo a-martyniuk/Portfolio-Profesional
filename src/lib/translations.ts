@@ -25,6 +25,16 @@ export interface EducationItem {
     status: string;
 }
 
+export interface Publication {
+    title: string;
+    source: string;
+    date: string;
+    description: string;
+    link: string;
+    image: string;
+    tags: string[];
+}
+
 export interface TranslationDict {
     nav: {
         projects: string;
@@ -62,6 +72,8 @@ export interface TranslationDict {
         copied: string;
         featuredOracle: string;
         fullSpecs: string;
+        press: string;
+        pressSubtitle: string;
     };
     metrics: {
         experience: string;
@@ -98,6 +110,7 @@ export interface TranslationDict {
     };
     mainProjects: Project[];
     secondaryProjects: Project[];
+    publications: Publication[];
     experience: ExperienceItem[];
     education: EducationItem[];
 }
@@ -139,7 +152,9 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
             copyEmail: "Copiar Email",
             copied: "¡Copiado!",
             featuredOracle: "Destacado por Oracle",
-            fullSpecs: "ESPECIFICACIONES COMPLETAS"
+            fullSpecs: "ESPECIFICACIONES COMPLETAS",
+            press: "Apariciones en Prensa & Casos de Éxito",
+            pressSubtitle: "Menciones oficiales y publicaciones de ingeniería sobre arquitecturas de misión crítica implementadas."
         },
         metrics: {
             experience: "Años de Experiencia",
@@ -346,6 +361,17 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 linkType: "demo"
             }
         ],
+        publications: [
+            {
+                title: "Laboratorios Bagó elevó su producción en un 20% con el apoyo de la nube de Oracle",
+                source: "Oracle Blog Latinoamerica",
+                date: "Noviembre 2023",
+                description: "Caso de éxito corporativo oficial publicado por Oracle que describe la migración integral de bases de datos analíticas heredadas a una arquitectura moderna en Snowflake y la orquestación global mediante Oracle Data Integrator (ODI).",
+                link: "https://blogs.oracle.com/oracle-latinoamerica/post/laboratorios-bag-elev-su-produccin-en-un-20-con-el-apoyo-de-la-nube-de-oracle",
+                image: "/images/projects/bago-dashboard.png",
+                tags: ["Oracle Cloud", "ODI 12c", "Snowflake", "Caso de Éxito"]
+            }
+        ],
         experience: [
             {
                 title: "Senior Data Engineer (Proyecto Acotado)",
@@ -461,7 +487,9 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
             copyEmail: "Copy Email",
             copied: "Copied!",
             featuredOracle: "Featured by Oracle",
-            fullSpecs: "FULL SPECIFICATIONS"
+            fullSpecs: "FULL SPECIFICATIONS",
+            press: "Featured Press & Success Stories",
+            pressSubtitle: "Official corporate press releases and engineering publications showcasing my database migrations and integrations."
         },
         metrics: {
             experience: "Years of Experience",
@@ -666,6 +694,17 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 github: "https://github.com/a-martyniuk/Portfolio-Profesional",
                 link: "https://www.alexismartyniuk.com.ar",
                 linkType: "demo"
+            }
+        ],
+        publications: [
+            {
+                title: "Laboratorios Bagó boosted its production by 20% supported by Oracle Cloud",
+                source: "Oracle Blog Latinoamerica",
+                date: "November 2023",
+                description: "Official corporate success story published by Oracle describing the full migration of legacy analytical databases to a modern architecture in Snowflake and global ETL orchestration using Oracle Data Integrator (ODI).",
+                link: "https://blogs.oracle.com/oracle-latinoamerica/post/laboratorios-bag-elev-su-produccin-en-un-20-con-el-apoyo-de-la-nube-de-oracle",
+                image: "/images/projects/bago-dashboard.png",
+                tags: ["Oracle Cloud", "ODI 12c", "Snowflake", "Success Story"]
             }
         ],
         experience: [

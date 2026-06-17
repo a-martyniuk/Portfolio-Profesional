@@ -7,6 +7,7 @@ import { Hero } from "@/components/hero";
 import { CriticalDashboard } from "@/components/critical-dashboard";
 import { ProjectCard } from "@/components/project-card";
 import { ProjectSlider } from "@/components/project-slider";
+import { PressCard } from "@/components/press-card";
 import { SkillChart } from "@/components/skill-chart";
 import { MetricsGrid } from "@/components/animated-metrics";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -465,6 +466,33 @@ export default function Home() {
                 github={proj.github}
                 link={proj.link}
                 linkType={proj.linkType}
+              />
+            ))}
+          </div>
+        </div>
+      </motion.section>
+
+      {/* Press & Publications Section */}
+      <motion.section
+        id="press"
+        className="py-24 border-t border-border"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <div className="container mx-auto px-4">
+          <SectionHeading
+            title={t.titles.press}
+            subtitle={t.titles.pressSubtitle}
+            centered
+          />
+          <div className={`${t.publications.length === 1 ? 'max-w-4xl mx-auto' : 'grid md:grid-cols-2 gap-8'}`}>
+            {t.publications.map((pub) => (
+              <PressCard
+                key={pub.title}
+                publication={pub}
+                featured={t.publications.length === 1}
               />
             ))}
           </div>
