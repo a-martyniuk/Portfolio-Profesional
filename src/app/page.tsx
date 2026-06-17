@@ -38,6 +38,15 @@ export default function Home() {
 
   const projects = [
     {
+      title: "Pipelines de E-Commerce & Sell-Out (BeOn)",
+      description: "Flujos automatizados de ingesta e imputación de catálogos comerciales (EANs) e integración de sell-out para marcas de consumo masivo (PepsiCo, Nutricia, Beiersdorf).",
+      tags: ["Microsoft Fabric", "PySpark", "OneLake", "APIs REST"],
+      image: "/images/projects/sellout-dashboard.png",
+      alt: "Pipelines de Sell-Out y Digital Shelf en Microsoft Fabric con PySpark y APIs de e-commerce",
+      details: "Desarrollo de flujos ETL/ELT incrementales desde Google Drive y APIs transaccionales complejas (OAuth2) con descargas en streaming de gran volumen e imputación de EANs. Arquitectura Medallion en OneLake.",
+      architecture: ["APIs Marketplaces (VTEX, ML, Rappi)", "Notebooks PySpark (Fabric)", "OneLake (Delta Tables)", "Procedimientos T-SQL Idempotentes", "Control transaccional y Auditoría"]
+    },
+    {
       title: "MELI AIO (E-Commerce Suite)",
       description: "Plataforma integral de gestión para Mercado Libre. Dashboard unificado para facturación, inventario y logística con automatización de fondo.",
       tags: ["FastAPI", "Next.js", "PostgreSQL", "MercadoPago"],
@@ -46,16 +55,6 @@ export default function Home() {
       details: "Automatización de procesos críticos de e-commerce. Sincronización de facturas en tiempo real, respaldo en Google Drive y análisis de inventario predictivo. Arquitectura Monorepo escalable.",
       architecture: ["Backend FastAPI Async", "Cola de Tareas (Workers)", "Base de Datos PostgreSQL", "Frontend Next.js SSR", "Integración OAuth 2.0"]
     },
-    {
-      title: "Scraper Inmobiliario (Market Intelligence)",
-      description: "Herramienta de análisis de mercado que consolida listings de Zonaprop, Argenprop y Mercado Libre en un dataset unificado.",
-      tags: ["Python", "Playwright", "Data Engineering", "Pandas"],
-      image: "/images/projects/scraper-dashboard.png",
-      alt: "Scraper inmobiliario con Python y Playwright para análisis de mercado y extracción de datos",
-      details: "Motor de extracción de datos masivos con evasión de bloqueos (Stealth). Normalización de direcciones, detección de precios históricos y generación automática de reportes Excel.",
-      architecture: ["Orquestador Python", "Playwright (Headless Browser)", "Rotate Proxy / User-Agent", "Pandas Data Processing", "Exportación OpenPyXL"]
-    },
-    // ... (rest of the projects array remains same)
     {
       title: "Modelo Analítico Corporativo (Laboratorios Bagó)",
       description: "Plataforma de datos de misión crítica para una de las mayores farmacéuticas de Argentina, que permitió aumentar en 20% la productividad y reducir tiempos de decisión operativa.",
@@ -72,50 +71,55 @@ export default function Home() {
       description: "Plataforma provincial de análisis criminal utilizada por fuerzas de seguridad para asignación de recursos, detección de hotspots y toma de decisiones tácticas en tiempo real.",
       tags: ["PostgreSQL", "ArcGIS", "Python", "Sistemas de Misión Crítica"],
       image: "/images/projects/ministerio-heatmap.png",
-      alt: "Sistema de análisis criminal con PostgreSQL PostGIS y ArcGIS mostrando mapas de calor geoespaciales",
-      details: "Desarrollo de una base de datos centralizada para el análisis criminal. Integración de capas geográficas para la visualización de delitos y patrullas en vivo.",
+      alt: "Sistema de análisis criminal con PostgreSQL PostGIS y ArcGIS mostrando mapas de calor geoespacial",
+      details: "Desarrollo de una base de datos centralizada para el análisis criminal (SNIC). Integración de capas geográficas para la visualización de delitos y patrullas en vivo.",
       architecture: ["Reportes Policiales", "Python Scripts", "PostgreSQL PostGIS", "ArcGIS API", "Centros de Operaciones"]
     },
     {
-      title: "Automatización y Redes de Alta Disponibilidad",
-      description: "Implementación de ecosistemas IoT y redes WiFi Mesh para infraestructuras inteligentes, aplicando principios de automatización industrial y monitoreo proactivo.",
-      tags: ["IoT", "Networking", "Automatización", "Sistemas Inteligentes"],
-      image: "/images/projects/iot-network.png",
-      alt: "Infraestructura IoT y WiFi Mesh para automatización industrial con sensores y monitoreo",
-      details: "Diseño de redes redundantes para entornos críticos. Uso de protocolos de comunicación industrial para asegurar un 99.9% de uptime en dispositivos conectados.",
-      architecture: ["Sensores/Dispositivos", "Protocolos MQTT/HTTP", "WiFi Mesh Nodes", "Monitoring Server", "Alert System"]
+      title: "Scraper Inmobiliario (Market Intelligence)",
+      description: "Herramienta de análisis de mercado que consolida listings de Zonaprop, Argenprop y Mercado Libre en un dataset unificado.",
+      tags: ["Python", "Playwright", "Data Engineering", "Pandas"],
+      image: "/images/projects/scraper-dashboard.png",
+      alt: "Scraper inmobiliario con Python y Playwright para análisis de mercado y extracción de datos",
+      details: "Motor de extracción de datos masivos con evasión de bloqueos (Stealth). Normalización de direcciones, detección de precios históricos y generación automática de reportes Excel.",
+      architecture: ["Orquestador Python", "Playwright (Headless Browser)", "Rotate Proxy / User-Agent", "Pandas Data Processing", "Exportación OpenPyXL"]
     },
   ];
 
   const skills = [
-    // Data Engineering & Analytics (Core expertise)
-    { name: "Oracle Data Integrator 12c", level: 95, category: "Data" as const },
-    { name: "PL/SQL", level: 95, category: "Data" as const },
-    { name: "Python", level: 85, category: "Backend" as const },
-    { name: "Oracle SQL", level: 90, category: "Data" as const },
-    { name: "PostgreSQL", level: 85, category: "Data" as const },
-    { name: "Snowflake", level: 85, category: "Cloud" as const },
-    { name: "AWS Cloud", level: 75, category: "Cloud" as const },
-    { name: "Pentaho", level: 85, category: "Data" as const },
-    { name: "KNIME", level: 80, category: "Data" as const },
+    // Data Engineering & Analytics
+    { name: "SQL & T-SQL / PL/SQL", level: 95, category: "Data Engineering & Analytics" },
+    { name: "Python / PySpark", level: 85, category: "Data Engineering & Analytics" },
+    { name: "Oracle Data Integrator 12c", level: 95, category: "Data Engineering & Analytics" },
+    { name: "PostgreSQL & PostGIS", level: 85, category: "Data Engineering & Analytics" },
+    { name: "Delta Lake / Delta Tables", level: 80, category: "Data Engineering & Analytics" },
+    { name: "Modelado Dimensional (Star/Snowflake)", level: 90, category: "Data Engineering & Analytics" },
+    { name: "Pentaho ETL & KNIME", level: 85, category: "Data Engineering & Analytics" },
+    { name: "ArcGIS", level: 75, category: "Data Engineering & Analytics" },
 
-    // Business Intelligence
-    { name: "Power BI", level: 90, category: "Data" as const },
-    { name: "Tableau", level: 85, category: "Data" as const },
-    { name: "Google Looker Studio", level: 75, category: "Data" as const },
+    // Cloud Platforms & Enterprise Data
+    { name: "Microsoft Fabric & OneLake", level: 80, category: "Cloud Platforms & Enterprise Data" },
+    { name: "Microsoft Azure (Blob, ADLS, KeyVault)", level: 80, category: "Cloud Platforms & Enterprise Data" },
+    { name: "Snowflake", level: 85, category: "Cloud Platforms & Enterprise Data" },
+    { name: "AWS Cloud & On-Premise S3", level: 75, category: "Cloud Platforms & Enterprise Data" },
+    { name: "Google Cloud Platform (GCS, BigQuery)", level: 75, category: "Cloud Platforms & Enterprise Data" },
 
-    // DevOps & Agile
-    { name: "GitHub", level: 85, category: "Cloud" as const },
-    { name: "Jira & Scrum", level: 85, category: "Backend" as const },
+    // Business Intelligence & Data Visualization
+    { name: "Power BI", level: 90, category: "Business Intelligence & Data Visualization" },
+    { name: "Tableau", level: 85, category: "Business Intelligence & Data Visualization" },
+    { name: "Google Looker Studio", level: 75, category: "Business Intelligence & Data Visualization" },
+    { name: "Diseño de KPIs & Tableros Ejecutivos", level: 90, category: "Business Intelligence & Data Visualization" },
 
-    // Enterprise Systems
-    { name: "COBOL & Mainframe z/OS", level: 80, category: "Backend" as const },
-    { name: "DB2", level: 75, category: "Data" as const },
+    // DevOps, Versioning & Documentation
+    { name: "Git & GitHub (Actions, CI/CD)", level: 85, category: "DevOps, Versioning & Documentation" },
+    { name: "GitOps / Database-as-Code", level: 85, category: "DevOps, Versioning & Documentation" },
+    { name: "Jira & Confluence (Agile/Scrum)", level: 85, category: "DevOps, Versioning & Documentation" },
+    { name: "Docker", level: 75, category: "DevOps, Versioning & Documentation" },
 
-    // Modern Web (Learning)
-    { name: "Next.js & React", level: 70, category: "Frontend" as const },
-    { name: "Docker", level: 75, category: "Cloud" as const },
-    { name: "Streamlit", level: 70, category: "Frontend" as const },
+    // Sistemas Legacy & Mainframe
+    { name: "COBOL & Mainframe z/OS", level: 80, category: "Sistemas Legacy & Mainframe" },
+    { name: "CICS & JCL", level: 80, category: "Sistemas Legacy & Mainframe" },
+    { name: "DB2", level: 75, category: "Sistemas Legacy & Mainframe" }
   ];
 
   const metrics = [
@@ -129,12 +133,22 @@ export default function Home() {
     {
       degree: "Licenciatura en TICs para la Seguridad Pública",
       school: "IUPFA - Instituto Universitario PFA",
-      status: "Tesis Pendiente",
+      status: "Tesis Pendiente (Graduación esperada: Diciembre 2026)",
     },
     {
       degree: "Tecnicatura Superior en Análisis de Sistemas",
       school: "CAEEP (2017 - 2019)",
       status: "Completado",
+    },
+    {
+      degree: "Técnico en Informática Personal y Profesional",
+      school: "EET N°5 de Lanús (2005 - 2009)",
+      status: "Completado",
+    },
+    {
+      degree: "Tecnicatura Superior en Seguridad Pública",
+      school: "Escuela de Policía Juan Vucetich (2014 - 2017)",
+      status: "Investigaciones de Delitos Complejos",
     },
   ];
 
@@ -248,21 +262,21 @@ export default function Home() {
 
               <div>
                 <div className="flex items-center gap-2 mb-6">
-                  <div className="p-2 rounded-lg bg-indigo-500/10 text-indigo-500">
+                  <div className="p-2 rounded bg-primary/10 text-primary">
                     <Globe size={24} />
                   </div>
                   <h3 className="text-2xl font-bold">Idiomas</h3>
                 </div>
                 <div className="grid grid-cols-3 gap-4">
-                  <div className="text-center p-4 rounded-2xl border border-border bg-background">
+                  <div className="text-center p-4 rounded-lg border border-border bg-background">
                     <p className="text-xs uppercase text-muted-foreground mb-1 text-nowrap">Español</p>
                     <p className="font-bold">Nativo</p>
                   </div>
-                  <div className="text-center p-4 rounded-2xl border border-border bg-background">
+                  <div className="text-center p-4 rounded-lg border border-border bg-background">
                     <p className="text-xs uppercase text-muted-foreground mb-1 text-nowrap">Inglés</p>
                     <p className="font-bold">C1</p>
                   </div>
-                  <div className="text-center p-4 rounded-2xl border border-border bg-background">
+                  <div className="text-center p-4 rounded-lg border border-border bg-background">
                     <p className="text-xs uppercase text-muted-foreground mb-1 text-nowrap">Portugués</p>
                     <p className="font-bold">B1</p>
                   </div>
@@ -289,10 +303,19 @@ export default function Home() {
             centered
           />
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Most relevant: Data Engineering & ETL */}
+            {/* GitOps & Database-as-Code */}
+            <ProjectCard
+              title="Azure SQL Version Control & GitOps"
+              description="Solución automatizada de base de datos como código mediante GitHub Actions y scripts PowerShell (SMO/T-SQL) para el respaldo de esquemas DDL e inmutabilidad de logs bajo estándares ISO 27001."
+              image="/images/projects/gitops-azure.png"
+              alt="Versionado de esquemas Azure SQL y Database-as-Code con GitHub Actions"
+              tags={["GitHub Actions", "PowerShell SMO", "Azure SQL", "GitOps"]}
+              github="https://github.com/a-martyniuk/azure-sql-version-control"
+            />
+            {/* Data Analytics & Streamlit */}
             <ProjectCard
               title="SNIC Análisis Criminal"
-              description="Dashboard de inteligencia de seguridad con ETL automatizado, mapas coropléticos interactivos y modelos predictivos sobre datos oficiales."
+              description="Dashboard de inteligencia de seguridad con ETL automatizado, mapas coropléticos interactivos y modelos predictivos sobre datos oficiales del SNIC."
               image="/images/projects/snic-dashboard.png"
               alt="Dashboard de análisis criminal con Streamlit, Python ETL y mapas coropléticos interactivos"
               tags={["Python", "Streamlit", "Docker", "Pandas"]}
@@ -300,19 +323,28 @@ export default function Home() {
               link="https://alexismartyniuk-snic.streamlit.app/"
               linkType="demo"
             />
+            {/* E-Commerce Platform */}
+            <ProjectCard
+              title="MELI AIO Dashboard"
+              description="Panel integral para la gestión y automatización de facturación e inventario en Mercado Libre. Backend en Python y flujos OAuth 2.0 con rotación de tokens."
+              image="/images/projects/meli-automation.png"
+              alt="MELI AIO Dashboard con backend en FastAPI y base PostgreSQL"
+              tags={["FastAPI", "PostgreSQL", "OAuth 2.0", "Next.js"]}
+              github="https://github.com/a-martyniuk/meli-aio"
+            />
             {/* Business Automation */}
             <ProjectCard
               title="Descarga-Facturas-ML"
               description="Bot de automatización contable para Mercado Libre. Descarga facturas, clasifica por fecha y respalda en Google Drive automáticamente."
               image="/images/projects/meli-automation.png"
               alt="Bot de automatización Python para descarga de facturas de Mercado Libre con integración Google Drive"
-              tags={["Python", "APIs", "Automatización de Negocio"]}
+              tags={["Python", "APIs", "Automation"]}
               github="https://github.com/a-martyniuk/Descarga-Facturas-ML"
             />
             {/* Data Extraction */}
             <ProjectCard
               title="GOG Galaxy Export HTML"
-              description="Extrae tu librería local de GOG Galaxy a un dashboard HTML interactivo y offline. Sin APIs ni dependencias externas."
+              description="Extrae tu librería local de GOG Galaxy a un dashboard HTML interactivo y offline. Sin APIs ni dependencias externas de red."
               image="/images/projects/gog-pipeline.png"
               alt="Herramienta de extracción de datos SQLite de GOG Galaxy con exportación a HTML"
               tags={["Python", "SQLite", "Data Extraction"]}
@@ -324,26 +356,8 @@ export default function Home() {
               description="Portafolio de alto rendimiento construido con Next.js 15 (App Router), Tailwind CSS v4 y React 19. Puntuación perfecta en Lighthouse."
               image="/images/projects/portfolio-v2.png"
               alt="Portfolio profesional con Next.js 15, React 19 y Tailwind CSS v4 optimizado para performance"
-              tags={["Next.js", "React", "Product Building"]}
+              tags={["Next.js", "React", "Tailwind v4"]}
               github="https://github.com/a-martyniuk/Portfolio-Profesional"
-            />
-            {/* Utility Tools */}
-            <ProjectCard
-              title="Orden-Archivos"
-              description="Script de limpieza digital de alto rendimiento (O(1)). Organiza automáticamente archivos de escritorio y descargas en categorías lógicas."
-              image="/images/projects/file-organizer.png"
-              alt="Script Python de organización automática de archivos con algoritmo O(1)"
-              tags={["Python", "OS", "Ingeniería de Archivos"]}
-              github="https://github.com/a-martyniuk/Orden-Archivos"
-            />
-            {/* Experimental */}
-            <ProjectCard
-              title="Brújula-QR"
-              description="HUD de Navegación AR estilo Cyberpunk. Integra brújula GPS, Scanner QR y efectos visuales reactivos sin apps nativas."
-              image="/images/projects/webar-compass.png"
-              alt="Aplicación web AR con brújula GPS, scanner QR y efectos visuales usando sensores del navegador"
-              tags={["JavaScript", "Prototipo Experimental", "Sensores"]}
-              github="https://github.com/a-martyniuk/Brujula-QR"
             />
           </div>
         </div>

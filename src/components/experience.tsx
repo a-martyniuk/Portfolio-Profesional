@@ -15,47 +15,57 @@ interface ExperienceItem {
 
 const experiences: ExperienceItem[] = [
     {
-        title: "Senior Analytics Engineer (Contractor)",
-        company: "Mazz Soluciones (Data Rayders)",
-        location: "CABA, Argentina",
-        period: "Jun 2022 – Jul 2024",
-        description: [
-            "Arquitectura y desarrollo del MAC (Modelo Analítico Corporativo) para Laboratorios Bagó, integrando ecosistemas híbridos (Oracle, AWS, Snowflake).",
-            "Optimización de pipelines ETL con Oracle Data Integrator 12c, logrando un aumento del 20% en la eficiencia de líneas de producción farmacéutica.",
-            "Automatización de procesos críticos de misión fija mediante orquestación compleja entre nubes y APIs corporativas."
-        ]
-    },
-    {
-        title: "Infrastructure & Analytics Specialist",
-        company: "Ministerio de Seguridad de la Prov. de Buenos Aires",
+        title: "Data Engineer / Analytics Engineer (Proyecto Acotado)",
+        company: "BeOn Digital Transformation Partners",
         location: "Buenos Aires, Argentina",
-        period: "May 2014 – May 2022",
+        period: "Feb 2026 – Actualidad",
         description: [
-            "Diseño y operación de la plataforma de análisis criminal provincial (SID), infraestructura crítica de Estado para la seguridad pública.",
-            "Liderazgo técnico en la detección de hotspots y patrones delictivos mediante análisis geoespacial y volumétrico de datos sensibles.",
-            "Desarrollo de sistemas de apoyo a la decisión táctica para altos mandos ministeriales basándose en evidencia y análisis predictivo."
+            "Diseño de pipelines en Fabric (PySpark) y arquitecturas híbridas bajo Medallion (Bronze/Silver/Gold) en OneLake, estructurando modelos Star Schema y Snowflake.",
+            "Refactorización del modelo analítico de compliance y sell-out (Danone, Unilever, PepsiCo), migrando consultas a procedimientos T-SQL parametrizados e idempotentes con control transaccional.",
+            "Implementación de ingesta incremental desde APIs complejas de marketplaces (Mercado Libre, Rappi, VTEX) con flujos OAuth2 y Google Workspace APIs.",
+            "Diseño de arquitectura Database-as-Code (GitOps) para Azure SQL bajo ISO 27001 con GitHub Actions y PowerShell SMO."
         ]
     },
     {
-        title: "Senior Developer (Mainframe Systems)",
-        company: "TGV / CDA Informática (BBVA / Isban)",
-        location: "Buenos Aires, Argentina",
-        period: "2011 – 2013",
-        description: [
-            "Ingeniería de software en sistemas bancarios de alta transaccionalidad (Mainframe z/OS, COBOL, DB2).",
-            "Modernización y mantenimiento de núcleos financieros para BBVA Regional e Isban (Ingeniería Bancaria Santander).",
-            "Garantía de integridad y performance en procesos batch críticos para el ecosistema financiero internacional."
-        ]
-    },
-    {
-        title: "Ingeniero en Automatización (Proyectos Especiales)",
-        company: "MJ Instalaciones",
+        title: "Ingeniero en Automatización Domótica",
+        company: "MJ Instalaciones (Emprendimiento familiar)",
         location: "Buenos Aires, Argentina",
         period: "Jul 2024 – Actualidad",
         description: [
-            "Aplicación práctica de ingeniería de automatización y redes para sistemas inteligentes de alta complejidad.",
-            "Diseño de infraestructuras WiFi Mesh y ecosistemas IoT industriales para optimización energética.",
-            "Coordinación técnica de implementaciones tecnológicas avanzadas en entornos residenciales y corporativos prime."
+            "Diseño e implementación de sistemas domóticos e IoT (iluminación, climatización y seguridad) optimizando la eficiencia energética.",
+            "Configuración de infraestructuras de red WiFi Mesh y gestión de integración tecnológica de dispositivos inteligentes en propiedades."
+        ]
+    },
+    {
+        title: "Data Engineer / Analytics Engineer",
+        company: "Mazz Soluciones SRL (Data Raiders)",
+        location: "CABA, Argentina",
+        period: "Jun 2022 – Jul 2024",
+        description: [
+            "Desarrollo de pipelines ETL/ELT híbridos y productivos (Oracle Data Integrator 12c e integraciones Python), procesando millones de registros diarios desde AWS S3 hacia DWH.",
+            "Participación en el desarrollo del Modelo Analítico Corporativo (MAC) para Laboratorios Bagó, estandarizando modelos que impulsaron 20% la productividad de líneas clave.",
+            "Diseño y optimización de modelos dimensionales robustos, vistas materializadas y procedimientos almacenados (PL/SQL) para analítica compleja."
+        ]
+    },
+    {
+        title: "Data Engineer / Analytics Engineer",
+        company: "Ministerio de Seguridad de la Provincia de Buenos Aires",
+        location: "Buenos Aires, Argentina",
+        period: "May 2014 – May 2022",
+        description: [
+            "Diseño de pipelines de ingesta (ETL) en Pentaho, KNIME y Python (Pandas) para estadísticas criminales (SNIC), procesando 50k+ registros en Parquet hacia BigQuery.",
+            "Construcción de tableros interactivos e indicadores de hotspots en ArcGIS, optimizando un 15% la asignación territorial de recursos policiales en 135 municipios.",
+            "Participación en el SID (Sistema de Información Delictual) digitalizando denuncias para automatizar la interoperabilidad con el sistema judicial (SIMP)."
+        ]
+    },
+    {
+        title: "Desarrollador COBOL / CICS / DB2",
+        company: "TGV / CDA Informática (BBVA / MasterCard / Isban)",
+        location: "Buenos Aires, Argentina",
+        period: "Ene 2011 – Dic 2013",
+        description: [
+            "Análisis técnico, codificación y pruebas unitarias de aplicaciones críticas de procesamiento financiero y bancario (proyectos MasterCard, FirstData, BBVA y Santander).",
+            "Mantenimiento y aseguramiento de performance de procesos batch complejos en Mainframe z/OS, CICS, JCL y DB2."
         ]
     }
 ];

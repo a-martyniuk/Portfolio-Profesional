@@ -1,143 +1,246 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Activity, CheckCircle, Terminal } from 'lucide-react';
+import { Database, Cpu, BarChart3, CheckCircle2, Server, HelpCircle, Activity } from 'lucide-react';
 
-const LOG_MESSAGES = [
-    "Iniciando extracción ETL Batch_043...",
-    "Conexión establecida con Oracle ODI...",
-    "Cloud sync: AWS S3 -> Snowflake completado.",
-    "Validando integridad de datos (checksum)...",
-    "Generando reporte de disponibilidad diaria...",
-    "Limpieza de archivos temporales finalizada.",
-    "Detección proactiva: Latencia nominal detectada.",
-    "Migración de partición DB_HISTORY en curso...",
+interface PipelineStage {
+    id: string;
+    title: string;
+    icon: React.ReactNode;
+    subtitle: string;
+    description: string;
+    techStack: string[];
+    metrics: string[];
+    projects: { name: string; desc: string }[];
+}
+
+const PIPELINE_STAGES: PipelineStage[] = [
+    {
+        id: 'ingestion',
+        title: '01. Fuentes & Ingesta',
+        icon: <Server className="w-5 h-5 text-amber-500" />,
+        subtitle: 'Conexión a orígenes heterogéneos',
+        description: 'Extracción segura de datos desde sistemas legacy bancarios (Mainframe DB2), APIs transaccionales con OAuth2 (VTEX, Mercado Libre, Rappi), archivos comerciales (Google Drive API) y web scrapers de alta velocidad con evasión de bloqueos.',
+        techStack: ['REST APIs', 'OAuth 2.0', 'Playwright', 'Drive API', 'Mainframe DB2/CICS'],
+        metrics: [
+            'Procesamiento incremental',
+            'Descargas en streaming de gran volumen',
+            'Validación automática de consistencia e integridad (Gap Analysis)'
+        ],
+        projects: [
+            { name: 'Digital Shelf & Sell-Out Seguros (BeOn)', desc: 'Descarga en streaming de datos comerciales y EANs mediante APIs de marketplaces.' },
+            { name: 'Scraper Inmobiliario', desc: 'Motor Playwright con rotación de proxies y evasión Stealth para captura de listings.' }
+        ]
+    },
+    {
+        id: 'transformation',
+        title: '02. Procesamiento & ETL',
+        icon: <Cpu className="w-5 h-5 text-amber-500" />,
+        subtitle: 'Cómputo, transformación y limpieza',
+        description: 'Normalización, limpieza y enriquecimiento de flujos de datos. Orquestación batch robusta e idempotente en Spark y motores ETL licenciados, con esquemas centralizados de auditoría y manejo transaccional de excepciones.',
+        techStack: ['PySpark (Fabric)', 'Oracle ODI 12c', 'Python (Pandas)', 'Pentaho ETL', 'KNIME'],
+        metrics: [
+            '99.9% disponibilidad operativa de cargas batch complejas',
+            'Alertas proactivas ante anomalías en logs históricos',
+            'Modelos de auditoría de ejecución centralizados'
+        ],
+        projects: [
+            { name: 'Omnichannel Analytics (BeOn)', desc: 'Refactorización y unificación de consultas con procesos idempotentes de backfill.' },
+            { name: 'Modelo Analítico (Laboratorios Bagó)', desc: 'Orquestación de flujos globales con ODI y consolidación de inventarios en tiempo real.' }
+        ]
+    },
+    {
+        id: 'storage',
+        title: '03. Storage & Warehousing',
+        icon: <Database className="w-5 h-5 text-amber-500" />,
+        subtitle: 'Arquitecturas dimensionales y Cloud',
+        description: 'Estructuración de datos bajo arquitectura Medallion (OneLake Delta Tables) y Data Warehouses tradicionales. Implementación de infraestructuras Database-as-Code (GitOps) seguras bajo regulaciones ISO 27001.',
+        techStack: ['OneLake (Medallion)', 'Snowflake', 'Azure SQL (Dacpac)', 'PostgreSQL (PostGIS)', 'Delta Tables'],
+        metrics: [
+            'Modelado dimensional robusto (Star Schema / Snowflake)',
+            'Infraestructura inmutable: Database-as-Code y CI/CD con GitHub Actions',
+            'Optimización de índices y vistas materializadas complejas'
+        ],
+        projects: [
+            { name: 'Azure SQL Version Control & GitOps', desc: 'Respaldo automático de esquemas DDL e inmutabilidad de logs mediante Actions y PowerShell SMO.' },
+            { name: 'Infraestructura de Estado (Seguridad)', desc: 'Base de datos centralizada de misión crítica para análisis criminal y capas geográficas (PostGIS).' }
+        ]
+    },
+    {
+        id: 'analytics',
+        title: '04. Analítica & Negocio',
+        icon: <BarChart3 className="w-5 h-5 text-amber-500" />,
+        subtitle: 'Visualización y toma de decisiones',
+        description: 'Traducción de millones de filas procesadas en tableros interactivos de autoservicio para la toma de decisiones críticas corporativas, optimización de recursos y automatización administrativa.',
+        techStack: ['Power BI', 'Streamlit', 'Tableau', 'Looker Studio', 'Automated Excels'],
+        metrics: [
+            '+20% productividad operativa y reducción de tiempos de decisión (Bagó)',
+            '-90% en la carga manual de planillas comerciales (BeOn)',
+            'Análisis espacial y geo-procesamiento criminal optimizado en 15% (Seguridad)'
+        ],
+        projects: [
+            { name: 'SNIC Streamlit Dashboard', desc: 'Panel interactivo de análisis criminal provincial con mapas coropléticos y modelos predictivos.' },
+            { name: 'MELI AIO Dashboard', desc: 'Frontend Next.js y backend FastAPI para gestión predictiva de e-commerce.' }
+        ]
+    }
 ];
 
 export function CriticalDashboard() {
-    const [logs, setLogs] = useState<string[]>([]);
-    const [uptime, setUptime] = useState(99.98);
-    const [load, setLoad] = useState(14);
+    const [activeStageId, setActiveStageId] = useState<string>('ingestion');
 
-    useEffect(() => {
-        // Simulate log movement
-        const logInterval = setInterval(() => {
-            setLogs(prev => {
-                const nextMessage = LOG_MESSAGES[Math.floor(Math.random() * LOG_MESSAGES.length)];
-                return [nextMessage, ...prev].slice(0, 5);
-            });
-        }, 3000);
-
-        // Simulate metric fluctuations
-        const metricInterval = setInterval(() => {
-            setUptime(prev => Math.min(99.99, Math.max(99.95, prev + (Math.random() - 0.5) * 0.01)));
-            setLoad(prev => Math.min(30, Math.max(10, prev + (Math.random() - 0.5) * 5)));
-        }, 5000);
-
-        return () => {
-            clearInterval(logInterval);
-            clearInterval(metricInterval);
-        };
-    }, []);
+    const activeStage = PIPELINE_STAGES.find(stage => stage.id === activeStageId) || PIPELINE_STAGES[0];
 
     return (
-        <div className="w-full max-w-5xl mx-auto px-4 py-12">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="w-full max-w-5xl mx-auto px-4 py-8 font-sans">
+            {/* Header del Visualizador */}
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border border-border bg-muted/40 p-4 rounded-t-xl border-b-0">
+                <div className="flex items-center gap-3">
+                    <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    </span>
+                    <h3 className="text-xs font-mono font-bold tracking-widest text-muted-foreground uppercase flex items-center gap-2">
+                        <Activity className="w-3.5 h-3.5" /> PIPELINE_MONITOR // ARQUITECTURA DE DATOS
+                    </h3>
+                </div>
+                <div className="text-[10px] font-mono text-muted-foreground mt-2 sm:mt-0">
+                    STATUS: OPERATIONAL | REPLICA: STANDBY | DB: CODE-DRIVEN
+                </div>
+            </div>
 
-                {/* Metric 1: Uptime */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    className="p-6 rounded-2xl bg-accent/20 border border-border shadow-sm backdrop-blur-sm"
-                >
-                    <div className="flex items-center gap-3 mb-4 text-emerald-500">
-                        <CheckCircle size={20} />
-                        <h4 className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Sistema Operativo</h4>
-                    </div>
-                    <div className="flex items-baseline gap-1">
-                        <span className="text-3xl font-heading font-extrabold">{uptime.toFixed(2)}%</span>
-                        <span className="text-xs text-muted-foreground font-medium">Uptime</span>
-                    </div>
-                    <div className="mt-2">
-                        <span className="inline-block px-2 py-0.5 rounded-md bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-[10px] font-bold uppercase tracking-wider">Producción</span>
-                    </div>
-                    <div className="mt-4 h-1 w-full bg-muted rounded-full overflow-hidden">
-                        <motion.div
-                            animate={{ width: `${uptime}%` }}
-                            className="h-full bg-emerald-500"
-                        />
-                    </div>
-                </motion.div>
+            {/* Layout del Diagrama */}
+            <div className="grid grid-cols-1 md:grid-cols-4 border border-border bg-background divide-y md:divide-y-0 md:divide-x divide-border">
+                {PIPELINE_STAGES.map((stage) => {
+                    const isActive = stage.id === activeStageId;
+                    return (
+                        <button
+                            key={stage.id}
+                            onClick={() => setActiveStageId(stage.id)}
+                            className={`p-6 text-left transition-all relative overflow-hidden group cursor-pointer ${
+                                isActive 
+                                ? 'bg-amber-500/5 dark:bg-amber-500/[0.03] border-l-2 md:border-l-0 md:border-t-2 border-primary' 
+                                : 'hover:bg-muted/30'
+                            }`}
+                        >
+                            <div className="flex items-center justify-between mb-3">
+                                <div className="p-2 rounded border border-border/80 bg-muted/50 group-hover:border-primary/50 transition-colors">
+                                    {stage.icon}
+                                </div>
+                                {isActive && (
+                                    <span className="text-[10px] font-mono text-primary font-bold uppercase tracking-widest">
+                                        Active
+                                    </span>
+                                )}
+                            </div>
+                            <h4 className="font-heading font-bold text-base mb-1 text-foreground">
+                                {stage.title}
+                            </h4>
+                            <p className="text-xs text-muted-foreground line-clamp-2">
+                                {stage.subtitle}
+                            </p>
+                        </button>
+                    );
+                })}
+            </div>
 
-                {/* Metric 2: Data Throughput */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1 }}
-                    className="p-6 rounded-2xl bg-accent/20 border border-border shadow-sm backdrop-blur-sm"
-                >
-                    <div className="flex items-center gap-3 mb-4 text-primary">
-                        <Activity size={20} />
-                        <h4 className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Flujo de Datos</h4>
-                    </div>
-                    <div className="flex items-baseline gap-1">
-                        <span className="text-3xl font-heading font-extrabold">{load.toFixed(0)} GB/s</span>
-                        <span className="text-xs text-muted-foreground font-medium">Throughput</span>
-                    </div>
-                    <div className="mt-2">
-                        <span className="inline-block px-2 py-0.5 rounded-md bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider">Pico Medido</span>
-                    </div>
-                    <div className="mt-4 flex gap-1 h-3 items-end">
-                        {[...Array(12)].map((_, i) => (
-                            <motion.div
-                                key={i}
-                                animate={{ height: [`${20 + Math.random() * 60}%`, `${30 + Math.random() * 50}%`, `${20 + Math.random() * 60}%`] }}
-                                transition={{ duration: 1, repeat: Infinity, delay: i * 0.1 }}
-                                className="flex-1 bg-primary/40 rounded-t-sm"
-                            />
-                        ))}
-                    </div>
-                </motion.div>
+            {/* Panel de Detalles */}
+            <div className="border border-border border-t-0 bg-muted/10 p-6 sm:p-8 rounded-b-xl relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500/[0.01] rounded-full blur-3xl pointer-events-none" />
+                
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={activeStage.id}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.2 }}
+                        className="grid grid-cols-1 lg:grid-cols-3 gap-8"
+                    >
+                        {/* Columna Principal - Descripción */}
+                        <div className="lg:col-span-2 space-y-6">
+                            <div>
+                                <h3 className="text-xl font-heading font-bold text-foreground mb-2">
+                                    {activeStage.subtitle}
+                                </h3>
+                                <p className="text-sm text-muted-foreground leading-relaxed">
+                                    {activeStage.description}
+                                </p>
+                            </div>
 
-                {/* Metric 3: Live Logs */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2 }}
-                    className="p-6 rounded-2xl bg-zinc-950 border border-border/50 shadow-2xl relative overflow-hidden group"
-                >
-                    <div className="flex items-center justify-between mb-4">
-                        <div className="flex items-center gap-3 text-primary">
-                            <Terminal size={18} />
-                            <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500">ETL_RUNTIME_LOGS</h4>
+                            {/* Stack Tecnológico */}
+                            <div>
+                                <h4 className="text-xs font-mono font-bold tracking-widest text-muted-foreground uppercase mb-3">
+                                    {"// TECNOLOGÍAS CLAVE"}
+                                </h4>
+                                <div className="flex flex-wrap gap-2">
+                                    {activeStage.techStack.map((tech) => (
+                                        <span 
+                                            key={tech} 
+                                            className="px-2.5 py-1 rounded border border-border bg-background font-mono text-xs text-foreground"
+                                        >
+                                            {tech}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Proyectos Asociados */}
+                            <div>
+                                <h4 className="text-xs font-mono font-bold tracking-widest text-muted-foreground uppercase mb-3">
+                                    {"// PROYECTOS DONDE SE APLICA"}
+                                </h4>
+                                <div className="space-y-3">
+                                    {activeStage.projects.map((proj) => (
+                                        <div key={proj.name} className="p-3 rounded border border-border/60 bg-background/50">
+                                            <span className="text-sm font-bold text-foreground block mb-0.5">
+                                                {proj.name}
+                                            </span>
+                                            <span className="text-xs text-muted-foreground block leading-relaxed">
+                                                {proj.desc}
+                                            </span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
                         </div>
-                        <div className="flex gap-1">
-                            <div className="h-1.5 w-1.5 rounded-full bg-red-500/50" />
-                            <div className="h-1.5 w-1.5 rounded-full bg-amber-500/50" />
-                            <div className="h-1.5 w-1.5 rounded-full bg-emerald-500/50" />
+
+                        {/* Columna Derecha - Métricas e Indicadores de Rendimiento */}
+                        <div className="space-y-6 lg:border-l lg:border-border lg:pl-8">
+                            <div>
+                                <h4 className="text-xs font-mono font-bold tracking-widest text-muted-foreground uppercase mb-4">
+                                    {"// CRITERIOS DE INGENIERÍA"}
+                                </h4>
+                                <div className="space-y-4">
+                                    {activeStage.metrics.map((metric, i) => (
+                                        <div key={i} className="flex items-start gap-3">
+                                            <div className="p-0.5 rounded-full bg-amber-500/10 text-primary mt-0.5 shrink-0">
+                                                <CheckCircle2 className="w-4 h-4" />
+                                            </div>
+                                            <span className="text-xs text-muted-foreground leading-relaxed">
+                                                {metric}
+                                            </span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div className="pt-4 border-t border-border">
+                                <div className="p-4 rounded border border-amber-500/20 bg-amber-500/[0.02] flex items-start gap-3">
+                                    <HelpCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                                    <div>
+                                        <span className="text-xs font-bold text-foreground block mb-1">
+                                            Diseño Decisivo
+                                        </span>
+                                        <span className="text-[11px] text-muted-foreground leading-relaxed block">
+                                            Cada componente se selecciona para garantizar la idempotencia, evitar gaps en cargas de datos transaccionales e implementar alertas tempranas proactivas ante caídas de servicio.
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-
-                    <div className="space-y-2 font-mono text-[10px] h-[100px] overflow-hidden relative">
-                        <AnimatePresence mode="popLayout">
-                            {logs.map((msg, i) => (
-                                <motion.div
-                                    key={`${msg}-${i}`}
-                                    initial={{ opacity: 0, x: -10 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    exit={{ opacity: 0, y: 10 }}
-                                    className={`${i === 0 ? 'text-primary' : 'text-zinc-500'}`}
-                                >
-                                    <span className="opacity-30 mr-2">[{new Date().toLocaleTimeString([], { hour12: false })}]</span>
-                                    {msg}
-                                </motion.div>
-                            ))}
-                        </AnimatePresence>
-                        {!logs.length && <div className="text-zinc-700 animate-pulse">Cargando telemetría...</div>}
-                    </div>
-                </motion.div>
-
+                    </motion.div>
+                </AnimatePresence>
             </div>
         </div>
     );
