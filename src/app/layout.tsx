@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/providers/theme-provider";
 import { PostHogProvider } from "@/components/providers/posthog-provider";
 import PostHogPageView from "@/components/providers/posthog-pageview";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { generatePersonSchema } from "@/lib/structured-data";
 
 const inter = Inter({
@@ -102,6 +103,7 @@ export default function RootLayout({
             <PostHogPageView />
             {children}
             <Analytics />
+            <SpeedInsights />
           </PostHogProvider>
         </ThemeProvider>
       </body>
