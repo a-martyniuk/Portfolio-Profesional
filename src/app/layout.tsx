@@ -18,18 +18,18 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Alexis Martyniuk | Analytics Engineer & Data Architect Argentina",
-  description: "Senior Analytics Engineer especializado en ETL, Oracle ODI, Snowflake, AWS y arquitectura de datos. 15+ años construyendo pipelines de datos de misión crítica en Argentina. Portfolio de proyectos enterprise.",
+  title: "Alexis Martyniuk | Senior Data Engineer & Data Architect",
+  description: "Senior Data Engineer y Arquitecto de Datos especializado en pipelines de datos (ETL/ELT), Microsoft Fabric, Snowflake, Azure y AWS. +8 años construyendo plataformas de datos de misión crítica en Argentina.",
   keywords: [
-    "Analytics Engineer Argentina",
-    "ETL Specialist",
+    "Senior Data Engineer Argentina",
     "Data Engineer Portfolio",
+    "ETL Specialist",
     "Oracle ODI Expert",
+    "Microsoft Fabric OneLake",
     "Snowflake Data Warehouse",
-    "AWS Data Architecture",
-    "Python ETL",
+    "Azure Data Architecture",
+    "Python PySpark ETL",
     "Data Platform Engineer",
-    "Business Intelligence",
     "Alexis Martyniuk"
   ],
   authors: [{ name: "Alexis Martyniuk" }],
@@ -43,22 +43,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'es_AR',
     url: 'https://alexismartyniuk.com',
-    title: 'Alexis Martyniuk | Analytics Engineer & Data Architect',
-    description: 'Senior Analytics Engineer especializado en ETL, Oracle ODI, Snowflake y AWS. Portfolio de proyectos de datos enterprise en Argentina.',
+    title: 'Alexis Martyniuk | Senior Data Engineer & Data Architect',
+    description: 'Senior Data Engineer y Arquitecto de Datos especializado en pipelines de datos, Microsoft Fabric, Snowflake y Azure. Portfolio de proyectos de datos enterprise.',
     siteName: 'Alexis Martyniuk Portfolio',
     images: [
       {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Alexis Martyniuk - Analytics Engineer Portfolio',
+        alt: 'Alexis Martyniuk - Senior Data Engineer Portfolio',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Alexis Martyniuk | Analytics Engineer',
-    description: 'Senior Analytics Engineer especializado en ETL, Oracle ODI, Snowflake y AWS',
+    title: 'Alexis Martyniuk | Senior Data Engineer',
+    description: 'Senior Data Engineer y Arquitecto de Datos especializado en pipelines de datos, Microsoft Fabric, Snowflake y Azure',
     images: ['/og-image.png'],
   },
   robots: {

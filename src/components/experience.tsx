@@ -15,7 +15,7 @@ interface ExperienceItem {
 
 const experiences: ExperienceItem[] = [
     {
-        title: "Data Engineer / Analytics Engineer (Proyecto Acotado)",
+        title: "Senior Data Engineer (Proyecto Acotado)",
         company: "BeOn Digital Transformation Partners",
         location: "Buenos Aires, Argentina",
         period: "Feb 2026 – Actualidad",
@@ -37,7 +37,7 @@ const experiences: ExperienceItem[] = [
         ]
     },
     {
-        title: "Data Engineer / Analytics Engineer",
+        title: "Senior Data Engineer & Analytics Engineer",
         company: "Mazz Soluciones SRL (Data Raiders)",
         location: "CABA, Argentina",
         period: "Jun 2022 – Jul 2024",
@@ -48,7 +48,7 @@ const experiences: ExperienceItem[] = [
         ]
     },
     {
-        title: "Data Engineer / Analytics Engineer",
+        title: "Data Engineer & GIS Specialist",
         company: "Ministerio de Seguridad de la Provincia de Buenos Aires",
         location: "Buenos Aires, Argentina",
         period: "May 2014 – May 2022",
