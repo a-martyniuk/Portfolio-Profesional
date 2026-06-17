@@ -3,93 +3,20 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Database, Cpu, BarChart3, CheckCircle2, Server, HelpCircle, Activity } from 'lucide-react';
+import { useLanguage } from '@/components/providers/language-provider';
 
-interface PipelineStage {
-    id: string;
-    title: string;
-    icon: React.ReactNode;
-    subtitle: string;
-    description: string;
-    techStack: string[];
-    metrics: string[];
-    projects: { name: string; desc: string }[];
-}
-
-const PIPELINE_STAGES: PipelineStage[] = [
-    {
-        id: 'ingestion',
-        title: '01. Fuentes & Ingesta',
-        icon: <Server className="w-5 h-5 text-amber-500" />,
-        subtitle: 'Conexión a orígenes heterogéneos',
-        description: 'Extracción segura de datos desde sistemas legacy bancarios (Mainframe DB2), APIs transaccionales con OAuth2 (VTEX, Mercado Libre, Rappi), archivos comerciales (Google Drive API) y web scrapers de alta velocidad con evasión de bloqueos.',
-        techStack: ['REST APIs', 'OAuth 2.0', 'Playwright', 'Drive API', 'Mainframe DB2/CICS'],
-        metrics: [
-            'Procesamiento incremental',
-            'Descargas en streaming de gran volumen',
-            'Validación automática de consistencia e integridad (Gap Analysis)'
-        ],
-        projects: [
-            { name: 'Digital Shelf & Sell-Out Seguros (BeOn)', desc: 'Descarga en streaming de datos comerciales y EANs mediante APIs de marketplaces.' },
-            { name: 'PepsiCo: Ingestor Multimarketplace', desc: 'Scrapers configurables para iFood BR, Rappi y DiDi Food con rotación de proxies.' }
-        ]
-    },
-    {
-        id: 'transformation',
-        title: '02. Procesamiento & ETL',
-        icon: <Cpu className="w-5 h-5 text-amber-500" />,
-        subtitle: 'Cómputo, transformación y limpieza',
-        description: 'Normalización, limpieza y enriquecimiento de flujos de datos. Orquestación batch robusta e idempotente en Spark y motores ETL licenciados, con esquemas centralizados de auditoría y manejo transaccional de excepciones.',
-        techStack: ['PySpark (Fabric)', 'Oracle ODI 12c', 'Python (Pandas)', 'Pentaho ETL', 'KNIME'],
-        metrics: [
-            '99.9% disponibilidad operativa de cargas batch complejas',
-            'Alertas proactivas ante anomalías en logs históricos',
-            'Modelos de auditoría de ejecución centralizados'
-        ],
-        projects: [
-            { name: 'Omnichannel Analytics (BeOn)', desc: 'Refactorización y unificación de consultas con procesos idempotentes de backfill.' },
-            { name: 'Modelo Analítico (Laboratorios Bagó)', desc: 'Orquestación de flujos globales con ODI y consolidación de inventarios en tiempo real.' }
-        ]
-    },
-    {
-        id: 'storage',
-        title: '03. Storage & Warehousing',
-        icon: <Database className="w-5 h-5 text-amber-500" />,
-        subtitle: 'Arquitecturas dimensionales y Cloud',
-        description: 'Estructuración de datos bajo arquitectura Medallion (OneLake Delta Tables) y Data Warehouses tradicionales. Implementación de infraestructuras Database-as-Code (GitOps) seguras bajo regulaciones ISO 27001.',
-        techStack: ['OneLake (Medallion)', 'Snowflake', 'Azure SQL (Dacpac)', 'PostgreSQL (PostGIS)', 'Delta Tables'],
-        metrics: [
-            'Modelado dimensional robusto (Star Schema / Snowflake)',
-            'Infraestructura inmutable: Database-as-Code y CI/CD con GitHub Actions',
-            'Optimización de índices y vistas materializadas complejas'
-        ],
-        projects: [
-            { name: 'Azure SQL Version Control & GitOps', desc: 'Respaldo automático de esquemas DDL e inmutabilidad de logs mediante Actions y PowerShell SMO.' },
-            { name: 'Reingeniería SQL & ISO 27001', desc: 'Rediseño seguro de bases de datos relacionales, stored procedures modulares y checksums.' }
-        ]
-    },
-    {
-        id: 'analytics',
-        title: '04. Analítica & Negocio',
-        icon: <BarChart3 className="w-5 h-5 text-amber-500" />,
-        subtitle: 'Visualización y toma de decisiones',
-        description: 'Traducción de millones de filas procesadas en tableros interactivos de autoservicio para la toma de decisiones críticas corporativas, optimización de recursos y automatización administrativa.',
-        techStack: ['Power BI', 'Streamlit', 'Tableau', 'Looker Studio', 'Automated Excels'],
-        metrics: [
-            '+20% productividad operativa y reducción de tiempos de decisión (Bagó)',
-            '-90% en la carga manual de planillas comerciales (BeOn)',
-            'Análisis de desvíos y KPIs del scheduler (ETL Observability)'
-        ],
-        projects: [
-            { name: 'ETL Observability: Auditoría & KPIs', desc: 'Reportes automatizados de cumplimiento de SLAs, tasas de éxito y análisis de desvíos.' },
-            { name: 'SNIC Streamlit Dashboard', desc: 'Panel interactivo de análisis criminal provincial con mapas coropléticos y modelos predictivos.' }
-        ]
-    }
-];
+const STAGE_ICONS: Record<string, React.ReactNode> = {
+    ingestion: <Server className="w-5 h-5 text-amber-500" />,
+    transformation: <Cpu className="w-5 h-5 text-amber-500" />,
+    storage: <Database className="w-5 h-5 text-amber-500" />,
+    analytics: <BarChart3 className="w-5 h-5 text-amber-500" />
+};
 
 export function CriticalDashboard() {
+    const { t, language } = useLanguage();
     const [activeStageId, setActiveStageId] = useState<string>('ingestion');
 
-    const activeStage = PIPELINE_STAGES.find(stage => stage.id === activeStageId) || PIPELINE_STAGES[0];
+    const activeStage = t.pipeline.stages.find(stage => stage.id === activeStageId) || t.pipeline.stages[0];
 
     return (
         <div className="w-full max-w-5xl mx-auto px-4 py-8 font-sans">
@@ -101,18 +28,19 @@ export function CriticalDashboard() {
                         <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                     </span>
                     <h3 className="text-xs font-mono font-bold tracking-widest text-muted-foreground uppercase flex items-center gap-2">
-                        <Activity className="w-3.5 h-3.5" /> PIPELINE_MONITOR // ARQUITECTURA DE DATOS
+                        <Activity className="w-3.5 h-3.5" /> {t.pipeline.title}
                     </h3>
                 </div>
                 <div className="text-[10px] font-mono text-muted-foreground mt-2 sm:mt-0">
-                    STATUS: OPERATIONAL | REPLICA: STANDBY | DB: CODE-DRIVEN
+                    {t.pipeline.status}
                 </div>
             </div>
 
             {/* Layout del Diagrama */}
             <div className="grid grid-cols-1 md:grid-cols-4 border border-border bg-background divide-y md:divide-y-0 md:divide-x divide-border">
-                {PIPELINE_STAGES.map((stage) => {
+                {t.pipeline.stages.map((stage) => {
                     const isActive = stage.id === activeStageId;
+                    const icon = STAGE_ICONS[stage.id] || <Server className="w-5 h-5 text-amber-500" />;
                     return (
                         <button
                             key={stage.id}
@@ -125,11 +53,11 @@ export function CriticalDashboard() {
                         >
                             <div className="flex items-center justify-between mb-3">
                                 <div className="p-2 rounded border border-border/80 bg-muted/50 group-hover:border-primary/50 transition-colors">
-                                    {stage.icon}
+                                    {icon}
                                 </div>
                                 {isActive && (
                                     <span className="text-[10px] font-mono text-primary font-bold uppercase tracking-widest">
-                                        Active
+                                        {t.pipeline.active}
                                     </span>
                                 )}
                             </div>
@@ -171,7 +99,7 @@ export function CriticalDashboard() {
                             {/* Stack Tecnológico */}
                             <div>
                                 <h4 className="text-xs font-mono font-bold tracking-widest text-muted-foreground uppercase mb-3">
-                                    {"// TECNOLOGÍAS CLAVE"}
+                                    {t.pipeline.keyTech}
                                 </h4>
                                 <div className="flex flex-wrap gap-2">
                                     {activeStage.techStack.map((tech) => (
@@ -188,7 +116,7 @@ export function CriticalDashboard() {
                             {/* Proyectos Asociados */}
                             <div>
                                 <h4 className="text-xs font-mono font-bold tracking-widest text-muted-foreground uppercase mb-3">
-                                    {"// PROYECTOS DONDE SE APLICA"}
+                                    {t.pipeline.appliedProjects}
                                 </h4>
                                 <div className="space-y-3">
                                     {activeStage.projects.map((proj) => (
@@ -209,7 +137,7 @@ export function CriticalDashboard() {
                         <div className="space-y-6 lg:border-l lg:border-border lg:pl-8">
                             <div>
                                 <h4 className="text-xs font-mono font-bold tracking-widest text-muted-foreground uppercase mb-4">
-                                    {"// CRITERIOS DE INGENIERÍA"}
+                                    {language === 'es' ? "// CRITERIOS DE INGENIERÍA" : "// ENGINEERING CRITERIA"}
                                 </h4>
                                 <div className="space-y-4">
                                     {activeStage.metrics.map((metric, i) => (
@@ -230,10 +158,13 @@ export function CriticalDashboard() {
                                     <HelpCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />
                                     <div>
                                         <span className="text-xs font-bold text-foreground block mb-1">
-                                            Diseño Decisivo
+                                            {language === 'es' ? "Diseño Decisivo" : "Decisive Design"}
                                         </span>
                                         <span className="text-[11px] text-muted-foreground leading-relaxed block">
-                                            Cada componente se selecciona para garantizar la idempotencia, evitar gaps en cargas de datos transaccionales e implementar alertas tempranas proactivas ante caídas de servicio.
+                                            {language === 'es' 
+                                                ? "Cada componente se selecciona para garantizar la idempotencia, evitar gaps en cargas de datos transaccionales e implementar alertas tempranas proactivas ante caídas de servicio."
+                                                : "Each component is selected to guarantee idempotency, prevent gaps in transactional data loads, and implement proactive early alerts for service interruptions."
+                                            }
                                         </span>
                                     </div>
                                 </div>

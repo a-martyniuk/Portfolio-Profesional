@@ -21,11 +21,10 @@ import { VisualEffects } from "@/components/visual-effects";
 import { Mail, Linkedin, Github, GraduationCap, Globe, ArrowRight, Copy, CheckCircle } from "lucide-react";
 import Image from "next/image";
 import type { Project } from '@/types/project';
-
-// Dynamic import removed - using InteractiveTimeline instead
-
+import { useLanguage } from '@/components/providers/language-provider';
 
 export default function Home() {
+  const { t, language } = useLanguage();
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const [copied, setCopied] = useState(false);
@@ -36,56 +35,6 @@ export default function Home() {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const projects = [
-    {
-      title: "Pipelines de E-Commerce & Sell-Out (BeOn)",
-      description: "Flujos automatizados de ingesta e imputación de catálogos comerciales (EANs) e integración de sell-out para marcas de consumo masivo (PepsiCo, Nutricia, Beiersdorf).",
-      tags: ["Microsoft Fabric", "PySpark", "OneLake", "APIs REST"],
-      image: "/images/projects/sellout-dashboard.png",
-      alt: "Pipelines de Sell-Out y Digital Shelf en Microsoft Fabric con PySpark y APIs de e-commerce",
-      details: "Desarrollo de flujos ETL/ELT incrementales desde Google Drive y APIs transaccionales complejas (OAuth2) con descargas en streaming de gran volumen e imputación de EANs. Arquitectura Medallion en OneLake.",
-      architecture: ["APIs Marketplaces (VTEX, ML, Rappi)", "Notebooks PySpark (Fabric)", "OneLake (Delta Tables)", "Procedimientos T-SQL Idempotentes", "Control transaccional y Auditoría"]
-    },
-    {
-      title: "PepsiCo: Ingestor Multimarketplace",
-      description: "Ingesta automatizada y normalización de catálogos, stock y precios de marketplaces (iFood BR, Rappi LATAM, DiDi Food MX) para análisis competitivo de marcas PepsiCo.",
-      tags: ["Python", "APIs Ingestion", "Data Quality", "PyTest"],
-      image: "/images/projects/pepsico-ingestor.png",
-      alt: "Estructura de ingesta multi-marketplace PepsiCo con Python y APIs",
-      details: "Desarrollo de scrapers modulares e interactivos para APIs móviles y web. Gestión de sesiones complejas, cookies dinámicas, rotación de proxies y normalización en CSV (UTF-8 BOM) con suite de testing robusta.",
-      architecture: ["API Ingestor Engine (Requests/OAuth2)", "Config-driven Runner (JSON configs)", "Data Normalizer & Transformer", "Encoding Handler (Excel UTF-8 BOM)", "Pruebas Unitarias PyTest"]
-    },
-    {
-      title: "ETL Observability: Auditoría & Monitor de KPIs",
-      description: "Solución de observabilidad de procesos críticos corporativos. Audita la ejecución diaria, calcula tasas de éxito, mide SLA y detecta desvíos de calendarización.",
-      tags: ["Python", "PowerShell", "Stored Procedures", "ETL Logs"],
-      image: "/images/projects/ecoreport-audit.png",
-      alt: "Dashboard de auditoría de pipelines ETL y logs de ejecución",
-      details: "Framework de auditoría para bases transaccionales e históricas (SQL Server). Análisis de logs para marcas CPG (Danone, Softys, Unilever, Essity), control de excepciones en ExecuteSP y reportes KPI de desviaciones.",
-      architecture: ["Extractor de Logs SQL (PowerShell/Python)", "Motor de Cálculo de KPIs de SLA", "Algoritmo de Gap Analysis (Schedules vs Logs)", "Log de Variación Diaria de Modelos", "Reportes Markdown Automatizados"]
-    },
-    {
-      title: "Modelo Analítico Corporativo (Laboratorios Bagó)",
-      description: "Plataforma de datos de misión crítica para una de las mayores farmacéuticas de Argentina, que permitió aumentar en 20% la productividad y reducir tiempos de decisión operativa.",
-      tags: ["Oracle", "ODI 12c", "AWS", "Snowflake"],
-      link: "https://blogs.oracle.com/oracle-latinoamerica/post/laboratorios-bag-elev-su-produccin-en-un-20-con-el-apoyo-de-la-nube-de-oracle",
-      linkType: "article" as const,
-      image: "/images/projects/bago-dashboard.png",
-      alt: "Plataforma ETL Laboratorios Bagó con Oracle ODI, AWS y Snowflake - Dashboard analítico corporativo",
-      details: "Migración de ecosistema legacy a una arquitectura moderna de datos. El proyecto incluyó la orquestación de flujos globales y la consolidación de inventarios y ventas en tiempo real.",
-      architecture: ["Sistemas Transaccionales", "Oracle ODI (ETL)", "AWS S3 Staging", "Snowflake DWH", "Dashboards Ejecutivos"]
-    },
-    {
-      title: "Infraestructura de Estado (Ministerio de Seguridad)",
-      description: "Plataforma provincial de análisis criminal utilizada por fuerzas de seguridad para asignación de recursos, detección de hotspots y toma de decisiones tácticas en tiempo real.",
-      tags: ["PostgreSQL", "ArcGIS", "Python", "Sistemas de Misión Crítica"],
-      image: "/images/projects/ministerio-heatmap.png",
-      alt: "Sistema de análisis criminal con PostgreSQL PostGIS y ArcGIS mostrando mapas de calor geoespacial",
-      details: "Desarrollo de una base de datos centralizada para el análisis criminal (SNIC). Integración de capas geográficas para la visualización de delitos y patrullas en vivo.",
-      architecture: ["Reportes Policiales", "Python Scripts", "PostgreSQL PostGIS", "ArcGIS API", "Centros de Operaciones"]
-    },
-  ];
-
   const skills = [
     // Data Engineering & Analytics
     { name: "SQL & T-SQL / PL/SQL", level: 95, category: "Data Engineering & Analytics" },
@@ -93,7 +42,7 @@ export default function Home() {
     { name: "Oracle Data Integrator 12c", level: 95, category: "Data Engineering & Analytics" },
     { name: "PostgreSQL & PostGIS", level: 85, category: "Data Engineering & Analytics" },
     { name: "Delta Lake / Delta Tables", level: 80, category: "Data Engineering & Analytics" },
-    { name: "Modelado Dimensional (Star/Snowflake)", level: 90, category: "Data Engineering & Analytics" },
+    { name: language === 'es' ? "Modelado Dimensional (Star/Snowflake)" : "Dimensional Modeling (Star/Snowflake)", level: 90, category: "Data Engineering & Analytics" },
     { name: "Pentaho ETL & KNIME", level: 85, category: "Data Engineering & Analytics" },
     { name: "ArcGIS", level: 75, category: "Data Engineering & Analytics" },
 
@@ -108,7 +57,7 @@ export default function Home() {
     { name: "Power BI", level: 90, category: "Business Intelligence & Data Visualization" },
     { name: "Tableau", level: 85, category: "Business Intelligence & Data Visualization" },
     { name: "Google Looker Studio", level: 75, category: "Business Intelligence & Data Visualization" },
-    { name: "Diseño de KPIs & Tableros Ejecutivos", level: 90, category: "Business Intelligence & Data Visualization" },
+    { name: language === 'es' ? "Diseño de KPIs & Tableros Ejecutivos" : "KPI & Executive Dashboard Design", level: 90, category: "Business Intelligence & Data Visualization" },
 
     // DevOps, Versioning & Documentation
     { name: "Git & GitHub (Actions, CI/CD)", level: 85, category: "DevOps, Versioning & Documentation" },
@@ -123,33 +72,10 @@ export default function Home() {
   ];
 
   const metrics = [
-    { value: 8, label: "Años de Experiencia", suffix: "+" },
-    { value: 20, label: "Proyectos Completados", suffix: "+" },
-    { value: 99.9, label: "Uptime Promedio", suffix: "%", decimals: 1 },
-    { value: 15, label: "Tecnologías Dominadas", suffix: "+" },
-  ];
-
-  const education = [
-    {
-      degree: "Licenciatura en TICs para la Seguridad Pública",
-      school: "IUPFA - Instituto Universitario PFA",
-      status: "Tesis Pendiente (Graduación esperada: Diciembre 2026)",
-    },
-    {
-      degree: "Tecnicatura Superior en Análisis de Sistemas",
-      school: "CAEEP (2017 - 2019)",
-      status: "Completado",
-    },
-    {
-      degree: "Técnico en Informática Personal y Profesional",
-      school: "EET N°5 de Lanús (2005 - 2009)",
-      status: "Completado",
-    },
-    {
-      degree: "Tecnicatura Superior en Seguridad Pública",
-      school: "Escuela de Policía Juan Vucetich (2014 - 2017)",
-      status: "Investigaciones de Delitos Complejos",
-    },
+    { value: 8, label: t.metrics.experience, suffix: "+" },
+    { value: 20, label: t.metrics.projects, suffix: "+" },
+    { value: 99.9, label: t.metrics.uptime, suffix: "%", decimals: 1 },
+    { value: 15, label: t.metrics.technologies, suffix: "+" },
   ];
 
   return (
@@ -172,13 +98,13 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <blockquote className="max-w-3xl mx-auto text-center space-y-6">
             <p className="text-lg md:text-xl italic text-muted-foreground/80 leading-relaxed">
-              &ldquo;La civilización avanza al aumentar el número de operaciones que podemos realizar sin tener que pensar en ellas.&rdquo;
+              &ldquo;{t.quote.text}&rdquo;
             </p>
             <footer className="text-sm text-muted-foreground/60 uppercase tracking-widest" style={{ fontVariant: 'small-caps' }}>
-              — Alfred North Whitehead
+              — {t.quote.author}
             </footer>
             <p className="text-lg md:text-xl text-primary font-semibold pt-4">
-              Diseño sistemas de datos para que eso ocurra.
+              {t.quote.subtext}
             </p>
           </blockquote>
         </div>
@@ -195,20 +121,20 @@ export default function Home() {
       >
         <div className="container mx-auto px-4">
           <SectionHeading
-            title="Logros y Proyectos"
+            title={t.titles.projects}
             subtitle={
               <span>
-                Proyectos de misión crítica utilizados por organizaciones públicas y privadas.
+                {t.titles.projectsSubtitle}
                 <br />
                 <span className="inline-block mt-2 py-1 px-3 rounded-md bg-red-500/10 text-red-500 text-xs font-bold uppercase tracking-wider border border-red-500/20">
-                  Featured by Oracle
+                  {t.titles.featuredOracle}
                 </span>
               </span>
             }
             centered
           />
           {/* Project Slider */}
-          <ProjectSlider projects={projects} onProjectClick={setSelectedProject} />
+          <ProjectSlider projects={t.mainProjects} onProjectClick={setSelectedProject} />
 
           {/* Metrics Grid */}
           <div className="mt-16">
@@ -234,8 +160,8 @@ export default function Home() {
             {/* Technical Stack */}
             <div>
               <SectionHeading
-                title="Experticia Técnica"
-                subtitle="Desde mainframes COBOL/DB2 hasta nubes Snowflake/AWS: modernización de ecosistemas completos sin romper operaciones críticas."
+                title={t.titles.stack}
+                subtitle={t.titles.stackSubtitle}
               />
               <SkillChart skills={skills} />
             </div>
@@ -247,10 +173,10 @@ export default function Home() {
                   <div className="p-2 rounded-lg bg-primary/10 text-primary">
                     <GraduationCap size={24} />
                   </div>
-                  <h3 className="text-2xl font-bold">Formación Académica</h3>
+                  <h3 className="text-2xl font-bold">{t.titles.education}</h3>
                 </div>
                 <div className="space-y-6">
-                  {education.map((edu) => (
+                  {t.education.map((edu) => (
                     <div key={edu.degree} className="relative pl-6 before:absolute before:left-0 before:top-0 before:bottom-0 before:w-px before:bg-primary/30">
                       <h4 className="font-bold text-foreground">{edu.degree}</h4>
                       <p className="text-sm text-primary font-medium">{edu.school}</p>
@@ -265,20 +191,20 @@ export default function Home() {
                   <div className="p-2 rounded bg-primary/10 text-primary">
                     <Globe size={24} />
                   </div>
-                  <h3 className="text-2xl font-bold">Idiomas</h3>
+                  <h3 className="text-2xl font-bold">{t.titles.languages}</h3>
                 </div>
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-3 gap-4 font-sans">
                   <div className="text-center p-4 rounded-lg border border-border bg-background">
-                    <p className="text-xs uppercase text-muted-foreground mb-1 text-nowrap">Español</p>
-                    <p className="font-bold">Nativo</p>
+                    <p className="text-[10px] uppercase text-muted-foreground mb-1 text-nowrap">{t.languages.spanish}</p>
+                    <p className="font-bold text-sm">{t.languages.spanishLevel}</p>
                   </div>
                   <div className="text-center p-4 rounded-lg border border-border bg-background">
-                    <p className="text-xs uppercase text-muted-foreground mb-1 text-nowrap">Inglés</p>
-                    <p className="font-bold">C1</p>
+                    <p className="text-[10px] uppercase text-muted-foreground mb-1 text-nowrap">{t.languages.english}</p>
+                    <p className="font-bold text-sm">{t.languages.englishLevel}</p>
                   </div>
                   <div className="text-center p-4 rounded-lg border border-border bg-background">
-                    <p className="text-xs uppercase text-muted-foreground mb-1 text-nowrap">Portugués</p>
-                    <p className="font-bold">B1</p>
+                    <p className="text-[10px] uppercase text-muted-foreground mb-1 text-nowrap">{t.languages.portuguese}</p>
+                    <p className="font-bold text-sm">{t.languages.portugueseLevel}</p>
                   </div>
                 </div>
               </div>
@@ -298,67 +224,24 @@ export default function Home() {
       >
         <div className="container mx-auto px-4">
           <SectionHeading
-            title="Código Curado & Herramientas de Ingeniería"
-            subtitle="Repositorios seleccionados que contienen herramientas, automatizaciones y prototipos desarrollados para resolver problemas reales de negocio, datos y productividad técnica."
+            title={t.titles.curatedCode}
+            subtitle={t.titles.curatedCodeSubtitle}
             centered
           />
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* GitOps & Database-as-Code */}
-            <ProjectCard
-              title="Azure SQL Version Control & GitOps"
-              description="Solución automatizada de base de datos como código mediante GitHub Actions y scripts PowerShell (SMO/T-SQL) para el respaldo de esquemas DDL e inmutabilidad de logs bajo estándares ISO 27001."
-              image="/images/projects/gitops-azure.png"
-              alt="Versionado de esquemas Azure SQL y Database-as-Code con GitHub Actions"
-              tags={["GitHub Actions", "PowerShell SMO", "Azure SQL", "GitOps"]}
-              github="https://github.com/a-martyniuk/azure-sql-version-control"
-            />
-            {/* Data Analytics & Streamlit */}
-            <ProjectCard
-              title="SNIC Análisis Criminal"
-              description="Dashboard de inteligencia de seguridad con ETL automatizado, mapas coropléticos interactivos y modelos predictivos sobre datos oficiales del SNIC."
-              image="/images/projects/snic-dashboard.png"
-              alt="Dashboard de análisis criminal con Streamlit, Python ETL y mapas coropléticos interactivos"
-              tags={["Python", "Streamlit", "Docker", "Pandas"]}
-              github="https://github.com/a-martyniuk/snic-analisis-criminal"
-              link="https://alexismartyniuk-snic.streamlit.app/"
-              linkType="demo"
-            />
-            {/* E-Commerce Platform */}
-            <ProjectCard
-              title="MELI AIO Dashboard"
-              description="Panel integral para la gestión y automatización de facturación e inventario en Mercado Libre. Backend en Python y flujos OAuth 2.0 con rotación de tokens."
-              image="/images/projects/meli-automation.png"
-              alt="MELI AIO Dashboard con backend en FastAPI y base PostgreSQL"
-              tags={["FastAPI", "PostgreSQL", "OAuth 2.0", "Next.js"]}
-              github="https://github.com/a-martyniuk/meli-aio"
-            />
-            {/* Database Compliance */}
-            <ProjectCard
-              title="Reingeniería SQL & ISO 27001"
-              description="Reestructuración de bases de datos relacionales bajo estándares de seguridad ISO 27001. Implementación de stored procedures T-SQL modulares, control transaccional de logs y queries de integridad mediante Checksums."
-              image="/images/projects/sql-reengineering.png"
-              alt="Rediseño y reingeniería SQL Server bajo estándares de seguridad ISO 27001"
-              tags={["SQL Server", "T-SQL", "ISO 27001", "Integrity"]}
-              github="https://github.com/a-martyniuk/sql-reengineering-iso27001"
-            />
-            {/* Data Extraction */}
-            <ProjectCard
-              title="GOG Galaxy Export HTML"
-              description="Extrae tu librería local de GOG Galaxy a un dashboard HTML interactivo y offline. Sin APIs ni dependencias externas de red."
-              image="/images/projects/gog-pipeline.png"
-              alt="Herramienta de extracción de datos SQLite de GOG Galaxy con exportación a HTML"
-              tags={["Python", "SQLite", "Data Extraction"]}
-              github="https://github.com/a-martyniuk/GOG-Galaxy-Export-HTML"
-            />
-            {/* Full-Stack Development */}
-            <ProjectCard
-              title="Portfolio Profesional"
-              description="Portafolio de alto rendimiento construido con Next.js 15 (App Router), Tailwind CSS v4 y React 19. Puntuación perfecta en Lighthouse."
-              image="/images/projects/portfolio-v2.png"
-              alt="Portfolio profesional con Next.js 15, React 19 y Tailwind CSS v4 optimizado para performance"
-              tags={["Next.js", "React", "Tailwind v4"]}
-              github="https://github.com/a-martyniuk/Portfolio-Profesional"
-            />
+            {t.secondaryProjects.map((proj) => (
+              <ProjectCard
+                key={proj.title}
+                title={proj.title}
+                description={proj.description}
+                image={proj.image}
+                alt={proj.alt}
+                tags={proj.tags}
+                github={proj.github}
+                link={proj.link}
+                linkType={proj.linkType}
+              />
+            ))}
           </div>
         </div>
       </motion.section>
@@ -374,8 +257,8 @@ export default function Home() {
       >
         <div className="container mx-auto px-4 text-center">
           <SectionHeading
-            title="Hablemos de tu Próximo Desafío"
-            subtitle="¿Necesitás a alguien que diseñe, implemente y mantenga tu plataforma de datos sin romper producción?"
+            title={t.titles.contact}
+            subtitle={t.titles.contactSubtitle}
             centered
           />
           <div className="max-w-2xl mx-auto rounded-3xl border border-border/50 bg-accent/20 backdrop-blur-md p-8 md:p-12 relative overflow-hidden transition-all duration-300 hover:border-primary/30 hover:shadow-[0_0_50px_-15px_rgba(99,102,241,0.2)]">
@@ -383,26 +266,26 @@ export default function Home() {
             <div className="absolute top-[-50%] left-[-20%] h-full w-full bg-primary/10 blur-[80px] -z-10" />
 
             <p className="mb-8 text-muted-foreground text-lg leading-relaxed">
-              Estoy disponible para proyectos de arquitectura de datos, migración a la nube y consultoría estratégica para sistemas de alta complejidad.
+              {t.titles.contactDesc}
             </p>
             <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center items-center">
               <a
                 href="mailto:alexis.martyniuk@gmail.com"
-                className="flex items-center justify-center gap-3 bg-primary px-6 h-16 rounded-2xl font-bold text-primary-foreground hover:bg-primary/90 transition-all shadow-xl shadow-primary/20 w-full sm:w-auto whitespace-nowrap"
+                className="flex items-center justify-center gap-3 bg-primary px-6 h-16 rounded-2xl font-bold text-primary-foreground hover:bg-primary/90 transition-all shadow-xl shadow-primary/20 w-full sm:w-auto whitespace-nowrap cursor-pointer"
               >
-                <Mail size={18} /> Agenda una llamada o escribime
+                <Mail size={18} /> {t.titles.contactCTA}
               </a>
               <button
                 onClick={copyEmail}
-                className="flex items-center justify-center gap-3 px-6 h-16 rounded-2xl border border-border bg-background hover:bg-muted transition-all font-bold w-full sm:w-auto min-w-[180px] whitespace-nowrap"
+                className="flex items-center justify-center gap-3 px-6 h-16 rounded-2xl border border-border bg-background hover:bg-muted transition-all font-bold w-full sm:w-auto min-w-[180px] whitespace-nowrap cursor-pointer"
               >
                 {copied ? (
                   <span className="text-emerald-500 flex items-center gap-2 italic">
-                    <CheckCircle size={18} /> ¡Copiado!
+                    <CheckCircle size={18} /> {t.titles.copied}
                   </span>
                 ) : (
                   <span className="flex items-center gap-2 text-muted-foreground">
-                    <Copy size={18} /> Copiar Email
+                    <Copy size={18} /> {t.titles.copyEmail}
                   </span>
                 )}
               </button>
@@ -440,14 +323,14 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           <div className="space-y-6">
             <div>
-              <h4 className="text-sm font-bold uppercase tracking-widest text-primary mb-4">Caso de Estudio</h4>
+              <h4 className="text-sm font-bold uppercase tracking-widest text-primary mb-4">{t.pipeline.studyCase}</h4>
               <p className="text-muted-foreground leading-relaxed">
                 {selectedProject?.details}
               </p>
             </div>
 
             <div className="pt-6 border-t border-border/10">
-              <h4 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-6">Arquitectura Técnica</h4>
+              <h4 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-6">{t.pipeline.techArchitecture}</h4>
               <div className="space-y-4">
                 {selectedProject?.architecture?.map((step: string, i: number) => (
                   <div key={step} className="flex items-center gap-4">
@@ -455,7 +338,7 @@ export default function Home() {
                       0{i + 1}
                     </div>
                     <div className="flex-1 text-sm font-medium">{step}</div>
-                    {i < selectedProject.architecture.length - 1 && (
+                    {selectedProject.architecture && i < selectedProject.architecture.length - 1 && (
                       <div className="hidden md:block text-muted-foreground/30"><ArrowRight size={14} /></div>
                     )}
                   </div>
@@ -490,7 +373,7 @@ export default function Home() {
                 target="_blank"
                 className="inline-flex items-center gap-2 text-primary font-bold hover:underline"
               >
-                Ver publicación oficial <ArrowRight size={16} />
+                {t.pipeline.viewOfficial} <ArrowRight size={16} />
               </a>
             )}
           </div>

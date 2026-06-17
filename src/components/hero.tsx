@@ -5,9 +5,11 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Github, Linkedin, Activity } from 'lucide-react';
 import Link from 'next/link';
 import { useAnalytics } from '@/lib/analytics';
+import { useLanguage } from '@/components/providers/language-provider';
 
 export function Hero() {
     const { trackCTAClick } = useAnalytics();
+    const { t } = useLanguage();
 
     return (
         <section id="hero" className="relative pt-32 pb-16 overflow-hidden">
@@ -19,7 +21,7 @@ export function Hero() {
                 <div className="absolute top-[-5%] right-[10%] h-[600px] w-[600px] rounded-full bg-primary/20 blur-[120px]" />
                 <div className="absolute bottom-[20%] left-[5%] h-[400px] w-[400px] rounded-full bg-zinc-500/10 blur-[100px]" />
             </div>
-
+ 
             <div className="container mx-auto px-4 relative">
                 <div className="max-w-4xl mx-auto">
                     
@@ -35,7 +37,7 @@ export function Hero() {
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                                 <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
                             </span>
-                            <span className="font-bold text-foreground">SYSTEM: ONLINE</span>
+                            <span className="font-bold text-foreground">{t.hero.status}</span>
                         </div>
                         <div className="hidden sm:flex items-center gap-4 divide-x divide-border">
                             <span className="pl-4">PING: 14ms</span>
@@ -47,7 +49,7 @@ export function Hero() {
                             <span className="font-bold">ENG_VER: 2.6.0</span>
                         </div>
                     </motion.div>
-
+ 
                     <div className="text-center sm:text-left">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
@@ -55,7 +57,7 @@ export function Hero() {
                             transition={{ duration: 0.5, delay: 0.1 }}
                         >
                             <span className="inline-block py-1 px-3 rounded border border-primary/20 bg-primary/10 text-primary text-xs font-mono tracking-wider uppercase mb-6">
-                                {"// DISPONIBLE PARA NUEVOS PROYECTOS"}
+                                {t.hero.available}
                             </span>
                             
                             <h1 className="text-4xl sm:text-6xl md:text-7xl font-heading font-extrabold tracking-tight mb-6 leading-tight">
@@ -66,23 +68,23 @@ export function Hero() {
                             </h1>
                             
                             <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-10 leading-relaxed max-w-3xl">
-                                Diseño, opero y automatizo plataformas de datos escalables. Especializado en migración de pipelines (ETL/ELT), arquitecturas dimensionales de nube (Snowflake/Azure/Fabric) y optimización de flujos corporativos de alta transaccionalidad.
+                                {t.hero.description}
                             </p>
-
+ 
                             <div className="flex flex-col sm:flex-row items-center gap-4">
                                 <Link
                                     href="#projects"
                                     onClick={() => trackCTAClick('Ver Proyectos Reales')}
                                     className="w-full sm:w-auto px-6 py-3.5 rounded border border-primary bg-primary text-primary-foreground font-mono font-bold text-sm flex items-center justify-center gap-2 hover:bg-transparent hover:text-primary transition-all duration-300 shadow-lg shadow-primary/10"
                                 >
-                                    VER PROYECTOS <ArrowRight size={16} />
+                                    {t.hero.ctaProjects} <ArrowRight size={16} />
                                 </Link>
                                 <Link
                                     href="#contact"
                                     onClick={() => trackCTAClick('Hablar Conmigo')}
                                     className="w-full sm:w-auto px-6 py-3.5 rounded border border-border bg-muted/40 hover:bg-muted text-foreground font-mono font-bold text-sm flex items-center justify-center gap-2 transition-all duration-300"
                                 >
-                                    ESTABLECER CONEXIÓN
+                                    {t.hero.ctaContact}
                                 </Link>
                                 
                                 <div className="flex items-center gap-3 mt-4 sm:mt-0">

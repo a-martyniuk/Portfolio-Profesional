@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { LanguageProvider } from "@/components/providers/language-provider";
 import { PostHogProvider } from "@/components/providers/posthog-provider";
 import PostHogPageView from "@/components/providers/posthog-pageview";
 import { Analytics } from "@vercel/analytics/next";
@@ -99,12 +100,14 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <PostHogProvider>
-            <PostHogPageView />
-            {children}
-            <Analytics />
-            <SpeedInsights />
-          </PostHogProvider>
+          <LanguageProvider>
+            <PostHogProvider>
+              <PostHogPageView />
+              {children}
+              <Analytics />
+              <SpeedInsights />
+            </PostHogProvider>
+          </LanguageProvider>
         </ThemeProvider>
       </body>
     </html>

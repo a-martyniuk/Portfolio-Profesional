@@ -3,86 +3,25 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Briefcase, Calendar, MapPin } from 'lucide-react';
-
-interface ExperienceItem {
-    title: string;
-    company: string;
-    location: string;
-    period: string;
-    description: string[];
-    isLast?: boolean;
-}
-
-const experiences: ExperienceItem[] = [
-    {
-        title: "Senior Data Engineer (Proyecto Acotado)",
-        company: "BeOn Digital Transformation Partners",
-        location: "Buenos Aires, Argentina",
-        period: "Feb 2026 – Actualidad",
-        description: [
-            "Diseño de pipelines en Fabric (PySpark) y arquitecturas híbridas bajo Medallion (Bronze/Silver/Gold) en OneLake, estructurando modelos Star Schema y Snowflake.",
-            "Refactorización del modelo analítico de compliance y sell-out (Danone, Unilever, PepsiCo), migrando consultas a procedimientos T-SQL parametrizados e idempotentes con control transaccional.",
-            "Implementación de ingesta incremental desde APIs complejas de marketplaces (Mercado Libre, Rappi, VTEX) con flujos OAuth2 y Google Workspace APIs.",
-            "Diseño de arquitectura Database-as-Code (GitOps) para Azure SQL bajo ISO 27001 con GitHub Actions y PowerShell SMO."
-        ]
-    },
-    {
-        title: "Ingeniero en Automatización Domótica",
-        company: "MJ Instalaciones (Emprendimiento familiar)",
-        location: "Buenos Aires, Argentina",
-        period: "Jul 2024 – Actualidad",
-        description: [
-            "Diseño e implementación de sistemas domóticos e IoT (iluminación, climatización y seguridad) optimizando la eficiencia energética.",
-            "Configuración de infraestructuras de red WiFi Mesh y gestión de integración tecnológica de dispositivos inteligentes en propiedades."
-        ]
-    },
-    {
-        title: "Senior Data Engineer & Analytics Engineer",
-        company: "Mazz Soluciones SRL (Data Raiders)",
-        location: "CABA, Argentina",
-        period: "Jun 2022 – Jul 2024",
-        description: [
-            "Desarrollo de pipelines ETL/ELT híbridos y productivos (Oracle Data Integrator 12c e integraciones Python), procesando millones de registros diarios desde AWS S3 hacia DWH.",
-            "Participación en el desarrollo del Modelo Analítico Corporativo (MAC) para Laboratorios Bagó, estandarizando modelos que impulsaron 20% la productividad de líneas clave.",
-            "Diseño y optimización de modelos dimensionales robustos, vistas materializadas y procedimientos almacenados (PL/SQL) para analítica compleja."
-        ]
-    },
-    {
-        title: "Data Engineer & GIS Specialist",
-        company: "Ministerio de Seguridad de la Provincia de Buenos Aires",
-        location: "Buenos Aires, Argentina",
-        period: "May 2014 – May 2022",
-        description: [
-            "Diseño de pipelines de ingesta (ETL) en Pentaho, KNIME y Python (Pandas) para estadísticas criminales (SNIC), procesando 50k+ registros en Parquet hacia BigQuery.",
-            "Construcción de tableros interactivos e indicadores de hotspots en ArcGIS, optimizando un 15% la asignación territorial de recursos policiales en 135 municipios.",
-            "Participación en el SID (Sistema de Información Delictual) digitalizando denuncias para automatizar la interoperabilidad con el sistema judicial (SIMP)."
-        ]
-    },
-    {
-        title: "Desarrollador COBOL / CICS / DB2",
-        company: "TGV / CDA Informática (BBVA / MasterCard / Isban)",
-        location: "Buenos Aires, Argentina",
-        period: "Ene 2011 – Dic 2013",
-        description: [
-            "Análisis técnico, codificación y pruebas unitarias de aplicaciones críticas de procesamiento financiero y bancario (proyectos MasterCard, FirstData, BBVA y Santander).",
-            "Mantenimiento y aseguramiento de performance de procesos batch complejos en Mainframe z/OS, CICS, JCL y DB2."
-        ]
-    }
-];
+import { useLanguage } from '@/components/providers/language-provider';
 
 export function Experience() {
+    const { t } = useLanguage();
+
     return (
         <section id="experience" className="py-24 bg-background">
             <div className="container mx-auto px-4">
                 <div className="max-w-4xl mx-auto">
-                    <h2 className="text-3xl md:text-4xl font-heading font-bold mb-16 text-center">Trayectoria Profesional</h2>
+                    <h2 className="text-3xl md:text-4xl font-heading font-bold mb-16 text-center">
+                        {t.titles.experience}
+                    </h2>
 
                     <div className="relative">
                         {/* Timeline Line */}
                         <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-border transform md:-translate-x-1/2" />
 
                         <div className="space-y-12">
-                            {experiences.map((exp, index) => (
+                            {t.experience.map((exp, index) => (
                                 <motion.div
                                     key={index}
                                     initial={{ opacity: 0, y: 20 }}
