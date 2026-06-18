@@ -24,6 +24,10 @@
   --radius-lg: 0.5rem;
   --radius-md: calc(0.5rem - 2px);
   --radius-sm: calc(0.5rem - 4px);
+
+  /* Container width — expanded from Tailwind default 1280px */
+  --container-max-width: 1440px;
+  --container-padding: 2rem;
 }
 
 @layer base {
@@ -75,9 +79,15 @@
 
   body {
     @apply bg-background text-foreground font-sans;
-    /* Ensure minimum 16px on mobile to prevent zoom */
     font-size: 16px;
     line-height: 1.6;
+  }
+
+  /* Wider container for large screens */
+  .container {
+    max-width: var(--container-max-width, 1440px);
+    padding-left: var(--container-padding, 2rem);
+    padding-right: var(--container-padding, 2rem);
   }
 
   h1,

@@ -323,7 +323,7 @@ export default function Home() {
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
         <div className="container mx-auto px-4">
-          <blockquote className="max-w-3xl mx-auto text-center space-y-6">
+          <blockquote className="max-w-4xl mx-auto text-center space-y-6">
             <p className="text-lg md:text-xl italic text-muted-foreground/80 leading-relaxed">
               &ldquo;{t.quote.text}&rdquo;
             </p>
@@ -488,7 +488,7 @@ export default function Home() {
             subtitle={t.titles.pressSubtitle}
             centered
           />
-          <div className={`${t.publications.length === 1 ? 'max-w-4xl mx-auto' : 'grid md:grid-cols-2 gap-8'}`}>
+          <div className={`${t.publications.length === 1 ? 'max-w-5xl mx-auto' : 'grid md:grid-cols-2 gap-8'}`}>
             {t.publications.map((pub) => (
               <PressCard
                 key={pub.title}
@@ -515,7 +515,7 @@ export default function Home() {
             subtitle={t.titles.contactSubtitle}
             centered
           />
-          <div className="max-w-2xl mx-auto rounded-3xl border border-border/50 bg-accent/20 backdrop-blur-md p-8 md:p-12 relative overflow-hidden transition-all duration-300 hover:border-primary/30 hover:shadow-[0_0_50px_-15px_rgba(99,102,241,0.2)]">
+          <div className="max-w-4xl mx-auto rounded-3xl border border-border/50 bg-accent/20 backdrop-blur-md p-8 md:p-12 relative overflow-hidden transition-all duration-300 hover:border-primary/30 hover:shadow-[0_0_50px_-15px_rgba(6,182,212,0.25)]">
             {/* Decorative blob */}
             <div className="absolute top-[-50%] left-[-20%] h-full w-full bg-primary/10 blur-[80px] -z-10" />
 
