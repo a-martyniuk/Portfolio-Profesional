@@ -1,12 +1,22 @@
 'use client';
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { Briefcase, Calendar, MapPin } from 'lucide-react';
 import { useLanguage } from '@/components/providers/language-provider';
 
 export function Experience() {
     const { t } = useLanguage();
+    const containerRef = useRef<HTMLDivElement>(null);
+    
+    // Track scroll progress of the timeline container
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start center", "end center"]
+    });
+    
+    // Map scroll progress to scaleY of the timeline line
+    const scaleY = useTransform(scrollYProgress, [0, 0.95], [0, 1]);
 
     return (
         <section id="experience" className="py-24 bg-background">
@@ -16,9 +26,15 @@ export function Experience() {
                         {t.titles.experience}
                     </h2>
 
-                    <div className="relative">
-                        {/* Timeline Line - Gradient Fade */}
-                        <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-primary via-primary/30 to-transparent transform md:-translate-x-1/2" />
+                    <div ref={containerRef} className="relative">
+                        {/* Timeline Line - Gray background track */}
+                        <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-[2px] bg-zinc-200 dark:bg-zinc-800/40 transform md:-translate-x-1/2" />
+
+                        {/* Timeline Line - Glowing active track expanding on scroll */}
+                        <motion.div 
+                            style={{ scaleY }}
+                            className="absolute left-0 md:left-1/2 top-0 bottom-0 w-[2px] bg-primary shadow-[0_0_10px_#06b6d4] transform md:-translate-x-1/2 origin-top"
+                        />
 
                         <div className="space-y-12">
                             {t.experience.map((exp, index) => (
