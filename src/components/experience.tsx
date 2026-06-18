@@ -11,14 +11,14 @@ export function Experience() {
     return (
         <section id="experience" className="py-24 bg-background">
             <div className="container mx-auto px-4">
-                <div className="max-w-4xl mx-auto">
+                <div className="max-w-6xl mx-auto">
                     <h2 className="text-3xl md:text-4xl font-heading font-bold mb-16 text-center">
                         {t.titles.experience}
                     </h2>
 
                     <div className="relative">
-                        {/* Timeline Line */}
-                        <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-border transform md:-translate-x-1/2" />
+                        {/* Timeline Line - Gradient Fade */}
+                        <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-primary via-primary/30 to-transparent transform md:-translate-x-1/2" />
 
                         <div className="space-y-12">
                             {t.experience.map((exp, index) => (
@@ -30,12 +30,20 @@ export function Experience() {
                                     transition={{ delay: index * 0.1 }}
                                     className={`relative flex flex-col md:flex-row gap-8 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
                                 >
-                                    {/* Timeline Dot */}
-                                    <div className="absolute left-0 md:left-1/2 top-0 w-4 h-4 rounded-full bg-primary border-4 border-background transform -translate-x-1/2 z-10 hidden md:block" />
+                                    {/* Timeline Dot - Cyber Ring with Pulse */}
+                                    <div className="absolute left-0 md:left-1/2 top-1.5 w-5 h-5 rounded-full bg-background border-2 border-primary/50 flex items-center justify-center transform -translate-x-1/2 z-10 hidden md:flex shadow-[0_0_10px_rgba(6,182,212,0.3)]">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                                    </div>
 
                                     {/* Content Card */}
                                     <div className="flex-1 md:w-[45%]">
-                                        <div className="p-6 rounded-2xl border border-border bg-accent/30 hover:border-primary/50 transition-colors">
+                                        <div className="group relative p-6 rounded border border-border bg-background/50 backdrop-blur-sm hover:border-primary/50 hover:bg-muted/10 transition-all duration-300 overflow-hidden hover:shadow-[0_0_30px_-5px_rgba(6,182,212,0.15)]">
+                                            {/* Corner Decorative Tech Accents */}
+                                            <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-primary/40 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                            <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-primary/40 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                            <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-primary/40 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                            <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-primary/40 opacity-0 group-hover:opacity-100 transition-opacity" />
+
                                             <div className="flex items-center gap-2 text-primary font-semibold mb-2">
                                                 <Briefcase size={16} />
                                                 <span>{exp.title}</span>

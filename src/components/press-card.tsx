@@ -31,7 +31,7 @@ export function PressCard({ publication, featured = false }: PressCardProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             whileHover={{ y: -6, transition: { duration: 0.2 } }}
-            className={`group relative rounded-3xl border border-border/40 bg-background/30 backdrop-blur-md overflow-hidden transition-all duration-300 hover:border-primary/60 hover:bg-muted/5 hover:shadow-[0_0_30px_rgba(245,158,11,0.08)] ${
+            className={`group relative rounded border border-border/40 bg-background/30 backdrop-blur-md overflow-hidden transition-all duration-300 hover:border-primary/60 hover:bg-muted/5 hover:shadow-[0_0_30px_rgba(6,182,212,0.1)] ${
                 featured ? 'lg:grid lg:grid-cols-12 lg:gap-8' : ''
             }`}
         >
@@ -101,7 +101,7 @@ export function PressCard({ publication, featured = false }: PressCardProps) {
                         {publication.tags.map((tag) => (
                             <span 
                                 key={tag} 
-                                className="px-2.5 py-0.5 rounded-full border border-border/60 bg-muted/40 text-[10px] font-mono text-muted-foreground tracking-wide"
+                                className="px-2 py-0.5 rounded border border-border/60 bg-muted/40 text-[9px] font-mono text-muted-foreground tracking-wide"
                             >
                                 {tag}
                             </span>

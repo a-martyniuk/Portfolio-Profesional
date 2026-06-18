@@ -17,9 +17,10 @@ interface ProjectCardProps {
     linkType?: 'demo' | 'article';
     github?: string;
     onClick?: () => void;
+    horizontal?: boolean;
 }
 
-export function ProjectCard({ title, description, image, alt, tags, link, linkType = 'demo', github, onClick }: ProjectCardProps) {
+export function ProjectCard({ title, description, image, alt, tags, link, linkType = 'demo', github, onClick, horizontal = false }: ProjectCardProps) {
     const { trackOracleClick, trackGitHubClick } = useAnalytics();
     const { t } = useLanguage();
 
@@ -49,7 +50,7 @@ export function ProjectCard({ title, description, image, alt, tags, link, linkTy
             viewport={{ once: true }}
             whileHover={{ y: -6, transition: { duration: 0.2 } }}
             onClick={onClick}
-            className={`group relative rounded border border-border bg-background/50 backdrop-blur-sm overflow-hidden transition-all duration-300 hover:border-primary/60 hover:bg-muted/10 ${onClick ? 'cursor-pointer' : ''}`}
+            className={`group relative rounded border border-border bg-background/50 backdrop-blur-sm overflow-hidden transition-all duration-300 hover:border-primary/60 hover:bg-muted/10 ${onClick ? 'cursor-pointer' : ''} ${horizontal ? 'flex flex-col md:flex-row' : ''}`}
         >
             {/* Corner Decorative Tech Accents */}
             <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-primary/40 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -58,7 +59,7 @@ export function ProjectCard({ title, description, image, alt, tags, link, linkTy
             <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-primary/40 opacity-0 group-hover:opacity-100 transition-opacity" />
 
             {/* Image section with clean border */}
-            <div className="aspect-video relative overflow-hidden bg-muted border-b border-border">
+            <div className={`relative overflow-hidden bg-muted ${horizontal ? 'w-full md:w-[45%] aspect-video md:aspect-auto border-b md:border-b-0 md:border-r border-border min-h-[240px]' : 'aspect-video border-b border-border'}`}>
                 {image ? (
                     <Image
                         src={image}
@@ -91,7 +92,7 @@ export function ProjectCard({ title, description, image, alt, tags, link, linkTy
                 )}
             </div>
 
-            <div className="p-5">
+            <div className={`p-5 flex-1 flex flex-col justify-between ${horizontal ? 'md:p-6' : ''}`}>
                 <div className="flex justify-between items-start mb-3">
                     <h3 className="text-lg font-heading font-bold text-foreground group-hover:text-primary transition-colors">
                         {title}

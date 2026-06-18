@@ -515,7 +515,13 @@ export default function Home() {
             subtitle={t.titles.contactSubtitle}
             centered
           />
-          <div className="max-w-4xl mx-auto rounded-3xl border border-border/50 bg-accent/20 backdrop-blur-md p-8 md:p-12 relative overflow-hidden transition-all duration-300 hover:border-primary/30 hover:shadow-[0_0_50px_-15px_rgba(6,182,212,0.25)]">
+          <div className="max-w-4xl mx-auto rounded border border-border/50 bg-accent/20 backdrop-blur-md p-8 md:p-12 relative overflow-hidden transition-all duration-300 hover:border-primary/30 hover:shadow-[0_0_50px_-15px_rgba(6,182,212,0.25)] group">
+            {/* Corner Decorative Tech Accents */}
+            <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-primary/40 opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="absolute top-0 right-0 w-3 h-3 border-t border-r border-primary/40 opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="absolute bottom-0 left-0 w-3 h-3 border-b border-l border-primary/40 opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-primary/40 opacity-0 group-hover:opacity-100 transition-opacity" />
+
             {/* Decorative blob */}
             <div className="absolute top-[-50%] left-[-20%] h-full w-full bg-primary/10 blur-[80px] -z-10" />
 
@@ -525,13 +531,13 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center items-center">
               <a
                 href="mailto:alexis.martyniuk@gmail.com"
-                className="flex items-center justify-center gap-3 bg-primary px-6 h-16 rounded-2xl font-bold text-primary-foreground hover:bg-primary/90 transition-all shadow-xl shadow-primary/20 w-full sm:w-auto whitespace-nowrap cursor-pointer"
+                className="flex items-center justify-center gap-3 bg-primary px-6 h-16 rounded font-bold text-primary-foreground hover:bg-primary/90 transition-all shadow-xl shadow-primary/20 w-full sm:w-auto whitespace-nowrap cursor-pointer"
               >
                 <Mail size={18} /> {t.titles.contactCTA}
               </a>
               <button
                 onClick={copyEmail}
-                className="flex items-center justify-center gap-3 px-6 h-16 rounded-2xl border border-border bg-background hover:bg-muted transition-all font-bold w-full sm:w-auto min-w-[180px] whitespace-nowrap cursor-pointer"
+                className="flex items-center justify-center gap-3 px-6 h-16 rounded border border-border bg-background hover:bg-muted transition-all font-bold w-full sm:w-auto min-w-[180px] whitespace-nowrap cursor-pointer"
               >
                 {copied ? (
                   <span className="text-emerald-500 flex items-center gap-2 italic">
@@ -544,8 +550,8 @@ export default function Home() {
                 )}
               </button>
               <div className="flex items-center gap-3 h-16">
-                <a href="https://linkedin.com/in/alexismartyniuk/" target="_blank" className="flex items-center justify-center w-16 h-16 rounded-2xl border border-border bg-background hover:bg-muted transition-colors text-muted-foreground hover:text-primary"><Linkedin size={20} /></a>
-                <a href="https://github.com/a-martyniuk" target="_blank" className="flex items-center justify-center w-16 h-16 rounded-2xl border border-border bg-background hover:bg-muted transition-colors text-muted-foreground hover:text-foreground"><Github size={20} /></a>
+                <a href="https://linkedin.com/in/alexismartyniuk/" target="_blank" className="flex items-center justify-center w-16 h-16 rounded border border-border bg-background hover:bg-muted transition-colors text-muted-foreground hover:text-primary"><Linkedin size={20} /></a>
+                <a href="https://github.com/a-martyniuk" target="_blank" className="flex items-center justify-center w-16 h-16 rounded border border-border bg-background hover:bg-muted transition-colors text-muted-foreground hover:text-foreground"><Github size={20} /></a>
               </div>
             </div>
           </div>
@@ -613,9 +619,9 @@ export default function Home() {
               )}
             </div>
 
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-1.5">
               {selectedProject?.tags.map((tag: string) => (
-                <span key={tag} className="px-3 py-1 rounded-full bg-accent text-[10px] font-bold uppercase tracking-wider">
+                <span key={tag} className="px-2 py-0.5 rounded border border-border/80 bg-muted/30 text-[9px] font-mono text-muted-foreground uppercase tracking-wider">
                   {tag}
                 </span>
               ))}

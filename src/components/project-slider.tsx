@@ -40,10 +40,11 @@ export function ProjectSlider({ projects, onProjectClick }: ProjectSliderProps) 
                         }}
                         className="absolute w-full"
                     >
-                        <div className="max-w-2xl mx-auto px-4">
+                        <div className="max-w-5xl mx-auto px-4">
                             <ProjectCard
                                 {...projects[projectIndex]}
                                 onClick={() => onProjectClick?.(projects[projectIndex])}
+                                horizontal={true}
                             />
                         </div>
                     </motion.div>

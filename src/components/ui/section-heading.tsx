@@ -19,7 +19,7 @@ export function SectionHeading({ title, subtitle, centered = false, className }:
                     {subtitle}
                 </p>
             )}
-            <div className={cn('h-1.5 w-12 bg-primary mt-6 rounded-full shadow-[0_0_10px_rgba(99,102,241,0.5)]', centered ? 'mx-auto' : 'mr-auto')} />
+            <div className={cn('h-1 w-12 bg-primary mt-6 rounded-full shadow-[0_0_10px_rgba(6,182,212,0.5)]', centered ? 'mx-auto' : 'mr-auto')} />
         </div>
     );
 }
