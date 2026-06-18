@@ -31,15 +31,15 @@ export function PressCard({ publication, featured = false }: PressCardProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             whileHover={{ y: -6, transition: { duration: 0.2 } }}
-            className={`group relative rounded border border-border/40 bg-background/30 backdrop-blur-md overflow-hidden transition-all duration-300 hover:border-primary/60 hover:bg-muted/5 hover:shadow-[0_0_30px_rgba(6,182,212,0.1)] ${
+            className={`group relative rounded overflow-hidden neon-card ${
                 featured ? 'lg:grid lg:grid-cols-12 lg:gap-8' : ''
             }`}
         >
             {/* Tech Corner Accents */}
-            <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-primary/40 opacity-0 group-hover:opacity-100 transition-opacity" />
-            <div className="absolute top-0 right-0 w-3 h-3 border-t border-r border-primary/40 opacity-0 group-hover:opacity-100 transition-opacity" />
-            <div className="absolute bottom-0 left-0 w-3 h-3 border-b border-l border-primary/40 opacity-0 group-hover:opacity-100 transition-opacity" />
-            <div className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-primary/40 opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-primary/60 opacity-0 group-hover:opacity-100 group-hover:shadow-[0_0_8px_#06b6d4] transition-all" />
+            <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-primary/60 opacity-0 group-hover:opacity-100 group-hover:shadow-[0_0_8px_#06b6d4] transition-all" />
+            <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-primary/60 opacity-0 group-hover:opacity-100 group-hover:shadow-[0_0_8px_#06b6d4] transition-all" />
+            <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-primary/60 opacity-0 group-hover:opacity-100 group-hover:shadow-[0_0_8px_#06b6d4] transition-all" />
 
             {/* Image Section */}
             <div className={`relative aspect-video overflow-hidden bg-muted border-b border-border/40 ${

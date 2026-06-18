@@ -21,11 +21,11 @@ export function CriticalDashboard() {
     return (
         <div className="container mx-auto px-4 py-8 font-sans">
             {/* Header del Visualizador */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border border-border bg-muted/40 p-4 rounded-t-xl border-b-0">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border border-primary/30 bg-muted/40 p-4 rounded-t border-b-0 shadow-[0_0_20px_rgba(6,182,212,0.15)]">
                 <div className="flex items-center gap-3">
                     <span className="relative flex h-2 w-2">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)]"></span>
                     </span>
                     <h3 className="text-xs md:text-sm font-mono font-bold tracking-widest text-muted-foreground uppercase flex items-center gap-2">
                         <Activity className="w-4 h-4" /> {t.pipeline.title}
@@ -37,7 +37,7 @@ export function CriticalDashboard() {
             </div>
 
             {/* Layout del Diagrama */}
-            <div className="grid grid-cols-1 md:grid-cols-4 border border-border bg-background divide-y md:divide-y-0 md:divide-x divide-border">
+            <div className="grid grid-cols-1 md:grid-cols-4 border border-primary/30 bg-background divide-y md:divide-y-0 md:divide-x divide-primary/30 border-b-0">
                 {t.pipeline.stages.map((stage) => {
                     const isActive = stage.id === activeStageId;
                     const icon = STAGE_ICONS[stage.id] || <Server className="w-5 h-5 text-cyan-400" />;
@@ -47,16 +47,20 @@ export function CriticalDashboard() {
                             onClick={() => setActiveStageId(stage.id)}
                             className={`p-6 text-left transition-all relative overflow-hidden group cursor-pointer ${
                                 isActive 
-                                ? 'bg-cyan-400/5 dark:bg-cyan-400/[0.03] border-l-2 md:border-l-0 md:border-t-2 border-primary' 
+                                ? 'bg-cyan-400/[0.06] dark:bg-cyan-400/[0.03] border-l-2 md:border-l-0 md:border-t-2 border-primary shadow-[inset_0_0_20px_rgba(6,182,212,0.15),0_0_15px_rgba(6,182,212,0.2)]' 
                                 : 'hover:bg-muted/30'
                             }`}
                         >
                             <div className="flex items-center justify-between mb-3">
-                                <div className="p-2 rounded border border-border/80 bg-muted/50 group-hover:border-primary/50 transition-colors">
+                                <div className={`p-2 rounded border transition-colors ${
+                                    isActive 
+                                    ? 'border-primary bg-primary/10 shadow-[0_0_10px_rgba(6,182,212,0.4)]' 
+                                    : 'border-border bg-muted/50 group-hover:border-primary/50'
+                                }`}>
                                     {icon}
                                 </div>
                                 {isActive && (
-                                    <span className="text-xs font-mono text-primary font-bold uppercase tracking-widest">
+                                    <span className="text-xs font-mono text-primary font-bold uppercase tracking-widest drop-shadow-[0_0_4px_rgba(6,182,212,0.4)]">
                                         {t.pipeline.active}
                                     </span>
                                 )}
@@ -73,7 +77,7 @@ export function CriticalDashboard() {
             </div>
 
             {/* Panel de Detalles */}
-            <div className="border border-border border-t-0 bg-muted/10 p-6 sm:p-8 rounded-b-xl relative overflow-hidden">
+            <div className="border border-primary/30 border-t-0 bg-muted/10 p-6 sm:p-8 rounded-b relative overflow-hidden shadow-[0_15px_40px_-10px_rgba(6,182,212,0.35),0_0_25px_rgba(6,182,212,0.15)]">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-400/[0.01] rounded-full blur-3xl pointer-events-none" />
                 
                 <AnimatePresence mode="wait">
@@ -96,8 +100,8 @@ export function CriticalDashboard() {
                                 </p>
                             </div>
 
-                            <div className="pt-4 border-t border-border">
-                                <div className="p-4 rounded border border-cyan-400/20 bg-cyan-400/[0.02] flex items-start gap-3">
+                            <div className="pt-4 border-t border-border/10">
+                                <div className="p-4 rounded border border-primary/30 bg-primary/5 shadow-[0_0_15px_rgba(6,182,212,0.1)] flex items-start gap-3">
                                     <HelpCircle className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                                     <div>
                                         <span className="text-sm font-bold text-foreground block mb-1">

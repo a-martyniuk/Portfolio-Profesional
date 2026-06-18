@@ -63,7 +63,7 @@ export function SkillChart({ skills }: SkillChartProps) {
                                 const filledSegments = Math.round((skill.level / 100) * totalSegments);
 
                                 return (
-                                    <div key={skill.name} className="p-3 rounded border border-border/40 bg-muted/10 hover:border-primary/30 transition-colors">
+                                    <div key={skill.name} className="p-3 rounded border border-border bg-background/50 hover:border-primary/50 hover:shadow-[0_0_12px_rgba(6,182,212,0.15)] transition-all">
                                         <div className="flex items-center justify-between mb-2 font-mono text-[11px]">
                                             <span className="font-sans font-bold text-foreground text-xs">{skill.name}</span>
                                             <span className="text-muted-foreground">
@@ -80,7 +80,7 @@ export function SkillChart({ skills }: SkillChartProps) {
                                                         key={i} 
                                                         className={`h-full flex-1 transition-all duration-500 ${
                                                             isFilled 
-                                                                ? 'bg-primary' 
+                                                                ? 'bg-primary shadow-[0_0_6px_rgba(6,182,212,0.8)]' 
                                                                 : 'bg-muted/80 dark:bg-zinc-800'
                                                         }`}
                                                         style={{

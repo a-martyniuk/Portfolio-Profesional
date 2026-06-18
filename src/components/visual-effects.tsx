@@ -7,7 +7,7 @@ export function VisualEffects() {
         <div className="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
             {/* Primary Ambient Glow — top center */}
             <div
-                className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[900px] h-[600px] rounded-full opacity-[0.08] dark:opacity-[0.18]"
+                className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[900px] h-[600px] rounded-full opacity-[0.08] dark:opacity-[0.24]"
                 style={{
                     background: 'radial-gradient(circle, var(--primary) 0%, transparent 65%)',
                     filter: 'blur(100px)',
@@ -16,7 +16,7 @@ export function VisualEffects() {
 
             {/* Secondary glow — top right (cyber flare) */}
             <div
-                className="absolute top-[-5%] right-[-10%] w-[600px] h-[600px] rounded-full opacity-0 dark:opacity-[0.10]"
+                className="absolute top-[-5%] right-[-10%] w-[600px] h-[600px] rounded-full opacity-0 dark:opacity-[0.18]"
                 style={{
                     background: 'radial-gradient(circle, #06b6d4 0%, transparent 65%)',
                     filter: 'blur(120px)',
@@ -25,7 +25,7 @@ export function VisualEffects() {
 
             {/* Tertiary glow — bottom left */}
             <div
-                className="absolute bottom-[-15%] left-[-10%] w-[500px] h-[500px] rounded-full opacity-0 dark:opacity-[0.07]"
+                className="absolute bottom-[-15%] left-[-10%] w-[500px] h-[500px] rounded-full opacity-0 dark:opacity-[0.14]"
                 style={{
                     background: 'radial-gradient(circle, #0e7490 0%, transparent 65%)',
                     filter: 'blur(130px)',

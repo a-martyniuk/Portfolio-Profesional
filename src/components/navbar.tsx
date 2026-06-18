@@ -24,7 +24,7 @@ export function Navbar() {
     ];
 
     return (
-        <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
+        <nav className="fixed top-0 left-0 right-0 z-50 border-b border-primary/20 shadow-[0_1px_15px_rgba(6,182,212,0.15)] bg-background/80 backdrop-blur-md">
             <div className="container mx-auto h-16 flex items-center justify-between">
                 <Link href="/" className="font-heading text-xl font-bold tracking-tighter">
                     Alexis<span className="text-primary">.</span>

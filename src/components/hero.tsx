@@ -47,12 +47,12 @@ export function Hero() {
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
-                    className="mb-10 p-3 rounded border border-border bg-muted/30 backdrop-blur-sm flex flex-wrap items-center justify-between gap-4 font-mono text-xs md:text-sm text-muted-foreground"
+                    className="mb-10 p-3 neon-card flex flex-wrap items-center justify-between gap-4 font-mono text-xs md:text-sm text-muted-foreground"
                 >
                     <div className="flex items-center gap-2">
                         <span className="relative flex h-2 w-2">
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-primary shadow-[0_0_8px_rgba(6,182,212,0.8)] dark:shadow-[0_0_8px_#06b6d4]"></span>
                         </span>
                         <span className="font-bold text-foreground">{t.hero.status}</span>
                     </div>
@@ -143,9 +143,9 @@ export function Hero() {
                             {STAT_ITEMS.map((stat) => (
                                 <div
                                     key={stat.label}
-                                    className="p-5 rounded border border-border bg-muted/20 backdrop-blur-sm hover:border-primary/30 hover:bg-primary/5 transition-all duration-300 group"
+                                    className="neon-card p-5 group"
                                 >
-                                    <div className="text-4xl font-heading font-black text-primary group-hover:scale-105 transition-transform origin-left">
+                                    <div className="text-4xl font-heading font-black text-primary group-hover:scale-105 transition-transform origin-left drop-shadow-[0_0_6px_rgba(6,182,212,0.4)]">
                                         {stat.value}
                                     </div>
                                     <div className="text-xs md:text-sm text-muted-foreground font-mono uppercase tracking-widest mt-1">
@@ -156,7 +156,7 @@ export function Hero() {
                         </div>
 
                         {/* Tech badges */}
-                        <div className="p-5 rounded border border-border bg-muted/20 backdrop-blur-sm">
+                        <div className="neon-card p-5">
                             <p className="text-xs font-mono font-bold uppercase tracking-widest text-muted-foreground mb-3">
                                 {'// Core Stack'}
                             </p>
@@ -164,7 +164,7 @@ export function Hero() {
                                 {TECH_BADGES.map((badge) => (
                                     <span
                                         key={badge.label}
-                                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded border border-border bg-background/60 text-xs md:text-sm font-mono text-muted-foreground hover:border-primary/40 hover:text-primary transition-colors"
+                                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded border border-border bg-background/60 text-xs md:text-sm font-mono text-muted-foreground hover:border-primary/40 hover:text-primary hover:shadow-[0_0_10px_rgba(6,182,212,0.15)] transition-all duration-300"
                                     >
                                         <span className="text-primary">{badge.icon}</span>
                                         {badge.label}
@@ -174,24 +174,24 @@ export function Hero() {
                         </div>
 
                         {/* Pipeline visual indicator */}
-                        <div className="p-5 rounded border border-primary/20 bg-primary/5 backdrop-blur-sm font-mono text-xs md:text-sm">
+                        <div className="neon-card p-5 font-mono text-xs md:text-sm">
                             <div className="flex items-center gap-2 text-primary mb-3">
                                 <Activity size={14} className="animate-pulse" />
-                                <span className="font-bold tracking-wider">PIPELINE STATUS</span>
+                                <span className="font-bold tracking-wider drop-shadow-[0_0_6px_rgba(6,182,212,0.4)]">PIPELINE STATUS</span>
                             </div>
                             <div className="space-y-2.5 text-muted-foreground">
                                 {['INGEST', 'TRANSFORM', 'LOAD', 'VALIDATE'].map((stage, i) => (
                                     <div key={stage} className="flex items-center gap-2">
                                         <span className="w-20 text-right text-xs md:text-sm">{stage}</span>
-                                        <div className="flex-1 h-1.5 rounded-full bg-muted overflow-hidden">
+                                        <div className="flex-1 h-1.5 rounded-full bg-muted dark:bg-zinc-800 overflow-hidden">
                                             <motion.div
-                                                className="h-full bg-primary rounded-full"
+                                                className="h-full bg-primary rounded-full shadow-[0_0_8px_#06b6d4] dark:shadow-[0_0_8px_rgba(6,182,212,0.8)]"
                                                 initial={{ width: 0 }}
                                                 animate={{ width: `${[100, 95, 88, 100][i]}%` }}
                                                 transition={{ duration: 1.2, delay: 0.4 + i * 0.15, ease: 'easeOut' }}
                                             />
                                         </div>
-                                        <span className="text-primary text-xs md:text-sm font-bold">{['100%', '95%', '88%', '100%'][i]}</span>
+                                        <span className="text-primary text-xs md:text-sm font-bold drop-shadow-[0_0_4px_rgba(6,182,212,0.3)]">{['100%', '95%', '88%', '100%'][i]}</span>
                                     </div>
                                 ))}
                             </div>

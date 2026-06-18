@@ -160,6 +160,41 @@
   border: 1px solid rgba(6, 182, 212, 0.12);
 }
 
+/* Cyber Neon Card & Effects */
+.neon-card {
+  background: rgba(240, 250, 251, 0.85);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(8, 145, 178, 0.3);
+  box-shadow: 0 0 20px -5px rgba(8, 145, 178, 0.2), inset 0 0 8px rgba(8, 145, 178, 0.03);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.neon-card:hover {
+  border-color: rgba(8, 145, 178, 0.6);
+  box-shadow: 0 0 28px -3px rgba(8, 145, 178, 0.35), inset 0 0 12px rgba(8, 145, 178, 0.08);
+}
+
+.dark .neon-card {
+  background: rgba(13, 13, 13, 0.85);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  box-shadow: 0 0 25px -5px rgba(6, 182, 212, 0.35), inset 0 0 10px rgba(6, 182, 212, 0.05);
+}
+
+.dark .neon-card:hover {
+  border-color: rgba(6, 182, 212, 0.75);
+  box-shadow: 0 0 35px -2px rgba(6, 182, 212, 0.6), inset 0 0 15px rgba(6, 182, 212, 0.1);
+}
+
+.neon-text-cyan {
+  text-shadow: 0 0 5px rgba(6, 182, 212, 0.6), 0 0 12px rgba(6, 182, 212, 0.3);
+}
+
+.neon-border-cyan {
+  border: 1px solid rgba(6, 182, 212, 0.35);
+  box-shadow: 0 0 15px -3px rgba(6, 182, 212, 0.25);
+}
+
 /* Estilos para el renderizador de Markdown */
 .prose-markdown h1 {
   @apply text-3xl md:text-4xl font-bold font-heading text-foreground mt-8 mb-4 border-b border-border pb-3;

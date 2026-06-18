@@ -67,9 +67,9 @@ export function AnimatedMetric({
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="text-center p-6 rounded-2xl border border-border bg-accent/20 backdrop-blur-sm hover:border-primary/30 transition-all"
+            className="text-center p-6 rounded neon-card group cursor-default"
         >
-            <div className="text-4xl md:text-5xl font-heading font-extrabold bg-gradient-to-br from-primary to-primary/60 bg-clip-text text-transparent mb-2">
+            <div className="text-4xl md:text-5xl font-heading font-black text-primary mb-2 drop-shadow-[0_0_8px_rgba(6,182,212,0.45)] group-hover:scale-105 transition-transform duration-300">
                 {prefix}{count.toFixed(decimals)}{suffix}
             </div>
             <div className="text-sm text-muted-foreground uppercase tracking-wider font-medium">

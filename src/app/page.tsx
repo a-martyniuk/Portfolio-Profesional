@@ -186,7 +186,7 @@ function DataFlowDiagram({ language }: { language: 'es' | 'en' }) {
                 onClick={() => setActiveStep(index)}
                 className={`flex-1 w-full lg:w-auto p-4 rounded-xl border text-left transition-all relative ${
                   isActive
-                    ? 'bg-primary/10 border-primary text-primary shadow-[0_0_15px_rgba(245,158,11,0.15)]'
+                    ? 'bg-primary/10 border-primary text-primary shadow-[0_0_15px_rgba(6,182,212,0.4)]'
                     : 'bg-background border-border hover:border-primary/40 text-foreground hover:bg-muted/10'
                 }`}
               >

@@ -50,13 +50,13 @@ export function ProjectCard({ title, description, image, alt, tags, link, linkTy
             viewport={{ once: true }}
             whileHover={{ y: -6, transition: { duration: 0.2 } }}
             onClick={onClick}
-            className={`group relative rounded border border-border bg-background/50 backdrop-blur-sm overflow-hidden transition-all duration-300 hover:border-primary/60 hover:bg-muted/10 ${onClick ? 'cursor-pointer' : ''} ${horizontal ? 'flex flex-col md:flex-row' : ''}`}
+            className={`group relative rounded overflow-hidden neon-card ${onClick ? 'cursor-pointer' : ''} ${horizontal ? 'flex flex-col md:flex-row' : ''}`}
         >
             {/* Corner Decorative Tech Accents */}
-            <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-primary/40 opacity-0 group-hover:opacity-100 transition-opacity" />
-            <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-primary/40 opacity-0 group-hover:opacity-100 transition-opacity" />
-            <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-primary/40 opacity-0 group-hover:opacity-100 transition-opacity" />
-            <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-primary/40 opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="absolute top-0 left-0 w-2.5 h-2.5 border-t-2 border-l-2 border-primary/60 opacity-0 group-hover:opacity-100 group-hover:shadow-[0_0_8px_#06b6d4] transition-all" />
+            <div className="absolute top-0 right-0 w-2.5 h-2.5 border-t-2 border-r-2 border-primary/60 opacity-0 group-hover:opacity-100 group-hover:shadow-[0_0_8px_#06b6d4] transition-all" />
+            <div className="absolute bottom-0 left-0 w-2.5 h-2.5 border-b-2 border-l-2 border-primary/60 opacity-0 group-hover:opacity-100 group-hover:shadow-[0_0_8px_#06b6d4] transition-all" />
+            <div className="absolute bottom-0 right-0 w-2.5 h-2.5 border-b-2 border-r-2 border-primary/60 opacity-0 group-hover:opacity-100 group-hover:shadow-[0_0_8px_#06b6d4] transition-all" />
 
             {/* Image section with clean border */}
             <div className={`relative overflow-hidden bg-muted ${horizontal ? 'w-full md:w-[45%] aspect-video md:aspect-auto border-b md:border-b-0 md:border-r border-border min-h-[240px]' : 'aspect-video border-b border-border'}`}>

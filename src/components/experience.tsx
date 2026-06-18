@@ -31,18 +31,18 @@ export function Experience() {
                                     className={`relative flex flex-col md:flex-row gap-8 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
                                 >
                                     {/* Timeline Dot - Cyber Ring with Pulse */}
-                                    <div className="absolute left-0 md:left-1/2 top-1.5 w-5 h-5 rounded-full bg-background border-2 border-primary/50 flex items-center justify-center transform -translate-x-1/2 z-10 hidden md:flex shadow-[0_0_10px_rgba(6,182,212,0.3)]">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                                    <div className="absolute left-0 md:left-1/2 top-1.5 w-5 h-5 rounded-full bg-background border-2 border-primary flex items-center justify-center transform -translate-x-1/2 z-10 hidden md:flex shadow-[0_0_12px_rgba(6,182,212,0.6)]">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse shadow-[0_0_8px_rgba(6,182,212,0.8)]" />
                                     </div>
 
                                     {/* Content Card */}
                                     <div className="flex-1 md:w-[45%]">
-                                        <div className="group relative p-6 rounded border border-border bg-background/50 backdrop-blur-sm hover:border-primary/50 hover:bg-muted/10 transition-all duration-300 overflow-hidden hover:shadow-[0_0_30px_-5px_rgba(6,182,212,0.15)]">
+                                        <div className="group relative p-6 rounded neon-card overflow-hidden">
                                             {/* Corner Decorative Tech Accents */}
-                                            <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-primary/40 opacity-0 group-hover:opacity-100 transition-opacity" />
-                                            <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-primary/40 opacity-0 group-hover:opacity-100 transition-opacity" />
-                                            <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-primary/40 opacity-0 group-hover:opacity-100 transition-opacity" />
-                                            <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-primary/40 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                            <div className="absolute top-0 left-0 w-2.5 h-2.5 border-t-2 border-l-2 border-primary/60 opacity-0 group-hover:opacity-100 group-hover:shadow-[0_0_8px_#06b6d4] transition-all" />
+                                            <div className="absolute top-0 right-0 w-2.5 h-2.5 border-t-2 border-r-2 border-primary/60 opacity-0 group-hover:opacity-100 group-hover:shadow-[0_0_8px_#06b6d4] transition-all" />
+                                            <div className="absolute bottom-0 left-0 w-2.5 h-2.5 border-b-2 border-l-2 border-primary/60 opacity-0 group-hover:opacity-100 group-hover:shadow-[0_0_8px_#06b6d4] transition-all" />
+                                            <div className="absolute bottom-0 right-0 w-2.5 h-2.5 border-b-2 border-r-2 border-primary/60 opacity-0 group-hover:opacity-100 group-hover:shadow-[0_0_8px_#06b6d4] transition-all" />
 
                                             <div className="flex items-center gap-2 text-primary font-bold text-lg mb-2 font-heading">
                                                 <Briefcase size={18} className="shrink-0" />

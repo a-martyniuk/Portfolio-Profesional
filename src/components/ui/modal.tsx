@@ -41,9 +41,15 @@ export function Modal({ isOpen, onClose, children, title }: ModalProps) {
                         initial={{ opacity: 0, scale: 0.95, y: 20 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                        className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl border border-border bg-accent/30 shadow-2xl backdrop-blur-xl"
+                        className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded border border-primary/40 bg-background/95 shadow-[0_0_50px_-10px_rgba(6,182,212,0.4)] backdrop-blur-xl"
                     >
-                        <div className="sticky top-0 z-10 flex items-center justify-between p-6 bg-accent/10 backdrop-blur-md border-b border-border/10">
+                        {/* Corner Decorative Tech Accents */}
+                        <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-primary/60 z-20 pointer-events-none" />
+                        <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-primary/60 z-20 pointer-events-none" />
+                        <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-primary/60 z-20 pointer-events-none" />
+                        <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-primary/60 z-20 pointer-events-none" />
+
+                        <div className="sticky top-0 z-10 flex items-center justify-between p-6 bg-background/90 backdrop-blur-md border-b border-border/10">
                             <h3 className="text-xl font-heading font-extrabold tracking-tight">{title}</h3>
                             <button
                                 onClick={onClose}

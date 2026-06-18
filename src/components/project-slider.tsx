@@ -54,14 +54,14 @@ export function ProjectSlider({ projects, onProjectClick }: ProjectSliderProps) 
             {/* Navigation Arrows */}
             <button
                 onClick={() => paginate(-1)}
-                className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 p-3 md:p-3 min-w-[48px] min-h-[48px] rounded-full bg-background/90 backdrop-blur-md border border-border hover:bg-muted transition-colors z-10 group flex items-center justify-center shadow-lg"
+                className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 p-3 min-w-[48px] min-h-[48px] rounded bg-background/90 backdrop-blur-md border border-border hover:border-primary hover:shadow-[0_0_15px_rgba(6,182,212,0.4)] transition-all z-10 group flex items-center justify-center"
                 aria-label="Previous project"
             >
                 <ChevronLeft className="text-muted-foreground group-hover:text-foreground transition-colors" size={24} />
             </button>
             <button
                 onClick={() => paginate(1)}
-                className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 p-3 md:p-3 min-w-[48px] min-h-[48px] rounded-full bg-background/90 backdrop-blur-md border border-border hover:bg-muted transition-colors z-10 group flex items-center justify-center shadow-lg"
+                className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 p-3 min-w-[48px] min-h-[48px] rounded bg-background/90 backdrop-blur-md border border-border hover:border-primary hover:shadow-[0_0_15px_rgba(6,182,212,0.4)] transition-all z-10 group flex items-center justify-center"
                 aria-label="Next project"
             >
                 <ChevronRight className="text-muted-foreground group-hover:text-foreground transition-colors" size={24} />
@@ -73,9 +73,9 @@ export function ProjectSlider({ projects, onProjectClick }: ProjectSliderProps) 
                     <button
                         key={index}
                         onClick={() => setPage([index, index > projectIndex ? 1 : -1])}
-                        className={`h-3 rounded-full transition-all min-w-[12px] ${index === projectIndex
-                                ? 'w-8 bg-primary'
-                                : 'w-3 bg-muted-foreground/30 hover:bg-muted-foreground/50'
+                        className={`h-2 transition-all min-w-[8px] rounded-none ${index === projectIndex
+                                ? 'w-8 bg-primary shadow-[0_0_8px_#06b6d4]'
+                                : 'w-2 bg-muted-foreground/30 hover:bg-muted-foreground/50'
                             }`}
                         aria-label={`Go to project ${index + 1}`}
                         aria-current={index === projectIndex ? 'true' : 'false'}
