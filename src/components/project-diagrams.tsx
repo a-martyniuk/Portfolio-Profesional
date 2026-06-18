@@ -18,7 +18,7 @@ export function ScraperDataFlowDiagram({ language }: { language: 'es' | 'en' }) 
         {
             id: "playwright",
             title: "01. Playwright Scrapers",
-            icon: <Globe className="w-5 h-5 text-slate-400" />,
+            icon: <Globe className="w-5 h-5 text-cyan-400" />,
             summary: "Extracción paralela y paginada en portales inmobiliarios (Cabaprop, Argenprop, Clarín). Control de reintentos y evasión de bloqueos.",
             rules: [
                 "Evasión de Antibot: Navegación en modo headless con emulación de agentes de usuario estándar.",
@@ -30,7 +30,7 @@ export function ScraperDataFlowDiagram({ language }: { language: 'es' | 'en' }) 
         {
             id: "supabase",
             title: "02. Sync Supabase",
-            icon: <Database className="w-5 h-5 text-slate-400" />,
+            icon: <Database className="w-5 h-5 text-cyan-400" />,
             summary: "Persistencia de estado en base PostgreSQL. Registro histórico de variación de precios y estados de publicación.",
             rules: [
                 "Control de Estados: Transición automática de propiedades (ACTIVO -> OFFLINE -> RE-PUB) en base al descolgado de anuncios.",
@@ -41,7 +41,7 @@ export function ScraperDataFlowDiagram({ language }: { language: 'es' | 'en' }) 
         {
             id: "analyzer",
             title: "03. Analizador de Mercado",
-            icon: <Cpu className="w-5 h-5 text-slate-400" />,
+            icon: <Cpu className="w-5 h-5 text-cyan-400" />,
             summary: "Algoritmos en Python de detección de oportunidades por dirección y manzana, comparando con la media local.",
             rules: [
                 "Cálculo de Ganga: Evalúa si una propiedad está >15% por debajo del promedio del edificio o del radio de 3 manzanas.",
@@ -52,7 +52,7 @@ export function ScraperDataFlowDiagram({ language }: { language: 'es' | 'en' }) 
         {
             id: "telegram",
             title: "04. Telegram Alerts",
-            icon: <Bot className="w-5 h-5 text-slate-400" />,
+            icon: <Bot className="w-5 h-5 text-cyan-400" />,
             summary: "Notificación proactiva e inmediata de oportunidades y reportes diarios de salud de los portales.",
             rules: [
                 "Alertas en Tiempo Real: Mensajes inmediatos con link directo si se detectan gangas o bajas de precio abruptas.",
@@ -63,7 +63,7 @@ export function ScraperDataFlowDiagram({ language }: { language: 'es' | 'en' }) 
         {
             id: "dashboard",
             title: "05. React Dashboard",
-            icon: <Monitor className="w-5 h-5 text-slate-400" />,
+            icon: <Monitor className="w-5 h-5 text-cyan-400" />,
             summary: "Visualización en mapa interactivo de ofertas, filtros avanzados de búsqueda y gráficos de tendencias históricas.",
             rules: [
                 "Mapa Interactivo: Agrupación geoespacial de ofertas reales basadas en latitud y longitud normalizadas.",
@@ -77,7 +77,7 @@ export function ScraperDataFlowDiagram({ language }: { language: 'es' | 'en' }) 
         {
             id: "playwright",
             title: "01. Playwright Scrapers",
-            icon: <Globe className="w-5 h-5 text-slate-400" />,
+            icon: <Globe className="w-5 h-5 text-cyan-400" />,
             summary: "Parallelized and paginated scraping across portals (Cabaprop, Argenprop, Clarín). Built with retry logic and antibot bypass.",
             rules: [
                 "Antibot Evasion: Headless navigation with randomized user-agents and browser fingerprinting mockups.",
@@ -89,7 +89,7 @@ export function ScraperDataFlowDiagram({ language }: { language: 'es' | 'en' }) 
         {
             id: "supabase",
             title: "02. Supabase Sync",
-            icon: <Database className="w-5 h-5 text-slate-400" />,
+            icon: <Database className="w-5 h-5 text-cyan-400" />,
             summary: "State persistence in PostgreSQL database. Logs price variation history and publication states.",
             rules: [
                 "State Management: Automated transition of listing state (ACTIVO -> OFFLINE -> RE-PUB) based on portal availability.",
@@ -100,7 +100,7 @@ export function ScraperDataFlowDiagram({ language }: { language: 'es' | 'en' }) 
         {
             id: "analyzer",
             title: "03. Market Analyzer",
-            icon: <Cpu className="w-5 h-5 text-slate-400" />,
+            icon: <Cpu className="w-5 h-5 text-cyan-400" />,
             summary: "Python algorithms executing geo-level bargains analysis comparing prices with building and block averages.",
             rules: [
                 "Bargain Detection: Flags properties priced >15% below the average of the same building or 3-block radius.",
@@ -111,7 +111,7 @@ export function ScraperDataFlowDiagram({ language }: { language: 'es' | 'en' }) 
         {
             id: "telegram",
             title: "04. Telegram Alerts",
-            icon: <Bot className="w-5 h-5 text-slate-400" />,
+            icon: <Bot className="w-5 h-5 text-cyan-400" />,
             summary: "Proactive real-time opportunity alerts and daily portal crawler integrity reports.",
             rules: [
                 "Instant Notifications: Telegram direct links for newly discovered deals or sudden price drops.",
@@ -122,7 +122,7 @@ export function ScraperDataFlowDiagram({ language }: { language: 'es' | 'en' }) 
         {
             id: "dashboard",
             title: "05. React Dashboard",
-            icon: <Monitor className="w-5 h-5 text-slate-400" />,
+            icon: <Monitor className="w-5 h-5 text-cyan-400" />,
             summary: "Map-based visualizations, advanced filters, and historical price trend chart overlays.",
             rules: [
                 "Interactive Map: Spatial visualizer plotting coordinates and color-coding bargains.",
@@ -225,7 +225,7 @@ export function MeliAioDataFlowDiagram({ language }: { language: 'es' | 'en' }) 
         {
             id: "fastapi",
             title: "01. FastAPI Async Server",
-            icon: <Server className="w-5 h-5 text-slate-400" />,
+            icon: <Server className="w-5 h-5 text-cyan-400" />,
             summary: "Backend asíncrono en Python estructurado en monorepo. Gestiona conexiones de red concurrentes, endpoints y workers.",
             rules: [
                 "Cómputo Concurrente: Utiliza controladores asíncronos para peticiones de red rápidas sin bloqueo de hilos.",
@@ -236,7 +236,7 @@ export function MeliAioDataFlowDiagram({ language }: { language: 'es' | 'en' }) 
         {
             id: "oauth",
             title: "02. Rotación de Tokens",
-            icon: <Key className="w-5 h-5 text-slate-400" />,
+            icon: <Key className="w-5 h-5 text-cyan-400" />,
             summary: "Integración OAuth 2.0 con Mercado Libre. Proceso automatizado en segundo plano para evitar desautorizaciones.",
             rules: [
                 "Almacenamiento Seguro: Tokens de acceso y refresco cifrados a nivel de celda en PostgreSQL.",
@@ -247,7 +247,7 @@ export function MeliAioDataFlowDiagram({ language }: { language: 'es' | 'en' }) 
         {
             id: "orders",
             title: "03. Polling de Ventas",
-            icon: <RefreshCw className="w-5 h-5 text-slate-400" />,
+            icon: <RefreshCw className="w-5 h-5 text-cyan-400" />,
             summary: "Worker en segundo plano que sondea las APIs oficiales de Mercado Libre para sincronizar nuevas compras.",
             rules: [
                 "Idempotencia de Órdenes: Inserta órdenes de compra verificando contra clave primaria única de Mercado Libre.",
@@ -258,7 +258,7 @@ export function MeliAioDataFlowDiagram({ language }: { language: 'es' | 'en' }) 
         {
             id: "billing",
             title: "04. Automatización de Facturas",
-            icon: <FileText className="w-5 h-5 text-slate-400" />,
+            icon: <FileText className="w-5 h-5 text-cyan-400" />,
             summary: "Generación de comprobantes, descarga y organización jerárquica en la nube de Google Drive.",
             rules: [
                 "Generación Automática: Automatización de comprobantes con datos fiscales extraídos.",
@@ -269,7 +269,7 @@ export function MeliAioDataFlowDiagram({ language }: { language: 'es' | 'en' }) 
         {
             id: "client",
             title: "05. Next.js 15 Client",
-            icon: <Monitor className="w-5 h-5 text-slate-400" />,
+            icon: <Monitor className="w-5 h-5 text-cyan-400" />,
             summary: "Dashboard administrativo premium con estadísticas comerciales, estado de inventario y descargas directas.",
             rules: [
                 "Server Actions: Comunicación segura con el backend FastAPI para procesos interactivos de actualización.",
@@ -283,7 +283,7 @@ export function MeliAioDataFlowDiagram({ language }: { language: 'es' | 'en' }) 
         {
             id: "fastapi",
             title: "01. FastAPI Async Server",
-            icon: <Server className="w-5 h-5 text-slate-400" />,
+            icon: <Server className="w-5 h-5 text-cyan-400" />,
             summary: "Asynchronous Python backend organized in monorepo, processing concurrent network requests and worker queues.",
             rules: [
                 "Concurrent Computation: Harnesses async/await syntax to handle concurrent API endpoints without blocking worker threads.",
@@ -294,7 +294,7 @@ export function MeliAioDataFlowDiagram({ language }: { language: 'es' | 'en' }) 
         {
             id: "oauth",
             title: "02. Token Rotation Flow",
-            icon: <Key className="w-5 h-5 text-slate-400" />,
+            icon: <Key className="w-5 h-5 text-cyan-400" />,
             summary: "Secure Mercado Libre OAuth 2.0 integration. Automated background flow to guarantee session longevity.",
             rules: [
                 "Encrypted Storage: Access and refresh tokens encrypted before database write operations.",
@@ -305,7 +305,7 @@ export function MeliAioDataFlowDiagram({ language }: { language: 'es' | 'en' }) 
         {
             id: "orders",
             title: "03. Sales Order Polling",
-            icon: <RefreshCw className="w-5 h-5 text-slate-400" />,
+            icon: <RefreshCw className="w-5 h-5 text-cyan-400" />,
             summary: "Background polling worker fetching new marketplace sales orders at scheduled intervals.",
             rules: [
                 "Order Idempotency: Validates uniqueness against the Mercado Libre global Order ID key before persistence.",
@@ -316,7 +316,7 @@ export function MeliAioDataFlowDiagram({ language }: { language: 'es' | 'en' }) 
         {
             id: "billing",
             title: "04. Billing Automation",
-            icon: <FileText className="w-5 h-5 text-slate-400" />,
+            icon: <FileText className="w-5 h-5 text-cyan-400" />,
             summary: "Document generation and backup to hierarchically mapped Google Drive folders.",
             rules: [
                 "Automated Invoicing: Generates PDFs based on fetched tax data from transactions.",
@@ -327,7 +327,7 @@ export function MeliAioDataFlowDiagram({ language }: { language: 'es' | 'en' }) 
         {
             id: "client",
             title: "05. Next.js 15 Client",
-            icon: <Monitor className="w-5 h-5 text-slate-400" />,
+            icon: <Monitor className="w-5 h-5 text-cyan-400" />,
             summary: "Premium admin dashboard overlay with business metrics, inventory charts, and direct download links.",
             rules: [
                 "Next.js Server Actions: Safe, server-side data fetching communicating with the FastAPI background server.",
@@ -444,3 +444,4 @@ function Globe(props: React.SVGProps<SVGSVGElement>) {
         </svg>
     );
 }
+

@@ -5,21 +5,39 @@ import React from 'react';
 export function VisualEffects() {
     return (
         <div className="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
-            {/* Static Ambient Glow */}
+            {/* Primary Ambient Glow — top center */}
             <div
-                className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] rounded-full opacity-[0.15] dark:opacity-[0.2]"
+                className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[900px] h-[600px] rounded-full opacity-[0.08] dark:opacity-[0.18]"
                 style={{
-                    background: 'radial-gradient(circle, var(--primary) 0%, transparent 70%)',
+                    background: 'radial-gradient(circle, var(--primary) 0%, transparent 65%)',
+                    filter: 'blur(100px)',
+                }}
+            />
+
+            {/* Secondary glow — top right (cyber flare) */}
+            <div
+                className="absolute top-[-5%] right-[-10%] w-[600px] h-[600px] rounded-full opacity-0 dark:opacity-[0.10]"
+                style={{
+                    background: 'radial-gradient(circle, #06b6d4 0%, transparent 65%)',
                     filter: 'blur(120px)',
                 }}
             />
 
-            {/* Grid Pattern */}
+            {/* Tertiary glow — bottom left */}
             <div
-                className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]"
+                className="absolute bottom-[-15%] left-[-10%] w-[500px] h-[500px] rounded-full opacity-0 dark:opacity-[0.07]"
                 style={{
-                    backgroundImage: `linear-gradient(to right, var(--border) 1px, transparent 1px), linear-gradient(to bottom, var(--border) 1px, transparent 1px)`,
-                    backgroundSize: '48px 48px',
+                    background: 'radial-gradient(circle, #0e7490 0%, transparent 65%)',
+                    filter: 'blur(130px)',
+                }}
+            />
+
+            {/* Grid Pattern — more visible in dark mode for cyber look */}
+            <div
+                className="absolute inset-0 opacity-[0.025] dark:opacity-[0.07]"
+                style={{
+                    backgroundImage: `linear-gradient(to right, var(--primary) 1px, transparent 1px), linear-gradient(to bottom, var(--primary) 1px, transparent 1px)`,
+                    backgroundSize: '60px 60px',
                 }}
             />
 
