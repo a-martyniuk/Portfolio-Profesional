@@ -19,7 +19,7 @@ export function CriticalDashboard() {
     const activeStage = t.pipeline.stages.find(stage => stage.id === activeStageId) || t.pipeline.stages[0];
 
     return (
-        <div className="w-full max-w-5xl mx-auto px-4 py-8 font-sans">
+        <div className="container mx-auto px-4 py-8 font-sans">
             {/* Header del Visualizador */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border border-border bg-muted/40 p-4 rounded-t-xl border-b-0">
                 <div className="flex items-center gap-3">
@@ -85,8 +85,8 @@ export function CriticalDashboard() {
                         transition={{ duration: 0.2 }}
                         className="grid grid-cols-1 lg:grid-cols-3 gap-8"
                     >
-                        {/* Columna Principal - Descripción */}
-                        <div className="lg:col-span-2 space-y-6">
+                        {/* Columna 1: Descripción y Concepto */}
+                        <div className="space-y-6">
                             <div>
                                 <h3 className="text-xl font-heading font-bold text-foreground mb-2">
                                     {activeStage.subtitle}
@@ -96,6 +96,26 @@ export function CriticalDashboard() {
                                 </p>
                             </div>
 
+                            <div className="pt-4 border-t border-border">
+                                <div className="p-4 rounded border border-cyan-400/20 bg-cyan-400/[0.02] flex items-start gap-3">
+                                    <HelpCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                                    <div>
+                                        <span className="text-xs font-bold text-foreground block mb-1">
+                                            {language === 'es' ? "Diseño Decisivo" : "Decisive Design"}
+                                        </span>
+                                        <span className="text-[11px] text-muted-foreground leading-relaxed block">
+                                            {language === 'es' 
+                                                ? "Cada componente se selecciona para garantizar la idempotencia, evitar gaps en cargas de datos transaccionales e implementar alertas tempranas proactivas ante caídas de servicio."
+                                                : "Each component is selected to guarantee idempotency, prevent gaps in transactional data loads, and implement proactive early alerts for service interruptions."
+                                            }
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Columna 2: Stack Tecnológico e Integraciones */}
+                        <div className="space-y-6 lg:border-l lg:border-border lg:pl-8">
                             {/* Stack Tecnológico */}
                             <div>
                                 <h4 className="text-xs font-mono font-bold tracking-widest text-muted-foreground uppercase mb-3">
@@ -133,7 +153,7 @@ export function CriticalDashboard() {
                             </div>
                         </div>
 
-                        {/* Columna Derecha - Métricas e Indicadores de Rendimiento */}
+                        {/* Columna 3: Criterios de Ingeniería y Métricas */}
                         <div className="space-y-6 lg:border-l lg:border-border lg:pl-8">
                             <div>
                                 <h4 className="text-xs font-mono font-bold tracking-widest text-muted-foreground uppercase mb-4">
@@ -150,23 +170,6 @@ export function CriticalDashboard() {
                                             </span>
                                         </div>
                                     ))}
-                                </div>
-                            </div>
-
-                            <div className="pt-4 border-t border-border">
-                                <div className="p-4 rounded border border-cyan-400/20 bg-cyan-400/[0.02] flex items-start gap-3">
-                                    <HelpCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-                                    <div>
-                                        <span className="text-xs font-bold text-foreground block mb-1">
-                                            {language === 'es' ? "Diseño Decisivo" : "Decisive Design"}
-                                        </span>
-                                        <span className="text-[11px] text-muted-foreground leading-relaxed block">
-                                            {language === 'es' 
-                                                ? "Cada componente se selecciona para garantizar la idempotencia, evitar gaps en cargas de datos transaccionales e implementar alertas tempranas proactivas ante caídas de servicio."
-                                                : "Each component is selected to guarantee idempotency, prevent gaps in transactional data loads, and implement proactive early alerts for service interruptions."
-                                            }
-                                        </span>
-                                    </div>
                                 </div>
                             </div>
                         </div>
