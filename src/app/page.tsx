@@ -609,15 +609,26 @@ export default function Home() {
 
           <div className="space-y-6">
             <div className="relative aspect-video rounded-2xl overflow-hidden border border-border shadow-2xl">
-              {selectedProject?.image && (
+              {selectedProject?.video ? (
+                <video
+                  src={selectedProject.video}
+                  className="w-full h-full object-cover"
+                  controls
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                />
+              ) : selectedProject?.image ? (
                 <Image
                   src={selectedProject.image}
                   alt={selectedProject.title}
                   fill
                   className="object-cover"
                 />
-              )}
+              ) : null}
             </div>
+
 
             <div className="flex flex-wrap gap-1.5">
               {selectedProject?.tags.map((tag: string) => (

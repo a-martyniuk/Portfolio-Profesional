@@ -10,7 +10,9 @@ export interface Project {
     linkType?: 'article' | 'demo';
     github?: string;
     metric?: string;
+    video?: string;
 }
+
 
 export interface ExperienceItem {
     title: string;
@@ -256,7 +258,8 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 alt: "Pipelines de Sell-Out y Digital Shelf en Microsoft Fabric con PySpark y APIs de e-commerce",
                 details: "Desarrollo de un pipeline de datos diario incremental (09:00 AM ART) en Microsoft Fabric que extrae datos de ventas y productos de Beiersdorf desde Google Drive y FTPs. El flujo implementa validaciones estrictas de esquema (11 columnas), estandarización de nulos y un complejo procesamiento de apertura de combos comerciales en N filas para retailers autorizados (Farmacity, Leloir, Selma, Simplex, Farmaonline), distribuyendo EANs individuales y garantizando que el Monto original se preserve únicamente en la primera fila para evitar duplicaciones financieras.",
                 architecture: ["Google Drive API (Landing Ingest)", "Silver Layer Delta (dbo.sl_bdf_sellouts)", "Join Dimensional & Fallback Match (EAN/Cliente)", "Apertura de Combos (Desglose en N-filas)", "Auditoría de Huérfanos (dbo.audit_bdf_comboshuerfanos)"],
-                metric: "SLA Ingesta: 09:00 AM"
+                metric: "SLA Ingesta: 09:00 AM",
+                video: "/videos/pipeline-medallion.mp4"
             },
             {
                 title: "PepsiCo: Ingestor Multimarketplace",
@@ -594,7 +597,8 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 alt: "Sell-Out and Digital Shelf pipelines in Microsoft Fabric with PySpark and e-commerce APIs",
                 details: "Development of an incremental daily data pipeline (09:00 AM ART) in Microsoft Fabric processing Beiersdorf sell-out sales and master catalogs from Google Drive and FTPs. The pipeline implements strict schema verification (11 mandatory columns), null normalization, and an advanced combo exploding algorithm that splits bundled transactions into individual product EANs for authorized retailers (Farmacity, Leloir, Selma, Simplex, Farmaonline), preserving the original sales amount only on the first row to prevent duplicate revenue reporting.",
                 architecture: ["Google Drive API (Landing Ingest)", "Silver Layer Delta (dbo.sl_bdf_sellouts)", "Join Dimensional & Fallback Match (EAN/Client)", "Combo Exploding (N-Row Breakdown & Split)", "Orphans Audit Tables (dbo.audit_bdf_comboshuerfanos)"],
-                metric: "Ingestion SLA: 09:00 AM"
+                metric: "Ingestion SLA: 09:00 AM",
+                video: "/videos/pipeline-medallion.mp4"
             },
             {
                 title: "PepsiCo: Multi-Marketplace Ingestor",

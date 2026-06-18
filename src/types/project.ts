@@ -10,5 +10,7 @@ export interface Project {
     linkType?: 'demo' | 'article';
     github?: string;
     metric?: string;
+    video?: string;
+
 }
 
