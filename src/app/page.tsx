@@ -468,9 +468,11 @@ export default function Home() {
                 link={proj.link}
                 linkType={proj.linkType}
                 metric={proj.metric}
+                video={proj.video}
                 onClick={() => setSelectedProject(proj)}
               />
             ))}
+
           </div>
 
         </div>
@@ -642,13 +644,34 @@ export default function Home() {
             </div>
 
             {selectedProject?.link && (
-              <a
-                href={selectedProject.link}
-                target="_blank"
-                className="inline-flex items-center gap-2 text-primary font-bold hover:underline"
-              >
-                {t.pipeline.viewOfficial} <ArrowRight size={16} />
-              </a>
+              selectedProject.linkType === 'demo' ? (
+                <a
+                  href={selectedProject.link}
+                  target="_blank"
+                  className="relative group overflow-hidden w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 hover:text-white hover:border-emerald-500 hover:bg-emerald-500/20 transition-all duration-300 font-mono text-xs uppercase tracking-widest font-bold hover:shadow-[0_0_20px_rgba(16,185,129,0.3)]"
+                >
+                  {/* Shimmer Effect overlay */}
+                  <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-emerald-400/10 to-transparent -translate-x-full group-hover:animate-shimmer pointer-events-none" />
+                  
+                  {/* Blinking Live Indicator */}
+                  <span className="relative flex h-2 w-2 shrink-0">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                  </span>
+                  
+                  <Globe size={14} className="animate-pulse" />
+                  <span>{t.pipeline.viewLiveDemo}</span>
+                  <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                </a>
+              ) : (
+                <a
+                  href={selectedProject.link}
+                  target="_blank"
+                  className="inline-flex items-center gap-2 text-primary font-bold hover:underline"
+                >
+                  {t.pipeline.viewOfficial} <ArrowRight size={16} />
+                </a>
+              )
             )}
           </div>
         </div>

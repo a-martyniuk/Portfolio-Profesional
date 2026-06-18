@@ -101,6 +101,7 @@ export interface TranslationDict {
         studyCase: string;
         techArchitecture: string;
         viewOfficial: string;
+        viewLiveDemo: string;
         stages: Array<{
             id: string;
             title: string;
@@ -182,6 +183,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
             studyCase: "Caso de Estudio",
             techArchitecture: "Arquitectura Técnica",
             viewOfficial: "Ver publicación oficial",
+            viewLiveDemo: "Probar Demo en Vivo",
             stages: [
                 {
                     id: 'ingestion',
@@ -522,6 +524,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
             studyCase: "Study Case",
             techArchitecture: "Technical Architecture",
             viewOfficial: "View official article",
+            viewLiveDemo: "Try Live Demo",
             stages: [
                 {
                     id: 'ingestion',

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, Github, ArrowUpRight } from 'lucide-react';
+import { Github, ArrowUpRight, Globe, BookOpen } from 'lucide-react';
 import Image from 'next/image';
 import { useAnalytics } from '@/lib/analytics';
 import { useLanguage } from '@/components/providers/language-provider';
@@ -19,9 +19,10 @@ interface ProjectCardProps {
     onClick?: () => void;
     horizontal?: boolean;
     metric?: string;
+    video?: string;
 }
 
-export function ProjectCard({ title, description, image, alt, tags, link, linkType = 'demo', github, onClick, horizontal = false, metric }: ProjectCardProps) {
+export function ProjectCard({ title, description, image, alt, tags, link, linkType = 'demo', github, onClick, horizontal = false, metric, video }: ProjectCardProps) {
     const { trackOracleClick, trackGitHubClick } = useAnalytics();
     const { t } = useLanguage();
 
@@ -79,18 +80,30 @@ export function ProjectCard({ title, description, image, alt, tags, link, linkTy
                     {technicalId}
                 </div>
 
-                {/* Live Demo/Article Badge */}
-                {link && (
-                    <div className="absolute top-3 right-3 z-10 font-mono text-xs tracking-wider uppercase">
-                        <span className={`px-2.5 py-1 rounded border font-bold ${
+                {/* Top-Right Badges */}
+                <div className="absolute top-3 right-3 z-10 flex gap-2 font-mono text-xs tracking-wider uppercase">
+                    {video && (
+                        <span className="px-2.5 py-1 rounded border font-bold bg-violet-500/10 text-violet-600 dark:text-violet-400 border-violet-500/20 shadow-[0_0_8px_rgba(139,92,246,0.15)]">
+                            🎥 Video
+                        </span>
+                    )}
+                    {link && (
+                        <span className={`px-2.5 py-1 rounded border font-bold flex items-center gap-1.5 ${
                             linkType === 'demo'
-                            ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20'
+                            ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20 shadow-[0_0_8px_rgba(16,185,129,0.15)]'
                             : 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20'
                         }`}>
-                            {linkType === 'demo' ? '● Live' : '📰 Document'}
+                            {linkType === 'demo' && (
+                                <span className="relative flex h-1.5 w-1.5">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
+                                </span>
+                            )}
+                            {linkType === 'demo' ? 'Live' : '📰 Document'}
                         </span>
-                    </div>
-                )}
+                    )}
+                </div>
+
 
                 {/* Metric Badge */}
                 {metric && (
@@ -121,16 +134,34 @@ export function ProjectCard({ title, description, image, alt, tags, link, linkTy
                             </a>
                         )}
                         {link && (
-                            <a
-                                href={link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                onClick={handleLinkClick}
-                                className="p-2 rounded border border-border hover:bg-muted text-primary hover:text-primary-foreground hover:bg-primary transition-colors min-w-[36px] min-h-[36px] flex items-center justify-center"
-                                title="Ver demostración / artículo"
-                            >
-                                <ExternalLink size={15} />
-                            </a>
+                            linkType === 'demo' ? (
+                                <a
+                                    href={link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    onClick={handleLinkClick}
+                                    className="px-3 py-1.5 rounded border border-emerald-500/30 bg-emerald-500/10 text-emerald-500 hover:text-white hover:bg-emerald-500 hover:border-emerald-500 hover:shadow-[0_0_12px_rgba(16,185,129,0.4)] text-[10px] uppercase font-mono font-bold tracking-widest flex items-center gap-1.5 transition-all min-h-[36px]"
+                                    title="Ver aplicación en vivo (Live Demo)"
+                                >
+                                    <span className="relative flex h-2 w-2">
+                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                                    </span>
+                                    <Globe size={13} className="animate-pulse" />
+                                    <span>Demo</span>
+                                </a>
+                            ) : (
+                                <a
+                                    href={link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    onClick={handleLinkClick}
+                                    className="p-2 rounded border border-border hover:bg-muted text-primary hover:text-primary-foreground hover:bg-primary transition-all min-w-[36px] min-h-[36px] flex items-center justify-center"
+                                    title="Ver artículo / publicación"
+                                >
+                                    <BookOpen size={15} />
+                                </a>
+                            )
                         )}
                     </div>
                 </div>
