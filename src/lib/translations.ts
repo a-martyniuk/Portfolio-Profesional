@@ -373,6 +373,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 description: [
                     "Diseño de pipelines en Fabric (PySpark) y arquitecturas híbridas bajo Medallion (Bronze/Silver/Gold) en OneLake, estructurando modelos Star Schema y Snowflake.",
                     "Refactorización del modelo analítico de compliance y sell-out (Danone, Unilever, PepsiCo), migrando consultas a procedimientos T-SQL parametrizados e idempotentes con control transaccional.",
+                    "Resolución de incidente crítico en Azure SQL para PerfectEStores: Optimización de sp_PriceIndexCompliance (reducción de ejecución de >3 horas a 210ms, aceleración 50,000x) y corrección de concurrencia y reconexión en el orquestador Python.",
                     "Implementación de ingesta incremental desde APIs complejas de marketplaces (Mercado Libre, Rappi, VTEX) con flujos OAuth2 y Google Workspace APIs.",
                     "Diseño de arquitectura Database-as-Code (GitOps) para Azure SQL bajo ISO 27001 con GitHub Actions y PowerShell SMO."
                 ]
@@ -700,6 +701,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 description: [
                     "Designed Fabric pipelines (PySpark) and hybrid architectures under Medallion (Bronze/Silver/Gold) on OneLake, structuring Star Schema and Snowflake models.",
                     "Refactored compliance and sell-out analytical models (Danone, Unilever, PepsiCo), migrating queries to parameterized, idempotent T-SQL stored procedures with transactional control.",
+                    "Resolved critical Azure SQL scheduling incident for PerfectEStores: Optimized sp_PriceIndexCompliance (reduced execution time from >3 hours to 210ms, a 50,000x speedup) and fixed script concurrency & reconnection logic in the Python orchestrator.",
                     "Implemented incremental ingestion from complex marketplace APIs (Mercado Libre, Rappi, VTEX) with OAuth2 flows and Google Workspace APIs.",
                     "Designed Database-as-Code (GitOps) architecture for Azure SQL under ISO 27001 with GitHub Actions and PowerShell SMO."
                 ]
