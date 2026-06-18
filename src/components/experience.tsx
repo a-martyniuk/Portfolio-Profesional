@@ -44,12 +44,12 @@ export function Experience() {
                                             <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-primary/40 opacity-0 group-hover:opacity-100 transition-opacity" />
                                             <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-primary/40 opacity-0 group-hover:opacity-100 transition-opacity" />
 
-                                            <div className="flex items-center gap-2 text-primary font-semibold mb-2">
-                                                <Briefcase size={16} />
+                                            <div className="flex items-center gap-2 text-primary font-bold text-lg mb-2 font-heading">
+                                                <Briefcase size={18} className="shrink-0" />
                                                 <span>{exp.title}</span>
                                             </div>
                                             <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted-foreground mb-4">
-                                                <span className="flex items-center gap-1 font-medium text-foreground">
+                                                <span className="flex items-center gap-1 font-bold text-foreground">
                                                     {exp.company}
                                                 </span>
                                                 <span className="flex items-center gap-1">
