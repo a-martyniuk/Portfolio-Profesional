@@ -47,7 +47,7 @@ export function Hero() {
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
-                    className="mb-10 p-3 rounded-lg border border-border bg-muted/30 backdrop-blur-sm flex flex-wrap items-center justify-between gap-4 font-mono text-[11px] text-muted-foreground"
+                    className="mb-10 p-3 rounded border border-border bg-muted/30 backdrop-blur-sm flex flex-wrap items-center justify-between gap-4 font-mono text-xs md:text-sm text-muted-foreground"
                 >
                     <div className="flex items-center gap-2">
                         <span className="relative flex h-2 w-2">
@@ -143,12 +143,12 @@ export function Hero() {
                             {STAT_ITEMS.map((stat) => (
                                 <div
                                     key={stat.label}
-                                    className="p-5 rounded-xl border border-border bg-muted/20 backdrop-blur-sm hover:border-primary/30 hover:bg-primary/5 transition-all duration-300 group"
+                                    className="p-5 rounded border border-border bg-muted/20 backdrop-blur-sm hover:border-primary/30 hover:bg-primary/5 transition-all duration-300 group"
                                 >
-                                    <div className="text-3xl font-heading font-extrabold text-primary group-hover:scale-105 transition-transform origin-left">
+                                    <div className="text-4xl font-heading font-black text-primary group-hover:scale-105 transition-transform origin-left">
                                         {stat.value}
                                     </div>
-                                    <div className="text-xs text-muted-foreground font-mono uppercase tracking-wider mt-1">
+                                    <div className="text-xs md:text-sm text-muted-foreground font-mono uppercase tracking-widest mt-1">
                                         {stat.label}
                                     </div>
                                 </div>
@@ -156,15 +156,15 @@ export function Hero() {
                         </div>
 
                         {/* Tech badges */}
-                        <div className="p-5 rounded-xl border border-border bg-muted/20 backdrop-blur-sm">
-                            <p className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-3">
+                        <div className="p-5 rounded border border-border bg-muted/20 backdrop-blur-sm">
+                            <p className="text-xs font-mono font-bold uppercase tracking-widest text-muted-foreground mb-3">
                                 {'// Core Stack'}
                             </p>
                             <div className="flex flex-wrap gap-2">
                                 {TECH_BADGES.map((badge) => (
                                     <span
                                         key={badge.label}
-                                        className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded border border-border bg-background/60 text-[11px] font-mono text-muted-foreground hover:border-primary/40 hover:text-primary transition-colors"
+                                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded border border-border bg-background/60 text-xs md:text-sm font-mono text-muted-foreground hover:border-primary/40 hover:text-primary transition-colors"
                                     >
                                         <span className="text-primary">{badge.icon}</span>
                                         {badge.label}
@@ -174,16 +174,16 @@ export function Hero() {
                         </div>
 
                         {/* Pipeline visual indicator */}
-                        <div className="p-4 rounded-xl border border-primary/20 bg-primary/5 backdrop-blur-sm font-mono text-[11px]">
-                            <div className="flex items-center gap-2 text-primary mb-2">
-                                <Activity size={12} className="animate-pulse" />
+                        <div className="p-5 rounded border border-primary/20 bg-primary/5 backdrop-blur-sm font-mono text-xs md:text-sm">
+                            <div className="flex items-center gap-2 text-primary mb-3">
+                                <Activity size={14} className="animate-pulse" />
                                 <span className="font-bold tracking-wider">PIPELINE STATUS</span>
                             </div>
-                            <div className="space-y-1.5 text-muted-foreground">
+                            <div className="space-y-2.5 text-muted-foreground">
                                 {['INGEST', 'TRANSFORM', 'LOAD', 'VALIDATE'].map((stage, i) => (
                                     <div key={stage} className="flex items-center gap-2">
-                                        <span className="w-16 text-right text-[10px]">{stage}</span>
-                                        <div className="flex-1 h-1 rounded-full bg-muted overflow-hidden">
+                                        <span className="w-20 text-right text-xs md:text-sm">{stage}</span>
+                                        <div className="flex-1 h-1.5 rounded-full bg-muted overflow-hidden">
                                             <motion.div
                                                 className="h-full bg-primary rounded-full"
                                                 initial={{ width: 0 }}
@@ -191,7 +191,7 @@ export function Hero() {
                                                 transition={{ duration: 1.2, delay: 0.4 + i * 0.15, ease: 'easeOut' }}
                                             />
                                         </div>
-                                        <span className="text-primary text-[10px] font-bold">{['100%', '95%', '88%', '100%'][i]}</span>
+                                        <span className="text-primary text-xs md:text-sm font-bold">{['100%', '95%', '88%', '100%'][i]}</span>
                                     </div>
                                 ))}
                             </div>

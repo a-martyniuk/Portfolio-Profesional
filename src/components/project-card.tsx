@@ -68,20 +68,20 @@ export function ProjectCard({ title, description, image, alt, tags, link, linkTy
                         className="object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-95"
                     />
                 ) : (
-                    <div className="w-full h-full bg-muted flex items-center justify-center text-muted-foreground font-mono text-[10px] tracking-widest uppercase">
+                    <div className="w-full h-full bg-muted flex items-center justify-center text-muted-foreground font-mono text-xs tracking-widest uppercase">
                         [ PREVIEW_UNAVAILABLE ]
                     </div>
                 )}
                 
                 {/* Tech Code Overlay badge */}
-                <div className="absolute top-3 left-3 z-10 font-mono text-[9px] bg-background/90 text-muted-foreground border border-border px-2 py-0.5 rounded shadow-sm">
+                <div className="absolute top-3 left-3 z-10 font-mono text-xs bg-background/90 text-muted-foreground border border-border px-2.5 py-1 rounded shadow-sm">
                     {technicalId}
                 </div>
 
                 {/* Live Demo/Article Badge */}
                 {link && (
-                    <div className="absolute top-3 right-3 z-10 font-mono text-[9px] tracking-wider uppercase">
-                        <span className={`px-2 py-0.5 rounded border font-bold ${
+                    <div className="absolute top-3 right-3 z-10 font-mono text-xs tracking-wider uppercase">
+                        <span className={`px-2.5 py-1 rounded border font-bold ${
                             linkType === 'demo'
                             ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20'
                             : 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20'
@@ -94,7 +94,7 @@ export function ProjectCard({ title, description, image, alt, tags, link, linkTy
 
             <div className={`p-5 flex-1 flex flex-col justify-between ${horizontal ? 'md:p-6' : ''}`}>
                 <div className="flex justify-between items-start mb-3">
-                    <h3 className="text-lg font-heading font-bold text-foreground group-hover:text-primary transition-colors">
+                    <h3 className="text-lg md:text-xl font-heading font-bold text-foreground group-hover:text-primary transition-colors">
                         {title}
                     </h3>
                     <div className="flex gap-1.5 shrink-0 ml-2">
@@ -125,7 +125,7 @@ export function ProjectCard({ title, description, image, alt, tags, link, linkTy
                     </div>
                 </div>
 
-                <p className="text-muted-foreground text-xs leading-relaxed mb-5 line-clamp-3">
+                <p className={`text-muted-foreground leading-relaxed mb-5 line-clamp-3 ${horizontal ? 'text-sm md:text-base' : 'text-xs md:text-sm'}`}>
                     {description}
                 </p>
 
@@ -134,7 +134,7 @@ export function ProjectCard({ title, description, image, alt, tags, link, linkTy
                     {tags.map((tag) => (
                         <span 
                             key={tag} 
-                            className="px-2 py-0.5 rounded border border-border/80 bg-muted/30 text-[9px] font-mono text-muted-foreground tracking-wide"
+                            className="px-2.5 py-1 rounded border border-border/80 bg-muted/30 text-xs font-mono text-muted-foreground tracking-wide"
                         >
                             {tag}
                         </span>
@@ -143,7 +143,7 @@ export function ProjectCard({ title, description, image, alt, tags, link, linkTy
 
                 {/* Expand / Learn More Action Link inside card if it's clickable */}
                 {onClick && (
-                    <div className="mt-4 pt-3 border-t border-border/60 flex items-center justify-between text-[10px] font-mono text-muted-foreground group-hover:text-primary transition-colors">
+                    <div className="mt-4 pt-3 border-t border-border/60 flex items-center justify-between text-xs font-mono text-muted-foreground group-hover:text-primary transition-colors">
                         <span>{`// ${t.titles.fullSpecs}`}</span>
                         <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                     </div>

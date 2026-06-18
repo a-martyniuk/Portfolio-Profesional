@@ -27,11 +27,11 @@ export function CriticalDashboard() {
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                         <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                     </span>
-                    <h3 className="text-xs font-mono font-bold tracking-widest text-muted-foreground uppercase flex items-center gap-2">
-                        <Activity className="w-3.5 h-3.5" /> {t.pipeline.title}
+                    <h3 className="text-xs md:text-sm font-mono font-bold tracking-widest text-muted-foreground uppercase flex items-center gap-2">
+                        <Activity className="w-4 h-4" /> {t.pipeline.title}
                     </h3>
                 </div>
-                <div className="text-[10px] font-mono text-muted-foreground mt-2 sm:mt-0">
+                <div className="text-xs md:text-sm font-mono text-muted-foreground mt-2 sm:mt-0">
                     {t.pipeline.status}
                 </div>
             </div>
@@ -56,7 +56,7 @@ export function CriticalDashboard() {
                                     {icon}
                                 </div>
                                 {isActive && (
-                                    <span className="text-[10px] font-mono text-primary font-bold uppercase tracking-widest">
+                                    <span className="text-xs font-mono text-primary font-bold uppercase tracking-widest">
                                         {t.pipeline.active}
                                     </span>
                                 )}
@@ -64,7 +64,7 @@ export function CriticalDashboard() {
                             <h4 className="font-heading font-bold text-base mb-1 text-foreground">
                                 {stage.title}
                             </h4>
-                            <p className="text-xs text-muted-foreground line-clamp-2">
+                            <p className="text-sm text-muted-foreground line-clamp-2">
                                 {stage.subtitle}
                             </p>
                         </button>
@@ -88,22 +88,22 @@ export function CriticalDashboard() {
                         {/* Columna 1: Descripción y Concepto */}
                         <div className="space-y-6">
                             <div>
-                                <h3 className="text-xl font-heading font-bold text-foreground mb-2">
+                                <h3 className="text-xl md:text-2xl font-heading font-bold text-foreground mb-2">
                                     {activeStage.subtitle}
                                 </h3>
-                                <p className="text-sm text-muted-foreground leading-relaxed">
+                                <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
                                     {activeStage.description}
                                 </p>
                             </div>
 
                             <div className="pt-4 border-t border-border">
                                 <div className="p-4 rounded border border-cyan-400/20 bg-cyan-400/[0.02] flex items-start gap-3">
-                                    <HelpCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                                    <HelpCircle className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                                     <div>
-                                        <span className="text-xs font-bold text-foreground block mb-1">
+                                        <span className="text-sm font-bold text-foreground block mb-1">
                                             {language === 'es' ? "Diseño Decisivo" : "Decisive Design"}
                                         </span>
-                                        <span className="text-[11px] text-muted-foreground leading-relaxed block">
+                                        <span className="text-xs md:text-sm text-muted-foreground leading-relaxed block">
                                             {language === 'es' 
                                                 ? "Cada componente se selecciona para garantizar la idempotencia, evitar gaps en cargas de datos transaccionales e implementar alertas tempranas proactivas ante caídas de servicio."
                                                 : "Each component is selected to guarantee idempotency, prevent gaps in transactional data loads, and implement proactive early alerts for service interruptions."
@@ -118,14 +118,14 @@ export function CriticalDashboard() {
                         <div className="space-y-6 lg:border-l lg:border-border lg:pl-8">
                             {/* Stack Tecnológico */}
                             <div>
-                                <h4 className="text-xs font-mono font-bold tracking-widest text-muted-foreground uppercase mb-3">
+                                <h4 className="text-xs md:text-sm font-mono font-bold tracking-widest text-muted-foreground uppercase mb-3">
                                     {t.pipeline.keyTech}
                                 </h4>
                                 <div className="flex flex-wrap gap-2">
                                     {activeStage.techStack.map((tech) => (
                                         <span 
                                             key={tech} 
-                                            className="px-2.5 py-1 rounded border border-border bg-background font-mono text-xs text-foreground"
+                                            className="px-3 py-1.5 rounded border border-border bg-background font-mono text-xs md:text-sm text-foreground"
                                         >
                                             {tech}
                                         </span>
@@ -135,16 +135,16 @@ export function CriticalDashboard() {
 
                             {/* Proyectos Asociados */}
                             <div>
-                                <h4 className="text-xs font-mono font-bold tracking-widest text-muted-foreground uppercase mb-3">
+                                <h4 className="text-xs md:text-sm font-mono font-bold tracking-widest text-muted-foreground uppercase mb-3">
                                     {t.pipeline.appliedProjects}
                                 </h4>
                                 <div className="space-y-3">
                                     {activeStage.projects.map((proj) => (
                                         <div key={proj.name} className="p-3 rounded border border-border/60 bg-background/50">
-                                            <span className="text-sm font-bold text-foreground block mb-0.5">
+                                            <span className="text-sm md:text-base font-bold text-foreground block mb-0.5">
                                                 {proj.name}
                                             </span>
-                                            <span className="text-xs text-muted-foreground block leading-relaxed">
+                                            <span className="text-sm text-muted-foreground block leading-relaxed">
                                                 {proj.desc}
                                             </span>
                                         </div>
@@ -156,7 +156,7 @@ export function CriticalDashboard() {
                         {/* Columna 3: Criterios de Ingeniería y Métricas */}
                         <div className="space-y-6 lg:border-l lg:border-border lg:pl-8">
                             <div>
-                                <h4 className="text-xs font-mono font-bold tracking-widest text-muted-foreground uppercase mb-4">
+                                <h4 className="text-xs md:text-sm font-mono font-bold tracking-widest text-muted-foreground uppercase mb-4">
                                     {language === 'es' ? "// CRITERIOS DE INGENIERÍA" : "// ENGINEERING CRITERIA"}
                                 </h4>
                                 <div className="space-y-4">
@@ -165,7 +165,7 @@ export function CriticalDashboard() {
                                             <div className="p-0.5 rounded-full bg-cyan-400/10 text-primary mt-0.5 shrink-0">
                                                 <CheckCircle2 className="w-4 h-4" />
                                             </div>
-                                            <span className="text-xs text-muted-foreground leading-relaxed">
+                                            <span className="text-sm text-muted-foreground leading-relaxed">
                                                 {metric}
                                             </span>
                                         </div>

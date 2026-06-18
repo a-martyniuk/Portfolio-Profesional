@@ -53,13 +53,13 @@ export function PressCard({ publication, featured = false }: PressCardProps) {
                 />
                 
                 {/* Tech ID Code Badge */}
-                <div className="absolute top-4 left-4 z-10 font-mono text-[9px] bg-background/90 text-muted-foreground border border-border/40 px-2 py-0.5 rounded shadow-sm">
+                <div className="absolute top-4 left-4 z-10 font-mono text-xs bg-background/90 text-muted-foreground border border-border/40 px-2.5 py-1 rounded shadow-sm">
                     {technicalId}
                 </div>
 
                 {/* Source Badge */}
-                <div className="absolute top-4 right-4 z-10 font-mono text-[9px] tracking-wider uppercase">
-                    <span className="px-2 py-0.5 rounded border font-bold bg-cyan-400/10 text-cyan-400 border-cyan-400/20">
+                <div className="absolute top-4 right-4 z-10 font-mono text-xs tracking-wider uppercase">
+                    <span className="px-2.5 py-1 rounded border font-bold bg-cyan-400/10 text-cyan-400 border-cyan-400/20">
                         {publication.source}
                     </span>
                 </div>
@@ -71,14 +71,14 @@ export function PressCard({ publication, featured = false }: PressCardProps) {
             }`}>
                 <div className="space-y-4">
                     {/* Date and Category */}
-                    <div className="flex items-center gap-4 text-xs text-muted-foreground font-sans">
+                    <div className="flex items-center gap-4 text-sm text-muted-foreground font-sans">
                         <span className="flex items-center gap-1.5 font-medium">
-                            <Calendar size={13} className="text-primary/70" />
+                            <Calendar size={14} className="text-primary/70" />
                             {publication.date}
                         </span>
                         <span className="h-1.5 w-1.5 rounded-full bg-border" />
                         <span className="flex items-center gap-1.5 font-medium">
-                            <Newspaper size={13} className="text-primary/70" />
+                            <Newspaper size={14} className="text-primary/70" />
                             {language === 'es' ? 'Publicación Oficial' : 'Official Press'}
                         </span>
                     </div>
@@ -89,7 +89,7 @@ export function PressCard({ publication, featured = false }: PressCardProps) {
                     </h3>
 
                     {/* Description */}
-                    <p className="text-muted-foreground text-sm leading-relaxed font-sans">
+                    <p className="text-muted-foreground text-sm md:text-base leading-relaxed font-sans">
                         {publication.description}
                     </p>
                 </div>
@@ -101,7 +101,7 @@ export function PressCard({ publication, featured = false }: PressCardProps) {
                         {publication.tags.map((tag) => (
                             <span 
                                 key={tag} 
-                                className="px-2 py-0.5 rounded border border-border/60 bg-muted/40 text-[9px] font-mono text-muted-foreground tracking-wide"
+                                className="px-2.5 py-1 rounded border border-border/60 bg-muted/40 text-xs font-mono text-muted-foreground tracking-wide"
                             >
                                 {tag}
                             </span>
