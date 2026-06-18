@@ -20,6 +20,19 @@ export function CriticalDashboard() {
 
     return (
         <div className="container mx-auto px-4 py-8 font-sans">
+            <style dangerouslySetInnerHTML={{ __html: `
+                @keyframes pipeline-flow {
+                    0% { transform: translateX(-100%); }
+                    100% { transform: translateX(800%); }
+                }
+                @keyframes active-scan {
+                    0% { top: 0%; opacity: 0; }
+                    10% { opacity: 0.8; }
+                    90% { opacity: 0.8; }
+                    100% { top: 100%; opacity: 0; }
+                }
+            `}} />
+
             {/* Header del Visualizador */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border border-primary/30 bg-muted/40 p-4 rounded-t border-b-0 shadow-[0_0_20px_rgba(6,182,212,0.15)]">
                 <div className="flex items-center gap-3">
@@ -34,6 +47,16 @@ export function CriticalDashboard() {
                 <div className="text-xs md:text-sm font-mono text-muted-foreground mt-2 sm:mt-0">
                     {t.pipeline.status}
                 </div>
+            </div>
+
+            {/* Flow line animation */}
+            <div className="hidden md:block relative h-[2px] bg-primary/10 overflow-hidden border-x border-primary/30">
+                <div 
+                    className="absolute top-0 bottom-0 left-0 w-48 bg-gradient-to-r from-transparent via-cyan-400 to-transparent shadow-[0_0_10px_#06b6d4]"
+                    style={{
+                        animation: 'pipeline-flow 6s linear infinite',
+                    }}
+                />
             </div>
 
             {/* Layout del Diagrama */}
@@ -51,6 +74,19 @@ export function CriticalDashboard() {
                                 : 'hover:bg-muted/30'
                             }`}
                         >
+                            {/* Active Scan Effect */}
+                            {isActive && (
+                                <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-30">
+                                    <div 
+                                        className="absolute left-0 right-0 h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent"
+                                        style={{
+                                            animation: 'active-scan 3s ease-in-out infinite',
+                                            boxShadow: '0 0 8px rgba(6,182,212,0.5)'
+                                        }}
+                                    />
+                                </div>
+                            )}
+
                             <div className="flex items-center justify-between mb-3">
                                 <div className={`p-2 rounded border transition-colors ${
                                     isActive 

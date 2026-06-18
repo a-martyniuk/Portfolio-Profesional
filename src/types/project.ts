@@ -9,4 +9,6 @@ export interface Project {
     link?: string;
     linkType?: 'demo' | 'article';
     github?: string;
+    metric?: string;
 }
+

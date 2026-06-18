@@ -18,9 +18,10 @@ interface ProjectCardProps {
     github?: string;
     onClick?: () => void;
     horizontal?: boolean;
+    metric?: string;
 }
 
-export function ProjectCard({ title, description, image, alt, tags, link, linkType = 'demo', github, onClick, horizontal = false }: ProjectCardProps) {
+export function ProjectCard({ title, description, image, alt, tags, link, linkType = 'demo', github, onClick, horizontal = false, metric }: ProjectCardProps) {
     const { trackOracleClick, trackGitHubClick } = useAnalytics();
     const { t } = useLanguage();
 
@@ -87,6 +88,15 @@ export function ProjectCard({ title, description, image, alt, tags, link, linkTy
                             : 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20'
                         }`}>
                             {linkType === 'demo' ? '● Live' : '📰 Document'}
+                        </span>
+                    </div>
+                )}
+
+                {/* Metric Badge */}
+                {metric && (
+                    <div className="absolute bottom-3 right-3 z-10 font-mono text-[10px] tracking-wider">
+                        <span className="px-2 py-0.5 rounded border border-primary/30 bg-background/90 text-primary font-bold shadow-[0_0_10px_rgba(6,182,212,0.25)]">
+                            {metric}
                         </span>
                     </div>
                 )}

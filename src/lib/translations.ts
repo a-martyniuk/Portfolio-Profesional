@@ -9,6 +9,7 @@ export interface Project {
     link?: string;
     linkType?: 'article' | 'demo';
     github?: string;
+    metric?: string;
 }
 
 export interface ExperienceItem {
@@ -254,7 +255,8 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 image: "/images/projects/sellout-dashboard.png",
                 alt: "Pipelines de Sell-Out y Digital Shelf en Microsoft Fabric con PySpark y APIs de e-commerce",
                 details: "Desarrollo de un pipeline de datos diario incremental (09:00 AM ART) en Microsoft Fabric que extrae datos de ventas y productos de Beiersdorf desde Google Drive y FTPs. El flujo implementa validaciones estrictas de esquema (11 columnas), estandarización de nulos y un complejo procesamiento de apertura de combos comerciales en N filas para retailers autorizados (Farmacity, Leloir, Selma, Simplex, Farmaonline), distribuyendo EANs individuales y garantizando que el Monto original se preserve únicamente en la primera fila para evitar duplicaciones financieras.",
-                architecture: ["Google Drive API (Landing Ingest)", "Silver Layer Delta (dbo.sl_bdf_sellouts)", "Join Dimensional & Fallback Match (EAN/Cliente)", "Apertura de Combos (Desglose en N-filas)", "Auditoría de Huérfanos (dbo.audit_bdf_comboshuerfanos)"]
+                architecture: ["Google Drive API (Landing Ingest)", "Silver Layer Delta (dbo.sl_bdf_sellouts)", "Join Dimensional & Fallback Match (EAN/Cliente)", "Apertura de Combos (Desglose en N-filas)", "Auditoría de Huérfanos (dbo.audit_bdf_comboshuerfanos)"],
+                metric: "SLA Ingesta: 09:00 AM"
             },
             {
                 title: "PepsiCo: Ingestor Multimarketplace",
@@ -263,7 +265,8 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 image: "/images/projects/pepsico-ingestor.png",
                 alt: "Estructura de ingesta multi-marketplace PepsiCo con Python y APIs",
                 details: "Desarrollo de scrapers modulares e interactivos para APIs móviles y web. Gestión de sesiones complejas, cookies dinámicas, rotación de proxies y normalización en CSV (UTF-8 BOM) con suite de testing robusta.",
-                architecture: ["Motor Ingestor de APIs (Requests/OAuth2)", "Ejecutor Basado en Configuración (JSON)", "Normalizador y Transformador de Datos", "Manejador de Codificación (Excel UTF-8 BOM)", "Pruebas Unitarias PyTest"]
+                architecture: ["Motor Ingestor de APIs (Requests/OAuth2)", "Ejecutor Basado en Configuración (JSON)", "Normalizador y Transformador de Datos", "Manejador de Codificación (Excel UTF-8 BOM)", "Pruebas Unitarias PyTest"],
+                metric: "Evasión: Proxy Rotativo"
             },
             {
                 title: "ETL Observability: Auditoría & Monitor de KPIs",
@@ -272,7 +275,8 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 image: "/images/projects/ecoreport-audit.png",
                 alt: "Dashboard de auditoría de pipelines ETL y logs de ejecución",
                 details: "Framework de auditoría para bases transaccionales e históricas (SQL Server). Análisis de logs para marcas CPG (Danone, Softys, Unilever, Essity), control de excepciones en ExecuteSP y reportes KPI de desviaciones.",
-                architecture: ["Extractor de Logs SQL (PowerShell/Python)", "Motor de Cálculo de KPIs de SLA", "Algoritmo de Gap Analysis (Schedules vs Logs)", "Log de Variación Diaria de Modelos", "Reportes Markdown Automatizados"]
+                architecture: ["Extractor de Logs SQL (PowerShell/Python)", "Motor de Cálculo de KPIs de SLA", "Algoritmo de Gap Analysis (Schedules vs Logs)", "Log de Variación Diaria de Modelos", "Reportes Markdown Automatizados"],
+                metric: "Auditoría: Logs SQL"
             },
             {
                 title: "Modelo Analítico Corporativo (Laboratorios Bagó)",
@@ -283,7 +287,8 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 image: "/images/projects/bago-dashboard.png",
                 alt: "Plataforma ETL Laboratorios Bagó con Oracle ODI, AWS y Snowflake - Dashboard analítico corporativo",
                 details: "Migración de ecosistema legacy a una arquitectura moderna de datos. El proyecto incluyó la orquestación de flujos globales y la consolidación de inventarios y ventas en tiempo real.",
-                architecture: ["Sistemas Transaccionales", "Oracle ODI (ETL)", "AWS S3 Staging", "Snowflake DWH", "Dashboards Ejecutivos"]
+                architecture: ["Sistemas Transaccionales", "Oracle ODI (ETL)", "AWS S3 Staging", "Snowflake DWH", "Dashboards Ejecutivos"],
+                metric: "Productividad: +20%"
             },
             {
                 title: "Infraestructura de Estado (Ministerio de Seguridad)",
@@ -292,7 +297,8 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 image: "/images/projects/ministerio-heatmap.png",
                 alt: "Sistema de análisis criminal con PostgreSQL PostGIS y ArcGIS mostrando mapas de calor geoespacial",
                 details: "Desarrollo de una base de datos centralizada para el análisis criminal (SNIC). Integración de capas geográficas para la visualización de delitos y patrullas en vivo.",
-                architecture: ["Reportes Policiales", "Python Scripts", "PostgreSQL PostGIS", "ArcGIS API", "Centros de Operaciones"]
+                architecture: ["Reportes Policiales", "Python Scripts", "PostgreSQL PostGIS", "ArcGIS API", "Centros de Operaciones"],
+                metric: "Eficiencia: +15%"
             }
         ],
         secondaryProjects: [
@@ -304,7 +310,8 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 tags: ["GitHub Actions", "PowerShell SMO", "Azure SQL", "GitOps"],
                 details: "Automatización completa de backup de esquemas DDL (tablas, vistas, stored procedures) mediante PowerShell SMO. Pipeline CI/CD con GitHub Actions que versiona los objetos de base de datos en cada deploy, garantizando trazabilidad e inmutabilidad bajo ISO 27001.",
                 architecture: ["GitHub Actions (CI/CD)", "PowerShell SMO", "Base de datos Azure SQL", "Respaldo de esquema DDL", "Inmutabilidad de logs"],
-                github: "https://github.com/a-martyniuk/azure-sql-version-control"
+                github: "https://github.com/a-martyniuk/azure-sql-version-control",
+                metric: "Seguridad: ISO 27001"
             },
             {
                 title: "SNIC Análisis Criminal",
@@ -316,7 +323,8 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 architecture: ["Fuentes SNIC (CSV & GeoJSON locales)", "Next.js (App Router)", "Plotly.js (Visualización)", "Service Worker (Caché offline)", "Despliegue en la nube de Vercel"],
                 github: "https://github.com/a-martyniuk/snic-analisis-criminal",
                 link: "https://snic-web.vercel.app/",
-                linkType: "demo"
+                linkType: "demo",
+                metric: "Soporte: Offline PWA"
             },
             {
                 title: "MELI AIO Dashboard",
@@ -326,7 +334,8 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 tags: ["FastAPI", "PostgreSQL", "OAuth 2.0", "Next.js"],
                 details: "Herramienta de gestión para vendedores de Mercado Libre. Backend FastAPI con autenticación OAuth 2.0 y rotación automática de tokens. Base de datos PostgreSQL para historial de ventas, inventario y generación automatizada de reportes de facturación.",
                 architecture: ["Mercado Libre API (OAuth 2.0)", "Backend FastAPI", "PostgreSQL (Inventario)", "Frontend Next.js", "Motor de rotación de tokens"],
-                github: "https://github.com/a-martyniuk/meli-aio"
+                github: "https://github.com/a-martyniuk/meli-aio",
+                metric: "Auth: OAuth 2.0"
             },
             {
                 title: "Reingeniería SQL & ISO 27001",
@@ -338,7 +347,8 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 architecture: ["Base de datos legacy SQL Server", "Procedimientos almacenados T-SQL (Modulares)", "Log transaccional", "Consultas de integridad con Checksums", "Cumplimiento ISO 27001"],
                 github: "https://github.com/a-martyniuk/sql-reengineering-iso27001",
                 link: "/articles/sql-reengineering-transactional-auditing",
-                linkType: "article"
+                linkType: "article",
+                metric: "Integridad: Checksums"
             },
             {
                 title: "CABA Real Estate Scraper & Analyzer",
@@ -350,7 +360,8 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 architecture: ["Scrapers Headless (Playwright)", "Base de Datos Supabase", "Algoritmos de Oportunidad (Python)", "Notificador de Alertas (Telegram API)", "Dashboard Map-based (React/Vite)"],
                 github: "https://github.com/a-martyniuk/caba-real-estate-scraper",
                 link: "/articles/caba-real-estate-scraper-postmortem",
-                linkType: "article"
+                linkType: "article",
+                metric: "Alertas: Telegram Bot"
             }
         ],
         publications: [
@@ -582,7 +593,8 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 image: "/images/projects/sellout-dashboard.png",
                 alt: "Sell-Out and Digital Shelf pipelines in Microsoft Fabric with PySpark and e-commerce APIs",
                 details: "Development of an incremental daily data pipeline (09:00 AM ART) in Microsoft Fabric processing Beiersdorf sell-out sales and master catalogs from Google Drive and FTPs. The pipeline implements strict schema verification (11 mandatory columns), null normalization, and an advanced combo exploding algorithm that splits bundled transactions into individual product EANs for authorized retailers (Farmacity, Leloir, Selma, Simplex, Farmaonline), preserving the original sales amount only on the first row to prevent duplicate revenue reporting.",
-                architecture: ["Google Drive API (Landing Ingest)", "Silver Layer Delta (dbo.sl_bdf_sellouts)", "Join Dimensional & Fallback Match (EAN/Client)", "Combo Exploding (N-Row Breakdown & Split)", "Orphans Audit Tables (dbo.audit_bdf_comboshuerfanos)"]
+                architecture: ["Google Drive API (Landing Ingest)", "Silver Layer Delta (dbo.sl_bdf_sellouts)", "Join Dimensional & Fallback Match (EAN/Client)", "Combo Exploding (N-Row Breakdown & Split)", "Orphans Audit Tables (dbo.audit_bdf_comboshuerfanos)"],
+                metric: "Ingestion SLA: 09:00 AM"
             },
             {
                 title: "PepsiCo: Multi-Marketplace Ingestor",
@@ -591,7 +603,8 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 image: "/images/projects/pepsico-ingestor.png",
                 alt: "PepsiCo multi-marketplace ingestion structure with Python and APIs",
                 details: "Development of modular and interactive scrapers for mobile and web APIs. Management of complex sessions, dynamic cookies, proxy rotation, and CSV normalization (UTF-8 BOM) with a robust testing suite.",
-                architecture: ["API Ingestor Engine (Requests/OAuth2)", "Config-driven Runner (JSON configs)", "Data Normalizer & Transformer", "Encoding Handler (Excel UTF-8 BOM)", "PyTest Unit Testing"]
+                architecture: ["API Ingestor Engine (Requests/OAuth2)", "Config-driven Runner (JSON configs)", "Data Normalizer & Transformer", "Encoding Handler (Excel UTF-8 BOM)", "PyTest Unit Testing"],
+                metric: "Evasion: Proxy Rotation"
             },
             {
                 title: "ETL Observability: Audit & KPI Monitor",
@@ -600,7 +613,8 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 image: "/images/projects/ecoreport-audit.png",
                 alt: "Auditing dashboard for ETL pipelines and execution logs",
                 details: "Auditing framework for transactional and historical databases (SQL Server). Log analysis for CPG brands (Danone, Softys, Unilever, Essity), exception handling in ExecuteSP, and KPI deviation reporting.",
-                architecture: ["SQL Log Extractor (PowerShell/Python)", "SLA KPI Calculation Engine", "Gap Analysis Algorithm (Schedules vs Logs)", "Daily Model Variation Log", "Automated Markdown Reports"]
+                architecture: ["SQL Log Extractor (PowerShell/Python)", "SLA KPI Calculation Engine", "Gap Analysis Algorithm (Schedules vs Logs)", "Daily Model Variation Log", "Automated Markdown Reports"],
+                metric: "Audit: SQL Logs"
             },
             {
                 title: "Corporate Analytical Model (Laboratorios Bagó)",
@@ -611,7 +625,8 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 image: "/images/projects/bago-dashboard.png",
                 alt: "Laboratorios Bagó ETL platform with Oracle ODI, AWS, and Snowflake - Corporate analytical dashboard",
                 details: "Migration of legacy ecosystem to a modern data architecture. The project included the orchestration of global data flows and real-time sales and inventory consolidation.",
-                architecture: ["Transactional Systems", "Oracle ODI (ETL)", "AWS S3 Staging", "Snowflake DWH", "Executive Dashboards"]
+                architecture: ["Transactional Systems", "Oracle ODI (ETL)", "AWS S3 Staging", "Snowflake DWH", "Executive Dashboards"],
+                metric: "Productivity: +20%"
             },
             {
                 title: "State Infrastructure (Ministry of Security)",
@@ -620,7 +635,8 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 image: "/images/projects/ministerio-heatmap.png",
                 alt: "Crime analysis system with PostgreSQL PostGIS and ArcGIS showing geospatial heatmaps",
                 details: "Development of a centralized database for crime analysis (SNIC). Integration of geographic layers for live visualization of crimes and patrol deployments.",
-                architecture: ["Police Reports", "Python Scripts", "PostgreSQL PostGIS", "ArcGIS API", "Operations Centers"]
+                architecture: ["Police Reports", "Python Scripts", "PostgreSQL PostGIS", "ArcGIS API", "Operations Centers"],
+                metric: "Efficiency: +15%"
             }
         ],
         secondaryProjects: [
@@ -632,7 +648,8 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 tags: ["GitHub Actions", "PowerShell SMO", "Azure SQL", "GitOps"],
                 details: "Full automation of DDL schema backups (tables, views, stored procedures) using PowerShell SMO. CI/CD pipeline with GitHub Actions that versions database objects on each deploy, ensuring traceability and immutability under ISO 27001.",
                 architecture: ["GitHub Actions (CI/CD)", "PowerShell SMO", "Azure SQL Database", "DDL Schema Backup", "Log Immutability"],
-                github: "https://github.com/a-martyniuk/azure-sql-version-control"
+                github: "https://github.com/a-martyniuk/azure-sql-version-control",
+                metric: "Security: ISO 27001"
             },
             {
                 title: "SNIC Crime Analysis",
@@ -644,7 +661,8 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 architecture: ["SNIC Sources (Local CSV & GeoJSON)", "Next.js (App Router)", "Plotly.js (Visualization)", "Service Worker (Offline Caching)", "Vercel Cloud Deploy"],
                 github: "https://github.com/a-martyniuk/snic-analisis-criminal",
                 link: "https://snic-web.vercel.app/",
-                linkType: "demo"
+                linkType: "demo",
+                metric: "Support: Offline PWA"
             },
             {
                 title: "MELI AIO Dashboard",
@@ -654,7 +672,8 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 tags: ["FastAPI", "PostgreSQL", "OAuth 2.0", "Next.js"],
                 details: "Management tool for Mercado Libre sellers. FastAPI backend with OAuth 2.0 authentication and automatic token rotation. PostgreSQL database for sales history, inventory management, and automated invoicing report generation.",
                 architecture: ["Mercado Libre API (OAuth 2.0)", "FastAPI Backend", "PostgreSQL (Inventory)", "Next.js Frontend", "Token Rotation Engine"],
-                github: "https://github.com/a-martyniuk/meli-aio"
+                github: "https://github.com/a-martyniuk/meli-aio",
+                metric: "Auth: OAuth 2.0"
             },
             {
                 title: "SQL Reengineering & ISO 27001",
@@ -666,7 +685,8 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 architecture: ["Legacy SQL Server DB", "T-SQL Stored Procedures (Modular)", "Transactional Log", "Checksum Integrity Queries", "ISO 27001 Compliance"],
                 github: "https://github.com/a-martyniuk/sql-reengineering-iso27001",
                 link: "/articles/sql-reengineering-transactional-auditing",
-                linkType: "article"
+                linkType: "article",
+                metric: "Integrity: Checksums"
             },
             {
                 title: "CABA Real Estate Scraper & Analyzer",
@@ -678,7 +698,8 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 architecture: ["Headless Scrapers (Playwright)", "Supabase Storage & Sync", "Market Valuation Algorithms (Python)", "Telegram Notification Bot", "React/Vite Map UI"],
                 github: "https://github.com/a-martyniuk/caba-real-estate-scraper",
                 link: "/articles/caba-real-estate-scraper-postmortem",
-                linkType: "article"
+                linkType: "article",
+                metric: "Alerts: Telegram Bot"
             }
         ],
         publications: [
