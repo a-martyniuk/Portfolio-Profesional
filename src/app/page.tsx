@@ -467,9 +467,12 @@ export default function Home() {
                 github={proj.github}
                 link={proj.link}
                 linkType={proj.linkType}
+                metric={proj.metric}
+                onClick={() => setSelectedProject(proj)}
               />
             ))}
           </div>
+
         </div>
       </motion.section>
 

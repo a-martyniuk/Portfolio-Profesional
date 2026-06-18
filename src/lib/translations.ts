@@ -314,7 +314,8 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 details: "Automatización completa de backup de esquemas DDL (tablas, vistas, stored procedures) mediante PowerShell SMO. Pipeline CI/CD con GitHub Actions que versiona los objetos de base de datos en cada deploy, garantizando trazabilidad e inmutabilidad bajo ISO 27001.",
                 architecture: ["GitHub Actions (CI/CD)", "PowerShell SMO", "Base de datos Azure SQL", "Respaldo de esquema DDL", "Inmutabilidad de logs"],
                 github: "https://github.com/a-martyniuk/azure-sql-version-control",
-                metric: "Seguridad: ISO 27001"
+                metric: "Seguridad: ISO 27001",
+                video: "/videos/gitops-database.mp4"
             },
             {
                 title: "SNIC Análisis Criminal",
@@ -653,7 +654,8 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 details: "Full automation of DDL schema backups (tables, views, stored procedures) using PowerShell SMO. CI/CD pipeline with GitHub Actions that versions database objects on each deploy, ensuring traceability and immutability under ISO 27001.",
                 architecture: ["GitHub Actions (CI/CD)", "PowerShell SMO", "Azure SQL Database", "DDL Schema Backup", "Log Immutability"],
                 github: "https://github.com/a-martyniuk/azure-sql-version-control",
-                metric: "Security: ISO 27001"
+                metric: "Security: ISO 27001",
+                video: "/videos/gitops-database.mp4"
             },
             {
                 title: "SNIC Crime Analysis",
