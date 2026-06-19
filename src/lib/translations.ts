@@ -198,7 +198,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                     ],
                     projects: [
                         { name: 'Digital Shelf & Sell-Out Seguros (BeOn)', desc: 'Descarga en streaming de datos comerciales y EANs mediante APIs de marketplaces.' },
-                        { name: 'PepsiCo: Ingestor Multimarketplace', desc: 'Scrapers configurables para iFood BR, Rappi y DiDi Food con rotación de proxies.' }
+                        { name: 'PepsiCo: Ingestor Multimarketplace (BeOn)', desc: 'Scrapers configurables para iFood BR, Rappi y DiDi Food con rotación de proxies.' }
                     ]
                 },
                 {
@@ -245,7 +245,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                         'Análisis de desvíos y KPIs del scheduler (ETL Observability)'
                     ],
                     projects: [
-                        { name: 'ETL Observability: Auditoría & KPIs', desc: 'Reportes automatizados de cumplimiento de SLAs, tasas de éxito y análisis de desvíos.' },
+                        { name: 'ETL Observability: Auditoría & KPIs (BeOn)', desc: 'Reportes automatizados de cumplimiento de SLAs, tasas de éxito y análisis de desvíos.' },
                         { name: 'SNIC Web Dashboard (MSEG)', desc: 'Panel interactivo de análisis criminal provincial con mapas coropléticos, correlaciones y modelos predictivos.' }
                     ]
                 }
@@ -264,7 +264,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 video: "/videos/pipeline-medallion.mp4"
             },
             {
-                title: "PepsiCo: Ingestor Multimarketplace",
+                title: "PepsiCo: Ingestor Multimarketplace (BeOn)",
                 description: "Ingesta automatizada y normalización de catálogos, stock y precios de marketplaces (iFood BR, Rappi LATAM, DiDi Food MX) para análisis competitivo de marcas PepsiCo.",
                 tags: ["Python", "Ingesta de APIs", "Calidad de Datos", "PyTest"],
                 image: "/images/projects/pepsico-ingestor.png",
@@ -274,7 +274,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 metric: "Evasión: Proxy Rotativo"
             },
             {
-                title: "ETL Observability: Auditoría & Monitor de KPIs",
+                title: "ETL Observability: Auditoría & Monitor de KPIs (BeOn)",
                 description: "Solución de observabilidad de procesos críticos corporativos. Audita la ejecución diaria, calcula tasas de éxito, mide SLA y detecta desvíos de calendarización.",
                 tags: ["Python", "PowerShell", "Stored Procedures", "ETL Logs"],
                 image: "/images/projects/ecoreport-audit.png",
@@ -550,7 +550,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                     ],
                     projects: [
                         { name: 'Digital Shelf & Sell-Out Seguros (BeOn)', desc: 'Streaming download of commercial data and EANs using marketplace APIs.' },
-                        { name: 'PepsiCo: Multi-marketplace Ingestor', desc: 'Configurable scrapers for iFood BR, Rappi, and DiDi Food with proxy rotation.' }
+                        { name: 'PepsiCo: Multi-marketplace Ingestor (BeOn)', desc: 'Configurable scrapers for iFood BR, Rappi, and DiDi Food with proxy rotation.' }
                     ]
                 },
                 {
@@ -597,7 +597,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                         'Analysis of deviations and KPIs from the scheduler (ETL Observability)'
                     ],
                     projects: [
-                        { name: 'ETL Observability: Audit & KPIs', desc: 'Automated reports of SLA compliance, success rates, and deviation analysis.' },
+                        { name: 'ETL Observability: Audit & KPIs (BeOn)', desc: 'Automated reports of SLA compliance, success rates, and deviation analysis.' },
                         { name: 'SNIC Web Dashboard (MSEG)', desc: 'Interactive provincial crime analysis panel with choropleth maps, correlations, and predictive models.' }
                     ]
                 }
@@ -616,7 +616,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 video: "/videos/pipeline-medallion.mp4"
             },
             {
-                title: "PepsiCo: Multi-Marketplace Ingestor",
+                title: "PepsiCo: Multi-Marketplace Ingestor (BeOn)",
                 description: "Automated ingestion and normalization of catalogs, stock, and pricing from marketplaces (iFood BR, Rappi LATAM, DiDi Food MX) for competitive brand analysis for PepsiCo.",
                 tags: ["Python", "APIs Ingestion", "Data Quality", "PyTest"],
                 image: "/images/projects/pepsico-ingestor.png",
@@ -626,7 +626,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 metric: "Evasion: Proxy Rotation"
             },
             {
-                title: "ETL Observability: Audit & KPI Monitor",
+                title: "ETL Observability: Audit & KPI Monitor (BeOn)",
                 description: "Observability solution for critical corporate processes. Audits daily execution, calculates success rates, measures SLA, and detects scheduling deviations.",
                 tags: ["Python", "PowerShell", "Stored Procedures", "ETL Logs"],
                 image: "/images/projects/ecoreport-audit.png",
