@@ -229,8 +229,8 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                         'Optimización de índices y vistas materializadas complejas'
                     ],
                     projects: [
-                        { name: 'Azure SQL Version Control & GitOps', desc: 'Respaldo automático de esquemas DDL e inmutabilidad de logs mediante Actions y PowerShell SMO.' },
-                        { name: 'Reingeniería SQL & ISO 27001', desc: 'Rediseño seguro de bases de datos relacionales, stored procedures modulares y checksums.' }
+                        { name: 'Azure SQL Version Control & GitOps (BeOn)', desc: 'Respaldo automático de esquemas DDL e inmutabilidad de logs mediante Actions y PowerShell SMO.' },
+                        { name: 'Reingeniería SQL & ISO 27001 (BeOn)', desc: 'Rediseño seguro de bases de datos relacionales, stored procedures modulares y checksums.' }
                     ]
                 },
                 {
@@ -246,7 +246,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                     ],
                     projects: [
                         { name: 'ETL Observability: Auditoría & KPIs', desc: 'Reportes automatizados de cumplimiento de SLAs, tasas de éxito y análisis de desvíos.' },
-                        { name: 'SNIC Web Dashboard', desc: 'Panel interactivo de análisis criminal provincial con mapas coropléticos, correlaciones y modelos predictivos.' }
+                        { name: 'SNIC Web Dashboard (MSEG)', desc: 'Panel interactivo de análisis criminal provincial con mapas coropléticos, correlaciones y modelos predictivos.' }
                     ]
                 }
             ]
@@ -308,7 +308,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
         ],
         secondaryProjects: [
             {
-                title: "Azure SQL Version Control & GitOps",
+                title: "Azure SQL Version Control & GitOps (BeOn)",
                 description: "Solución automatizada de base de datos como código mediante GitHub Actions y scripts PowerShell (SMO/T-SQL) para el respaldo de esquemas DDL e inmutabilidad de logs bajo estándares ISO 27001.",
                 image: "/images/projects/gitops-azure.png",
                 alt: "Versionado de esquemas Azure SQL y Database-as-Code con GitHub Actions",
@@ -320,7 +320,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 video: "/videos/gitops-database.mp4"
             },
             {
-                title: "SNIC Análisis Criminal",
+                title: "SNIC Análisis Criminal (MSEG)",
                 description: "Dashboard de inteligencia de seguridad con mapas coropléticos interactivos, análisis de correlación y modelos predictivos sobre datos oficiales del SNIC.",
                 image: "/images/projects/snic-dashboard.png",
                 alt: "Dashboard de análisis criminal con Next.js, Plotly, Service Workers y mapas coropléticos interactivos",
@@ -344,7 +344,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 metric: "Auth: OAuth 2.0"
             },
             {
-                title: "Reingeniería SQL & ISO 27001",
+                title: "Reingeniería SQL & ISO 27001 (BeOn)",
                 description: "Reestructuración de bases de datos relacionales bajo estándares de seguridad ISO 27001. Implementación de stored procedures T-SQL modulares, control transaccional de logs y queries de integridad mediante Checksums.",
                 image: "/images/projects/sql-reengineering.png",
                 alt: "Rediseño y reingeniería SQL Server bajo estándares de seguridad ISO 27001",
@@ -581,8 +581,8 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                         'Optimization of indexes and complex materialized views'
                     ],
                     projects: [
-                        { name: 'Azure SQL Version Control & GitOps', desc: 'Automatic backup of DDL schemas and log immutability via Actions and PowerShell SMO.' },
-                        { name: 'SQL Reengineering & ISO 27001', desc: 'Secure redesign of relational databases, modular stored procedures, and checksums.' }
+                        { name: 'Azure SQL Version Control & GitOps (BeOn)', desc: 'Automatic backup of DDL schemas and log immutability via Actions and PowerShell SMO.' },
+                        { name: 'SQL Reengineering & ISO 27001 (BeOn)', desc: 'Secure redesign of relational databases, modular stored procedures, and checksums.' }
                     ]
                 },
                 {
@@ -598,7 +598,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                     ],
                     projects: [
                         { name: 'ETL Observability: Audit & KPIs', desc: 'Automated reports of SLA compliance, success rates, and deviation analysis.' },
-                        { name: 'SNIC Web Dashboard', desc: 'Interactive provincial crime analysis panel with choropleth maps, correlations, and predictive models.' }
+                        { name: 'SNIC Web Dashboard (MSEG)', desc: 'Interactive provincial crime analysis panel with choropleth maps, correlations, and predictive models.' }
                     ]
                 }
             ]
@@ -660,7 +660,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
         ],
         secondaryProjects: [
             {
-                title: "Azure SQL Version Control & GitOps",
+                title: "Azure SQL Version Control & GitOps (BeOn)",
                 description: "Automated database-as-code solution using GitHub Actions and PowerShell scripts (SMO/T-SQL) for DDL schema backups and log immutability under ISO 27001 standards.",
                 image: "/images/projects/gitops-azure.png",
                 alt: "Azure SQL schema versioning and Database-as-Code with GitHub Actions",
@@ -672,7 +672,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 video: "/videos/gitops-database.mp4"
             },
             {
-                title: "SNIC Crime Analysis",
+                title: "SNIC Crime Analysis (MSEG)",
                 description: "Security intelligence dashboard with interactive choropleth maps, correlation analysis, and predictive models based on official SNIC data.",
                 image: "/images/projects/snic-dashboard.png",
                 alt: "Crime analysis dashboard with Next.js, Plotly, Service Workers, and interactive choropleth maps",
@@ -696,7 +696,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 metric: "Auth: OAuth 2.0"
             },
             {
-                title: "SQL Reengineering & ISO 27001",
+                title: "SQL Reengineering & ISO 27001 (BeOn)",
                 description: "Restructuring of relational databases under ISO 27001 security standards. Implementation of modular T-SQL stored procedures, transactional log control, and checksum integrity queries.",
                 image: "/images/projects/sql-reengineering.png",
                 alt: "SQL Server redesign and reengineering under ISO 27001 security standards",
