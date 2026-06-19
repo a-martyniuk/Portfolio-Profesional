@@ -77,6 +77,8 @@ export interface TranslationDict {
         fullSpecs: string;
         press: string;
         pressSubtitle: string;
+        pipelineSection: string;
+        pipelineSectionSubtitle: string;
     };
     metrics: {
         experience: string;
@@ -158,7 +160,9 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
             featuredOracle: "Destacado por Oracle",
             fullSpecs: "ESPECIFICACIONES COMPLETAS",
             press: "Apariciones en Prensa & Casos de Éxito",
-            pressSubtitle: "Menciones oficiales y publicaciones de ingeniería sobre arquitecturas de misión crítica implementadas."
+            pressSubtitle: "Menciones oficiales y publicaciones de ingeniería sobre arquitecturas de misión crítica implementadas.",
+            pipelineSection: "Arquitectura de Pipelines de Datos",
+            pipelineSectionSubtitle: "Monitoreo técnico de fases: haga clic en los casos de estudio aplicados para explorar su diseño."
         },
         metrics: {
             experience: "Años de Experiencia",
@@ -512,7 +516,9 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
             featuredOracle: "Featured by Oracle",
             fullSpecs: "FULL SPECIFICATIONS",
             press: "Featured Press & Success Stories",
-            pressSubtitle: "Official corporate press releases and engineering publications showcasing my database migrations and integrations."
+            pressSubtitle: "Official corporate press releases and engineering publications showcasing my database migrations and integrations.",
+            pipelineSection: "Data Pipeline Architecture",
+            pipelineSectionSubtitle: "Technical phase monitoring: click on the applied case studies to explore their design."
         },
         metrics: {
             experience: "Years of Experience",

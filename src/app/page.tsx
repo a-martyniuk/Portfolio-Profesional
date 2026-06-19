@@ -312,7 +312,6 @@ export default function Home() {
       <Navbar />
 
       <Hero />
-      <CriticalDashboard onProjectClick={setSelectedProject} />
 
       {/* Inspirational Quote */}
       <motion.section
@@ -367,6 +366,25 @@ export default function Home() {
           <div className="mt-16">
             <MetricsGrid metrics={metrics} />
           </div>
+        </div>
+      </motion.section>
+
+      {/* Pipeline Architecture Section */}
+      <motion.section
+        id="pipeline-architecture"
+        className="py-24 border-t border-border bg-muted/5"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <div className="container mx-auto px-4">
+          <SectionHeading
+            title={t.titles.pipelineSection}
+            subtitle={t.titles.pipelineSectionSubtitle}
+            centered
+          />
+          <CriticalDashboard onProjectClick={setSelectedProject} />
         </div>
       </motion.section>
 
