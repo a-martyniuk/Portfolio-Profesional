@@ -2,8 +2,9 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Database, Cpu, BarChart3, CheckCircle2, Server, HelpCircle, Activity } from 'lucide-react';
+import { Database, Cpu, BarChart3, CheckCircle2, Server, HelpCircle, Activity, ArrowUpRight } from 'lucide-react';
 import { useLanguage } from '@/components/providers/language-provider';
+import type { Project } from '@/lib/translations';
 
 const STAGE_ICONS: Record<string, React.ReactNode> = {
     ingestion: <Server className="w-5 h-5 text-cyan-400" />,
@@ -12,11 +13,24 @@ const STAGE_ICONS: Record<string, React.ReactNode> = {
     analytics: <BarChart3 className="w-5 h-5 text-cyan-400" />
 };
 
-export function CriticalDashboard() {
+interface CriticalDashboardProps {
+    onProjectClick?: (project: Project) => void;
+}
+
+export function CriticalDashboard({ onProjectClick }: CriticalDashboardProps) {
     const { t, language } = useLanguage();
     const [activeStageId, setActiveStageId] = useState<string>('ingestion');
 
     const activeStage = t.pipeline.stages.find(stage => stage.id === activeStageId) || t.pipeline.stages[0];
+    const allProjects = [...(t.mainProjects || []), ...(t.secondaryProjects || [])];
+
+    const handleProjectClick = (projName: string) => {
+        if (!onProjectClick) return;
+        const found = allProjects.find(p => p.title === projName);
+        if (found) {
+            onProjectClick(found);
+        }
+    };
 
     return (
         <div className="container mx-auto px-4 py-8 font-sans">
@@ -179,16 +193,36 @@ export function CriticalDashboard() {
                                     {t.pipeline.appliedProjects}
                                 </h4>
                                 <div className="space-y-3">
-                                    {activeStage.projects.map((proj) => (
-                                        <div key={proj.name} className="p-3 rounded border border-border/60 bg-background/50">
-                                            <span className="text-sm md:text-base font-bold text-foreground block mb-0.5">
-                                                {proj.name}
-                                            </span>
-                                            <span className="text-sm text-muted-foreground block leading-relaxed">
-                                                {proj.desc}
-                                            </span>
-                                        </div>
-                                    ))}
+                                    {activeStage.projects.map((proj) => {
+                                        const matchingProj = allProjects.find(p => p.title === proj.name);
+                                        const isClickable = !!matchingProj;
+
+                                        return (
+                                            <div 
+                                                key={proj.name} 
+                                                onClick={() => isClickable && handleProjectClick(proj.name)}
+                                                className={`p-3 rounded border transition-all relative group/proj ${
+                                                    isClickable 
+                                                    ? 'border-border/60 bg-background/50 hover:border-primary/50 hover:bg-primary/5 hover:shadow-[0_0_15px_rgba(6,182,212,0.15)] cursor-pointer'
+                                                    : 'border-border/40 bg-background/20 opacity-70'
+                                                }`}
+                                            >
+                                                <div className="flex items-start justify-between gap-2">
+                                                    <span className="text-sm md:text-base font-bold text-foreground block mb-0.5 group-hover/proj:text-primary transition-colors">
+                                                        {proj.name}
+                                                    </span>
+                                                    {isClickable && (
+                                                        <span className="text-[10px] font-mono font-bold text-primary opacity-60 group-hover/proj:opacity-100 transition-opacity flex items-center gap-0.5 shrink-0 uppercase tracking-widest mt-0.5">
+                                                            {language === 'es' ? "Caso" : "Case"} <ArrowUpRight className="w-3.5 h-3.5" />
+                                                        </span>
+                                                    )}
+                                                </div>
+                                                <span className="text-sm text-muted-foreground block leading-relaxed">
+                                                    {proj.desc}
+                                                </span>
+                                            </div>
+                                        );
+                                    })}
                                 </div>
                             </div>
                         </div>

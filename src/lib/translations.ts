@@ -197,8 +197,9 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                         'Validación automática de consistencia e integridad (Gap Analysis)'
                     ],
                     projects: [
-                        { name: 'Digital Shelf & Sell-Out Seguros (BeOn)', desc: 'Descarga en streaming de datos comerciales y EANs mediante APIs de marketplaces.' },
-                        { name: 'PepsiCo: Ingestor Multimarketplace (BeOn)', desc: 'Scrapers configurables para iFood BR, Rappi y DiDi Food con rotación de proxies.' }
+                        { name: 'Digital Sales Tracking: Pipelines de Sell-Out (BeOn)', desc: 'Descarga en streaming de datos comerciales y EANs mediante APIs de marketplaces.' },
+                        { name: 'PepsiCo: Ingestor Multimarketplace (BeOn)', desc: 'Scrapers configurables para iFood BR, Rappi y DiDi Food con rotación de proxies.' },
+                        { name: 'Brand Protection & Compliance (BeOn)', desc: 'Auditoría automatizada en MercadoLibre y NLP para Nutricia Bagó.' }
                     ]
                 },
                 {
@@ -214,7 +215,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                     ],
                     projects: [
                         { name: 'Omnichannel Analytics (BeOn)', desc: 'Refactorización y unificación de consultas con procesos idempotentes de backfill.' },
-                        { name: 'Modelo Analítico (Laboratorios Bagó)', desc: 'Orquestación de flujos globales con ODI y consolidación de inventarios en tiempo real.' }
+                        { name: 'Modelo Analítico Corporativo (Laboratorios Bagó)', desc: 'Orquestación de flujos globales con ODI y consolidación de inventarios en tiempo real.' }
                     ]
                 },
                 {
@@ -245,8 +246,9 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                         'Análisis de desvíos y KPIs del scheduler (ETL Observability)'
                     ],
                     projects: [
-                        { name: 'ETL Observability: Auditoría & KPIs (BeOn)', desc: 'Reportes automatizados de cumplimiento de SLAs, tasas de éxito y análisis de desvíos.' },
-                        { name: 'SNIC Web Dashboard (MSEG)', desc: 'Panel interactivo de análisis criminal provincial con mapas coropléticos, correlaciones y modelos predictivos.' }
+                        { name: 'ETL Observability: Auditoría & Monitor de KPIs (BeOn)', desc: 'Reportes automatizados de cumplimiento de SLAs, tasas de éxito y análisis de desvíos.' },
+                        { name: 'Plataforma GIS de Seguridad Pública (Ministerio de Seguridad)', desc: 'Base de datos centralizada de delincuencia y patrullaje para asignación de recursos.' },
+                        { name: 'SNIC: Dashboard de Inteligencia & PWA', desc: 'Panel interactivo Next.js/Plotly con mapas coropléticos y soporte offline PWA.' }
                     ]
                 }
             ]
@@ -274,6 +276,17 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 metric: "Evasión: Proxy Rotativo"
             },
             {
+                title: "Brand Protection & Compliance (BeOn)",
+                description: "Plataforma de auditoría automatizada en MercadoLibre para Nutricia Bagó. Identifica desvíos de precios (MAP), fraude de volumen y reventa no autorizada de donaciones mediante NLP y Playwright.",
+                image: "/images/projects/brand-protection.png",
+                alt: "Dashboard de Brand Protection para Nutricia Bagó con Supabase y React",
+                tags: ["Playwright", "Supabase", "React", "Fuzzy Matching", "NLP Regex", "OAuth 2.0"],
+                details: "Plataforma de inteligencia de marca nacida de la necesidad de Nutricia Bagó de auditar MercadoLibre. Controla si sus productos (Nutrilon, Vital, Fortini) son comercializados por proveedores autorizados, si son vendedores habilitados, detecta falsificaciones, desvíos de precio mínimo (MAP) y la reventa no autorizada de productos donados a ONGs. Utiliza un motor de coincidencia difusa (Fuzzy Matching) para relacionar publicaciones informales con el catálogo maestro 'BPP master data skus', y análisis sintáctico por expresiones regulares con corrección de densidad física para extraer cantidades reales y contenidos netos (gramos/mililitros).",
+                architecture: ["Catálogo Maestro Excel (BPP SKU Ingest)", "Scraper Híbrido (Meli API + Playwright Stealth)", "Identificador Difuso de SKUs (Fuzzy Matching)", "Validador Volumétrico y Coeficiente de Densidad", "Clasificador BPP de Infracciones (Precios/Fraude)"],
+                github: "https://github.com/a-martyniuk/brand-protection-poc",
+                metric: "Precisión: 98.4% Clasificación"
+            },
+            {
                 title: "ETL Observability: Auditoría & Monitor de KPIs (BeOn)",
                 description: "Solución de observabilidad de procesos críticos corporativos. Audita la ejecución diaria, calcula tasas de éxito, mide SLA y detecta desvíos de calendarización.",
                 tags: ["Python", "PowerShell", "Stored Procedures", "ETL Logs"],
@@ -296,7 +309,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 metric: "Productividad: +20%"
             },
             {
-                title: "Infraestructura de Estado (Ministerio de Seguridad)",
+                title: "Plataforma GIS de Seguridad Pública (Ministerio de Seguridad)",
                 description: "Plataforma provincial de análisis criminal utilizada por fuerzas de seguridad para asignación de recursos, detección de hotspots y toma de decisiones tácticas en tiempo real.",
                 tags: ["PostgreSQL", "ArcGIS", "Python", "Sistemas de Misión Crítica"],
                 image: "/images/projects/ministerio-heatmap.png",
@@ -320,7 +333,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 video: "/videos/gitops-database.mp4"
             },
             {
-                title: "SNIC Análisis Criminal (MSEG)",
+                title: "SNIC: Dashboard de Inteligencia & PWA",
                 description: "Dashboard de inteligencia de seguridad con mapas coropléticos interactivos, análisis de correlación y modelos predictivos sobre datos oficiales del SNIC.",
                 image: "/images/projects/snic-dashboard.png",
                 alt: "Dashboard de análisis criminal con Next.js, Plotly, Service Workers y mapas coropléticos interactivos",
@@ -368,17 +381,6 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 link: "/articles/caba-real-estate-scraper-postmortem",
                 linkType: "article",
                 metric: "Alertas: Telegram Bot"
-            },
-            {
-                title: "Brand Protection & Compliance (BeOn)",
-                description: "Plataforma de auditoría automatizada en MercadoLibre para Nutricia Bagó. Identifica desvíos de precios (MAP), fraude de volumen y reventa no autorizada de donaciones mediante NLP y Playwright.",
-                image: "/images/projects/brand-protection.png",
-                alt: "Dashboard de Brand Protection para Nutricia Bagó con Supabase y React",
-                tags: ["Playwright", "Supabase", "React", "Fuzzy Matching", "NLP Regex", "OAuth 2.0"],
-                details: "Plataforma de inteligencia de marca nacida de la necesidad de Nutricia Bagó de auditar MercadoLibre. Controla si sus productos (Nutrilon, Vital, Fortini) son comercializados por proveedores autorizados, si son vendedores habilitados, detecta falsificaciones, desvíos de precio mínimo (MAP) y la reventa no autorizada de productos donados a ONGs. Utiliza un motor de coincidencia difusa (Fuzzy Matching) para relacionar publicaciones informales con el catálogo maestro 'BPP master data skus', y análisis sintáctico por expresiones regulares con corrección de densidad física para extraer cantidades reales y contenidos netos (gramos/mililitros).",
-                architecture: ["Catálogo Maestro Excel (BPP SKU Ingest)", "Scraper Híbrido (Meli API + Playwright Stealth)", "Identificador Difuso de SKUs (Fuzzy Matching)", "Validador Volumétrico y Coeficiente de Densidad", "Clasificador BPP de Infracciones (Precios/Fraude)"],
-                github: "https://github.com/a-martyniuk/brand-protection-poc",
-                metric: "Precisión: 98.4% Clasificación"
             }
         ],
         publications: [
@@ -388,7 +390,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 date: "Noviembre 2023",
                 description: "Caso de éxito corporativo oficial publicado por Oracle que describe la migración integral de bases de datos analíticas heredadas a una arquitectura moderna en Snowflake y la orquestación global mediante Oracle Data Integrator (ODI).",
                 link: "https://blogs.oracle.com/oracle-latinoamerica/post/laboratorios-bag-elev-su-produccin-en-un-20-con-el-apoyo-de-la-nube-de-oracle",
-                image: "/images/projects/bago-dashboard.png",
+                image: "/images/projects/oracle_bago_publication.png",
                 tags: ["Oracle Cloud", "ODI 12c", "Snowflake", "Caso de Éxito"]
             }
         ],
@@ -549,8 +551,9 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                         'Automated consistency and integrity validation (Gap Analysis)'
                     ],
                     projects: [
-                        { name: 'Digital Shelf & Sell-Out Seguros (BeOn)', desc: 'Streaming download of commercial data and EANs using marketplace APIs.' },
-                        { name: 'PepsiCo: Multi-marketplace Ingestor (BeOn)', desc: 'Configurable scrapers for iFood BR, Rappi, and DiDi Food with proxy rotation.' }
+                        { name: 'Digital Sales Tracking: Sell-Out Pipelines (BeOn)', desc: 'Streaming download of commercial data and EANs using marketplace APIs.' },
+                        { name: 'PepsiCo: Multi-Marketplace Ingestor (BeOn)', desc: 'Configurable scrapers for iFood BR, Rappi, and DiDi Food with proxy rotation.' },
+                        { name: 'Brand Protection & Compliance (BeOn)', desc: 'Automated compliance auditing on MercadoLibre with NLP regex matching for Nutricia Bagó.' }
                     ]
                 },
                 {
@@ -566,7 +569,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                     ],
                     projects: [
                         { name: 'Omnichannel Analytics (BeOn)', desc: 'Refactoring and unification of queries with idempotent backfill processes.' },
-                        { name: 'Analytic Model (Laboratorios Bagó)', desc: 'Global flow orchestration with ODI and real-time inventory consolidation.' }
+                        { name: 'Corporate Analytical Model (Laboratorios Bagó)', desc: 'Global flow orchestration with ODI and real-time inventory consolidation.' }
                     ]
                 },
                 {
@@ -597,8 +600,9 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                         'Analysis of deviations and KPIs from the scheduler (ETL Observability)'
                     ],
                     projects: [
-                        { name: 'ETL Observability: Audit & KPIs (BeOn)', desc: 'Automated reports of SLA compliance, success rates, and deviation analysis.' },
-                        { name: 'SNIC Web Dashboard (MSEG)', desc: 'Interactive provincial crime analysis panel with choropleth maps, correlations, and predictive models.' }
+                        { name: 'ETL Observability: Audit & KPI Monitor (BeOn)', desc: 'Automated reports of SLA compliance, success rates, and deviation analysis.' },
+                        { name: 'Public Safety GIS Platform (Ministry of Security)', desc: 'Centralized crime database and geographic resource mapping for tactical deployment.' },
+                        { name: 'SNIC: Security Intelligence Dashboard & PWA', desc: 'Interactive Next.js/Plotly dashboard with choropleth maps and offline PWA support.' }
                     ]
                 }
             ]
@@ -626,6 +630,17 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 metric: "Evasion: Proxy Rotation"
             },
             {
+                title: "Brand Protection & Compliance (BeOn)",
+                description: "Automated compliance auditing platform on MercadoLibre for Nutricia Bagó. Identifies price deviations (MAP), packaging fraud, and unauthorized resale of NGO donations using NLP and Playwright.",
+                image: "/images/projects/brand-protection.png",
+                alt: "Brand Protection Dashboard for Nutricia Bagó with Supabase and React",
+                tags: ["Playwright", "Supabase", "React", "Fuzzy Matching", "NLP Regex", "OAuth 2.0"],
+                details: "Brand intelligence platform built to address Nutricia Bagó's need to audit MercadoLibre listings. It verifies whether their products (Nutrilon, Vital, Fortini) are sold by authorized channels, detects counterfeit products, identifies Minimum Advertised Price (MAP) violations, and flags unauthorized resale of products donated to NGOs. Built with a Fuzzy Matching algorithm to map informal listings to the 'BPP master data skus' master catalog, and uses natural language regex parsing with physical density coefficients to extract actual weight (grams/milliliters) and packaging quantity.",
+                architecture: ["Excel Master Catalog (BPP SKU Ingest)", "Hybrid Scraper (Meli API + Playwright Stealth)", "Fuzzy SKU Matcher (Fuzzy Matching)", "Volumetric & Density Validator (NLP Regex)", "BPP Violation Classifier (Price/Quantity)"],
+                github: "https://github.com/a-martyniuk/brand-protection-poc",
+                metric: "Precision: 98.4% Match Rate"
+            },
+            {
                 title: "ETL Observability: Audit & KPI Monitor (BeOn)",
                 description: "Observability solution for critical corporate processes. Audits daily execution, calculates success rates, measures SLA, and detects scheduling deviations.",
                 tags: ["Python", "PowerShell", "Stored Procedures", "ETL Logs"],
@@ -648,7 +663,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 metric: "Productivity: +20%"
             },
             {
-                title: "State Infrastructure (Ministry of Security)",
+                title: "Public Safety GIS Platform (Ministry of Security)",
                 description: "Provincial crime analysis platform utilized by security forces for resource assignment, hotspot detection, and real-time tactical decision making.",
                 tags: ["PostgreSQL", "ArcGIS", "Python", "Mission-Critical Systems"],
                 image: "/images/projects/ministerio-heatmap.png",
@@ -672,13 +687,13 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 video: "/videos/gitops-database.mp4"
             },
             {
-                title: "SNIC Crime Analysis (MSEG)",
+                title: "SNIC: Security Intelligence Dashboard & PWA",
                 description: "Security intelligence dashboard with interactive choropleth maps, correlation analysis, and predictive models based on official SNIC data.",
                 image: "/images/projects/snic-dashboard.png",
                 alt: "Crime analysis dashboard with Next.js, Plotly, Service Workers, and interactive choropleth maps",
                 tags: ["Next.js", "Plotly.js", "PWA", "TypeScript"],
                 details: "Modern and optimized web application (Next.js) for crime analysis over official SNIC data. Includes choropleth maps, crime correlation with socioeconomic indices (poverty and density), polynomial projections, and offline PWA support.",
-                architecture: ["SNIC Sources (Local CSV & GeoJSON)", "Next.js (App Router)", "Plotly.js (Visualization)", "Service Worker (Offline Caching)", "Vercel Cloud Deploy"],
+                architecture: ["SNIC Sources (Local CSV & GeoJSON)", "Next.js (App Router)", "Plotly.js (Visualisation)", "Service Worker (Offline Caching)", "Vercel Cloud Deploy"],
                 github: "https://github.com/a-martyniuk/snic-analisis-criminal",
                 link: "https://snic-web.vercel.app/",
                 linkType: "demo",
@@ -720,17 +735,6 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 link: "/articles/caba-real-estate-scraper-postmortem",
                 linkType: "article",
                 metric: "Alerts: Telegram Bot"
-            },
-            {
-                title: "Brand Protection & Compliance (BeOn)",
-                description: "Automated compliance auditing platform on MercadoLibre for Nutricia Bagó. Identifies price deviations (MAP), packaging fraud, and unauthorized resale of NGO donations using NLP and Playwright.",
-                image: "/images/projects/brand-protection.png",
-                alt: "Brand Protection Dashboard for Nutricia Bagó with Supabase and React",
-                tags: ["Playwright", "Supabase", "React", "Fuzzy Matching", "NLP Regex", "OAuth 2.0"],
-                details: "Brand intelligence platform built to address Nutricia Bagó's need to audit MercadoLibre listings. It verifies whether their products (Nutrilon, Vital, Fortini) are sold by authorized channels, detects counterfeit products, identifies Minimum Advertised Price (MAP) violations, and flags unauthorized resale of products donated to NGOs. Built with a Fuzzy Matching algorithm to map informal listings to the 'BPP master data skus' master catalog, and uses natural language regex parsing with physical density coefficients to extract actual weight (grams/milliliters) and packaging quantity.",
-                architecture: ["Excel Master Catalog (BPP SKU Ingest)", "Hybrid Scraper (Meli API + Playwright Stealth)", "Fuzzy SKU Matcher (Fuzzy Matching)", "Volumetric & Density Validator (NLP Regex)", "BPP Violation Classifier (Price/Quantity)"],
-                github: "https://github.com/a-martyniuk/brand-protection-poc",
-                metric: "Precision: 98.4% Match Rate"
             }
         ],
         publications: [
@@ -740,7 +744,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 date: "November 2023",
                 description: "Official corporate success story published by Oracle describing the full migration of legacy analytical databases to a modern architecture in Snowflake and global ETL orchestration using Oracle Data Integrator (ODI).",
                 link: "https://blogs.oracle.com/oracle-latinoamerica/post/laboratorios-bag-elev-su-produccin-en-un-20-con-el-apoyo-de-la-nube-de-oracle",
-                image: "/images/projects/bago-dashboard.png",
+                image: "/images/projects/oracle_bago_publication.png",
                 tags: ["Oracle Cloud", "ODI 12c", "Snowflake", "Success Story"]
             }
         ],

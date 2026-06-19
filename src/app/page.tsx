@@ -312,7 +312,7 @@ export default function Home() {
       <Navbar />
 
       <Hero />
-      <CriticalDashboard />
+      <CriticalDashboard onProjectClick={setSelectedProject} />
 
       {/* Inspirational Quote */}
       <motion.section
