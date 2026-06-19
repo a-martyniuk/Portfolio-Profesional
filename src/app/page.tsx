@@ -8,7 +8,7 @@ import { CriticalDashboard } from "@/components/critical-dashboard";
 import { ProjectCard } from "@/components/project-card";
 import { ProjectSlider } from "@/components/project-slider";
 import { PressCard } from "@/components/press-card";
-import { ScraperDataFlowDiagram, MeliAioDataFlowDiagram } from "@/components/project-diagrams";
+import { ScraperDataFlowDiagram, MeliAioDataFlowDiagram, BrandProtectionDataFlowDiagram } from "@/components/project-diagrams";
 import { SkillChart } from "@/components/skill-chart";
 import { MetricsGrid } from "@/components/animated-metrics";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -691,6 +691,12 @@ export default function Home() {
         {selectedProject && selectedProject.title.includes("MELI AIO") && (
           <div className="mt-12 pt-12 border-t border-border/10">
             <MeliAioDataFlowDiagram language={language} />
+          </div>
+        )}
+
+        {selectedProject && selectedProject.title.includes("Brand Protection") && (
+          <div className="mt-12 pt-12 border-t border-border/10">
+            <BrandProtectionDataFlowDiagram language={language} />
           </div>
         )}
       </Modal>

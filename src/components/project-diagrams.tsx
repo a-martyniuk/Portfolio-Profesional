@@ -423,6 +423,221 @@ export function MeliAioDataFlowDiagram({ language }: { language: 'es' | 'en' }) 
     );
 }
 
+export function BrandProtectionDataFlowDiagram({ language }: { language: 'es' | 'en' }) {
+    const [activeStep, setActiveStep] = useState(0);
+
+    const stepsEs: DFDStep[] = [
+        {
+            id: "ingesta",
+            title: "01. Catálogo Base",
+            icon: <Database className="w-5 h-5 text-cyan-400" />,
+            summary: "Ingesta y normalización de catálogos oficiales SKU e información maestra desde Excel (BPP master data skus.xlsx).",
+            rules: [
+                "Estructura maestra: Carga de marcas oficiales (Nutrilon, Vital, Fortini), EANs asociados, y contenido neto (gramos).",
+                "Políticas MAP: Definición de Precios Mínimos Sugeridos (MAP) para auditar desvíos comerciales.",
+                "Soporte de Canales: Registro de distribuidores y tiendas oficiales autorizadas para la venta.",
+                "Actualizaciones periódicas: Sincronización incremental hacia las tablas relacionales de Supabase."
+            ]
+        },
+        {
+            id: "descubrimiento",
+            title: "02. Descubrimiento",
+            icon: <Bot className="w-5 h-5 text-cyan-400" />,
+            summary: "Búsqueda híbrida de publicaciones combinando la API de MercadoLibre y Playwright Stealth.",
+            rules: [
+                "API de Búsqueda Rápida: Consulta masiva utilizando palabras clave de las marcas principales.",
+                "Evasión Playwright: Navegador simulado headless que recopila atributos profundos y descripciones sin disparar bloqueos de IP.",
+                "Tokens OAuth 2.0: Manejo del flujo oficial con rotación y refresco programado automático de tokens de acceso.",
+                "Guardado Incremental: Ingesta en lote de ítems encontrados en 'meli_listings' de Supabase."
+            ]
+        },
+        {
+            id: "asociación",
+            title: "03. Asociación SKU",
+            icon: <Cpu className="w-5 h-5 text-cyan-400" />,
+            summary: "Motor Fuzzy Logic que vincula publicaciones informales o mal nombradas con productos reales del catálogo.",
+            rules: [
+                "Fuzzy Matching: Cálculo de similitud mediante fuzz.token_set_ratio entre el título del listado y el nombre oficial.",
+                "Clasificación por Confianza: Asignación de Match Level (1: Exacto, 2: Alta similitud, 3: Coincidencia de palabra clave).",
+                "Detector de Ruido: Descarte absoluto e inmediato de categorías ajenas (libros de autores homónimos, consolas, juguetes).",
+                "Exclusión Estricta: Gateways basados en marcas que rechazan publicaciones ajenas al catálogo Nutricia Bagó."
+            ]
+        },
+        {
+            id: "normalización",
+            title: "04. Normalización",
+            icon: <RefreshCw className="w-5 h-5 text-cyan-400" />,
+            summary: "Extracción Regex sintáctica de unidades de empaque y volumen real a partir de títulos y descripciones.",
+            rules: [
+                "Volumetría por Regex: Extracción automática del peso unitario especificado (ej. '800g', '400g', 'grs', 'ml').",
+                "Multiplicadores de Pack: Identificación de patrones de cantidad (ej. 'Pack x6', 'Combo x2', '12 unidades') en títulos.",
+                "Coeficiente de Densidad: Multiplicación por densidad física para estandarizar gramos de fórmulas infantiles líquidas.",
+                "Fusión de Atributos: Cruce del peso total calculado contra los atributos estructurados obtenidos por Playwright."
+            ]
+        },
+        {
+            id: "auditoría",
+            title: "05. Auditoría BPP",
+            icon: <FileText className="w-5 h-5 text-cyan-400" />,
+            summary: "Detección de infracciones y preparación de evidencias estructuradas listas para el portal BPP de MercadoLibre.",
+            rules: [
+                "Política de Precios: Alertas instantáneas si el precio por unidad (total / qty) es inferior al listado MAP oficial.",
+                "Control de Canal (Gray Market): Detección de productos donados a ONGs, insumos de programas sociales o robados.",
+                "Integridad de Marca: Búsqueda de discrepancias entre la marca oficial y las propiedades declaradas en el listado.",
+                "Generación de Motivos BPP: Mapeo automático de violaciones a motivos oficiales (ej. Código 703: Precios, Código 704: Engaño)."
+            ]
+        }
+    ];
+
+    const stepsEn: DFDStep[] = [
+        {
+            id: "ingesta",
+            title: "01. Base Catalog",
+            icon: <Database className="w-5 h-5 text-cyan-400" />,
+            summary: "Ingestion and normalization of official SKU catalogs and master metadata from Excel (BPP master data skus.xlsx).",
+            rules: [
+                "Master structure: Imports official brands (Nutrilon, Vital, Fortini), associated EANs, and net weight specifications.",
+                "MAP Policies: Definition of Minimum Advertised Prices (MAP) to audit market pricing deviations.",
+                "Channel Registry: Database of distributors and official stores authorized to sell the brand.",
+                "Scheduled Sync: Incremental writing to relational Supabase tables."
+            ]
+        },
+        {
+            id: "descubrimiento",
+            title: "02. Discovery",
+            icon: <Bot className="w-5 h-5 text-cyan-400" />,
+            summary: "Hybrid search combining the MercadoLibre API and Playwright Stealth scrapers.",
+            rules: [
+                "Fast Search API: Mass indexing using keyword targets of primary brands.",
+                "Playwright Evasion: Simulates browser sessions in headless mode to collect deep description fields without triggering IP bans.",
+                "OAuth 2.0 Tokens: Integrates the platform's authentication flow with automatic token refreshing and rotation.",
+                "Incremental Storage: Bulk write operations inserting newly discovered listings into Supabase."
+            ]
+        },
+        {
+            id: "asociación",
+            title: "03. SKU Matching",
+            icon: <Cpu className="w-5 h-5 text-cyan-400" />,
+            summary: "Fuzzy Logic engine mapping informal or poorly written listings back to the official SKU catalog.",
+            rules: [
+                "Fuzzy Matching: Similarity ratio computation using fuzz.token_set_ratio between listing title and catalog name.",
+                "Confidence Classification: Classifies matches into Match Levels (1: Exact, 2: High similarity, 3: Keyword match).",
+                "Noise Filter: Absolute discard of irrelevant categories (books with homonym authors, consoles, toys).",
+                "Strict Exclusions: Gateways built on brand signatures to block non-Nutricia listings."
+            ]
+        },
+        {
+            id: "normalización",
+            title: "04. Normalization",
+            icon: <RefreshCw className="w-5 h-5 text-cyan-400" />,
+            summary: "Regex-based semantic extraction of packing units and actual weight from titles and descriptions.",
+            rules: [
+                "Regex Volumetrics: Automatic parsing of specified weights (e.g. '800g', '400g', 'grs', 'ml').",
+                "Pack Multipliers: Scans title strings for quantity markers (e.g. 'Pack x6', 'Combo x2', '12 units').",
+                "Density Coefficient: Applies density multipliers to compute dry weight equivalent of liquid infant formulas.",
+                "Attribute Fusion: Cross-references calculated weight against structural attributes extracted by Playwright."
+            ]
+        },
+        {
+            id: "auditoría",
+            title: "05. BPP Audit",
+            icon: <FileText className="w-5 h-5 text-cyan-400" />,
+            summary: "Violation detection and evidence generation ready for the MercadoLibre Brand Protection Program.",
+            rules: [
+                "Pricing Audits: Triggers alert if unit price (total price / quantity) falls below the official MAP threshold.",
+                "Channel Controls (Gray Market): Flags products from social welfare programs, donations to NGOs, or stolen goods.",
+                "Brand Integrity: Validates brand mismatches between official names and listing metadata.",
+                "BPP Reason Code Mapping: Maps violations to official reason codes (e.g., Code 703: Pricing, Code 704: Deceptive quantity)."
+            ]
+        }
+    ];
+
+    const steps = language === 'es' ? stepsEs : stepsEn;
+    const activeData = steps[activeStep];
+
+    return (
+        <div className="space-y-6 font-sans">
+            <div className="flex flex-col gap-2">
+                <h4 className="text-sm font-bold uppercase tracking-widest text-primary">
+                    {language === 'es' ? "Diagrama de Flujo de Datos (DFD) - Brand Protection Engine" : "Data Flow Diagram (DFD) - Brand Protection Engine"}
+                </h4>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                    {language === 'es' 
+                        ? "Haz clic en cada fase para ver las reglas de auditoría y lógica de procesamiento de la PoC."
+                        : "Click on each phase to reveal the audit rules and processing logic of the PoC."
+                    }
+                </p>
+            </div>
+
+            <div className="flex flex-col lg:flex-row items-center justify-between gap-4 p-4 rounded border border-border/40 bg-muted/10">
+                {steps.map((step, index) => {
+                    const isActive = index === activeStep;
+                    return (
+                        <React.Fragment key={step.id}>
+                            <button
+                                onClick={() => setActiveStep(index)}
+                                className={`flex-1 w-full lg:w-auto p-4 rounded border text-left transition-all relative ${
+                                    isActive
+                                        ? 'bg-primary/10 border-primary text-primary shadow-[0_0_15px_rgba(6,182,212,0.4)]'
+                                        : 'bg-background border-border hover:border-primary/40 text-foreground hover:bg-muted/10'
+                                }`}
+                            >
+                                <div className="flex items-center gap-3">
+                                    <div className={`p-2 rounded border transition-colors ${isActive ? 'bg-primary/20 border-primary/40' : 'bg-muted/40 border-border'}`}>
+                                        {step.icon}
+                                    </div>
+                                    <div>
+                                        <h5 className="font-heading font-bold text-xs uppercase tracking-wider">{step.title}</h5>
+                                        <p className="text-[10px] text-muted-foreground truncate max-w-[150px]">{step.id.toUpperCase()}</p>
+                                    </div>
+                                </div>
+                            </button>
+                            {index < steps.length - 1 && (
+                                <div className="text-muted-foreground/30 flex items-center justify-center shrink-0">
+                                    <span className="hidden lg:block"><ArrowRight size={16} /></span>
+                                    <span className="lg:hidden"><ArrowDown size={16} /></span>
+                                </div>
+                            )}
+                        </React.Fragment>
+                    );
+                })}
+            </div>
+
+            <div className="p-6 rounded border border-border/50 bg-accent/20 backdrop-blur-md relative overflow-hidden transition-all duration-300">
+                <div className="absolute top-[-50%] left-[-20%] h-full w-full bg-primary/5 blur-[50px] -z-10" />
+                <div className="flex items-start gap-4">
+                    <div className="p-2 rounded bg-primary/10 text-primary border border-primary/20 shrink-0">
+                        {activeData.icon}
+                    </div>
+                    <div className="space-y-4 flex-1">
+                        <div>
+                            <h5 className="font-heading font-extrabold text-sm text-foreground uppercase tracking-wider">
+                                {activeData.title}
+                            </h5>
+                            <p className="text-xs text-muted-foreground leading-relaxed mt-1">
+                                {activeData.summary}
+                            </p>
+                        </div>
+                        <div className="space-y-2 border-t border-border/10 pt-4">
+                            <h6 className="text-[10px] font-mono font-bold tracking-widest text-primary uppercase">
+                                {language === 'es' ? "// REGLAS DE NEGOCIO Y PROCESAMIENTO" : "// BUSINESS LOGIC & PROCESSING"}
+                            </h6>
+                            <ul className="space-y-2">
+                                {activeData.rules.map((rule, i) => (
+                                    <li key={i} className="text-xs text-muted-foreground leading-relaxed flex gap-2">
+                                        <span className="text-primary select-none mt-0.5">▸</span>
+                                        <span>{rule}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
 // Add fake components for dynamic import compatibility if needed, or simple custom icons
 function Globe(props: React.SVGProps<SVGSVGElement>) {
     return (

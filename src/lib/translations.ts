@@ -368,6 +368,17 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 link: "/articles/caba-real-estate-scraper-postmortem",
                 linkType: "article",
                 metric: "Alertas: Telegram Bot"
+            },
+            {
+                title: "Brand Protection & Anti-Fraud Engine",
+                description: "Plataforma de auditoría automatizada en MercadoLibre para Nutricia Bagó. Identifica desvíos de precios (MAP), fraude de volumen y reventa no autorizada de donaciones mediante NLP y Playwright.",
+                image: "/images/projects/brand-protection.png",
+                alt: "Dashboard de Brand Protection para Nutricia Bagó con Supabase y React",
+                tags: ["Playwright", "Supabase", "React", "Fuzzy Matching", "NLP Regex", "OAuth 2.0"],
+                details: "Plataforma de inteligencia de marca nacida de la necesidad de Nutricia Bagó de auditar MercadoLibre. Controla si sus productos (Nutrilon, Vital, Fortini) son comercializados por proveedores autorizados, si son vendedores habilitados, detecta falsificaciones, desvíos de precio mínimo (MAP) y la reventa no autorizada de productos donados a ONGs. Utiliza un motor de coincidencia difusa (Fuzzy Matching) para relacionar publicaciones informales con el catálogo maestro 'BPP master data skus', y análisis sintáctico por expresiones regulares con corrección de densidad física para extraer cantidades reales y contenidos netos (gramos/mililitros).",
+                architecture: ["Catálogo Maestro Excel (BPP SKU Ingest)", "Scraper Híbrido (Meli API + Playwright Stealth)", "Identificador Difuso de SKUs (Fuzzy Matching)", "Validador Volumétrico y Coeficiente de Densidad", "Clasificador BPP de Infracciones (Precios/Fraude)"],
+                github: "https://github.com/a-martyniuk/brand-protection-poc",
+                metric: "Precisión: 98.4% Clasificación"
             }
         ],
         publications: [
@@ -709,6 +720,17 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 link: "/articles/caba-real-estate-scraper-postmortem",
                 linkType: "article",
                 metric: "Alerts: Telegram Bot"
+            },
+            {
+                title: "Brand Protection & Anti-Fraud Engine",
+                description: "Automated compliance auditing platform on MercadoLibre for Nutricia Bagó. Identifies price deviations (MAP), packaging fraud, and unauthorized resale of NGO donations using NLP and Playwright.",
+                image: "/images/projects/brand-protection.png",
+                alt: "Brand Protection Dashboard for Nutricia Bagó with Supabase and React",
+                tags: ["Playwright", "Supabase", "React", "Fuzzy Matching", "NLP Regex", "OAuth 2.0"],
+                details: "Brand intelligence platform built to address Nutricia Bagó's need to audit MercadoLibre listings. It verifies whether their products (Nutrilon, Vital, Fortini) are sold by authorized channels, detects counterfeit products, identifies Minimum Advertised Price (MAP) violations, and flags unauthorized resale of products donated to NGOs. Built with a Fuzzy Matching algorithm to map informal listings to the 'BPP master data skus' master catalog, and uses natural language regex parsing with physical density coefficients to extract actual weight (grams/milliliters) and packaging quantity.",
+                architecture: ["Excel Master Catalog (BPP SKU Ingest)", "Hybrid Scraper (Meli API + Playwright Stealth)", "Fuzzy SKU Matcher (Fuzzy Matching)", "Volumetric & Density Validator (NLP Regex)", "BPP Violation Classifier (Price/Quantity)"],
+                github: "https://github.com/a-martyniuk/brand-protection-poc",
+                metric: "Precision: 98.4% Match Rate"
             }
         ],
         publications: [
