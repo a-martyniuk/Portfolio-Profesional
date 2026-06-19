@@ -370,7 +370,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 metric: "Alertas: Telegram Bot"
             },
             {
-                title: "Brand Protection & Anti-Fraud Engine",
+                title: "Brand Protection & Compliance (BeOn)",
                 description: "Plataforma de auditoría automatizada en MercadoLibre para Nutricia Bagó. Identifica desvíos de precios (MAP), fraude de volumen y reventa no autorizada de donaciones mediante NLP y Playwright.",
                 image: "/images/projects/brand-protection.png",
                 alt: "Dashboard de Brand Protection para Nutricia Bagó con Supabase y React",
@@ -722,7 +722,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 metric: "Alerts: Telegram Bot"
             },
             {
-                title: "Brand Protection & Anti-Fraud Engine",
+                title: "Brand Protection & Compliance (BeOn)",
                 description: "Automated compliance auditing platform on MercadoLibre for Nutricia Bagó. Identifies price deviations (MAP), packaging fraud, and unauthorized resale of NGO donations using NLP and Playwright.",
                 image: "/images/projects/brand-protection.png",
                 alt: "Brand Protection Dashboard for Nutricia Bagó with Supabase and React",
