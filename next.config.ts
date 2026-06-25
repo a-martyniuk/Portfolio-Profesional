@@ -26,6 +26,18 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async rewrites() {
+    return [
+      {
+        source: "/cordoba5579",
+        destination: "https://cordoba5579.vercel.app/cordoba5579",
+      },
+      {
+        source: "/cordoba5579/:path*",
+        destination: "https://cordoba5579.vercel.app/cordoba5579/:path*",
+      },
+    ];
+  },
 };
 
 export default nextConfig;
