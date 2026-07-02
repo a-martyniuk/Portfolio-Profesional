@@ -392,7 +392,7 @@ export default function Home() {
             ].map(filter => (
               <button
                 key={filter.id}
-                onClick={() => setActiveFilter(filter.id as any)}
+                onClick={() => setActiveFilter(filter.id as 'all' | 'cloud' | 'scraping' | 'analytics')}
                 className={`px-4 py-2 rounded border transition-all cursor-pointer ${
                   activeFilter === filter.id
                     ? 'bg-primary border-primary text-primary-foreground shadow-[0_0_15px_rgba(6,182,212,0.4)]'

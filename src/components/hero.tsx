@@ -40,7 +40,7 @@ export function Hero() {
                 const city = parts[parts.length - 1].replace('_', ' ').slice(0, 3).toUpperCase();
                 setTimezone(`${region}/${city}`);
             }
-        } catch (e) {
+        } catch {
             // fallback
         }
 
