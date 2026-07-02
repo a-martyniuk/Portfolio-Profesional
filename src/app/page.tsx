@@ -253,6 +253,7 @@ function DataFlowDiagram({ language }: { language: 'es' | 'en' }) {
 export default function Home() {
   const { t, language } = useLanguage();
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const allProjects = [...(t.mainProjects || []), ...(t.secondaryProjects || [])];
 
   const [copied, setCopied] = useState(false);
 
@@ -348,22 +349,32 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <SectionHeading
             title={t.titles.projects}
-            subtitle={
-              <span>
-                {t.titles.projectsSubtitle}
-                <br />
-                <span className="inline-block mt-2 py-1 px-3 rounded-md bg-red-500/10 text-red-500 text-xs font-bold uppercase tracking-wider border border-red-500/20">
-                  {t.titles.featuredOracle}
-                </span>
-              </span>
-            }
+            subtitle={t.titles.projectsSubtitle}
             centered
           />
-          {/* Project Slider */}
-          <ProjectSlider projects={t.mainProjects} onProjectClick={setSelectedProject} />
+          
+          {/* Unified Project Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {allProjects.map((proj) => (
+              <ProjectCard
+                key={proj.title}
+                title={proj.title}
+                description={proj.description}
+                image={proj.image}
+                alt={proj.alt}
+                tags={proj.tags}
+                github={proj.github}
+                link={proj.link}
+                linkType={proj.linkType}
+                metric={proj.metric}
+                video={proj.video}
+                onClick={() => setSelectedProject(proj)}
+              />
+            ))}
+          </div>
 
           {/* Metrics Grid */}
-          <div className="mt-16">
+          <div className="mt-20">
             <MetricsGrid metrics={metrics} />
           </div>
         </div>
@@ -458,43 +469,7 @@ export default function Home() {
         </div>
       </motion.section>
 
-      {/* Curated Code & Tools Section */}
-      <motion.section
-        id="curated-code"
-        className="py-24 border-y border-border"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      >
-        <div className="container mx-auto px-4">
-          <SectionHeading
-            title={t.titles.curatedCode}
-            subtitle={t.titles.curatedCodeSubtitle}
-            centered
-          />
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {t.secondaryProjects.map((proj) => (
-              <ProjectCard
-                key={proj.title}
-                title={proj.title}
-                description={proj.description}
-                image={proj.image}
-                alt={proj.alt}
-                tags={proj.tags}
-                github={proj.github}
-                link={proj.link}
-                linkType={proj.linkType}
-                metric={proj.metric}
-                video={proj.video}
-                onClick={() => setSelectedProject(proj)}
-              />
-            ))}
 
-          </div>
-
-        </div>
-      </motion.section>
 
       {/* Press & Publications Section */}
       <motion.section
@@ -605,22 +580,48 @@ export default function Home() {
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           <div className="space-y-6">
-            <div>
-              <h4 className="text-sm font-bold uppercase tracking-widest text-primary mb-4">{t.pipeline.studyCase}</h4>
-              <p className="text-muted-foreground leading-relaxed">
-                {selectedProject?.details}
-              </p>
+            {/* Storytelling pillars (HR-friendly) */}
+            <div className="space-y-4">
+              <div className="p-4 rounded-xl border border-red-500/10 bg-red-500/5">
+                <h5 className="text-xs font-bold font-mono uppercase tracking-wider text-red-500 mb-1.5 flex items-center gap-1.5">
+                  <span className="h-1.5 w-1.5 rounded-full bg-red-500" />
+                  {language === 'es' ? '🔴 El Reto / Problema' : '🔴 The Challenge'}
+                </h5>
+                <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">
+                  {selectedProject?.challenge}
+                </p>
+              </div>
+
+              <div className="p-4 rounded-xl border border-cyan-500/10 bg-cyan-500/5">
+                <h5 className="text-xs font-bold font-mono uppercase tracking-wider text-cyan-400 mb-1.5 flex items-center gap-1.5">
+                  <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
+                  {language === 'es' ? '⚡ La Solución' : '⚡ The Solution'}
+                </h5>
+                <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">
+                  {selectedProject?.solution}
+                </p>
+              </div>
+
+              <div className="p-4 rounded-xl border border-emerald-500/10 bg-emerald-500/5">
+                <h5 className="text-xs font-bold font-mono uppercase tracking-wider text-emerald-400 mb-1.5 flex items-center gap-1.5">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  {language === 'es' ? '📈 El Impacto' : '📈 The Impact'}
+                </h5>
+                <p className="text-xs md:text-sm text-muted-foreground leading-relaxed font-medium text-foreground">
+                  {selectedProject?.impact}
+                </p>
+              </div>
             </div>
 
             <div className="pt-6 border-t border-border/10">
-              <h4 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-6">{t.pipeline.techArchitecture}</h4>
+              <h4 className="text-xs md:text-sm font-bold uppercase tracking-widest text-muted-foreground mb-6">{t.pipeline.techArchitecture}</h4>
               <div className="space-y-4">
                 {selectedProject?.architecture?.map((step: string, i: number) => (
                   <div key={step} className="flex items-center gap-4">
                     <div className="h-8 w-8 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-[10px] font-bold text-primary shrink-0">
                       0{i + 1}
                     </div>
-                    <div className="flex-1 text-sm font-medium">{step}</div>
+                    <div className="flex-1 text-xs md:text-sm font-medium">{step}</div>
                     {selectedProject.architecture && i < selectedProject.architecture.length - 1 && (
                       <div className="hidden md:block text-muted-foreground/30"><ArrowRight size={14} /></div>
                     )}

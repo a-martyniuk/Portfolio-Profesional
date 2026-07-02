@@ -4,7 +4,9 @@ export interface Project {
     tags: string[];
     image: string;
     alt?: string;
-    details: string;
+    challenge: string;
+    solution: string;
+    impact: string;
     architecture: string[];
     link?: string;
     linkType?: 'demo' | 'article';
