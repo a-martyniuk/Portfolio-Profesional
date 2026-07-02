@@ -251,7 +251,25 @@ function DataFlowDiagram({ language }: { language: 'es' | 'en' }) {
 export default function Home() {
   const { t, language } = useLanguage();
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [activeFilter, setActiveFilter] = useState<'all' | 'cloud' | 'scraping' | 'analytics'>('all');
+  
   const allProjects = [...(t.mainProjects || []), ...(t.secondaryProjects || [])];
+
+  const getProjectCategory = (projTitle: string): 'cloud' | 'scraping' | 'analytics' => {
+    const title = projTitle.toLowerCase();
+    if (title.includes('sell-out') || title.includes('baf') || title.includes('bagó') || title.includes('bago') || title.includes('gitops') || title.includes('version control')) {
+      return 'cloud';
+    }
+    if (title.includes('pepsico') || title.includes('brand protection') || title.includes('scraper')) {
+      return 'scraping';
+    }
+    return 'analytics';
+  };
+
+  const filteredProjects = allProjects.filter(proj => {
+    if (activeFilter === 'all') return true;
+    return getProjectCategory(proj.title) === activeFilter;
+  });
 
   const [copied, setCopied] = useState(false);
 
@@ -312,28 +330,7 @@ export default function Home() {
 
       <Hero />
 
-      {/* Inspirational Quote */}
-      <motion.section
-        className="py-16 pb-12"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-      >
-        <div className="container mx-auto px-4">
-          <blockquote className="max-w-4xl mx-auto text-center space-y-6">
-            <p className="text-lg md:text-xl italic text-muted-foreground/80 leading-relaxed">
-              &ldquo;{t.quote.text}&rdquo;
-            </p>
-            <footer className="text-sm text-muted-foreground/60 uppercase tracking-widest" style={{ fontVariant: 'small-caps' }}>
-              — {t.quote.author}
-            </footer>
-            <p className="text-lg md:text-xl text-primary font-semibold pt-4">
-              {t.quote.subtext}
-            </p>
-          </blockquote>
-        </div>
-      </motion.section>
+
 
       {/* Projects Section */}
       <motion.section
@@ -351,9 +348,31 @@ export default function Home() {
             centered
           />
           
+          {/* Category Filters */}
+          <div className="flex flex-wrap justify-center gap-3 mb-12 font-mono text-xs">
+            {[
+              { id: 'all', label: language === 'es' ? 'TODOS' : 'ALL' },
+              { id: 'cloud', label: language === 'es' ? 'CLOUD & BIG DATA' : 'CLOUD & BIG DATA' },
+              { id: 'scraping', label: language === 'es' ? 'SCRAPING & BOTS' : 'SCRAPING & BOTS' },
+              { id: 'analytics', label: language === 'es' ? 'ANALYTICS & SQL' : 'ANALYTICS & SQL' }
+            ].map(filter => (
+              <button
+                key={filter.id}
+                onClick={() => setActiveFilter(filter.id as any)}
+                className={`px-4 py-2 rounded border transition-all cursor-pointer ${
+                  activeFilter === filter.id
+                    ? 'bg-primary border-primary text-primary-foreground shadow-[0_0_15px_rgba(6,182,212,0.4)]'
+                    : 'bg-background border-border hover:border-primary/40 text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                {filter.label}
+              </button>
+            ))}
+          </div>
+          
           {/* Unified Project Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {allProjects.map((proj) => (
+            {filteredProjects.map((proj) => (
               <ProjectCard
                 key={proj.title}
                 title={proj.title}
@@ -476,6 +495,29 @@ export default function Home() {
               />
             ))}
           </div>
+        </div>
+      </motion.section>
+
+      {/* Inspirational Quote */}
+      <motion.section
+        className="py-24 border-t border-border"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <div className="container mx-auto px-4">
+          <blockquote className="max-w-4xl mx-auto text-center space-y-6">
+            <p className="text-lg md:text-xl italic text-muted-foreground/80 leading-relaxed">
+              &ldquo;{t.quote.text}&rdquo;
+            </p>
+            <footer className="text-sm text-muted-foreground/60 uppercase tracking-widest" style={{ fontVariant: 'small-caps' }}>
+              — {t.quote.author}
+            </footer>
+            <p className="text-lg md:text-xl text-primary font-semibold pt-4">
+              {t.quote.subtext}
+            </p>
+          </blockquote>
         </div>
       </motion.section>
 

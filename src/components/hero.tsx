@@ -28,6 +28,46 @@ const TECH_BADGES = [
 export function Hero() {
     const { trackCTAClick } = useAnalytics();
     const { t } = useLanguage();
+    const [ping, setPing] = React.useState<number>(14);
+    const [timezone, setTimezone] = React.useState<string>('AR/BUE');
+
+    React.useEffect(() => {
+        try {
+            const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            if (tz) {
+                const parts = tz.split('/');
+                const region = parts[0] === 'America' ? 'AMER' : parts[0] === 'Europe' ? 'EUR' : parts[0].toUpperCase();
+                const city = parts[parts.length - 1].replace('_', ' ').slice(0, 3).toUpperCase();
+                setTimezone(`${region}/${city}`);
+            }
+        } catch (e) {
+            // fallback
+        }
+
+        const measurePing = () => {
+            const start = performance.now();
+            fetch('/icon.png', { method: 'HEAD', cache: 'no-store' })
+                .then(() => {
+                    const end = performance.now();
+                    const duration = Math.round(end - start);
+                    setPing(duration > 0 ? Math.min(duration, 99) : 12);
+                })
+                .catch(() => {
+                    setPing(Math.floor(Math.random() * 8) + 11);
+                });
+        };
+
+        measurePing();
+        const interval = setInterval(() => {
+            setPing(p => {
+                const shift = Math.random() > 0.5 ? 1 : -1;
+                const newPing = p + shift;
+                return newPing > 8 && newPing < 40 ? newPing : p;
+            });
+        }, 3000);
+
+        return () => clearInterval(interval);
+    }, []);
 
     return (
         <section id="hero" className="relative pt-28 pb-16 overflow-hidden">
@@ -57,9 +97,9 @@ export function Hero() {
                         <span className="font-bold text-foreground">{t.hero.status}</span>
                     </div>
                     <div className="hidden sm:flex items-center gap-4 divide-x divide-border">
-                        <span className="pl-4">PING: 14ms</span>
+                        <span className="pl-4">PING: {ping}ms</span>
                         <span className="pl-4">SEC_LEVEL: ISO_27001</span>
-                        <span className="pl-4">LOC: AR/BUE</span>
+                        <span className="pl-4">LOC: {timezone}</span>
                     </div>
                     <div className="flex items-center gap-1.5 text-primary">
                         <Activity className="w-3.5 h-3.5 animate-pulse" />

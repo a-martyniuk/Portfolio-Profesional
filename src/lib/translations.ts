@@ -437,13 +437,13 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 ]
             },
             {
-                title: "Ingeniero en Automatización Domótica",
+                title: "Ingeniero de Sistemas IoT (Automatización & Smart Grids)",
                 company: "MJ Instalaciones (Emprendimiento familiar)",
                 location: "Buenos Aires, Argentina",
                 period: "Jul 2024 – Actualidad",
                 description: [
-                    "Diseño e implementación de sistemas domóticos e IoT (iluminación, climatización y seguridad) optimizando la eficiencia energética.",
-                    "Configuración de infraestructuras de red WiFi Mesh y gestión de integración tecnológica de dispositivos inteligentes en propiedades."
+                    "Diseño y desarrollo de redes de automatización IoT y smart grids, optimizando la ingesta de telemetría y eficiencia energética de dispositivos distribuidos.",
+                    "Implementación de micro-pipelines para el procesamiento en tiempo real de métricas de consumo de energía, seguridad y redes WiFi Mesh."
                 ]
             },
             {
@@ -815,13 +815,13 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 ]
             },
             {
-                title: "Home Automation Engineer",
+                title: "IoT Systems Engineer (Smart Grids & Automation)",
                 company: "MJ Instalaciones (Family Business)",
                 location: "Buenos Aires, Argentina",
                 period: "Jul 2024 – Present",
                 description: [
-                    "Designed and implemented IoT and smart home systems (lighting, HVAC, security), optimizing energy efficiency.",
-                    "Configured WiFi Mesh network infrastructures and managed technological integration of smart devices across properties."
+                    "Designed and developed smart grids and IoT automation networks, optimizing telemetry data ingestion and device energy efficiency.",
+                    "Implemented micro-pipelines for real-time processing of smart grids consumption, security, and WiFi Mesh networking metrics."
                 ]
             },
             {
