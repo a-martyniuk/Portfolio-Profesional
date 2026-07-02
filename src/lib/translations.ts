@@ -52,6 +52,7 @@ export interface TranslationDict {
         available: string;
         ctaProjects: string;
         ctaContact: string;
+        ctaCV: string;
         description: string;
     };
     quote: {
@@ -136,6 +137,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
             available: "// DISPONIBLE PARA NUEVOS PROYECTOS",
             ctaProjects: "VER PROYECTOS",
             ctaContact: "ESTABLECER CONEXIÓN",
+            ctaCV: "DESCARGAR CV (ATS)",
             description: "Diseño, opero y automatizo plataformas de datos escalables. Especializado en migración de pipelines (ETL/ELT), arquitecturas dimensionales de nube (Snowflake/Azure/Fabric) y optimización de flujos corporativos de alta transaccionalidad."
         },
         quote: {
@@ -514,6 +516,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
             available: "// AVAILABLE FOR NEW PROJECTS",
             ctaProjects: "VIEW PROJECTS",
             ctaContact: "ESTABLISH CONNECTION",
+            ctaCV: "DOWNLOAD CV (ATS)",
             description: "I design, operate, and automate scalable data platforms. Specialized in migrating pipelines (ETL/ELT), cloud dimensional architectures (Snowflake/Azure/Fabric), and optimizing high-transaction corporate data flows."
         },
         quote: {

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Github, Linkedin, Activity, Database, Cloud, BarChart3, Shield } from 'lucide-react';
+import { ArrowRight, Github, Linkedin, Activity, Database, Cloud, BarChart3, Shield, FileText } from 'lucide-react';
 import Link from 'next/link';
 import { useAnalytics } from '@/lib/analytics';
 import { useLanguage } from '@/components/providers/language-provider';
@@ -147,6 +147,14 @@ export function Hero() {
                             >
                                 {t.hero.ctaContact}
                             </Link>
+                            <a
+                                href="/Alexis_Martyniuk_CV.pdf"
+                                download
+                                onClick={() => trackCTAClick('Descargar CV (ATS)')}
+                                className="w-full sm:w-auto px-6 py-3.5 rounded border border-border bg-background hover:bg-muted text-foreground font-mono font-bold text-sm flex items-center justify-center gap-2 transition-all duration-300 cursor-pointer"
+                            >
+                                <FileText size={16} /> {t.hero.ctaCV}
+                            </a>
 
                             <div className="flex items-center gap-3">
                                 <a

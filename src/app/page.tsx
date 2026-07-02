@@ -6,7 +6,7 @@ import { Navbar } from "@/components/navbar";
 import { Hero } from "@/components/hero";
 import { ProjectCard } from "@/components/project-card";
 import { PressCard } from "@/components/press-card";
-import { ScraperDataFlowDiagram, MeliAioDataFlowDiagram, BrandProtectionDataFlowDiagram } from "@/components/project-diagrams";
+import { ScraperDataFlowDiagram, MeliAioDataFlowDiagram, BrandProtectionDataFlowDiagram, BagoMigrationDataFlowDiagram } from "@/components/project-diagrams";
 import { SkillChart } from "@/components/skill-chart";
 import { MetricsGrid } from "@/components/animated-metrics";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -322,8 +322,42 @@ export default function Home() {
     { value: 15, label: t.metrics.technologies, suffix: "+" },
   ];
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "mainEntity": {
+      "@type": "Person",
+      "name": "Alexis Martyniuk",
+      "jobTitle": "Senior Data Engineer",
+      "url": "https://a-martyniuk.github.io",
+      "sameAs": [
+        "https://github.com/a-martyniuk",
+        "https://linkedin.com/in/alexismartyniuk/"
+      ],
+      "knowsAbout": [
+        "Data Engineering",
+        "Microsoft Fabric",
+        "Snowflake",
+        "AWS S3",
+        "Azure SQL Database",
+        "PySpark",
+        "SQL Server",
+        "Python",
+        "ETL / ELT Pipelines",
+        "Medallion Architecture",
+        "Data Lakehouse",
+        "Dimensional Modeling",
+        "Web Scraping"
+      ]
+    }
+  };
+
   return (
     <main className="min-h-screen relative overflow-x-hidden">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <SectionTracker />
       <VisualEffects />
       <Navbar />
@@ -739,6 +773,12 @@ export default function Home() {
         {selectedProject && selectedProject.title.includes("Brand Protection") && (
           <div className="mt-12 pt-12 border-t border-border/10">
             <BrandProtectionDataFlowDiagram language={language} />
+          </div>
+        )}
+
+        {selectedProject && (selectedProject.title.includes("Modelo Analítico") || selectedProject.title.includes("Bagó")) && (
+          <div className="mt-12 pt-12 border-t border-border/10">
+            <BagoMigrationDataFlowDiagram language={language} />
           </div>
         )}
       </Modal>

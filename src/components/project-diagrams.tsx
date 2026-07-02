@@ -639,6 +639,182 @@ export function BrandProtectionDataFlowDiagram({ language }: { language: 'es' | 
 }
 
 // Add fake components for dynamic import compatibility if needed, or simple custom icons
+
+export function BagoMigrationDataFlowDiagram({ language }: { language: 'es' | 'en' }) {
+    const [activeStep, setActiveStep] = useState(0);
+
+    const stepsEs: DFDStep[] = [
+        {
+            id: "sources",
+            title: "01. Orígenes Transaccionales",
+            icon: <Database className="w-5 h-5 text-cyan-400" />,
+            summary: "Extracción y consolidación de datos desde bases de datos relacionales (Oracle/SQL Server) y sistemas ERP locales.",
+            rules: [
+                "Extracción Batch: Mapeo programado de tablas transaccionales de ventas, inventario y facturación.",
+                "Estandarización DDL: Homogeneización de tipos de datos antes del procesamiento para evitar incompatibilidades.",
+                "CDC (Change Data Capture): Captura incremental de registros modificados desde la última ejecución para optimizar volumen."
+            ]
+        },
+        {
+            id: "odi",
+            title: "02. Oracle ODI 12c",
+            icon: <Cpu className="w-5 h-5 text-cyan-400" />,
+            summary: "Procesamiento, limpieza y estructuración de datos mediante flujos ETL locales de alto rendimiento.",
+            rules: [
+                "Orquestación Centralizada: Monitoreo de dependencias de ejecución de paquetes y control de logs transaccionales.",
+                "Validación de Calidad: Filtro automático de registros inconsistentes, nulos críticos o duplicados.",
+                "Preparación de Cargas: Generación de datasets optimizados listos para transferir a almacenamiento cloud."
+            ]
+        },
+        {
+            id: "s3",
+            title: "03. AWS S3 Cloud Staging",
+            icon: <Server className="w-5 h-5 text-cyan-400" />,
+            summary: "Persistencia de staging e histórico inmutable en la nube para auditoría y almacenamiento en frío.",
+            rules: [
+                "Almacenamiento Seguro: Encriptación en reposo y políticas estrictas de acceso IAM (ISO 27001).",
+                "Staging Inmutable: Archivos CSV/Parquet versionados para auditorías históricas y reprocesamientos sin impacto.",
+                "Alta Disponibilidad: Infraestructura cloud redundante que garantiza el acceso del Data Warehouse."
+            ]
+        },
+        {
+            id: "snowflake",
+            title: "04. Snowflake DWH",
+            icon: <Database className="w-5 h-5 text-cyan-400" />,
+            summary: "Carga en Data Warehouse y modelado dimensional (Copo de Nieve) para analítica corporativa.",
+            rules: [
+                "Carga Automatizada: Snowpipe realiza la ingesta automatizada desde buckets S3 al detectar nuevos archivos.",
+                "Modelado de Negocio: Estructuración en tablas de hechos y dimensiones con vistas analíticas pre-agregadas.",
+                "Escalabilidad Dinámica: Cómputo independiente y virtual que evita interferencias con las queries de reportes."
+            ]
+        },
+        {
+            id: "bi",
+            title: "05. Visualización de Negocio",
+            icon: <Monitor className="w-5 h-5 text-cyan-400" />,
+            summary: "Reportes interactivos en Power BI y Tableau consumiendo Snowflake para toma de decisiones tácticas.",
+            rules: [
+                "Acceso en Tiempo Real: Conexión optimizada (DirectQuery/Extracts) con tiempos de respuesta menores a 1 segundo.",
+                "Dashboards Ejecutivos: Paneles consolidados de ventas, inventario y logística para directivos.",
+                "Autoservicio Analítico: Vistas limpias preparadas para que usuarios de negocio realicen reportes ad-hoc."
+            ]
+        }
+    ];
+
+    const stepsEn: DFDStep[] = [
+        {
+            id: "sources",
+            title: "01. Transactional Sources",
+            icon: <Database className="w-5 h-5 text-cyan-400" />,
+            summary: "Extraction and consolidation from local relational databases (Oracle/SQL Server) and ERP systems.",
+            rules: [
+                "Batch Extraction: Scheduled mapping of sales, inventory, and invoicing tables.",
+                "DDL Standardization: Datatype homogenization before processing to avoid incompatibilities.",
+                "CDC (Change Data Capture): Incremental capture of modified records since last run to optimize volumes."
+            ]
+        },
+        {
+            id: "odi",
+            title: "02. Oracle ODI 12c",
+            icon: <Cpu className="w-5 h-5 text-cyan-400" />,
+            summary: "High-performance local ETL processing, cleansing, and structuring.",
+            rules: [
+                "Centralized Orchestration: Monitoring package dependencies and transactional logs.",
+                "Quality Validation: Filtering of inconsistent entries, critical nulls, or duplicates.",
+                "Load Preparation: Generating optimized datasets ready for cloud storage transfer."
+            ]
+        },
+        {
+            id: "s3",
+            title: "03. AWS S3 Cloud Staging",
+            icon: <Server className="w-5 h-5 text-cyan-400" />,
+            summary: "Immutable staging and historical cloud persistence for auditing and cold storage.",
+            rules: [
+                "Secure Storage: Encryption at rest and strict IAM policies (ISO 27001).",
+                "Immutable Staging: Versioned CSV/Parquet files for historical auditing and reprocessing.",
+                "High Availability: Redundant cloud storage structure ensuring steady DWH access."
+            ]
+        },
+        {
+            id: "snowflake",
+            title: "04. Snowflake DWH",
+            icon: <Database className="w-5 h-5 text-cyan-400" />,
+            summary: "Data Warehouse loading and dimensional modeling (Snowflake Schema) for business intelligence.",
+            rules: [
+                "Automated Loading: Snowpipe automates ingestion from S3 buckets as soon as files land.",
+                "Business Modeling: Structuring fact and dimension tables with pre-aggregated analytic views.",
+                "Dynamic Compute: Independent and virtual compute that avoids dashboard query lag."
+            ]
+        },
+        {
+            id: "bi",
+            title: "05. Business Dashboards",
+            icon: <Monitor className="w-5 h-5 text-cyan-400" />,
+            summary: "Interactive Power BI & Tableau dashboards consuming Snowflake for tactical decisions.",
+            rules: [
+                "Real-Time Analytics: Optimized connections (DirectQuery/Extracts) with sub-second response times.",
+                "Executive Dashboards: Consolidated sales, inventory, and logistics panels for leadership.",
+                "Analytical Self-Service: Clean business views prepared for ad-hoc user queries."
+            ]
+        }
+    ];
+
+    const steps = language === 'es' ? stepsEs : stepsEn;
+    const active = steps[activeStep];
+
+    return (
+        <div className="font-mono text-sm border border-border/40 rounded bg-background p-6">
+            <h4 className="text-primary font-bold mb-4 uppercase tracking-widest text-xs">
+                {language === 'es' ? '// DIAGRAMA DE FLUJO DE DATOS (MIGRACIÓN DWH)' : '// DATA FLOW DIAGRAM (DWH MIGRATION)'}
+            </h4>
+            <div className="grid lg:grid-cols-12 gap-8">
+                {/* Steps selection */}
+                <div className="lg:col-span-4 flex flex-col gap-2">
+                    {steps.map((step, idx) => (
+                        <button
+                            key={step.id}
+                            onClick={() => setActiveStep(idx)}
+                            className={`flex items-center gap-3 p-3 rounded border text-left transition-all cursor-pointer ${
+                                activeStep === idx
+                                    ? 'bg-primary/10 border-primary text-foreground shadow-[0_0_15px_rgba(6,182,212,0.15)]'
+                                    : 'bg-muted/10 border-border/40 text-muted-foreground hover:border-primary/30 hover:text-foreground'
+                            }`}
+                        >
+                            {step.icon}
+                            <span className="font-bold text-xs">{step.title}</span>
+                        </button>
+                    ))}
+                </div>
+
+                {/* Step Details */}
+                <div className="lg:col-span-8 border border-border/40 rounded p-5 bg-muted/5 flex flex-col justify-between">
+                    <div>
+                        <div className="flex items-center gap-3 mb-3 border-b border-border/30 pb-3">
+                            {active.icon}
+                            <h5 className="font-bold text-primary">{active.title}</h5>
+                        </div>
+                        <p className="text-muted-foreground text-xs leading-relaxed mb-4">
+                            {active.summary}
+                        </p>
+                        <div>
+                            <span className="text-xxs text-primary uppercase font-bold tracking-widest block mb-2">
+                                {language === 'es' ? 'Reglas de Ingeniería:' : 'Engineering Rules:'}
+                            </span>
+                            <ul className="space-y-1.5 list-disc pl-4 text-xxs text-muted-foreground">
+                                {active.rules.map((rule, idx) => (
+                                    <li key={idx} className="leading-relaxed">
+                                        {rule}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
 function Globe(props: React.SVGProps<SVGSVGElement>) {
     return (
         <svg
