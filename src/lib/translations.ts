@@ -313,7 +313,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
             {
                 title: "Modelo Analítico Corporativo (Laboratorios Bagó)",
                 description: "Plataforma de datos de misión crítica para una de las mayores farmacéuticas de Argentina, que permitió aumentar en 20% la productividad y reducir tiempos de decisión operativa.",
-                tags: ["Snowflake DWH", "Oracle ODI 12c", "AWS S3", "PL/SQL", "ETL / ELT", "Dimensional Modeling", "Data Migration"],
+                tags: ["AWS Cloud", "AWS S3", "Snowflake DWH", "Oracle ODI 12c", "PL/SQL (SQL)", "ETL / ELT Pipeline", "Dimensional Modeling", "Data Migration"],
                 link: "https://blogs.oracle.com/oracle-latinoamerica/post/laboratorios-bag-elev-su-produccin-en-un-20-con-el-apoyo-de-la-nube-de-oracle",
                 linkType: "article",
                 image: "/images/projects/bago-dashboard.png",
@@ -327,7 +327,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
             {
                 title: "Plataforma GIS de Seguridad Pública (Ministerio de Seguridad)",
                 description: "Plataforma provincial de análisis criminal utilizada por fuerzas de seguridad para asignación de recursos, detección de hotspots y toma de decisiones tácticas en tiempo real.",
-                tags: ["PostgreSQL & PostGIS", "ArcGIS", "Python", "Pentaho ETL", "KNIME", "Spatial Database", "GIS Analytics"],
+                tags: ["PostgreSQL & PostGIS (SQL)", "ArcGIS", "Python", "Pentaho ETL", "KNIME", "Spatial Database", "GIS Analytics"],
                 image: "/images/projects/ministerio-heatmap.png",
                 alt: "Sistema de análisis criminal con PostgreSQL PostGIS y ArcGIS mostrando mapas de calor geoespacial",
                 challenge: "Dificultad para asignar de manera eficiente los recursos de patrullaje policial en 135 municipios debido a la falta de análisis criminal georreferenciado en tiempo real.",
@@ -343,7 +343,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 description: "Solución automatizada de base de datos como código mediante GitHub Actions y scripts PowerShell (SMO/T-SQL) para el respaldo de esquemas DDL e inmutabilidad de logs bajo estándares ISO 27001.",
                 image: "/images/projects/gitops-azure.png",
                 alt: "Versionado de esquemas Azure SQL y Database-as-Code con GitHub Actions",
-                tags: ["GitOps", "GitHub Actions CI/CD", "PowerShell SMO", "Azure SQL Database", "Database-as-Code", "ISO 27001", "Automation"],
+                tags: ["Azure SQL Database", "Azure Cloud", "GitOps CI/CD", "PowerShell SMO", "Database-as-Code (SQL)", "ISO 27001 Security", "Automation"],
                 challenge: "Falta de control de cambios y trazabilidad sobre los esquemas de bases de datos relacionales, lo que dificultaba el cumplimiento de las normativas de seguridad ISO 27001.",
                 solution: "Desarrollé una solución de base de datos como código (GitOps) usando PowerShell SMO y GitHub Actions para versionar automáticamente todas las DDL (tablas, stored procedures, vistas) en cada deploy.",
                 impact: "Garantía de auditoría e inmutabilidad de logs requeridas para certificar la norma de seguridad de la información ISO 27001.",
@@ -691,7 +691,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
             {
                 title: "Corporate Analytical Model (Laboratorios Bagó)",
                 description: "Mission-critical data platform for one of the largest pharmaceutical companies in Argentina, boosting productivity by 20% and reducing operational decision times.",
-                tags: ["Snowflake DWH", "Oracle ODI 12c", "AWS S3", "PL/SQL", "ETL / ELT", "Dimensional Modeling", "Data Migration"],
+                tags: ["AWS Cloud", "AWS S3", "Snowflake DWH", "Oracle ODI 12c", "PL/SQL (SQL)", "ETL / ELT Pipeline", "Dimensional Modeling", "Data Migration"],
                 link: "https://blogs.oracle.com/oracle-latinoamerica/post/laboratorios-bag-elev-su-produccin-en-un-20-con-el-apoyo-de-la-nube-de-oracle",
                 linkType: "article",
                 image: "/images/projects/bago-dashboard.png",
@@ -705,7 +705,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
             {
                 title: "Public Safety GIS Platform (Ministry of Security)",
                 description: "Provincial crime analysis platform utilized by security forces for resource assignment, hotspot detection, and real-time tactical decision making.",
-                tags: ["PostgreSQL & PostGIS", "ArcGIS", "Python", "Pentaho ETL", "KNIME", "Spatial Database", "GIS Analytics"],
+                tags: ["PostgreSQL & PostGIS (SQL)", "ArcGIS", "Python", "Pentaho ETL", "KNIME", "Spatial Database", "GIS Analytics"],
                 image: "/images/projects/ministerio-heatmap.png",
                 alt: "Crime analysis system with PostgreSQL PostGIS and ArcGIS showing geospatial heatmaps",
                 challenge: "Difficulty in crime hotspot analysis and police patrol allocation across 135 municipalities due to scattered, non-geolocated data.",
@@ -721,7 +721,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 description: "Automated database-as-code solution using GitHub Actions and PowerShell scripts (SMO/T-SQL) for DDL schema backups and log immutability under ISO 27001 standards.",
                 image: "/images/projects/gitops-azure.png",
                 alt: "Azure SQL schema versioning and Database-as-Code with GitHub Actions",
-                tags: ["GitOps", "GitHub Actions CI/CD", "PowerShell SMO", "Azure SQL Database", "Database-as-Code", "ISO 27001", "Automation"],
+                tags: ["Azure SQL Database", "Azure Cloud", "GitOps CI/CD", "PowerShell SMO", "Database-as-Code (SQL)", "ISO 27001 Security", "Automation"],
                 challenge: "Lack of version control and tracking over relational database schemas, hindering compliance with ISO 27001 security audits.",
                 solution: "Built a Database-as-Code pipeline using PowerShell SMO and GitHub Actions to automatically backup and version all DDL changes (tables, views, stored procedures) upon deploy.",
                 impact: "Provided the immutable log history and schema auditing necessary to satisfy strict ISO 27001 information security compliance.",
