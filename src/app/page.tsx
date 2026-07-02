@@ -604,10 +604,6 @@ export default function Home() {
                   </span>
                 )}
               </button>
-              <div className="flex items-center gap-3 h-16">
-                <a href="https://linkedin.com/in/alexismartyniuk/" target="_blank" className="flex items-center justify-center w-16 h-16 rounded border border-border bg-background hover:bg-muted transition-colors text-muted-foreground hover:text-primary"><Linkedin size={20} /></a>
-                <a href="https://github.com/a-martyniuk" target="_blank" className="flex items-center justify-center w-16 h-16 rounded border border-border bg-background hover:bg-muted transition-colors text-muted-foreground hover:text-foreground"><Github size={20} /></a>
-              </div>
             </div>
           </div>
         </div>
