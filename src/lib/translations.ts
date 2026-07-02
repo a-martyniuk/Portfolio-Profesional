@@ -263,7 +263,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
             {
                 title: "Digital Sales Tracking: Pipelines de Sell-Out (BeOn)",
                 description: "Flujos unificados de ingesta diaria, validaciones de esquema (Schema Enforcement) e integración de sell-out para Beiersdorf (BDF), con lógica avanzada de apertura de combos.",
-                tags: ["Microsoft Fabric", "PySpark", "OneLake", "Delta Lake", "Data Quality", "ETL / ELT Pipeline", "Schema Enforcement", "Medallion Architecture"],
+                tags: ["Microsoft Fabric", "PySpark", "OneLake", "Delta Lake", "Lakehouse Architecture", "Medallion Architecture", "Star Schema", "ETL / ELT Pipeline", "Schema Enforcement"],
                 image: "/images/projects/sellout-dashboard.png",
                 alt: "Pipelines de Sell-Out y Digital Shelf en Microsoft Fabric con PySpark y APIs de e-commerce",
                 challenge: "Beiersdorf necesitaba procesar e integrar diariamente información de ventas y stock (sell-out) proveniente de diversos distribuidores y retailers. El proceso manual era propenso a errores, con esquemas inconsistentes y problemas de duplicidad de ventas debido a la apertura de combos comerciales.",
@@ -276,7 +276,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
             {
                 title: "PepsiCo: Ingestor Multimarketplace (BeOn)",
                 description: "Ingesta automatizada y normalización de catálogos, stock y precios de marketplaces (iFood BR, Rappi LATAM, DiDi Food MX) para análisis competitivo de marcas PepsiCo.",
-                tags: ["Python", "REST APIs", "API Integration", "Web Scraping", "Data Ingestion", "Data Quality", "PyTest"],
+                tags: ["Python", "REST APIs", "API Integration", "Web Scraping", "Batch Processing", "Data Ingestion Pipeline", "Data Quality", "PyTest"],
                 image: "/images/projects/pepsico-ingestor.png",
                 alt: "Estructura de ingesta multi-marketplace PepsiCo con Python y APIs",
                 challenge: "PepsiCo requería recopilar información competitiva de catálogos, disponibilidad de stock y variaciones de precio en múltiples plataformas de delivery (iFood, Rappi, DiDi Food) en Latinoamérica de manera automatizada y evasiva contra bloqueos.",
@@ -290,7 +290,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 description: "Plataforma de auditoría automatizada en MercadoLibre para Nutricia Bagó. Identifica desvíos de precios (MAP), fraude de volumen y reventa no autorizada de donaciones mediante NLP y Playwright.",
                 image: "/images/projects/brand-protection.png",
                 alt: "Dashboard de Brand Protection para Nutricia Bagó con Supabase y React",
-                tags: ["Playwright Stealth", "Web Scraping", "NLP Regex", "Fuzzy Matching", "Supabase", "OAuth 2.0", "FastAPI"],
+                tags: ["Playwright Stealth", "Web Scraping", "FastAPI", "Supabase", "Event-Driven", "Real-Time Ingestion", "Fuzzy Matching", "NLP Regex"],
                 challenge: "Nutricia Bagó necesitaba identificar y mitigar la venta no autorizada de sus productos en MercadoLibre, incluyendo desvíos de precios (MAP), adulteración de empaques y reventa ilegal de insumos originalmente donados a ONGs.",
                 solution: "Creé una plataforma híbrida que combina Playwright Stealth para scraping web robusto con procesamiento de lenguaje natural (NLP) y coincidencia difusa (Fuzzy Matching). Esto permite identificar publicaciones informales y calcular cantidades netas exactas.",
                 impact: "Precisión de clasificación del 98.4%, permitiendo al equipo legal detectar y remover de inmediato publicaciones en infracción con total trazabilidad.",
@@ -301,7 +301,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
             {
                 title: "ETL Observability: Auditoría & Monitor de KPIs (BeOn)",
                 description: "Solución de observabilidad de procesos críticos corporativos. Audita la ejecución diaria, calcula tasas de éxito, mide SLA y detecta desvíos de calendarización.",
-                tags: ["Python", "PowerShell", "SQL Server", "Stored Procedures", "ETL Observability", "Data Lineage", "SLA Monitoring"],
+                tags: ["Python", "PowerShell", "SQL Server", "Stored Procedures", "ETL Observability", "Data Lineage", "Data Governance", "SLA Monitoring"],
                 image: "/images/projects/ecoreport-audit.png",
                 alt: "Dashboard de auditoría de pipelines ETL y logs de ejecución",
                 challenge: "Falta de visibilidad unificada sobre el estado y rendimiento de los procesos batch ETL multimarca (Danone, Unilever, Essity), dificultando el cumplimiento de SLAs de entrega de datos y la detección temprana de fallos.",
@@ -313,7 +313,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
             {
                 title: "Modelo Analítico Corporativo (Laboratorios Bagó)",
                 description: "Plataforma de datos de misión crítica para una de las mayores farmacéuticas de Argentina, que permitió aumentar en 20% la productividad y reducir tiempos de decisión operativa.",
-                tags: ["AWS Cloud", "AWS S3", "Snowflake DWH", "Oracle ODI 12c", "PL/SQL (SQL)", "ETL / ELT Pipeline", "Dimensional Modeling", "Data Migration"],
+                tags: ["AWS Cloud", "AWS S3", "Snowflake DWH", "Oracle ODI 12c", "PL/SQL (SQL)", "Data Warehouse (DWH)", "Dimensional Modeling", "Snowflake Schema", "Data Migration"],
                 link: "https://blogs.oracle.com/oracle-latinoamerica/post/laboratorios-bag-elev-su-produccin-en-un-20-con-el-apoyo-de-la-nube-de-oracle",
                 linkType: "article",
                 image: "/images/projects/bago-dashboard.png",
@@ -327,7 +327,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
             {
                 title: "Plataforma GIS de Seguridad Pública (Ministerio de Seguridad)",
                 description: "Plataforma provincial de análisis criminal utilizada por fuerzas de seguridad para asignación de recursos, detección de hotspots y toma de decisiones tácticas en tiempo real.",
-                tags: ["PostgreSQL & PostGIS (SQL)", "ArcGIS", "Python", "Pentaho ETL", "KNIME", "Spatial Database", "GIS Analytics"],
+                tags: ["PostgreSQL & PostGIS (SQL)", "ArcGIS", "Python", "Pentaho ETL", "KNIME", "Spatial ETL", "GIS Data Architecture", "Spatial Database"],
                 image: "/images/projects/ministerio-heatmap.png",
                 alt: "Sistema de análisis criminal con PostgreSQL PostGIS y ArcGIS mostrando mapas de calor geoespacial",
                 challenge: "Dificultad para asignar de manera eficiente los recursos de patrullaje policial en 135 municipios debido a la falta de análisis criminal georreferenciado en tiempo real.",
@@ -641,7 +641,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
             {
                 title: "Digital Sales Tracking: Sell-Out Pipelines (BeOn)",
                 description: "Unified daily ingestion pipelines, strict schema enforcement, and sell-out integration for Beiersdorf (BDF) with advanced commercial combo exploding logic.",
-                tags: ["Microsoft Fabric", "PySpark", "OneLake", "Delta Lake", "Data Quality", "ETL / ELT Pipeline", "Schema Enforcement", "Medallion Architecture"],
+                tags: ["Microsoft Fabric", "PySpark", "OneLake", "Delta Lake", "Lakehouse Architecture", "Medallion Architecture", "Star Schema", "ETL / ELT Pipeline", "Schema Enforcement"],
                 image: "/images/projects/sellout-dashboard.png",
                 alt: "Sell-Out and Digital Shelf pipelines in Microsoft Fabric with PySpark and e-commerce APIs",
                 challenge: "Beiersdorf needed to integrate and process daily sell-out sales and stock data from multiple retail channels. The manual pipeline was error-prone, suffered from schema inconsistency, and suffered from duplicate sales reporting due to retail promo packages (combos).",
@@ -654,7 +654,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
             {
                 title: "PepsiCo: Multi-Marketplace Ingestor (BeOn)",
                 description: "Automated ingestion and normalization of catalogs, stock, and pricing from marketplaces (iFood BR, Rappi LATAM, DiDi Food MX) for competitive brand analysis for PepsiCo.",
-                tags: ["Python", "REST APIs", "API Integration", "Web Scraping", "Data Ingestion", "Data Quality", "PyTest"],
+                tags: ["Python", "REST APIs", "API Integration", "Web Scraping", "Batch Processing", "Data Ingestion Pipeline", "Data Quality", "PyTest"],
                 image: "/images/projects/pepsico-ingestor.png",
                 alt: "PepsiCo multi-marketplace ingestion structure with Python and APIs",
                 challenge: "PepsiCo needed to automatically extract pricing, catalog, and stock data from various mobile delivery APIs (iFood, Rappi, DiDi Food) across Latin America while evading blocking mechanisms.",
@@ -668,7 +668,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 description: "Automated compliance auditing platform on MercadoLibre for Nutricia Bagó. Identifies price deviations (MAP), packaging fraud, and unauthorized resale of NGO donations using NLP and Playwright.",
                 image: "/images/projects/brand-protection.png",
                 alt: "Brand Protection Dashboard for Nutricia Bagó with Supabase and React",
-                tags: ["Playwright Stealth", "Web Scraping", "NLP Regex", "Fuzzy Matching", "Supabase", "OAuth 2.0", "FastAPI"],
+                tags: ["Playwright Stealth", "Web Scraping", "FastAPI", "Supabase", "Event-Driven", "Real-Time Ingestion", "Fuzzy Matching", "NLP Regex"],
                 challenge: "Nutricia Bagó required an automated way to audit MercadoLibre listings to detect unauthorized sellers, Minimum Advertised Price (MAP) violations, and the illegal resale of products donated to NGOs.",
                 solution: "Built a hybrid intelligence engine using Playwright Stealth for web scraping combined with regex-based physical density extraction and fuzzy matching against the master SKU catalog.",
                 impact: "Achieved a 98.4% classification accuracy, enabling the legal team to immediately identify and take action against compliance violations.",
@@ -679,7 +679,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
             {
                 title: "ETL Observability: Audit & KPI Monitor (BeOn)",
                 description: "Observability solution for critical corporate processes. Audits daily execution, calculates success rates, measures SLA, and detects scheduling deviations.",
-                tags: ["Python", "PowerShell", "SQL Server", "Stored Procedures", "ETL Observability", "Data Lineage", "SLA Monitoring"],
+                tags: ["Python", "PowerShell", "SQL Server", "Stored Procedures", "ETL Observability", "Data Lineage", "Data Governance", "SLA Monitoring"],
                 image: "/images/projects/ecoreport-audit.png",
                 alt: "Auditing dashboard for ETL pipelines and execution logs",
                 challenge: "Lack of centralized tracking for multi-brand ETL pipelines (Danone, Unilever, Essity), making it difficult to detect failures early and enforce data SLAs.",
@@ -691,7 +691,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
             {
                 title: "Corporate Analytical Model (Laboratorios Bagó)",
                 description: "Mission-critical data platform for one of the largest pharmaceutical companies in Argentina, boosting productivity by 20% and reducing operational decision times.",
-                tags: ["AWS Cloud", "AWS S3", "Snowflake DWH", "Oracle ODI 12c", "PL/SQL (SQL)", "ETL / ELT Pipeline", "Dimensional Modeling", "Data Migration"],
+                tags: ["AWS Cloud", "AWS S3", "Snowflake DWH", "Oracle ODI 12c", "PL/SQL (SQL)", "Data Warehouse (DWH)", "Dimensional Modeling", "Snowflake Schema", "Data Migration"],
                 link: "https://blogs.oracle.com/oracle-latinoamerica/post/laboratorios-bag-elev-su-produccin-en-un-20-con-el-apoyo-de-la-nube-de-oracle",
                 linkType: "article",
                 image: "/images/projects/bago-dashboard.png",
@@ -705,7 +705,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
             {
                 title: "Public Safety GIS Platform (Ministry of Security)",
                 description: "Provincial crime analysis platform utilized by security forces for resource assignment, hotspot detection, and real-time tactical decision making.",
-                tags: ["PostgreSQL & PostGIS (SQL)", "ArcGIS", "Python", "Pentaho ETL", "KNIME", "Spatial Database", "GIS Analytics"],
+                tags: ["PostgreSQL & PostGIS (SQL)", "ArcGIS", "Python", "Pentaho ETL", "KNIME", "Spatial ETL", "GIS Data Architecture", "Spatial Database"],
                 image: "/images/projects/ministerio-heatmap.png",
                 alt: "Crime analysis system with PostgreSQL PostGIS and ArcGIS showing geospatial heatmaps",
                 challenge: "Difficulty in crime hotspot analysis and police patrol allocation across 135 municipalities due to scattered, non-geolocated data.",
