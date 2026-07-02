@@ -6,7 +6,7 @@ import { Navbar } from "@/components/navbar";
 import { Hero } from "@/components/hero";
 import { ProjectCard } from "@/components/project-card";
 import { PressCard } from "@/components/press-card";
-import { ScraperDataFlowDiagram, MeliAioDataFlowDiagram, BrandProtectionDataFlowDiagram, BagoMigrationDataFlowDiagram } from "@/components/project-diagrams";
+import { ScraperDataFlowDiagram, MeliAioDataFlowDiagram, BrandProtectionDataFlowDiagram, BagoMigrationDataFlowDiagram, CordobaDataFlowDiagram } from "@/components/project-diagrams";
 import { SkillChart } from "@/components/skill-chart";
 import { MetricsGrid } from "@/components/animated-metrics";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -18,7 +18,7 @@ const Experience = dynamic(() => import("@/components/experience").then(mod => (
 import { SectionTracker } from "@/components/providers/section-tracker";
 import { Modal } from "@/components/ui/modal";
 import { VisualEffects } from "@/components/visual-effects";
-import { Mail, Linkedin, Github, GraduationCap, Globe, ArrowRight, Copy, CheckCircle, Server, Cpu, Database, Split, AlertTriangle, ArrowDown } from "lucide-react";
+import { Mail, GraduationCap, Globe, ArrowRight, Copy, CheckCircle, Server, Cpu, Database, Split, AlertTriangle, ArrowDown } from "lucide-react";
 import Image from "next/image";
 import type { Project } from '@/types/project';
 import { useLanguage } from '@/components/providers/language-provider';
@@ -775,6 +775,12 @@ export default function Home() {
         {selectedProject && (selectedProject.title.includes("Modelo Analítico") || selectedProject.title.includes("Bagó")) && (
           <div className="mt-12 pt-12 border-t border-border/10">
             <BagoMigrationDataFlowDiagram language={language} />
+          </div>
+        )}
+
+        {selectedProject && (selectedProject.title.includes("Córdoba") || selectedProject.title.includes("Cordoba")) && (
+          <div className="mt-12 pt-12 border-t border-border/10">
+            <CordobaDataFlowDiagram language={language} />
           </div>
         )}
       </Modal>

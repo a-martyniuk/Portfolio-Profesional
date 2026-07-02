@@ -411,6 +411,19 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 link: "/articles/caba-real-estate-scraper-postmortem",
                 linkType: "article",
                 metric: "Alertas: Telegram Bot"
+            },
+            {
+                title: "Córdoba 5579: Smart Concierge & Ingesta de Airbnb",
+                description: "Sistema de conserjería inteligente y orquestación de alquileres temporarios en Palermo. Ingesta evasiva mediante Python, base de datos de inventario y asistente virtual con IA.",
+                image: "/images/projects/cordoba5579_mockup.png",
+                alt: "Mockup de conserjería inteligente Córdoba 5579 mostrando chat IA y check-in digital",
+                tags: ["Python", "Next.js (React)", "Airbnb API Ingest", "Web Scraping", "curl_cffi", "PostgreSQL", "AI Agent (Chat)", "Data Pipeline", "Automation"],
+                challenge: "Gestionar check-ins, control de inventario de minibar, recomendaciones locales y consultas de huéspedes de Airbnb de manera automatizada y eficiente sin depender constantemente de la atención manual del anfitrión.",
+                solution: "Desarrollé un script en Python con curl_cffi que extrae y sincroniza de forma diaria y evasiva los datos de la reserva desde Airbnb (reviews, amenities, capacidad, tarifas). Construí una Next.js App con portal de check-in digital, registro de firmas de reglamentos, minibar interactivo y un chatbot inteligente basado en base de conocimientos locales para resolver consultas frecuentes en tiempo real.",
+                impact: "Automatización total del flujo de check-in y reducción del 75% en preguntas frecuentes recibidas por el anfitrión. Control automatizado de consumo de minibar e inventarios impresos vía códigos QR autogenerados.",
+                architecture: ["Sync Script (Python + curl_cffi)", "Reserva JSON Sync Cache (Airbnb)", "Check-In Portal (Firmas Digitales)", "Cava & Minibar (Inventario)", "Smart AI Concierge (React / Context API)"],
+                github: "https://github.com/a-martyniuk/cordoba5579",
+                metric: "Preguntas: -75%"
             }
         ],
         publications: [
@@ -790,6 +803,19 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 link: "/articles/caba-real-estate-scraper-postmortem",
                 linkType: "article",
                 metric: "Alerts: Telegram Bot"
+            },
+            {
+                title: "Córdoba 5579: Smart Concierge & Airbnb Data Pipeline",
+                description: "Smart concierge system and short-term rental workflow orchestration in Palermo. Evasive Python listing scraper, inventory CSV databases, and integrated AI assistant chat.",
+                image: "/images/projects/cordoba5579_mockup.png",
+                alt: "Córdoba 5579 Smart Concierge Mockup showing AI chat and digital check-in",
+                tags: ["Python", "Next.js (React)", "Airbnb API Ingest", "Web Scraping", "curl_cffi", "PostgreSQL", "AI Agent (Chat)", "Data Pipeline", "Automation"],
+                challenge: "Managing guest check-ins, minibar inventory tracking, local guidebook recommendations, and guest queries for Airbnb rentals efficiently without relying on 24/7 manual host support.",
+                solution: "Developed a Python script using curl_cffi that daily and evasively extracts and syncs reservation data from Airbnb (reviews, amenities, pricing, availability). Built a Next.js portal featuring digital guest check-in, rule agreements, minibar inventory logging, and an intelligent chatbot connected to a local knowledge base to handle guest queries.",
+                impact: "Fully automated the check-in workflow and reduced host FAQ queries by 75%. Enabled digital tracking of minibar consumption and print-ready QR codes generation for room placement.",
+                architecture: ["Sync Script (Python + curl_cffi)", "Reservation JSON Sync Cache (Airbnb)", "Check-In Portal (Digital Signatures)", "Cava & Minibar (Inventory)", "Smart AI Concierge (React / Context API)"],
+                github: "https://github.com/a-martyniuk/cordoba5579",
+                metric: "FAQs: -75%"
             }
         ],
         publications: [

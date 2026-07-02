@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Server, Database, Cpu, Bot, Monitor, Key, RefreshCw, FileText, ArrowRight, ArrowDown } from "lucide-react";
+import { Server, Database, Cpu, Bot, Monitor, Key, RefreshCw, FileText, ArrowRight, ArrowDown, UserCheck, Wine } from "lucide-react";
 
 interface DFDStep {
     id: string;
@@ -766,6 +766,181 @@ export function BagoMigrationDataFlowDiagram({ language }: { language: 'es' | 'e
         <div className="font-mono text-sm border border-border/40 rounded bg-background p-6">
             <h4 className="text-primary font-bold mb-4 uppercase tracking-widest text-xs">
                 {language === 'es' ? '// DIAGRAMA DE FLUJO DE DATOS (MIGRACIÓN DWH)' : '// DATA FLOW DIAGRAM (DWH MIGRATION)'}
+            </h4>
+            <div className="grid lg:grid-cols-12 gap-8">
+                {/* Steps selection */}
+                <div className="lg:col-span-4 flex flex-col gap-2">
+                    {steps.map((step, idx) => (
+                        <button
+                            key={step.id}
+                            onClick={() => setActiveStep(idx)}
+                            className={`flex items-center gap-3 p-3 rounded border text-left transition-all cursor-pointer ${
+                                activeStep === idx
+                                    ? 'bg-primary/10 border-primary text-foreground shadow-[0_0_15px_rgba(6,182,212,0.15)]'
+                                    : 'bg-muted/10 border-border/40 text-muted-foreground hover:border-primary/30 hover:text-foreground'
+                            }`}
+                        >
+                            {step.icon}
+                            <span className="font-bold text-xs">{step.title}</span>
+                        </button>
+                    ))}
+                </div>
+
+                {/* Step Details */}
+                <div className="lg:col-span-8 border border-border/40 rounded p-5 bg-muted/5 flex flex-col justify-between">
+                    <div>
+                        <div className="flex items-center gap-3 mb-3 border-b border-border/30 pb-3">
+                            {active.icon}
+                            <h5 className="font-bold text-primary">{active.title}</h5>
+                        </div>
+                        <p className="text-muted-foreground text-xs leading-relaxed mb-4">
+                            {active.summary}
+                        </p>
+                        <div>
+                            <span className="text-xxs text-primary uppercase font-bold tracking-widest block mb-2">
+                                {language === 'es' ? 'Reglas de Ingeniería:' : 'Engineering Rules:'}
+                            </span>
+                            <ul className="space-y-1.5 list-disc pl-4 text-xxs text-muted-foreground">
+                                {active.rules.map((rule, idx) => (
+                                    <li key={idx} className="leading-relaxed">
+                                        {rule}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export function CordobaDataFlowDiagram({ language }: { language: 'es' | 'en' }) {
+    const [activeStep, setActiveStep] = useState(0);
+
+    const stepsEs: DFDStep[] = [
+        {
+            id: "scraper",
+            title: "01. Ingestor Airbnb",
+            icon: <Bot className="w-5 h-5 text-cyan-400" />,
+            summary: "Script Python que extrae tarifas, reviews, calendario y superhost status evadiendo bloqueos mediante TLS fingerprinting (curl_cffi).",
+            rules: [
+                "Evasión de Antibots: Emulación de firma TLS Chrome 120 para evitar CAPTCHAs y bloqueos automáticos.",
+                "Extracción de JSON-LD: Parseo de metadatos estructurados en la landing de Airbnb para recuperar descripciones y fotos oficiales.",
+                "Estructura Diferida: Extracción del estado diferido (state-0) de React para capturar ratings de limpieza, comunicación y ubicación exactos."
+            ]
+        },
+        {
+            id: "cache",
+            title: "02. Sync de Datos (Cache)",
+            icon: <Database className="w-5 h-5 text-cyan-400" />,
+            summary: "Sincroniza la información de Airbnb a archivos JSON locales y une los catálogos de minibar (CSV) y mapas (POIs).",
+            rules: [
+                "Inmutabilidad de Caché: Escritura a airbnb-details.json consumido de forma estática en tiempo de compilación por Next.js.",
+                "Base de Datos de Inventario: Mapeo de inventario.csv para sincronizar stock y precios de las bebidas y consumibles del departamento.",
+                "Normalización de POIs: Conversión de mapas_puntos.csv en capas geográficas interactivas (Mapbox/Google Maps)."
+            ]
+        },
+        {
+            id: "checkin",
+            title: "03. Check-In Digital",
+            icon: <UserCheck size={18} className="text-cyan-400" />,
+            summary: "Portal donde el huésped realiza su registro, declara acompañantes y firma digitalmente el reglamento de copropiedad.",
+            rules: [
+                "Validación de Identidad: Captura de foto de documento y pasaporte para el registro legal del huésped.",
+                "Firma de Reglamento: Módulo interactivo de firma digital para validar el reglamento interno de copropiedad (Reglamento.txt).",
+                "Integración WhatsApp: Notificación automática al anfitrión una vez que el check-in es aprobado."
+            ]
+        },
+        {
+            id: "cava",
+            title: "04. Cava & Minibar",
+            icon: <Wine className="w-5 h-5 text-cyan-400" />,
+            summary: "Menú interactivo de bebidas en la heladera accesible mediante códigos QR impresos dinámicamente.",
+            rules: [
+                "Menú Autogenerado: Lectura de inventario.csv para desplegar catálogo y precios de vinos, cervezas y golosinas.",
+                "Registro de Consumo: El huésped selecciona los consumos y estos se asocian de forma transaccional a la reserva.",
+                "Generador de QRs: Script automatizado en Python (qrcode + Pillow) que genera etiquetas impresas con la URL correcta del minibar."
+            ]
+        },
+        {
+            id: "concierge",
+            title: "05. Conserje IA",
+            icon: <Monitor className="w-5 h-5 text-cyan-400" />,
+            summary: "Chatbot asistente web contextualizado con la base de conocimientos del departamento para responder dudas 24/7.",
+            rules: [
+                "Base de Conocimiento Local: Contexto estricto del departamento (instrucciones de lavarropas, clave de Wi-Fi, check-out).",
+                "Timezone-Aware: Cálculo dinámico de saludos basados en la hora oficial de Buenos Aires (GMT-3).",
+                "Redirección de Soporte: Escalado a llamada telefónica o chat de WhatsApp si la consulta requiere intervención humana."
+            ]
+        }
+    ];
+
+    const stepsEn: DFDStep[] = [
+        {
+            id: "scraper",
+            title: "01. Airbnb Scraper",
+            icon: <Bot className="w-5 h-5 text-cyan-400" />,
+            summary: "Python script that extracts pricing, reviews, calendar, and superhost status, bypassing blockages via TLS fingerprinting (curl_cffi).",
+            rules: [
+                "Antibot Evasion: Chrome 120 TLS client fingerprint emulation to bypass CAPTCHAs and cloud blocks.",
+                "JSON-LD Extraction: Parsing structured metadata on the Airbnb listing page to recover official descriptions and photos.",
+                "Deferred State Extraction: Parsing React deferred state-0 to capture specific ratings for cleanliness, communication, and location."
+            ]
+        },
+        {
+            id: "cache",
+            title: "02. Data Sync (Cache)",
+            icon: <Database className="w-5 h-5 text-cyan-400" />,
+            summary: "Synchronizes Airbnb details into local JSON cache and joins the minibar (CSV) and neighborhood POIs catalogs.",
+            rules: [
+                "Cache Immutability: Writing to airbnb-details.json consumed statically at build time by Next.js.",
+                "Inventory Database: Mapping inventario.csv to sync stock and prices of drinks and snacks in the apartment.",
+                "POI Normalization: Converting mapas_puntos.csv to interactive geographical map coordinates (Mapbox/Google Maps)."
+            ]
+        },
+        {
+            id: "checkin",
+            title: "03. Digital Check-In",
+            icon: <UserCheck size={18} className="text-cyan-400" />,
+            summary: "Portal where guests register, declare companions, and digitally sign the building code of conduct.",
+            rules: [
+                "Identity Verification: Upload passport and ID documents for host legal compliance.",
+                "Agreement Signature: Interactive digital signature panel validating the building rules agreement (Reglamento.txt).",
+                "WhatsApp Alerting: Automated webhook notifying the host once the check-in is complete."
+            ]
+        },
+        {
+            id: "cava",
+            title: "04. Cava & Minibar",
+            icon: <Wine className="w-5 h-5 text-cyan-400" />,
+            summary: "Fridge beverage interactive menu accessible via dynamically printed QR codes.",
+            rules: [
+                "Menu Auto-generation: Reads inventario.csv to display available inventory and pricing of wines, beers, and snacks.",
+                "Consumption Tracker: Guest records consumption and tags it transactionally to their ongoing reservation.",
+                "QR Code Generator: Python script (qrcode + Pillow) generating printable tags with the exact minibar URL."
+            ]
+        },
+        {
+            id: "concierge",
+            title: "05. AI Concierge",
+            icon: <Monitor className="w-5 h-5 text-cyan-400" />,
+            summary: "Web assistant chatbot pre-loaded with the apartment knowledge base to resolve guest questions 24/7.",
+            rules: [
+                "Local Knowledge base: Context-bound answers regarding apartment appliances, Wi-Fi password, and checkout guidelines.",
+                "Timezone-Aware: Dynamically computes greetings depending on Buenos Aires timezone (GMT-3).",
+                "Support Routing: Escalates to phone call or WhatsApp link if queries require manual host action."
+            ]
+        }
+    ];
+
+    const steps = language === 'es' ? stepsEs : stepsEn;
+    const active = steps[activeStep];
+
+    return (
+        <div className="font-mono text-sm border border-border/40 rounded bg-background p-6">
+            <h4 className="text-primary font-bold mb-4 uppercase tracking-widest text-xs">
+                {language === 'es' ? '// DIAGRAMA DE FLUJO DE DATOS (CONSERJERÍA SMART)' : '// DATA FLOW DIAGRAM (SMART CONCIERGE)'}
             </h4>
             <div className="grid lg:grid-cols-12 gap-8">
                 {/* Steps selection */}
