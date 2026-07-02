@@ -27,7 +27,7 @@ const TECH_BADGES = [
 
 export function Hero() {
     const { trackCTAClick } = useAnalytics();
-    const { t } = useLanguage();
+    const { t, language } = useLanguage();
     const [ping, setPing] = React.useState<number>(14);
     const [timezone, setTimezone] = React.useState<string>('AR/BUE');
 
@@ -148,7 +148,7 @@ export function Hero() {
                                 {t.hero.ctaContact}
                             </Link>
                             <a
-                                href="/Alexis_Martyniuk_CV.pdf"
+                                href={language === 'es' ? "/Alexis_Martyniuk_CV.pdf" : "/Alexis_Martyniuk_CV_EN.pdf"}
                                 download
                                 onClick={() => trackCTAClick('Descargar CV (ATS)')}
                                 className="w-full sm:w-auto px-6 py-3.5 rounded border border-border bg-background hover:bg-muted text-foreground font-mono font-bold text-sm flex items-center justify-center gap-2 transition-all duration-300 cursor-pointer"
