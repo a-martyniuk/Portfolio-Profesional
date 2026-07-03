@@ -2,7 +2,19 @@
   "rewrites": [
     {
       "source": "/sarmiento-151/:path*",
-      "destination": "https://alexismartyniuk.github.io/sarmiento-151/:path*"
+      "destination": "https://sarmiento-151.vercel.app/:path*"
+    },
+    {
+      "source": "/sarmiento151/:path*",
+      "destination": "https://sarmiento-151.vercel.app/:path*"
+    },
+    {
+      "source": "/sarmiento151",
+      "destination": "https://sarmiento-151.vercel.app/"
+    },
+    {
+      "source": "/sarmiento-151",
+      "destination": "https://sarmiento-151.vercel.app/"
     }
   ]
 }
