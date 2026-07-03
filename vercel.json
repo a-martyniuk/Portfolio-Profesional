@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/sarmiento-151/:path*",
+      "destination": "https://alexismartyniuk.github.io/sarmiento-151/:path*"
+    }
+  ]
+}
