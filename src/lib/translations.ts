@@ -436,7 +436,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 impact: "Transparencia absoluta en expensas e intereses acumulados por unidad funcional. Reducción a $0 de costo mensual de infraestructura y auditoría automatizada en tiempo real de suministros esenciales.",
                 architecture: ["Sync Orchestrator (cron_update.py)", "PDF Ingestion (pdfplumber + Base64 API)", "Service Audit (check_servicios.py)", "Flat File DB (gastos.json / prorrateo.json)", "Static UI (Vanilla CSS / ES6+ / ApexCharts)"],
                 github: "https://github.com/a-martyniuk/Administracion_Sarmiento151",
-                link: "https://sarmiento-151.vercel.app/",
+                link: "https://www.alexismartyniuk.com.ar/sarmiento-151",
                 metric: "Hosting: $0 / mes"
             }
         ],
@@ -842,7 +842,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 impact: "100% financial transparency for residents, interactive historical expense analytics, and clear visualization of accrued interest per unit. Real-time supply status tracking with zero infrastructure cost.",
                 architecture: ["Sync Orchestrator (cron_update.py)", "PDF Ingestion (pdfplumber + Base64 API)", "Service Audit (check_servicios.py)", "Flat File DB (gastos.json / prorrateo.json)", "Static UI (Vanilla CSS / ES6+ / ApexCharts)"],
                 github: "https://github.com/a-martyniuk/Administracion_Sarmiento151",
-                link: "https://sarmiento-151.vercel.app/",
+                link: "https://www.alexismartyniuk.com.ar/sarmiento-151",
                 metric: "Hosting: $0 / mo"
             }
         ],
