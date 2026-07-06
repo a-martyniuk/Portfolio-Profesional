@@ -423,6 +423,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 impact: "Automatización total del flujo de check-in y reducción del 75% en preguntas frecuentes recibidas por el anfitrión. Control automatizado de consumo de minibar e inventarios impresos vía códigos QR autogenerados.",
                 architecture: ["Sync Script (Python + curl_cffi)", "Reserva JSON Sync Cache (Airbnb)", "Check-In Portal (Firmas Digitales)", "Cava & Minibar (Inventario)", "Smart AI Concierge (React / Context API)"],
                 github: "https://github.com/a-martyniuk/cordoba5579",
+                link: "https://www.alexismartyniuk.com.ar/cordoba5579",
                 metric: "Preguntas: -75%"
             },
             {
@@ -829,6 +830,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 impact: "Fully automated the check-in workflow and reduced host FAQ queries by 75%. Enabled digital tracking of minibar consumption and print-ready QR codes generation for room placement.",
                 architecture: ["Sync Script (Python + curl_cffi)", "Reservation JSON Sync Cache (Airbnb)", "Check-In Portal (Digital Signatures)", "Cava & Minibar (Inventory)", "Smart AI Concierge (React / Context API)"],
                 github: "https://github.com/a-martyniuk/cordoba5579",
+                link: "https://www.alexismartyniuk.com.ar/cordoba5579",
                 metric: "FAQs: -75%"
             },
             {
