@@ -424,6 +424,20 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 architecture: ["Sync Script (Python + curl_cffi)", "Reserva JSON Sync Cache (Airbnb)", "Check-In Portal (Firmas Digitales)", "Cava & Minibar (Inventario)", "Smart AI Concierge (React / Context API)"],
                 github: "https://github.com/a-martyniuk/cordoba5579",
                 metric: "Preguntas: -75%"
+            },
+            {
+                title: "Sarmiento 151: Auditoría de Expensas y Servicios",
+                description: "Plataforma de control financiero y auditoría independiente de expensas para copropietarios de consorcio. Ingesta automatizada de PDFs financieros, base de datos relacional y alertas de suministros en vivo.",
+                image: "/images/projects/sarmiento151_mockup.png",
+                alt: "Dashboard Sarmiento 151 mostrando gráficos de expensas y widgets de servicios en vivo",
+                tags: ["Python", "Vanilla JS (ES6+)", "pdfplumber", "GitHub Actions CI/CD", "ApexCharts", "Cron Jobs", "Data Extraction (RegEx)", "API Ingestion", "Vercel"],
+                challenge: "La falta de transparencia en liquidaciones complejas de expensas emitidas en PDFs sin estructura fija por los administradores, sumado a cortes frecuentes e imprevistos de suministros públicos locales en Lomas de Zamora.",
+                solution: "Diseñé una SPA estática con Vanilla JS y ApexCharts. Construí un backend en Python (pdfplumber) para descargar predictivamente, validar y estructurar los PDFs a un almacén plano JSON. Programé cron jobs en GitHub Actions que auditan 4 veces al día el estado de servicios públicos (Luz con Edesur, Agua con AySA, Gas con Metrogas) y redespliegan el panel en vivo.",
+                impact: "Transparencia absoluta en expensas e intereses acumulados por unidad funcional. Reducción a $0 de costo mensual de infraestructura y auditoría automatizada en tiempo real de suministros esenciales.",
+                architecture: ["Sync Orchestrator (cron_update.py)", "PDF Ingestion (pdfplumber + Base64 API)", "Service Audit (check_servicios.py)", "Flat File DB (gastos.json / prorrateo.json)", "Static UI (Vanilla CSS / ES6+ / ApexCharts)"],
+                github: "https://github.com/a-martyniuk/Administracion_Sarmiento151",
+                link: "https://sarmiento-151.vercel.app/",
+                metric: "Hosting: $0 / mes"
             }
         ],
         publications: [
@@ -816,6 +830,20 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 architecture: ["Sync Script (Python + curl_cffi)", "Reservation JSON Sync Cache (Airbnb)", "Check-In Portal (Digital Signatures)", "Cava & Minibar (Inventory)", "Smart AI Concierge (React / Context API)"],
                 github: "https://github.com/a-martyniuk/cordoba5579",
                 metric: "FAQs: -75%"
+            },
+            {
+                title: "Sarmiento 151: Expense Audit & Public Services Monitor",
+                description: "Financial control and independent expense monitoring platform for co-owners. Automates financial PDF ingestion, generates relational databases, and displays live public service alerts.",
+                image: "/images/projects/sarmiento151_mockup.png",
+                alt: "Sarmiento 151 Dashboard displaying expense charts and live service status widgets",
+                tags: ["Python", "Vanilla JS (ES6+)", "pdfplumber", "GitHub Actions CI/CD", "ApexCharts", "Cron Jobs", "Data Extraction (RegEx)", "API Ingestion", "Vercel"],
+                challenge: "A complete lack of transparency in complex financial statements issued in unstructured PDFs by property managers, paired with frequent, unannounced local utility cuts in Lomas de Zamora.",
+                solution: "Designed a static SPA using Vanilla JS and ApexCharts. Developed a local Python backend (pdfplumber) to predictively download, validate, and parse PDF statements into a flat JSON database. Scheduled GitHub Actions workflows that audit local public utility networks 4 times a day (power, water, gas outages) and redeploy the live panel.",
+                impact: "100% financial transparency for residents, interactive historical expense analytics, and clear visualization of accrued interest per unit. Real-time supply status tracking with zero infrastructure cost.",
+                architecture: ["Sync Orchestrator (cron_update.py)", "PDF Ingestion (pdfplumber + Base64 API)", "Service Audit (check_servicios.py)", "Flat File DB (gastos.json / prorrateo.json)", "Static UI (Vanilla CSS / ES6+ / ApexCharts)"],
+                github: "https://github.com/a-martyniuk/Administracion_Sarmiento151",
+                link: "https://sarmiento-151.vercel.app/",
+                metric: "Hosting: $0 / mo"
             }
         ],
         publications: [

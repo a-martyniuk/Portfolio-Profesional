@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Server, Database, Cpu, Bot, Monitor, Key, RefreshCw, FileText, ArrowRight, ArrowDown, UserCheck, Wine } from "lucide-react";
+import { Server, Database, Cpu, Bot, Monitor, Key, RefreshCw, FileText, ArrowRight, ArrowDown, UserCheck, Wine, Clock, Activity } from "lucide-react";
 
 interface DFDStep {
     id: string;
@@ -941,6 +941,203 @@ export function CordobaDataFlowDiagram({ language }: { language: 'es' | 'en' }) 
         <div className="font-mono text-sm border border-border/40 rounded bg-background p-6">
             <h4 className="text-primary font-bold mb-4 uppercase tracking-widest text-xs">
                 {language === 'es' ? '// DIAGRAMA DE FLUJO DE DATOS (CONSERJERÍA SMART)' : '// DATA FLOW DIAGRAM (SMART CONCIERGE)'}
+            </h4>
+            <div className="grid lg:grid-cols-12 gap-8">
+                {/* Steps selection */}
+                <div className="lg:col-span-4 flex flex-col gap-2">
+                    {steps.map((step, idx) => (
+                        <button
+                            key={step.id}
+                            onClick={() => setActiveStep(idx)}
+                            className={`flex items-center gap-3 p-3 rounded border text-left transition-all cursor-pointer ${
+                                activeStep === idx
+                                    ? 'bg-primary/10 border-primary text-foreground shadow-[0_0_15px_rgba(6,182,212,0.15)]'
+                                    : 'bg-muted/10 border-border/40 text-muted-foreground hover:border-primary/30 hover:text-foreground'
+                            }`}
+                        >
+                            {step.icon}
+                            <span className="font-bold text-xs">{step.title}</span>
+                        </button>
+                    ))}
+                </div>
+
+                {/* Step Details */}
+                <div className="lg:col-span-8 border border-border/40 rounded p-5 bg-muted/5 flex flex-col justify-between">
+                    <div>
+                        <div className="flex items-center gap-3 mb-3 border-b border-border/30 pb-3">
+                            {active.icon}
+                            <h5 className="font-bold text-primary">{active.title}</h5>
+                        </div>
+                        <p className="text-muted-foreground text-xs leading-relaxed mb-4">
+                            {active.summary}
+                        </p>
+                        <div>
+                            <span className="text-xxs text-primary uppercase font-bold tracking-widest block mb-2">
+                                {language === 'es' ? 'Reglas de Ingeniería:' : 'Engineering Rules:'}
+                            </span>
+                            <ul className="space-y-1.5 list-disc pl-4 text-xxs text-muted-foreground">
+                                {active.rules.map((rule, idx) => (
+                                    <li key={idx} className="leading-relaxed">
+                                        {rule}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export function SarmientoDataFlowDiagram({ language }: { language: 'es' | 'en' }) {
+    const [activeStep, setActiveStep] = useState(0);
+
+    const stepsEs: DFDStep[] = [
+        {
+            id: "scheduler",
+            title: "01. Planificador GitHub Actions",
+            icon: <Clock className="w-5 h-5 text-cyan-400" />,
+            summary: "Dispara flujos programados en la nube: 4 veces al día para auditar servicios públicos y del 1 al 5 de cada mes para expensas.",
+            rules: [
+                "Programación de Tareas (cron): Actualización de red eléctrica, agua y gas cada 6 horas.",
+                "Barrido Mensual Preventivo: Intentos automáticos de extracción de expensas los primeros días del mes.",
+                "Ejecución Serverless: Corridas aisladas en contenedores efímeros sin requerir hosting activo permanente."
+            ]
+        },
+        {
+            id: "orchestrator",
+            title: "02. Coordinador Inteligente",
+            icon: <Bot className="w-5 h-5 text-cyan-400" />,
+            summary: "Script cron_update.py que comprueba si los datos ya existen antes de consultar APIs o descargar archivos para ahorrar ancho de banda.",
+            rules: [
+                "Predicción de Período: Determina dinámicamente cuál es el período vencido esperado (ej: Año-Mes).",
+                "Control de Redundancia: Consulta gastos.json. Si el período ya existe, detiene la ejecución inmediatamente.",
+                "Fallback Seguro: Lanza la cadena de scraping y parseo si el período no está registrado."
+            ]
+        },
+        {
+            id: "ingestion",
+            title: "03. Descarga y Parseo PDF",
+            icon: <FileText className="w-5 h-5 text-cyan-400" />,
+            summary: "download_historico.py descarga el PDF usando payloads cifrados en Base64. extract_data.py usa pdfplumber y Regex para estructurar gastos y prorrateo.",
+            rules: [
+                "Cifrado Base64: Encripta identificadores predictivos y credenciales dummy para interactuar de forma segura con la API de la administración.",
+                "Estructuración pdfplumber: Lee celdas de tablas no tabuladas y las segmenta por conceptos, U.F. y prorrateos.",
+                "Categorización Inteligente: Algoritmo heurístico que clasifica gastos en categorías homogéneas (Sueldos, Seguros, Mantenimiento, etc.)."
+            ]
+        },
+        {
+            id: "db",
+            title: "04. Base de Datos JSON",
+            icon: <Database className="w-5 h-5 text-cyan-400" />,
+            summary: "Escribe la información limpia a gastos.json y prorrateo.json. El pipeline realiza commits automáticos a GitHub tras actualizar.",
+            rules: [
+                "Esquema Plano y Relacional: Archivos JSON optimizados para carga ultra rápida y estructurados de forma asociativa.",
+                "Persistencia Git: Acciones automáticas ejecutan 'git commit' de vuelta a la rama principal ante cambios detectados.",
+                "Cero Costo: Despliegue estático de bases de datos estáticas, reduciendo a cero el costo y la complejidad de base de datos relacional."
+            ]
+        },
+        {
+            id: "services",
+            title: "05. Auditor de Suministros",
+            icon: <Activity className="w-5 h-5 text-cyan-400" />,
+            summary: "check_servicios.py audita cortes activos de Edesur, AySA y Metrogas en Lomas de Zamora mediante Web Scraping y búsquedas RegExp.",
+            rules: [
+                "Estrategias SSL Alternativas: Contextos SSL adaptativos compatibles tanto en entornos Windows locales como contenedores Linux.",
+                "Scraping de ENRE/AySA/Metrogas: Análisis de páginas de estado de red eléctrica, agua potable y gas natural en busca de Lomas de Zamora.",
+                "Actualización de Estado: Guarda el resultado en servicios_status.json consumido dinámicamente por la UI."
+            ]
+        },
+        {
+            id: "dashboard",
+            title: "06. Frontend Estático",
+            icon: <Monitor className="w-5 h-5 text-cyan-400" />,
+            summary: "Index.html y dashboard.js (Vanilla CSS & JS, ApexCharts) renderizan gráficos históricos de egresos e intereses de U.F. calculados en vivo.",
+            rules: [
+                "Cero Frameworks: Vanilla JS (ES6+) que elimina dependencias y asegura velocidad máxima de carga.",
+                "Cálculos en Caliente: Motor financiero que liquida intereses punitorios retroactivos por unidad funcional directo en el navegador.",
+                "Visualizaciones ApexCharts: Gráficos dinámicos interactivos de series temporales y distribución patrimonial."
+            ]
+        }
+    ];
+
+    const stepsEn: DFDStep[] = [
+        {
+            id: "scheduler",
+            title: "01. GitHub Actions Scheduler",
+            icon: <Clock className="w-5 h-5 text-cyan-400" />,
+            summary: "Triggers scheduled workflows in the cloud: 4 times a day to audit public services and from the 1st to the 5th of each month for expenses.",
+            rules: [
+                "Cron Job Tasking: Updates electricity, water, and gas network status every 6 hours.",
+                "Monthly Sweep Strategy: Automatically checks for newly released expense statements during the first days of the month.",
+                "Serverless Execution: Isolated runs in ephemeral containers without requiring active permanent hosting."
+            ]
+        },
+        {
+            id: "orchestrator",
+            title: "02. Intelligent Orchestrator",
+            icon: <Bot className="w-5 h-5 text-cyan-400" />,
+            summary: "cron_update.py checks if target data exists before querying APIs or downloading files to optimize bandwidth and API usage.",
+            rules: [
+                "Period Prediction: Dynamically calculates the expected past period to process (e.g. Year-Month).",
+                "Redundancy Block: Inquires gastos.json. If the period is present, halts execution immediately.",
+                "Safe Fallback: Fires the scraping and parsing chain if the period is not yet cached."
+            ]
+        },
+        {
+            id: "ingestion",
+            title: "03. Ingestion & PDF Parsing",
+            icon: <FileText className="w-5 h-5 text-cyan-400" />,
+            summary: "download_historico.py retrieves the PDF using Base64 encrypted payloads. extract_data.py uses pdfplumber and Regex to structure expenses.",
+            rules: [
+                "Base64 Encryption: Encrypts predictive identifiers and dummy credentials to securely fetch statements from the administrator API.",
+                "pdfplumber Extraction: Reads tabular but non-formatted PDF grids and slices them by concepts, units, and debt.",
+                "Smart Classification: Heuristic algorithm classifying unstructured expenses into homogeneous groups (Salaries, Insurance, Maintenance, etc.)."
+            ]
+        },
+        {
+            id: "db",
+            title: "04. JSON Database Cache",
+            icon: <Database className="w-5 h-5 text-cyan-400" />,
+            summary: "Writes structured details to gastos.json and prorrateo.json. The pipeline auto-commits updates back to Git.",
+            rules: [
+                "Flat-File Schema: Light JSON structures optimized for near-instant rendering.",
+                "Git Autocommit: Actions pipeline executes 'git commit' back to the main branch when new statements are compiled.",
+                "Zero Cost DWH: Serverless DWH utilizing static file hosting, dropping database hosting costs to absolute zero."
+            ]
+        },
+        {
+            id: "services",
+            title: "05. Supply Status Auditor",
+            icon: <Activity className="w-5 h-5 text-cyan-400" />,
+            summary: "check_servicios.py audits active outages for Edesur, AySA, and Metrogas in Lomas de Zamora via Web Scraping and Regex.",
+            rules: [
+                "Adaptive SSL Contexts: Flexible SSL environments compatible with both local Windows and Linux container execution.",
+                "ENRE/AySA/Metrogas Scraping: Scans official service outage maps searching for matches in the Lomas de Zamora area.",
+                "Live Status Updates: Writes outputs to servicios_status.json consumed dynamically on the page."
+            ]
+        },
+        {
+            id: "dashboard",
+            title: "06. Static UI & Engine",
+            icon: <Monitor className="w-5 h-5 text-cyan-400" />,
+            summary: "Index.html and dashboard.js (Vanilla CSS & JS, ApexCharts) render interactive financial timelines and compute interest on the fly.",
+            rules: [
+                "Zero Frameworks: Strict Vanilla JS (ES6+) removing all dependencies and yielding lightning-fast rendering speeds.",
+                "On-the-fly Math: Financial runtime computing interest rates per unit directly inside the guest browser.",
+                "ApexCharts Timelines: High-fidelity visualizations of historical costs and category trends."
+            ]
+        }
+    ];
+
+    const steps = language === 'es' ? stepsEs : stepsEn;
+    const active = steps[activeStep];
+
+    return (
+        <div className="font-mono text-sm border border-border/40 rounded bg-background p-6">
+            <h4 className="text-primary font-bold mb-4 uppercase tracking-widest text-xs">
+                {language === 'es' ? '// DIAGRAMA DE FLUJO DE DATOS (AUDITORÍA FINANCIERA)' : '// DATA FLOW DIAGRAM (FINANCIAL AUDIT)'}
             </h4>
             <div className="grid lg:grid-cols-12 gap-8">
                 {/* Steps selection */}
