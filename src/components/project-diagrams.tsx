@@ -1042,10 +1042,10 @@ export function SarmientoDataFlowDiagram({ language }: { language: 'es' | 'en' }
             id: "services",
             title: "05. Auditor de Suministros",
             icon: <Activity className="w-5 h-5 text-cyan-400" />,
-            summary: "check_servicios.py audita cortes activos de Edesur, AySA y Metrogas en Lomas de Zamora mediante Web Scraping y búsquedas RegExp.",
+            summary: "check_servicios.py audita cortes activos de Edesur, AySA y Metrogas en la zona geográfica del consorcio mediante Web Scraping y búsquedas RegExp.",
             rules: [
                 "Estrategias SSL Alternativas: Contextos SSL adaptativos compatibles tanto en entornos Windows locales como contenedores Linux.",
-                "Scraping de ENRE/AySA/Metrogas: Análisis de páginas de estado de red eléctrica, agua potable y gas natural en busca de Lomas de Zamora.",
+                "Scraping de ENRE/AySA/Metrogas: Análisis de páginas de estado de red eléctrica, agua potable y gas natural en busca de coincidencias con el municipio del edificio.",
                 "Actualización de Estado: Guarda el resultado en servicios_status.json consumido dinámicamente por la UI."
             ]
         },
@@ -1111,10 +1111,10 @@ export function SarmientoDataFlowDiagram({ language }: { language: 'es' | 'en' }
             id: "services",
             title: "05. Supply Status Auditor",
             icon: <Activity className="w-5 h-5 text-cyan-400" />,
-            summary: "check_servicios.py audits active outages for Edesur, AySA, and Metrogas in Lomas de Zamora via Web Scraping and Regex.",
+            summary: "check_servicios.py audits active outages for Edesur, AySA, and Metrogas in the building's geographic zone via Web Scraping and Regex.",
             rules: [
                 "Adaptive SSL Contexts: Flexible SSL environments compatible with both local Windows and Linux container execution.",
-                "ENRE/AySA/Metrogas Scraping: Scans official service outage maps searching for matches in the Lomas de Zamora area.",
+                "ENRE/AySA/Metrogas Scraping: Scans official service outage maps searching for matches in the building's municipality area.",
                 "Live Status Updates: Writes outputs to servicios_status.json consumed dynamically on the page."
             ]
         },
