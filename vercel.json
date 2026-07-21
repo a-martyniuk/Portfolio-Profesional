@@ -18,11 +18,11 @@
     },
     {
       "source": "/airmarket/:path*",
-      "destination": "https://airbnb-market-intelligence.vercel.app/:path*"
+      "destination": "https://airbnb-market-intelligence.vercel.app/airmarket/:path*"
     },
     {
       "source": "/airmarket",
-      "destination": "https://airbnb-market-intelligence.vercel.app/"
+      "destination": "https://airbnb-market-intelligence.vercel.app/airmarket"
     }
   ]
 }
