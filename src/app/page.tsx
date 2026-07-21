@@ -6,7 +6,7 @@ import { Navbar } from "@/components/navbar";
 import { Hero } from "@/components/hero";
 import { ProjectCard } from "@/components/project-card";
 import { PressCard } from "@/components/press-card";
-import { ScraperDataFlowDiagram, MeliAioDataFlowDiagram, BrandProtectionDataFlowDiagram, BagoMigrationDataFlowDiagram, CordobaDataFlowDiagram, SarmientoDataFlowDiagram } from "@/components/project-diagrams";
+import { ScraperDataFlowDiagram, MeliAioDataFlowDiagram, BrandProtectionDataFlowDiagram, BagoMigrationDataFlowDiagram, CordobaDataFlowDiagram, SarmientoDataFlowDiagram, AirMarketDataFlowDiagram } from "@/components/project-diagrams";
 import { SkillChart } from "@/components/skill-chart";
 import { MetricsGrid } from "@/components/animated-metrics";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -787,6 +787,12 @@ export default function Home() {
         {selectedProject && (selectedProject.title.includes("Sarmiento") || selectedProject.title.includes("Sarmiento 151")) && (
           <div className="mt-12 pt-12 border-t border-border/10">
             <SarmientoDataFlowDiagram language={language} />
+          </div>
+        )}
+
+        {selectedProject && (selectedProject.title.includes("AirMarket") || selectedProject.title.includes("airbnb-market-intelligence")) && (
+          <div className="mt-12 pt-12 border-t border-border/10">
+            <AirMarketDataFlowDiagram language={language} />
           </div>
         )}
       </Modal>

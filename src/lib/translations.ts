@@ -439,6 +439,20 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 github: "https://github.com/a-martyniuk/Administracion_Sarmiento151",
                 link: "https://www.alexismartyniuk.com.ar/sarmiento-151",
                 metric: "Hosting: $0 / mes"
+            },
+            {
+                title: "AirMarket AI: Revenue Management & Dynamic Pricing",
+                description: "SaaS empresarial de optimización de ingresos y tarifas dinámicas para alquileres temporarios. Ingesta automatizada de datos, análisis de competidores k-NN y motor híbrido de pricing.",
+                image: "/images/projects/airmarket_mockup.png",
+                alt: "Mockup de plataforma SaaS AirMarket AI mostrando calendario de precios e indexador de competidores",
+                tags: ["Python", "Next.js (React)", "FastAPI", "Web Scraping", "curl_cffi", "k-NN Indexing", "Geospatial Ingest", "Machine Learning", "Vercel"],
+                challenge: "Optimizar el revenue de propiedades en alquiler temporario requería auditoría manual de tarifas competidoras, cálculo de ocupación futura y actualizaciones diarias de tarifas sin automatización.",
+                solution: "Desarrollé un SaaS completo con backend en FastAPI y frontend en Next.js. Implementé un scraper evasivo con curl_cffi para monitorear tarifas diariamente. Diseñé un motor que indexa los 20 competidores más cercanos en un radio de 1.5km usando la fórmula de Haversine y similitud de características. Programé un motor dinámico de pricing que cruza un regresor de demanda con reglas YAML y overrides en tiempo real.",
+                impact: "Maximización del RevPAR estimado en un 18%. Automatización total de la fijación de tarifas dinámicas e indexación de mercado sin intervención humana.",
+                architecture: ["Frontend SaaS (Next.js)", "Backend API (FastAPI)", "Evasive Scraper (curl_cffi)", "ETL Delta Parser (Occupancy)", "Geospatial Indexer (k-NN / Haversine)", "Rule Engine (Dynamic Pricing)"],
+                github: "https://github.com/a-martyniuk/airbnb-market-intelligence",
+                link: "https://www.alexismartyniuk.com.ar/airmarket",
+                metric: "RevPAR: +18% Est."
             }
         ],
         publications: [
@@ -846,6 +860,20 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 github: "https://github.com/a-martyniuk/Administracion_Sarmiento151",
                 link: "https://www.alexismartyniuk.com.ar/sarmiento-151",
                 metric: "Hosting: $0 / mo"
+            },
+            {
+                title: "AirMarket AI: Revenue Management & Dynamic Pricing",
+                description: "Enterprise SaaS dynamic pricing and revenue management optimizer for short-term rentals. Automated data scraping, k-NN competitor analysis, and hybrid pricing calculation engine.",
+                image: "/images/projects/airmarket_mockup.png",
+                alt: "AirMarket AI SaaS platform mockup showing pricing calendars and competitor indexes",
+                tags: ["Python", "Next.js (React)", "FastAPI", "Web Scraping", "curl_cffi", "k-NN Indexing", "Geospatial Ingest", "Machine Learning", "Vercel"],
+                challenge: "Optimizing short-term rental revenue required manual competitor audits, occupancy calculations, and updating daily pricing without real-time automation.",
+                solution: "Developed an enterprise-grade SaaS utilizing FastAPI backend and Next.js frontend. Implemented an evasive scraper using curl_cffi to collect competitor metrics daily. Built a similarity engine that matches target properties with their top 20 closest competitors within a 1.5km limit using Haversine distance and property layouts. Programmed a dynamic pricing solver combining demand regressions, static YAML rules, and manual user overrides.",
+                impact: "Estimated RevPAR increase of 18%. Fully automates dynamic pricing grids and competitor indexing without manual host efforts.",
+                architecture: ["SaaS Frontend (Next.js)", "Backend API (FastAPI)", "Evasive Scraper (curl_cffi)", "ETL Delta Parser (Occupancy)", "Geospatial Indexer (k-NN / Haversine)", "Rule Engine (Dynamic Pricing)"],
+                github: "https://github.com/a-martyniuk/airbnb-market-intelligence",
+                link: "https://www.alexismartyniuk.com.ar/airmarket",
+                metric: "RevPAR: +18% Est."
             }
         ],
         publications: [

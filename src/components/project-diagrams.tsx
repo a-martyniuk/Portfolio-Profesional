@@ -1187,6 +1187,203 @@ export function SarmientoDataFlowDiagram({ language }: { language: 'es' | 'en' }
     );
 }
 
+export function AirMarketDataFlowDiagram({ language }: { language: 'es' | 'en' }) {
+    const [activeStep, setActiveStep] = useState(0);
+
+    const stepsEs: DFDStep[] = [
+        {
+            id: "scheduler",
+            title: "01. Orquestación (Cron)",
+            icon: <Clock className="w-5 h-5 text-cyan-400" />,
+            summary: "GitHub Actions ejecuta diariamente run_daily_pipeline.py para iniciar el flujo de scraping, ETL y cálculo de precios.",
+            rules: [
+                "Disparador Diario Automático: Ejecución automatizada en la nube a horas valle para optimizar tráfico.",
+                "Orquestador Python: Centraliza e invoca secuencialmente los scripts de extracción, normalización e inferencia.",
+                "Pipeline Idempotente: Garantiza que re-ejecutar el flujo ante fallas de red no duplique registros ni corrompa datos."
+            ]
+        },
+        {
+            id: "scraper",
+            title: "02. Scraper Evasivo",
+            icon: <Bot className="w-5 h-5 text-cyan-400" />,
+            summary: "Extractor evasivo basado en curl_cffi que emula TLS de Chrome 120 para descargar tarifas, reseñas y disponibilidad de competidores.",
+            rules: [
+                "Evasión Antibots: Modificación dinámica de User-Agents y rotación de headers para evitar bloqueos del portal de origen.",
+                "Parseo de Estado Diferido: Extracción del estado JSON reactivo incrustado en el HTML público para capturar la disponibilidad oculta.",
+                "Resiliencia de Red: Reintentos exponenciales automáticos ante fallas temporales de conexión HTTP."
+            ]
+        },
+        {
+            id: "etl",
+            title: "03. Pipeline ETL & Deltas",
+            icon: <RefreshCw className="w-5 h-5 text-cyan-400" />,
+            summary: "Procesa y valida datos crudos diariamente, detectando reservas mediante diferencias de disponibilidad (calendar deltas).",
+            rules: [
+                "Detección de Reservas: Mapeo de transacciones al comparar qué días pasaron de disponibles a bloqueados entre corridas diarias.",
+                "Métricas de Ocupación: Computa tasas de ocupación forward-looking agregadas a 30 días para evaluar la demanda del mercado.",
+                "Limpieza de Anomalías: Descarta bloqueos administrativos o estadías atípicas fuera de rango operativo estándar."
+            ]
+        },
+        {
+            id: "knn",
+            title: "04. Mapeador k-NN",
+            icon: <Database className="w-5 h-5 text-cyan-400" />,
+            summary: "Indexa competidores directos en un radio máximo de 1.5km usando la fórmula de Haversine y similitud de comodidades.",
+            rules: [
+                "Fórmula de Haversine: Calcula la distancia ortodrómica exacta sobre la esfera terrestre entre propiedades.",
+                "Vector de Características: Pondera similitudes en base a cantidad de camas, baños, capacidad máxima y amenidades clave.",
+                "Top 20 Vecinos: Indexa de forma dinámica los 20 competidores más similares para el cálculo de tarifas promedio de la zona."
+            ]
+        },
+        {
+            id: "engine",
+            title: "05. Motor Dynamic Pricing",
+            icon: <Cpu className="w-5 h-5 text-cyan-400" />,
+            summary: "Resuelve tarifas finales cruzando recomendaciones del modelo regresor con reglas estáticas (YAML) y overrides del usuario.",
+            rules: [
+                "Jerarquía de Reglas: Prioriza: 1. Overrides manuales del usuario, 2. Alertas dinámicas del mercado, 3. Parámetros base YAML.",
+                "Modelo Regresor: Calcula el precio óptimo del día basado en ocupación del k-NN, día de la semana y estacionalidad.",
+                "Validación de Umbrales: Protege tarifas aplicando precios mínimos y máximos configurados para no dañar el margen."
+            ]
+        },
+        {
+            id: "dashboard",
+            title: "06. SaaS Dashboard",
+            icon: <Monitor className="w-5 h-5 text-cyan-400" />,
+            summary: "Interfaz premium en Next.js (React) que despliega curvas de tarifas recomendadas, mapa de competidores y consola de overrides.",
+            rules: [
+                "ApexCharts Interactivo: Muestra la evolución temporal de precios recomendados vs precios reales de competidores.",
+                "Mapa Geográfico Leaflet: Ubicación espacial interactiva del listing objetivo frente a su cluster k-NN indexado.",
+                "Dynamic Pricing Grid: Calendario interactivo mensual donde el usuario aplica overrides y visualiza reservas confirmadas."
+            ]
+        }
+    ];
+
+    const stepsEn: DFDStep[] = [
+        {
+            id: "scheduler",
+            title: "01. Orchestration (Cron)",
+            icon: <Clock className="w-5 h-5 text-cyan-400" />,
+            summary: "GitHub Actions daily executes run_daily_pipeline.py to initiate the scraping, ETL, and pricing workflow.",
+            rules: [
+                "Daily Auto-Trigger: Cloud automated run scheduled at off-peak hours to optimize web traffic.",
+                "Python Orchestrator: Centralizes and sequentially triggers scripts for extraction, normalization, and inference.",
+                "Idempotent Pipeline: Ensures that re-running the workflow on network failure does not duplicate database entries."
+            ]
+        },
+        {
+            id: "scraper",
+            title: "02. Evasive Scraper",
+            icon: <Bot className="w-5 h-5 text-cyan-400" />,
+            summary: "Evasive extractor based on curl_cffi that emulates Chrome 120 TLS client fingerprints to fetch pricing and availability.",
+            rules: [
+                "Antibot Evasion: Dynamic User-Agent modification and headers rotation to bypass public listing blocks.",
+                "State Extraction: Parsing deferred JSON state structures embedded in raw HTML to retrieve calendar availability.",
+                "Network Resilience: Automatic exponential backoff retries handling transient HTTP connection errors."
+            ]
+        },
+        {
+            id: "etl",
+            title: "03. ETL & Calendar Deltas",
+            icon: <RefreshCw className="w-5 h-5 text-cyan-400" />,
+            summary: "Validates and parses raw daily data, identifying guest booking transactions via availability differences (calendar deltas).",
+            rules: [
+                "Booking Detection: Matches booking events by verifying which days shifted from available to blocked between consecutive scrapes.",
+                "Occupancy Metrics: Computes forward-looking 30-day occupancy rates to evaluate market demand trends.",
+                "Anomaly Filter: Filters out host blockages or outlier bookings exceeding normal rental ranges."
+            ]
+        },
+        {
+            id: "knn",
+            title: "04. k-NN Indexer",
+            icon: <Database className="w-5 h-5 text-cyan-400" />,
+            summary: "Indexes direct competitors within a strict 1.5km radius limit using Haversine distance and structural similarities.",
+            rules: [
+                "Haversine Calculation: Calculates exact great-circle spherical distance between geospatial properties.",
+                "Feature Vector: Scores similarity based on room layouts, bed configurations, and matching amenities.",
+                "Top 20 Matches: Dynamically compiles the top 20 closest competitor listings to evaluate local market pricing."
+            ]
+        },
+        {
+            id: "engine",
+            title: "05. Dynamic Pricing Engine",
+            icon: <Cpu className="w-5 h-5 text-cyan-400" />,
+            summary: "Resolves final rates by merging regression model recommendations with static rules (YAML) and user overrides.",
+            rules: [
+                "Rule Hierarchy: Strict precedence logic: 1. Manual user overrides, 2. Dynamic market anomalies, 3. Baseline YAML rules.",
+                "Regression Logic: Computes optimal rate based on k-NN occupancy velocity, weekday factors, and seasonal multipliers.",
+                "Safety Thresholds: Sanitizes suggested rates enforcing bounds to safeguard baseline margins."
+            ]
+        },
+        {
+            id: "dashboard",
+            title: "06. SaaS Dashboard",
+            icon: <Monitor className="w-5 h-5 text-cyan-400" />,
+            summary: "Next.js (React) premium UI rendering recommended pricing curves, competitor maps, and control override panels.",
+            rules: [
+                "Interactive ApexCharts: Renders suggested rate trends against real competitor price timelines.",
+                "Leaflet Geospatial Map: Interactive positioning of target listing against its indexed k-NN competitor cluster.",
+                "Dynamic Pricing Grid: Calendar UI allowing hosts to input manual overrides and track finalized bookings."
+            ]
+        }
+    ];
+
+    const steps = language === 'es' ? stepsEs : stepsEn;
+    const active = steps[activeStep];
+
+    return (
+        <div className="font-mono text-sm border border-border/40 rounded bg-background p-6">
+            <h4 className="text-primary font-bold mb-4 uppercase tracking-widest text-xs">
+                {language === 'es' ? '// DIAGRAMA DE FLUJO DE DATOS (REVENUE MANAGEMENT)' : '// DATA FLOW DIAGRAM (REVENUE MANAGEMENT)'}
+            </h4>
+            <div className="grid lg:grid-cols-12 gap-8">
+                {/* Steps selection */}
+                <div className="lg:col-span-4 flex flex-col gap-2">
+                    {steps.map((step, idx) => (
+                        <button
+                            key={step.id}
+                            onClick={() => setActiveStep(idx)}
+                            className={`flex items-center gap-3 p-3 rounded border text-left transition-all cursor-pointer ${
+                                activeStep === idx
+                                    ? 'bg-primary/10 border-primary text-foreground shadow-[0_0_15px_rgba(6,182,212,0.15)]'
+                                    : 'bg-muted/10 border-border/40 text-muted-foreground hover:border-primary/30 hover:text-foreground'
+                            }`}
+                        >
+                            {step.icon}
+                            <span className="font-bold text-xs">{step.title}</span>
+                        </button>
+                    ))}
+                </div>
+
+                {/* Step Details */}
+                <div className="lg:col-span-8 border border-border/40 rounded p-5 bg-muted/5 flex flex-col justify-between">
+                    <div>
+                        <div className="flex items-center gap-3 mb-3 border-b border-border/30 pb-3">
+                            {active.icon}
+                            <h5 className="font-bold text-primary">{active.title}</h5>
+                        </div>
+                        <p className="text-muted-foreground text-xs leading-relaxed mb-4">
+                            {active.summary}
+                        </p>
+                        <div>
+                            <span className="text-xxs text-primary uppercase font-bold tracking-widest block mb-2">
+                                {language === 'es' ? 'Reglas de Ingeniería:' : 'Engineering Rules:'}
+                            </span>
+                            <ul className="space-y-1.5 list-disc pl-4 text-xxs text-muted-foreground">
+                                {active.rules.map((rule, idx) => (
+                                    <li key={idx} className="leading-relaxed">
+                                        {rule}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
 function Globe(props: React.SVGProps<SVGSVGElement>) {
     return (
         <svg
