@@ -15,6 +15,14 @@
     {
       "source": "/sarmiento-151",
       "destination": "https://sarmiento-151.vercel.app/"
+    },
+    {
+      "source": "/airmarket/:path*",
+      "destination": "https://airbnb-market-intelligence.vercel.app/:path*"
+    },
+    {
+      "source": "/airmarket",
+      "destination": "https://airbnb-market-intelligence.vercel.app/"
     }
   ]
 }
