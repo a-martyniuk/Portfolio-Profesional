@@ -38,19 +38,19 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/Administracion_MTAlvear963",
-        destination: "https://auditoria-administracion-mtalvear963.vercel.app/",
+        destination: "https://auditoria-administracion-mt-alvear9-two.vercel.app/",
       },
       {
         source: "/Administracion_MTAlvear963/:path*",
-        destination: "https://auditoria-administracion-mtalvear963.vercel.app/:path*",
+        destination: "https://auditoria-administracion-mt-alvear9-two.vercel.app/:path*",
       },
       {
         source: "/alvear963",
-        destination: "https://auditoria-administracion-mtalvear963.vercel.app/",
+        destination: "https://auditoria-administracion-mt-alvear9-two.vercel.app/",
       },
       {
         source: "/alvear963/:path*",
-        destination: "https://auditoria-administracion-mtalvear963.vercel.app/:path*",
+        destination: "https://auditoria-administracion-mt-alvear9-two.vercel.app/:path*",
       },
     ];
   },
