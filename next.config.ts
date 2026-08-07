@@ -36,6 +36,22 @@ const nextConfig: NextConfig = {
         source: "/cordoba5579/:path*",
         destination: "https://cordoba5579.vercel.app/cordoba5579/:path*",
       },
+      {
+        source: "/Administracion_MTAlvear963",
+        destination: "https://auditoria-administracion-mtalvear963.vercel.app/",
+      },
+      {
+        source: "/Administracion_MTAlvear963/:path*",
+        destination: "https://auditoria-administracion-mtalvear963.vercel.app/:path*",
+      },
+      {
+        source: "/alvear963",
+        destination: "https://auditoria-administracion-mtalvear963.vercel.app/",
+      },
+      {
+        source: "/alvear963/:path*",
+        destination: "https://auditoria-administracion-mtalvear963.vercel.app/:path*",
+      },
     ];
   },
 };

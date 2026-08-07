@@ -23,6 +23,22 @@
     {
       "source": "/airmarket",
       "destination": "https://airbnb-market-intelligence.vercel.app/"
+    },
+    {
+      "source": "/Administracion_MTAlvear963/:path*",
+      "destination": "https://auditoria-administracion-mtalvear963.vercel.app/:path*"
+    },
+    {
+      "source": "/Administracion_MTAlvear963",
+      "destination": "https://auditoria-administracion-mtalvear963.vercel.app/"
+    },
+    {
+      "source": "/alvear963/:path*",
+      "destination": "https://auditoria-administracion-mtalvear963.vercel.app/:path*"
+    },
+    {
+      "source": "/alvear963",
+      "destination": "https://auditoria-administracion-mtalvear963.vercel.app/"
     }
   ]
 }
