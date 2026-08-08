@@ -106,7 +106,6 @@ export function ProjectCard({ title, description, image, alt, tags, link, second
                     )}
                 </div>
 
-
                 {/* Metric Badge */}
                 {metric && (
                     <div className="absolute bottom-3 right-3 z-10 font-mono text-[10px] tracking-wider">
@@ -118,70 +117,41 @@ export function ProjectCard({ title, description, image, alt, tags, link, second
             </div>
 
             <div className={`p-5 flex-1 flex flex-col justify-between ${horizontal ? 'md:p-6' : ''}`}>
-                <div className="flex justify-between items-start mb-3 gap-2 flex-wrap sm:flex-nowrap">
-                    <h3 className="text-lg md:text-xl font-heading font-bold text-foreground group-hover:text-primary transition-colors">
-                        {title}
-                    </h3>
-                    <div className="flex gap-1.5 shrink-0 ml-auto flex-wrap items-center justify-end">
-                        {github && (
-                            <a
-                                href={github}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                onClick={handleGitHubClick}
-                                className="p-2 rounded border border-border hover:bg-muted text-muted-foreground hover:text-foreground transition-colors min-w-[36px] min-h-[36px] flex items-center justify-center"
-                                title={secondaryGithub ? "Ver código Alvear 963 en GitHub" : "Ver código en GitHub"}
-                            >
-                                <Github size={15} />
-                            </a>
-                        )}
-                        {secondaryGithub && (
-                            <a
-                                href={secondaryGithub}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    trackGitHubClick(secondaryGithub.split('/').pop() || title);
-                                }}
-                                className="p-2 rounded border border-border hover:bg-muted text-muted-foreground hover:text-foreground transition-colors min-w-[36px] min-h-[36px] flex items-center justify-center"
-                                title="Ver código Sarmiento 151 en GitHub"
-                            >
-                                <Github size={15} />
-                            </a>
-                        )}
-                        {link && (
-                            linkType === 'demo' ? (
-                                secondaryLink ? (
-                                    <>
-                                        <a
-                                            href={link}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            onClick={handleLinkClick}
-                                            className="px-2.5 py-1.5 rounded border border-emerald-500/30 bg-emerald-500/10 text-emerald-500 hover:text-white hover:bg-emerald-500 hover:border-emerald-500 hover:shadow-[0_0_12px_rgba(16,185,129,0.4)] text-[10px] uppercase font-mono font-bold tracking-wider flex items-center gap-1 transition-all min-h-[36px]"
-                                            title="Demo 1: Consorcio Alvear 963"
-                                        >
-                                            <span className="relative flex h-2 w-2">
-                                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                                                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                                            </span>
-                                            <Globe size={12} />
-                                            <span>Alvear 963</span>
-                                        </a>
-                                        <a
-                                            href={secondaryLink}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            onClick={(e) => e.stopPropagation()}
-                                            className="px-2.5 py-1.5 rounded border border-cyan-500/30 bg-cyan-500/10 text-cyan-500 hover:text-white hover:bg-cyan-500 hover:border-cyan-500 hover:shadow-[0_0_12px_rgba(6,182,212,0.4)] text-[10px] uppercase font-mono font-bold tracking-wider flex items-center gap-1 transition-all min-h-[36px]"
-                                            title="Demo 2: Consorcio Sarmiento 151"
-                                        >
-                                            <Globe size={12} />
-                                            <span>Sarmiento 151</span>
-                                        </a>
-                                    </>
-                                ) : (
+                <div>
+                    <div className="flex justify-between items-start mb-3 gap-3">
+                        <h3 className="text-lg md:text-xl font-heading font-bold text-foreground group-hover:text-primary transition-colors flex-1">
+                            {title}
+                        </h3>
+                        <div className="flex gap-1.5 shrink-0 items-center">
+                            {github && (
+                                <a
+                                    href={github}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    onClick={handleGitHubClick}
+                                    className="p-2 rounded border border-border hover:bg-muted text-muted-foreground hover:text-foreground transition-colors min-w-[36px] min-h-[36px] flex items-center justify-center"
+                                    title={secondaryGithub ? "Ver código Alvear 963 en GitHub" : "Ver código en GitHub"}
+                                >
+                                    <Github size={15} />
+                                </a>
+                            )}
+                            {secondaryGithub && (
+                                <a
+                                    href={secondaryGithub}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        trackGitHubClick(secondaryGithub.split('/').pop() || title);
+                                    }}
+                                    className="p-2 rounded border border-border hover:bg-muted text-muted-foreground hover:text-foreground transition-colors min-w-[36px] min-h-[36px] flex items-center justify-center"
+                                    title="Ver código Sarmiento 151 en GitHub"
+                                >
+                                    <Github size={15} />
+                                </a>
+                            )}
+                            {link && (
+                                linkType === 'demo' ? (
                                     <a
                                         href={link}
                                         target="_blank"
@@ -195,28 +165,58 @@ export function ProjectCard({ title, description, image, alt, tags, link, second
                                             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                                         </span>
                                         <Globe size={13} className="animate-pulse" />
-                                        <span>Demo</span>
+                                        <span>{secondaryLink ? '2 Demos' : 'Demo'}</span>
+                                    </a>
+                                ) : (
+                                    <a
+                                        href={link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        onClick={handleLinkClick}
+                                        className="p-2 rounded border border-border hover:bg-muted text-primary hover:text-primary-foreground hover:bg-primary transition-all min-w-[36px] min-h-[36px] flex items-center justify-center"
+                                        title="Ver artículo / publicación"
+                                    >
+                                        <BookOpen size={15} />
                                     </a>
                                 )
-                            ) : (
-                                <a
-                                    href={link}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    onClick={handleLinkClick}
-                                    className="p-2 rounded border border-border hover:bg-muted text-primary hover:text-primary-foreground hover:bg-primary transition-all min-w-[36px] min-h-[36px] flex items-center justify-center"
-                                    title="Ver artículo / publicación"
-                                >
-                                    <BookOpen size={15} />
-                                </a>
-                            )
-                        )}
+                            )}
+                        </div>
                     </div>
-                </div>
 
-                <p className={`text-muted-foreground leading-relaxed mb-5 line-clamp-3 ${horizontal ? 'text-sm md:text-base' : 'text-xs md:text-sm'}`}>
-                    {description}
-                </p>
+                    <p className={`text-muted-foreground leading-relaxed mb-4 line-clamp-3 ${horizontal ? 'text-sm md:text-base' : 'text-xs md:text-sm'}`}>
+                        {description}
+                    </p>
+
+                    {/* Dual Demo Action Bar for Multi-Tenant Projects */}
+                    {secondaryLink && (
+                        <div className="my-3 flex flex-wrap gap-2 pt-2 border-t border-border/40">
+                            <a
+                                href={link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={handleLinkClick}
+                                className="px-3 py-1.5 rounded border border-emerald-500/40 bg-emerald-500/10 text-emerald-400 hover:text-white hover:bg-emerald-500 hover:border-emerald-500 hover:shadow-[0_0_12px_rgba(16,185,129,0.3)] text-xs font-mono font-bold tracking-wide flex items-center gap-1.5 transition-all"
+                            >
+                                <span className="relative flex h-2 w-2">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                                </span>
+                                <Globe size={13} />
+                                <span>Demo 1: Alvear 963</span>
+                            </a>
+                            <a
+                                href={secondaryLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={(e) => e.stopPropagation()}
+                                className="px-3 py-1.5 rounded border border-cyan-500/40 bg-cyan-500/10 text-cyan-400 hover:text-white hover:bg-cyan-500 hover:border-cyan-500 hover:shadow-[0_0_12px_rgba(6,182,212,0.3)] text-xs font-mono font-bold tracking-wide flex items-center gap-1.5 transition-all"
+                            >
+                                <Globe size={13} />
+                                <span>Demo 2: Sarmiento 151</span>
+                            </a>
+                        </div>
+                    )}
+                </div>
 
                 {/* Tech Tags */}
                 <div className="flex flex-wrap gap-1.5 mt-auto">
