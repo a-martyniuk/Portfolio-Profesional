@@ -1018,13 +1018,13 @@ export function SarmientoDataFlowDiagram({ language }: { language: 'es' | 'en' }
         },
         {
             id: "ingestion",
-            title: "03. Descarga y Parseo PDF",
+            title: "03. Ingesta Multi-Fuente (AWS API / PyMuPDF)",
             icon: <FileText className="w-5 h-5 text-cyan-400" />,
-            summary: "download_historico.py descarga el PDF usando payloads cifrados en Base64. extract_data.py usa pdfplumber y Regex para estructurar gastos y prorrateo.",
+            summary: "Alvear 963: download_octopus.py consume la API REST de AWS de Octopus Vecinos y parse_official_expensas.py usa PyMuPDF (fitz) para mapear 10 rubros Ley CABA 941. Sarmiento 151: Ingesta de PDFs con pdfplumber.",
             rules: [
-                "Cifrado Base64: Encripta identificadores predictivos y credenciales dummy para interactuar de forma segura con la API de la administración.",
-                "Estructuración pdfplumber: Lee celdas de tablas no tabuladas y las segmenta por conceptos, U.F. y prorrateos.",
-                "Categorización Inteligente: Algoritmo heurístico que clasifica gastos en categorías homogéneas (Sueldos, Seguros, Mantenimiento, etc.)."
+                "API AWS Octopus Vecinos: Descarga automatizada de liquidaciones oficiales y adjuntos de comunicaciones.",
+                "Estructuración PyMuPDF & Regex: Análisis geométrico de tablas de comprobantes y estados de cuenta por UF.",
+                "Categorización Ley CABA 941: Clasificación de egresos en 10 rubros legales estándar (Sueldos, Seguros, Mantenimiento, etc.)."
             ]
         },
         {
@@ -1051,13 +1051,13 @@ export function SarmientoDataFlowDiagram({ language }: { language: 'es' | 'en' }
         },
         {
             id: "dashboard",
-            title: "06. Frontend Estático",
+            title: "06. Frontend Estático & Motor IPC",
             icon: <Monitor className="w-5 h-5 text-cyan-400" />,
-            summary: "Index.html y dashboard.js (Vanilla CSS & JS, ApexCharts) renderizan gráficos históricos de egresos e intereses de U.F. calculados en vivo.",
+            summary: "Index.html y dashboard.js (Vanilla CSS & JS, ApexCharts) incorporan un motor de ajuste por inflación IPC INDEC, discriminación de aguinaldos (SAC), módulo de 23 UFs y plantilla A4 con QR.",
             rules: [
-                "Cero Frameworks: Vanilla JS (ES6+) que elimina dependencias y asegura velocidad máxima de carga.",
-                "Cálculos en Caliente: Motor financiero que liquida intereses punitorios retroactivos por unidad funcional directo en el navegador.",
-                "Visualizaciones ApexCharts: Gráficos dinámicos interactivos de series temporales y distribución patrimonial."
+                "Motor IPC INDEC: Ajusta series de tiempo nominales a valores reales constantes según inflación acumulada.",
+                "Segregación SAC & Unidades: Identifica sueldos complementarios y audita 1.097 registros de prorrateo e intereses por UF.",
+                "Cartelera Imprimible con QR: Genera una vista A4 optimizada para impresión física en la entrada del consorcio."
             ]
         }
     ];

@@ -9,10 +9,12 @@ export interface Project {
     impact: string;
     architecture: string[];
     link?: string;
+    secondaryLink?: string;
     linkType?: 'demo' | 'article';
     github?: string;
+    secondaryGithub?: string;
     metric?: string;
     video?: string;
-
 }
+
 

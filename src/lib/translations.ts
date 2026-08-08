@@ -9,8 +9,10 @@ export interface Project {
     impact: string;
     architecture: string[];
     link?: string;
+    secondaryLink?: string;
     linkType?: 'article' | 'demo';
     github?: string;
+    secondaryGithub?: string;
     metric?: string;
     video?: string;
 }
@@ -427,18 +429,20 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 metric: "Preguntas: -75%"
             },
             {
-                title: "Sarmiento 151: Auditoría de Expensas y Servicios",
-                description: "Plataforma de control financiero y auditoría independiente de expensas para copropietarios de consorcio. Ingesta automatizada de PDFs financieros, base de datos relacional y alertas de suministros en vivo.",
+                title: "Plataforma de Auditoría de Consorcios: Alvear 963 & Sarmiento 151",
+                description: "Plataforma SaaS multi-consorcio en producción para el control financiero, ingesta automatizada (API REST AWS Octopus + PyMuPDF y PDF Parsing) y auditoría independiente en M.T. de Alvear 961/963 y Sarmiento 151.",
                 image: "/images/projects/sarmiento151_mockup.png",
-                alt: "Dashboard Sarmiento 151 mostrando gráficos de expensas y widgets de servicios en vivo",
-                tags: ["Python", "Vanilla JS (ES6+)", "pdfplumber", "GitHub Actions CI/CD", "ApexCharts", "Cron Jobs", "Data Extraction (RegEx)", "API Ingestion", "Vercel"],
-                challenge: "La falta de transparencia en liquidaciones complejas de expensas emitidas en PDFs sin estructura fija por los administradores, sumado a cortes frecuentes e imprevistos de suministros públicos locales en la zona geográfica del consorcio.",
-                solution: "Diseñé una SPA estática con Vanilla JS y ApexCharts. Construí un backend en Python (pdfplumber) para descargar predictivamente, validar y estructurar los PDFs a un almacén plano JSON. Programé cron jobs en GitHub Actions que auditan 4 veces al día el estado de servicios públicos (Luz con Edesur, Agua con AySA, Gas con Metrogas) y redespliegan el panel en vivo.",
-                impact: "Transparencia absoluta en expensas e intereses acumulados por unidad funcional. Reducción a $0 de costo mensual de infraestructura y auditoría automatizada en tiempo real de suministros esenciales.",
-                architecture: ["Sync Orchestrator (cron_update.py)", "PDF Ingestion (pdfplumber + Base64 API)", "Service Audit (check_servicios.py)", "Flat File DB (gastos.json / prorrateo.json)", "Static UI (Vanilla CSS / ES6+ / ApexCharts)"],
-                github: "https://github.com/a-martyniuk/Administracion_Sarmiento151",
-                link: "https://www.alexismartyniuk.com.ar/sarmiento-151",
-                metric: "Hosting: $0 / mes"
+                alt: "Dashboard de Auditoría de Consorcios mostrando gráficos de expensas, motor IPC INDEC y widgets de servicios en vivo",
+                tags: ["Python", "Vanilla JS (ES6+)", "AWS API Ingestion", "PyMuPDF", "Motor IPC INDEC", "Ley CABA 941", "GitHub Actions CI/CD", "ApexCharts", "Vercel"],
+                challenge: "La falta de transparencia en liquidaciones complejas de expensas emitidas por distintas administraciones, la desvalorización monetaria histórica sin ajuste por inflación IPC y los cortes sorpresivos de suministros públicos en la zona.",
+                solution: "Desarrollé una plataforma de auditoría multi-consorcio en producción. En Alvear 963 (23 UFs, 48 meses auditados, +$180M ARS procesados) integré consumo directo de la API REST de AWS de Octopus Vecinos, motor de paridad IPC INDEC, desglose de aguinaldos (SAC), clasificación según Ley CABA 941 y cartelera física A4 imprimible con QR. En Sarmiento 151 implementé extracción de PDFs con pdfplumber y monitoreo preventivo en tiempo real de servicios (Edesur, AySA, Metrogas).",
+                impact: "Transparencia contable absoluta en 2 consorcios en producción. Auditoría IPC en tiempo real de +1.300 comprobantes y 1.097 registros de prorrateo por unidad funcional con $0 de costo mensual de infraestructura.",
+                architecture: ["Multi-Source ETL (API AWS Octopus + PyMuPDF / pdfplumber)", "INDEC IPC Inflation & SAC Isolation Engine", "Service Audit (check_servicios.py - Edesur/AySA/Metrogas)", "Flat File DB (gastos.json / prorrateo.json)", "Printable QR Noticeboard (cartelera_dashboard.html)", "Static UI (Vanilla CSS / ES6+ / ApexCharts)"],
+                github: "https://github.com/a-martyniuk/Auditoria_Administracion_MTAlvear963",
+                secondaryGithub: "https://github.com/a-martyniuk/Administracion_Sarmiento151",
+                link: "https://www.alexismartyniuk.com.ar/Administracion_MTAlvear963",
+                secondaryLink: "https://www.alexismartyniuk.com.ar/sarmiento-151",
+                metric: "Auditado: +$180M ARS"
             },
             {
                 title: "AirMarket AI: Revenue Management & Dynamic Pricing",
@@ -848,18 +852,20 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 metric: "FAQs: -75%"
             },
             {
-                title: "Sarmiento 151: Expense Audit & Public Services Monitor",
-                description: "Financial control and independent expense monitoring platform for co-owners. Automates financial PDF ingestion, generates relational databases, and displays live public service alerts.",
+                title: "Consortium Audit Platform: Alvear 963 & Sarmiento 151",
+                description: "Multi-property SaaS financial control and independent expense audit platform operating in live production across M.T. de Alvear 961/963 and Sarmiento 151, featuring direct AWS API ingestion, INDEC IPC inflation index adjustment, and live utility monitoring.",
                 image: "/images/projects/sarmiento151_mockup.png",
-                alt: "Sarmiento 151 Dashboard displaying expense charts and live service status widgets",
-                tags: ["Python", "Vanilla JS (ES6+)", "pdfplumber", "GitHub Actions CI/CD", "ApexCharts", "Cron Jobs", "Data Extraction (RegEx)", "API Ingestion", "Vercel"],
-                challenge: "A complete lack of transparency in complex financial statements issued in unstructured PDFs by property managers, paired with frequent, unannounced local utility cuts in the building's geographic zone.",
-                solution: "Designed a static SPA using Vanilla JS and ApexCharts. Developed a local Python backend (pdfplumber) to predictively download, validate, and parse PDF statements into a flat JSON database. Scheduled GitHub Actions workflows that audit local public utility networks 4 times a day (power, water, gas outages) and redeploy the live panel.",
-                impact: "100% financial transparency for residents, interactive historical expense analytics, and clear visualization of accrued interest per unit. Real-time supply status tracking with zero infrastructure cost.",
-                architecture: ["Sync Orchestrator (cron_update.py)", "PDF Ingestion (pdfplumber + Base64 API)", "Service Audit (check_servicios.py)", "Flat File DB (gastos.json / prorrateo.json)", "Static UI (Vanilla CSS / ES6+ / ApexCharts)"],
-                github: "https://github.com/a-martyniuk/Administracion_Sarmiento151",
-                link: "https://www.alexismartyniuk.com.ar/sarmiento-151",
-                metric: "Hosting: $0 / mo"
+                alt: "Consortium Audit Dashboard displaying expense charts, IPC inflation engine, and live service status widgets",
+                tags: ["Python", "Vanilla JS (ES6+)", "AWS API Ingestion", "PyMuPDF", "INDEC IPC Engine", "CABA Law 941", "GitHub Actions CI/CD", "ApexCharts", "Vercel"],
+                challenge: "Lack of transparency in complex financial statements issued by property managers, historical currency devaluation without inflation adjustment (IPC), and unannounced local utility outages in the geographic area.",
+                solution: "Engineered a multi-property expense audit platform running live in production. For Alvear 963 (23 UFs, 48 continuous months audited, +$180M ARS analyzed), integrated direct consumption of AWS Octopus REST API, INDEC IPC inflation engine, SAC isolation, CABA Law 941 compliance, and printable A4 QR noticeboards. For Sarmiento 151, built pdfplumber PDF extraction and 24/7 public utility monitoring (electricity, water, gas).",
+                impact: "100% financial transparency across 2 live consortiums. Real-time IPC inflation auditing across +1,300 expense vouchers and 1,097 unit settlement records with zero monthly hosting cost.",
+                architecture: ["Multi-Source ETL (API AWS Octopus + PyMuPDF / pdfplumber)", "INDEC IPC Inflation & SAC Isolation Engine", "Service Audit (check_servicios.py - Edesur/AySA/Metrogas)", "Flat File DB (gastos.json / prorrateo.json)", "Printable QR Noticeboard (cartelera_dashboard.html)", "Static UI (Vanilla CSS / ES6+ / ApexCharts)"],
+                github: "https://github.com/a-martyniuk/Auditoria_Administracion_MTAlvear963",
+                secondaryGithub: "https://github.com/a-martyniuk/Administracion_Sarmiento151",
+                link: "https://www.alexismartyniuk.com.ar/Administracion_MTAlvear963",
+                secondaryLink: "https://www.alexismartyniuk.com.ar/sarmiento-151",
+                metric: "Audited: +$180M ARS"
             },
             {
                 title: "AirMarket AI: Revenue Management & Dynamic Pricing",

@@ -717,24 +717,37 @@ export default function Home() {
 
             {selectedProject?.link && (
               selectedProject.linkType === 'demo' ? (
-                <a
-                  href={selectedProject.link}
-                  target="_blank"
-                  className="relative group overflow-hidden w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 hover:text-white hover:border-emerald-500 hover:bg-emerald-500/20 transition-all duration-300 font-mono text-xs uppercase tracking-widest font-bold hover:shadow-[0_0_20px_rgba(16,185,129,0.3)]"
-                >
-                  {/* Shimmer Effect overlay */}
-                  <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-emerald-400/10 to-transparent -translate-x-full group-hover:animate-shimmer pointer-events-none" />
-                  
-                  {/* Blinking Live Indicator */}
-                  <span className="relative flex h-2 w-2 shrink-0">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                  </span>
-                  
-                  <Globe size={14} className="animate-pulse" />
-                  <span>{t.pipeline.viewLiveDemo}</span>
-                  <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                </a>
+                <div className="flex flex-col sm:flex-row gap-3 w-full">
+                  <a
+                    href={selectedProject.link}
+                    target="_blank"
+                    className="relative group overflow-hidden flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 hover:text-white hover:border-emerald-500 hover:bg-emerald-500/20 transition-all duration-300 font-mono text-xs uppercase tracking-widest font-bold hover:shadow-[0_0_20px_rgba(16,185,129,0.3)]"
+                  >
+                    <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-emerald-400/10 to-transparent -translate-x-full group-hover:animate-shimmer pointer-events-none" />
+                    <span className="relative flex h-2 w-2 shrink-0">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    </span>
+                    <Globe size={14} className="animate-pulse" />
+                    <span>{selectedProject.secondaryLink ? 'Demo: Alvear 963' : t.pipeline.viewLiveDemo}</span>
+                    <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                  </a>
+
+                  {selectedProject.secondaryLink && (
+                    <a
+                      href={selectedProject.secondaryLink}
+                      target="_blank"
+                      className="relative group overflow-hidden flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 hover:text-white hover:border-cyan-500 hover:bg-cyan-500/20 transition-all duration-300 font-mono text-xs uppercase tracking-widest font-bold hover:shadow-[0_0_20px_rgba(6,182,212,0.3)]"
+                    >
+                      <span className="relative flex h-2 w-2 shrink-0">
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+                      </span>
+                      <Globe size={14} />
+                      <span>Demo: Sarmiento 151</span>
+                      <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                    </a>
+                  )}
+                </div>
               ) : (
                 <a
                   href={selectedProject.link}
@@ -784,7 +797,7 @@ export default function Home() {
           </div>
         )}
 
-        {selectedProject && (selectedProject.title.includes("Sarmiento") || selectedProject.title.includes("Sarmiento 151")) && (
+        {selectedProject && (selectedProject.title.includes("Sarmiento") || selectedProject.title.includes("Consorcio") || selectedProject.title.includes("Alvear")) && (
           <div className="mt-12 pt-12 border-t border-border/10">
             <SarmientoDataFlowDiagram language={language} />
           </div>
