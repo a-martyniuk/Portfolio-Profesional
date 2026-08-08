@@ -439,7 +439,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 impact: "Transparencia contable absoluta en 2 consorcios en producción. Auditoría IPC en tiempo real de +1.300 comprobantes y 1.097 registros de prorrateo por unidad funcional con $0 de costo mensual de infraestructura.",
                 architecture: ["Multi-Source ETL (API AWS Octopus + PyMuPDF / pdfplumber)", "INDEC IPC Inflation & SAC Isolation Engine", "Service Audit (check_servicios.py - Edesur/AySA/Metrogas)", "Flat File DB (gastos.json / prorrateo.json)", "Printable QR Noticeboard (cartelera_dashboard.html)", "Static UI (Vanilla CSS / ES6+ / ApexCharts)"],
                 github: "https://github.com/a-martyniuk/Auditoria_Administracion_MTAlvear963",
-                secondaryGithub: "https://github.com/a-martyniuk/Administracion_Sarmiento151",
+                secondaryGithub: "https://github.com/a-martyniuk/sarmiento-151",
                 link: "https://www.alexismartyniuk.com.ar/Administracion_MTAlvear963",
                 secondaryLink: "https://www.alexismartyniuk.com.ar/sarmiento-151",
                 metric: "Auditado: +$180M ARS"
@@ -862,7 +862,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 impact: "100% financial transparency across 2 live consortiums. Real-time IPC inflation auditing across +1,300 expense vouchers and 1,097 unit settlement records with zero monthly hosting cost.",
                 architecture: ["Multi-Source ETL (API AWS Octopus + PyMuPDF / pdfplumber)", "INDEC IPC Inflation & SAC Isolation Engine", "Service Audit (check_servicios.py - Edesur/AySA/Metrogas)", "Flat File DB (gastos.json / prorrateo.json)", "Printable QR Noticeboard (cartelera_dashboard.html)", "Static UI (Vanilla CSS / ES6+ / ApexCharts)"],
                 github: "https://github.com/a-martyniuk/Auditoria_Administracion_MTAlvear963",
-                secondaryGithub: "https://github.com/a-martyniuk/Administracion_Sarmiento151",
+                secondaryGithub: "https://github.com/a-martyniuk/sarmiento-151",
                 link: "https://www.alexismartyniuk.com.ar/Administracion_MTAlvear963",
                 secondaryLink: "https://www.alexismartyniuk.com.ar/sarmiento-151",
                 metric: "Audited: +$180M ARS"
