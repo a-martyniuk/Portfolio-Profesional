@@ -14,15 +14,17 @@ interface ProjectCardProps {
     alt?: string;
     tags: string[];
     link?: string;
+    secondaryLink?: string;
     linkType?: 'demo' | 'article';
     github?: string;
+    secondaryGithub?: string;
     onClick?: () => void;
     horizontal?: boolean;
     metric?: string;
     video?: string;
 }
 
-export function ProjectCard({ title, description, image, alt, tags, link, linkType = 'demo', github, onClick, horizontal = false, metric, video }: ProjectCardProps) {
+export function ProjectCard({ title, description, image, alt, tags, link, secondaryLink, linkType = 'demo', github, secondaryGithub, onClick, horizontal = false, metric, video }: ProjectCardProps) {
     const { trackOracleClick, trackGitHubClick } = useAnalytics();
     const { t } = useLanguage();
 
@@ -99,7 +101,7 @@ export function ProjectCard({ title, description, image, alt, tags, link, linkTy
                                     <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
                                 </span>
                             )}
-                            {linkType === 'demo' ? 'Live' : '📰 Document'}
+                            {linkType === 'demo' ? (secondaryLink ? '2 Demos Live' : 'Live') : '📰 Document'}
                         </span>
                     )}
                 </div>
@@ -116,11 +118,11 @@ export function ProjectCard({ title, description, image, alt, tags, link, linkTy
             </div>
 
             <div className={`p-5 flex-1 flex flex-col justify-between ${horizontal ? 'md:p-6' : ''}`}>
-                <div className="flex justify-between items-start mb-3">
+                <div className="flex justify-between items-start mb-3 gap-2 flex-wrap sm:flex-nowrap">
                     <h3 className="text-lg md:text-xl font-heading font-bold text-foreground group-hover:text-primary transition-colors">
                         {title}
                     </h3>
-                    <div className="flex gap-1.5 shrink-0 ml-2">
+                    <div className="flex gap-1.5 shrink-0 ml-auto flex-wrap items-center justify-end">
                         {github && (
                             <a
                                 href={github}
@@ -128,28 +130,74 @@ export function ProjectCard({ title, description, image, alt, tags, link, linkTy
                                 rel="noopener noreferrer"
                                 onClick={handleGitHubClick}
                                 className="p-2 rounded border border-border hover:bg-muted text-muted-foreground hover:text-foreground transition-colors min-w-[36px] min-h-[36px] flex items-center justify-center"
-                                title="Ver código en GitHub"
+                                title={secondaryGithub ? "Ver código Alvear 963 en GitHub" : "Ver código en GitHub"}
+                            >
+                                <Github size={15} />
+                            </a>
+                        )}
+                        {secondaryGithub && (
+                            <a
+                                href={secondaryGithub}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    trackGitHubClick(secondaryGithub.split('/').pop() || title);
+                                }}
+                                className="p-2 rounded border border-border hover:bg-muted text-muted-foreground hover:text-foreground transition-colors min-w-[36px] min-h-[36px] flex items-center justify-center"
+                                title="Ver código Sarmiento 151 en GitHub"
                             >
                                 <Github size={15} />
                             </a>
                         )}
                         {link && (
                             linkType === 'demo' ? (
-                                <a
-                                    href={link}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    onClick={handleLinkClick}
-                                    className="px-3 py-1.5 rounded border border-emerald-500/30 bg-emerald-500/10 text-emerald-500 hover:text-white hover:bg-emerald-500 hover:border-emerald-500 hover:shadow-[0_0_12px_rgba(16,185,129,0.4)] text-[10px] uppercase font-mono font-bold tracking-widest flex items-center gap-1.5 transition-all min-h-[36px]"
-                                    title="Ver aplicación en vivo (Live Demo)"
-                                >
-                                    <span className="relative flex h-2 w-2">
-                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                                    </span>
-                                    <Globe size={13} className="animate-pulse" />
-                                    <span>Demo</span>
-                                </a>
+                                secondaryLink ? (
+                                    <>
+                                        <a
+                                            href={link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            onClick={handleLinkClick}
+                                            className="px-2.5 py-1.5 rounded border border-emerald-500/30 bg-emerald-500/10 text-emerald-500 hover:text-white hover:bg-emerald-500 hover:border-emerald-500 hover:shadow-[0_0_12px_rgba(16,185,129,0.4)] text-[10px] uppercase font-mono font-bold tracking-wider flex items-center gap-1 transition-all min-h-[36px]"
+                                            title="Demo 1: Consorcio Alvear 963"
+                                        >
+                                            <span className="relative flex h-2 w-2">
+                                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                                            </span>
+                                            <Globe size={12} />
+                                            <span>Alvear 963</span>
+                                        </a>
+                                        <a
+                                            href={secondaryLink}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            onClick={(e) => e.stopPropagation()}
+                                            className="px-2.5 py-1.5 rounded border border-cyan-500/30 bg-cyan-500/10 text-cyan-500 hover:text-white hover:bg-cyan-500 hover:border-cyan-500 hover:shadow-[0_0_12px_rgba(6,182,212,0.4)] text-[10px] uppercase font-mono font-bold tracking-wider flex items-center gap-1 transition-all min-h-[36px]"
+                                            title="Demo 2: Consorcio Sarmiento 151"
+                                        >
+                                            <Globe size={12} />
+                                            <span>Sarmiento 151</span>
+                                        </a>
+                                    </>
+                                ) : (
+                                    <a
+                                        href={link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        onClick={handleLinkClick}
+                                        className="px-3 py-1.5 rounded border border-emerald-500/30 bg-emerald-500/10 text-emerald-500 hover:text-white hover:bg-emerald-500 hover:border-emerald-500 hover:shadow-[0_0_12px_rgba(16,185,129,0.4)] text-[10px] uppercase font-mono font-bold tracking-widest flex items-center gap-1.5 transition-all min-h-[36px]"
+                                        title="Ver aplicación en vivo (Live Demo)"
+                                    >
+                                        <span className="relative flex h-2 w-2">
+                                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                                        </span>
+                                        <Globe size={13} className="animate-pulse" />
+                                        <span>Demo</span>
+                                    </a>
+                                )
                             ) : (
                                 <a
                                     href={link}

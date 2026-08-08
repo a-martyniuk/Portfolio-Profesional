@@ -415,7 +415,9 @@ export default function Home() {
                 alt={proj.alt}
                 tags={proj.tags}
                 github={proj.github}
+                secondaryGithub={proj.secondaryGithub}
                 link={proj.link}
+                secondaryLink={proj.secondaryLink}
                 linkType={proj.linkType}
                 metric={proj.metric}
                 video={proj.video}
