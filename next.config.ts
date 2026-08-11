@@ -52,6 +52,14 @@ const nextConfig: NextConfig = {
         source: "/alvear963/:path*",
         destination: "https://auditoria-administracion-mt-alvear9-two.vercel.app/:path*",
       },
+      {
+        source: "/mdq-911-intelligence",
+        destination: "https://mdq-911-intelligence.vercel.app/",
+      },
+      {
+        source: "/mdq-911-intelligence/:path*",
+        destination: "https://mdq-911-intelligence.vercel.app/:path*",
+      },
     ];
   },
 };
