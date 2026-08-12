@@ -54,11 +54,11 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/mdq-911-intelligence",
-        destination: "https://mdq-911-intelligence.vercel.app/",
+        destination: "https://mdq-911-intelligence.vercel.app/mdq-911-intelligence",
       },
       {
         source: "/mdq-911-intelligence/:path*",
-        destination: "https://mdq-911-intelligence.vercel.app/:path*",
+        destination: "https://mdq-911-intelligence.vercel.app/mdq-911-intelligence/:path*",
       },
     ];
   },
