@@ -29,6 +29,30 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
+        source: "/sarmiento-360",
+        destination: "https://sarmiento-360.vercel.app/",
+      },
+      {
+        source: "/sarmiento-360/:path*",
+        destination: "https://sarmiento-360.vercel.app/:path*",
+      },
+      {
+        source: "/sarmiento360",
+        destination: "https://sarmiento-360.vercel.app/",
+      },
+      {
+        source: "/sarmiento360/:path*",
+        destination: "https://sarmiento-360.vercel.app/:path*",
+      },
+      {
+        source: "/sarmiento-151",
+        destination: "https://sarmiento-151.vercel.app/",
+      },
+      {
+        source: "/sarmiento-151/:path*",
+        destination: "https://sarmiento-151.vercel.app/:path*",
+      },
+      {
         source: "/cordoba5579",
         destination: "https://cordoba5579.vercel.app/cordoba5579",
       },
