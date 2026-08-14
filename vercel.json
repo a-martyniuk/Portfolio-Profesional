@@ -1,11 +1,23 @@
 {
+  "redirects": [
+    {
+      "source": "/sarmiento-360",
+      "destination": "/sarmiento-360/",
+      "permanent": true
+    },
+    {
+      "source": "/sarmiento360",
+      "destination": "/sarmiento-360/",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/sarmiento-360/:path*",
       "destination": "https://sarmiento-360.vercel.app/:path*"
     },
     {
-      "source": "/sarmiento-360",
+      "source": "/sarmiento-360/",
       "destination": "https://sarmiento-360.vercel.app/"
     },
     {
