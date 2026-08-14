@@ -429,20 +429,20 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 metric: "Preguntas: -75%"
             },
             {
-                title: "Plataforma de Auditoría de Consorcios: Alvear 963 & Sarmiento 151",
-                description: "Plataforma SaaS multi-consorcio en producción para el control financiero, ingesta automatizada (API REST AWS Octopus + PyMuPDF y PDF Parsing) y auditoría independiente en M.T. de Alvear 961/963 y Sarmiento 151.",
+                title: "Plataforma de Auditoría de Consorcios: Sarmiento 360, Alvear 963 & Sarmiento 151",
+                description: "Plataforma SaaS multi-consorcio en producción para el control financiero, auditoría documental extraliquidatoria, ingesta de PDFs (PyMuPDF / pdfplumber), fiscalización de traspaso de administración D&F y monitoreo en vivo en Sarmiento 356-360, M.T. de Alvear 961/963 y Sarmiento 151.",
                 image: "/images/projects/sarmiento151_mockup.png",
                 alt: "Dashboard de Auditoría de Consorcios mostrando gráficos de expensas, motor IPC INDEC y widgets de servicios en vivo",
-                tags: ["Python", "Vanilla JS (ES6+)", "AWS API Ingestion", "PyMuPDF", "Motor IPC INDEC", "Ley CABA 941", "GitHub Actions CI/CD", "ApexCharts", "Vercel"],
-                challenge: "La falta de transparencia en liquidaciones complejas de expensas emitidas por distintas administraciones, la desvalorización monetaria histórica sin ajuste por inflación IPC y los cortes sorpresivos de suministros públicos en la zona.",
-                solution: "Desarrollé una plataforma de auditoría multi-consorcio en producción. En Alvear 963 (23 UFs, 48 meses auditados, +$180M ARS procesados) integré consumo directo de la API REST de AWS de Octopus Vecinos, motor de paridad IPC INDEC, desglose de aguinaldos (SAC), clasificación según Ley CABA 941 y cartelera física A4 imprimible con QR. En Sarmiento 151 implementé extracción de PDFs con pdfplumber y monitoreo preventivo en tiempo real de servicios (Edesur, AySA, Metrogas).",
-                impact: "Transparencia contable absoluta en 2 consorcios en producción. Auditoría IPC en tiempo real de +1.300 comprobantes y 1.097 registros de prorrateo por unidad funcional con $0 de costo mensual de infraestructura.",
-                architecture: ["Multi-Source ETL (API AWS Octopus + PyMuPDF / pdfplumber)", "INDEC IPC Inflation & SAC Isolation Engine", "Service Audit (check_servicios.py - Edesur/AySA/Metrogas)", "Flat File DB (gastos.json / prorrateo.json)", "Printable QR Noticeboard (cartelera_dashboard.html)", "Static UI (Vanilla CSS / ES6+ / ApexCharts)"],
-                github: "https://github.com/a-martyniuk/Auditoria_Administracion_MTAlvear963",
-                secondaryGithub: "https://github.com/a-martyniuk/sarmiento-151",
-                link: "https://www.alexismartyniuk.com.ar/Administracion_MTAlvear963",
-                secondaryLink: "https://www.alexismartyniuk.com.ar/sarmiento-151",
-                metric: "Auditado: +$180M ARS"
+                tags: ["Python", "Vanilla JS (ES6+)", "Auditoría Documental", "PyMuPDF", "Motor IPC INDEC", "Ley CABA 941", "GitHub Actions CI/CD", "ApexCharts", "Vercel"],
+                challenge: "La falta de transparencia en liquidaciones complejas de expensas emitidas por distintas administraciones, la discontinuidad de comprobantes de respaldo, la desvalorización monetaria sin ajuste por inflación IPC y los cortes sorpresivos de suministros en la zona.",
+                solution: "Desarrollé una plataforma de auditoría multi-consorcio en producción. En Sarmiento 360 (70 UFs, 12 meses auditados, 59 comprobantes comprobados) implementé auditoría de facturas AFIP, cargas sociales F.931, protocolo de cese de mandato D&F y cartelera A4 para el consorcio. En Alvear 963 y Sarmiento 151 integré consumo directo de la API REST de AWS de Octopus Vecinos, motor de paridad IPC INDEC, desglose de SAC y monitoreo en tiempo real de servicios (Edesur, AySA, Metrogas, Telecom Flow).",
+                impact: "Transparencia contable absoluta en 3 consorcios en producción. Auditoría IPC y documental en tiempo real de +2.000 comprobantes y 1.900 registros de prorrateo por unidad funcional con $0 de costo mensual de infraestructura.",
+                architecture: ["Multi-Source ETL (API AWS Octopus + PyMuPDF / pdfplumber)", "Document Audit Engine (AFIP CAE / F.931 / Extractos)", "INDEC IPC Inflation & SAC Isolation Engine", "Service Audit (check_servicios.py - Edesur/AySA/Metrogas/Telecom)", "Printable QR Noticeboard (cartelera_dashboard.html)", "Static UI (Vanilla CSS / ES6+ / ApexCharts)"],
+                github: "https://github.com/a-martyniuk/sarmiento-360",
+                secondaryGithub: "https://github.com/a-martyniuk/Auditoria_Administracion_MTAlvear963",
+                link: "https://www.alexismartyniuk.com.ar/sarmiento-360",
+                secondaryLink: "https://www.alexismartyniuk.com.ar/Administracion_MTAlvear963",
+                metric: "Auditado: +$250M ARS"
             },
             {
                 title: "AirMarket AI: Revenue Management & Dynamic Pricing",
