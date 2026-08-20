@@ -85,6 +85,22 @@ const nextConfig: NextConfig = {
         source: "/mdq-911-intelligence/:path*",
         destination: "https://mdq-911-intelligence.vercel.app/mdq-911-intelligence/:path*",
       },
+      {
+        source: "/hypertrophyracker",
+        destination: "https://hypertrophy-tracker.vercel.app/hypertrophyracker",
+      },
+      {
+        source: "/hypertrophyracker/:path*",
+        destination: "https://hypertrophy-tracker.vercel.app/hypertrophyracker/:path*",
+      },
+      {
+        source: "/hypertrophy-tracker",
+        destination: "https://hypertrophy-tracker.vercel.app/hypertrophyracker",
+      },
+      {
+        source: "/hypertrophy-tracker/:path*",
+        destination: "https://hypertrophy-tracker.vercel.app/hypertrophyracker/:path*",
+      },
     ];
   },
 };
