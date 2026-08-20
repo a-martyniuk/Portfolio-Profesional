@@ -90,11 +90,19 @@ const nextConfig: NextConfig = {
         destination: "https://hypertrophyracker.alexismartyniuk.com.ar/",
       },
       {
+        source: "/hypertrophyracker/",
+        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/",
+      },
+      {
         source: "/hypertrophyracker/:path*",
         destination: "https://hypertrophyracker.alexismartyniuk.com.ar/:path*",
       },
       {
         source: "/hypertrophy-tracker",
+        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/",
+      },
+      {
+        source: "/hypertrophy-tracker/",
         destination: "https://hypertrophyracker.alexismartyniuk.com.ar/",
       },
       {
