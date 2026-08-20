@@ -87,19 +87,19 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/hypertrophyracker",
-        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/hypertrophyracker",
+        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/",
       },
       {
         source: "/hypertrophyracker/:path*",
-        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/hypertrophyracker/:path*",
+        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/:path*",
       },
       {
         source: "/hypertrophy-tracker",
-        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/hypertrophyracker",
+        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/",
       },
       {
         source: "/hypertrophy-tracker/:path*",
-        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/hypertrophyracker/:path*",
+        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/:path*",
       },
     ];
   },
