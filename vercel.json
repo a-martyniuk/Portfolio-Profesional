@@ -66,19 +66,19 @@
     },
     {
       "source": "/hypertrophyracker",
-      "destination": "https://hypertrophyracker.alexismartyniuk.com.ar/"
+      "destination": "https://hypertrophyracker.alexismartyniuk.com.ar/hypertrophyracker"
     },
     {
       "source": "/hypertrophyracker/:path*",
-      "destination": "https://hypertrophyracker.alexismartyniuk.com.ar/:path*"
+      "destination": "https://hypertrophyracker.alexismartyniuk.com.ar/hypertrophyracker/:path*"
     },
     {
       "source": "/hypertrophy-tracker",
-      "destination": "https://hypertrophyracker.alexismartyniuk.com.ar/"
+      "destination": "https://hypertrophyracker.alexismartyniuk.com.ar/hypertrophyracker"
     },
     {
       "source": "/hypertrophy-tracker/:path*",
-      "destination": "https://hypertrophyracker.alexismartyniuk.com.ar/:path*"
+      "destination": "https://hypertrophyracker.alexismartyniuk.com.ar/hypertrophyracker/:path*"
     }
   ]
 }
