@@ -87,19 +87,19 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/hypertrophyracker",
-        destination: "https://hypertrophy-tracker.vercel.app/hypertrophyracker",
+        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/",
       },
       {
         source: "/hypertrophyracker/:path*",
-        destination: "https://hypertrophy-tracker.vercel.app/hypertrophyracker/:path*",
+        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/:path*",
       },
       {
         source: "/hypertrophy-tracker",
-        destination: "https://hypertrophy-tracker.vercel.app/hypertrophyracker",
+        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/",
       },
       {
         source: "/hypertrophy-tracker/:path*",
-        destination: "https://hypertrophy-tracker.vercel.app/hypertrophyracker/:path*",
+        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/:path*",
       },
     ];
   },
