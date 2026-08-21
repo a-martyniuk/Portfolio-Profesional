@@ -276,7 +276,6 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 architecture: ["React 19 + TypeScript (Frontend Engine)", "Vite + Rollup Chunks (Code-Splitting & PWA)", "LocalStorage + Firestore (Offline-First Sync)", "Anthropometric Calculation Core (Casey Butt & US Navy)", "Vector PDF Generator (jsPDF + AutoTable)", "QR & URL Base64 Payload Sharing"],
                 metric: "Offline-First: 0ms Latencia",
                 link: "https://www.alexismartyniuk.com.ar/hypertrophy-tracker/#/dashboard",
-                secondaryLink: "https://hypertrophy-tracker.vercel.app/#/dashboard",
                 linkType: "demo",
                 github: "https://github.com/a-martyniuk/hypertrophy-tracker"
             },
@@ -715,7 +714,6 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 architecture: ["React 19 + TypeScript (Frontend Engine)", "Vite + Rollup Chunks (Code-Splitting & PWA)", "LocalStorage + Firestore (Offline-First Sync)", "Anthropometric Calculation Core (Casey Butt & US Navy)", "Vector PDF Generator (jsPDF + AutoTable)", "QR & URL Base64 Payload Sharing"],
                 metric: "Offline-First: 0ms Latency",
                 link: "https://www.alexismartyniuk.com.ar/hypertrophy-tracker/#/dashboard",
-                secondaryLink: "https://hypertrophy-tracker.vercel.app/#/dashboard",
                 linkType: "demo",
                 github: "https://github.com/a-martyniuk/hypertrophy-tracker"
             },
