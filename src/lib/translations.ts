@@ -275,7 +275,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 impact: "Velocidad de carga instantánea en conexiones móviles, 100% de operatividad offline, trazabilidad biométrica de alta precisión y generación de auditorías descargables en un solo click.",
                 architecture: ["React 19 + TypeScript (Frontend Engine)", "Vite + Rollup Chunks (Code-Splitting & PWA)", "LocalStorage + Firestore (Offline-First Sync)", "Anthropometric Calculation Core (Casey Butt & US Navy)", "Vector PDF Generator (jsPDF + AutoTable)", "QR & URL Base64 Payload Sharing"],
                 metric: "Offline-First: 0ms Latencia",
-                link: "https://www.alexismartyniuk.com.ar/hypertrophy-tracker/#/dashboard",
+                link: "https://hypertrophyracker.alexismartyniuk.com.ar/#/dashboard",
                 linkType: "demo",
                 github: "https://github.com/a-martyniuk/hypertrophy-tracker"
             },
@@ -713,7 +713,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 impact: "Instant mobile loading times, 100% offline-ready operations, high-precision biometric traceability, and single-click downloadable PDF clinical audit reports.",
                 architecture: ["React 19 + TypeScript (Frontend Engine)", "Vite + Rollup Chunks (Code-Splitting & PWA)", "LocalStorage + Firestore (Offline-First Sync)", "Anthropometric Calculation Core (Casey Butt & US Navy)", "Vector PDF Generator (jsPDF + AutoTable)", "QR & URL Base64 Payload Sharing"],
                 metric: "Offline-First: 0ms Latency",
-                link: "https://www.alexismartyniuk.com.ar/hypertrophy-tracker/#/dashboard",
+                link: "https://hypertrophyracker.alexismartyniuk.com.ar/#/dashboard",
                 linkType: "demo",
                 github: "https://github.com/a-martyniuk/hypertrophy-tracker"
             },

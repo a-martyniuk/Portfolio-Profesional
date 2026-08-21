@@ -87,27 +87,27 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/hypertrophyracker",
-        destination: "https://hypertrophy-tracker.vercel.app/",
+        destination: "https://hypertrophy-tracker-ia4v.vercel.app/",
       },
       {
         source: "/hypertrophyracker/",
-        destination: "https://hypertrophy-tracker.vercel.app/",
+        destination: "https://hypertrophy-tracker-ia4v.vercel.app/",
       },
       {
         source: "/hypertrophyracker/:path*",
-        destination: "https://hypertrophy-tracker.vercel.app/:path*",
+        destination: "https://hypertrophy-tracker-ia4v.vercel.app/:path*",
       },
       {
         source: "/hypertrophy-tracker",
-        destination: "https://hypertrophy-tracker.vercel.app/",
+        destination: "https://hypertrophy-tracker-ia4v.vercel.app/",
       },
       {
         source: "/hypertrophy-tracker/",
-        destination: "https://hypertrophy-tracker.vercel.app/",
+        destination: "https://hypertrophy-tracker-ia4v.vercel.app/",
       },
       {
         source: "/hypertrophy-tracker/:path*",
-        destination: "https://hypertrophy-tracker.vercel.app/:path*",
+        destination: "https://hypertrophy-tracker-ia4v.vercel.app/:path*",
       },
     ];
   },
