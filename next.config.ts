@@ -27,30 +27,6 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-  async redirects() {
-    return [
-      {
-        source: "/hypertrophyracker",
-        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/",
-        permanent: true,
-      },
-      {
-        source: "/hypertrophyracker/:path*",
-        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/:path*",
-        permanent: true,
-      },
-      {
-        source: "/hypertrophy-tracker",
-        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/",
-        permanent: true,
-      },
-      {
-        source: "/hypertrophy-tracker/:path*",
-        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/:path*",
-        permanent: true,
-      },
-    ];
-  },
   async rewrites() {
     return [
       {
@@ -108,6 +84,39 @@ const nextConfig: NextConfig = {
       {
         source: "/mdq-911-intelligence/:path*",
         destination: "https://mdq-911-intelligence.vercel.app/mdq-911-intelligence/:path*",
+      },
+      // Hypertrophy Tracker Subpath Reverse Proxy
+      {
+        source: "/hypertrophyracker",
+        destination: "https://hypertrophy-tracker-ia4v.vercel.app/",
+      },
+      {
+        source: "/hypertrophyracker/:path*",
+        destination: "https://hypertrophy-tracker-ia4v.vercel.app/:path*",
+      },
+      {
+        source: "/hypertrophy-tracker",
+        destination: "https://hypertrophy-tracker-ia4v.vercel.app/",
+      },
+      {
+        source: "/hypertrophy-tracker/:path*",
+        destination: "https://hypertrophy-tracker-ia4v.vercel.app/:path*",
+      },
+      {
+        source: "/assets/:path*",
+        destination: "https://hypertrophy-tracker-ia4v.vercel.app/assets/:path*",
+      },
+      {
+        source: "/sw.js",
+        destination: "https://hypertrophy-tracker-ia4v.vercel.app/sw.js",
+      },
+      {
+        source: "/registerSW.js",
+        destination: "https://hypertrophy-tracker-ia4v.vercel.app/registerSW.js",
+      },
+      {
+        source: "/manifest.webmanifest",
+        destination: "https://hypertrophy-tracker-ia4v.vercel.app/manifest.webmanifest",
       },
     ];
   },
