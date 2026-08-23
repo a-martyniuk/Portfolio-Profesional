@@ -85,38 +85,38 @@ const nextConfig: NextConfig = {
         source: "/mdq-911-intelligence/:path*",
         destination: "https://mdq-911-intelligence.vercel.app/mdq-911-intelligence/:path*",
       },
-      // Hypertrophy Tracker Subpath Reverse Proxy
+      // Hypertrophy Tracker Subpath Reverse Proxy to live production endpoint
       {
         source: "/hypertrophyracker",
-        destination: "https://hypertrophy-tracker-ia4v.vercel.app/",
+        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/",
       },
       {
         source: "/hypertrophyracker/:path*",
-        destination: "https://hypertrophy-tracker-ia4v.vercel.app/:path*",
+        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/:path*",
       },
       {
         source: "/hypertrophy-tracker",
-        destination: "https://hypertrophy-tracker-ia4v.vercel.app/",
+        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/",
       },
       {
         source: "/hypertrophy-tracker/:path*",
-        destination: "https://hypertrophy-tracker-ia4v.vercel.app/:path*",
+        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/:path*",
       },
       {
         source: "/assets/:path*",
-        destination: "https://hypertrophy-tracker-ia4v.vercel.app/assets/:path*",
+        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/assets/:path*",
       },
       {
         source: "/sw.js",
-        destination: "https://hypertrophy-tracker-ia4v.vercel.app/sw.js",
+        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/sw.js",
       },
       {
         source: "/registerSW.js",
-        destination: "https://hypertrophy-tracker-ia4v.vercel.app/registerSW.js",
+        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/registerSW.js",
       },
       {
         source: "/manifest.webmanifest",
-        destination: "https://hypertrophy-tracker-ia4v.vercel.app/manifest.webmanifest",
+        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/manifest.webmanifest",
       },
     ];
   },
