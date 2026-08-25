@@ -1,3 +1,10 @@
+export interface ProjectDemo {
+    name: string;
+    url: string;
+    github?: string;
+    githubTitle?: string;
+}
+
 export interface Project {
     title: string;
     description: string;
@@ -13,6 +20,7 @@ export interface Project {
     linkType?: 'article' | 'demo';
     github?: string;
     secondaryGithub?: string;
+    demos?: ProjectDemo[];
     metric?: string;
     video?: string;
 }
@@ -461,10 +469,30 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 solution: "Desarrollé una plataforma de auditoría multi-consorcio en producción. En Sarmiento 360 (70 UFs, 12 meses auditados, 59 comprobantes comprobados) implementé auditoría de facturas AFIP, cargas sociales F.931, protocolo de cese de mandato D&F y cartelera A4 para el consorcio. En Alvear 963 y Sarmiento 151 integré consumo directo de la API REST de AWS de Octopus Vecinos, motor de paridad IPC INDEC, desglose de SAC y monitoreo en tiempo real de servicios (Edesur, AySA, Metrogas, Telecom Flow).",
                 impact: "Transparencia contable absoluta en 3 consorcios en producción. Auditoría IPC y documental en tiempo real de +2.000 comprobantes y 1.900 registros de prorrateo por unidad funcional con $0 de costo mensual de infraestructura.",
                 architecture: ["Multi-Source ETL (API AWS Octopus + PyMuPDF / pdfplumber)", "Document Audit Engine (AFIP CAE / F.931 / Extractos)", "INDEC IPC Inflation & SAC Isolation Engine", "Service Audit (check_servicios.py - Edesur/AySA/Metrogas/Telecom)", "Printable QR Noticeboard (cartelera_dashboard.html)", "Static UI (Vanilla CSS / ES6+ / ApexCharts)"],
-                github: "https://github.com/a-martyniuk/sarmiento-360",
-                secondaryGithub: "https://github.com/a-martyniuk/Auditoria_Administracion_MTAlvear963",
-                link: "https://www.alexismartyniuk.com.ar/sarmiento-360",
-                secondaryLink: "https://www.alexismartyniuk.com.ar/Administracion_MTAlvear963",
+                demos: [
+                    {
+                        name: "Demo 1: Alvear 963",
+                        url: "https://www.alexismartyniuk.com.ar/Administracion_MTAlvear963",
+                        github: "https://github.com/a-martyniuk/Auditoria_Administracion_MTAlvear963",
+                        githubTitle: "Ver código Alvear 963 en GitHub"
+                    },
+                    {
+                        name: "Demo 2: Sarmiento 151",
+                        url: "https://www.alexismartyniuk.com.ar/sarmiento-151",
+                        github: "https://github.com/a-martyniuk/sarmiento-151",
+                        githubTitle: "Ver código Sarmiento 151 en GitHub"
+                    },
+                    {
+                        name: "Demo 3: Sarmiento 360",
+                        url: "https://www.alexismartyniuk.com.ar/sarmiento-360",
+                        github: "https://github.com/a-martyniuk/sarmiento-360",
+                        githubTitle: "Ver código Sarmiento 360 en GitHub"
+                    }
+                ],
+                github: "https://github.com/a-martyniuk/Auditoria_Administracion_MTAlvear963",
+                secondaryGithub: "https://github.com/a-martyniuk/sarmiento-151",
+                link: "https://www.alexismartyniuk.com.ar/Administracion_MTAlvear963",
+                secondaryLink: "https://www.alexismartyniuk.com.ar/sarmiento-151",
                 metric: "Auditado: +$250M ARS"
             },
             {
@@ -898,20 +926,40 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 metric: "FAQs: -75%"
             },
             {
-                title: "Consortium Audit Platform: Alvear 963 & Sarmiento 151",
-                description: "Multi-property SaaS financial control and independent expense audit platform operating in live production across M.T. de Alvear 961/963 and Sarmiento 151, featuring direct AWS API ingestion, INDEC IPC inflation index adjustment, and live utility monitoring.",
+                title: "Consortium Audit Platform: Sarmiento 360, Alvear 963 & Sarmiento 151",
+                description: "Multi-property SaaS financial control, extraliquidatory document audit, and expense verification platform running in live production across Sarmiento 356-360, M.T. de Alvear 961/963 and Sarmiento 151, featuring direct AWS API ingestion, INDEC IPC inflation engine, and 24/7 public utility monitoring.",
                 image: "/images/projects/sarmiento151_mockup.png",
                 alt: "Consortium Audit Dashboard displaying expense charts, IPC inflation engine, and live service status widgets",
                 tags: ["Python", "Vanilla JS (ES6+)", "AWS API Ingestion", "PyMuPDF", "INDEC IPC Engine", "CABA Law 941", "GitHub Actions CI/CD", "ApexCharts", "Vercel"],
                 challenge: "Lack of transparency in complex financial statements issued by property managers, historical currency devaluation without inflation adjustment (IPC), and unannounced local utility outages in the geographic area.",
-                solution: "Engineered a multi-property expense audit platform running live in production. For Alvear 963 (23 UFs, 48 continuous months audited, +$180M ARS analyzed), integrated direct consumption of AWS Octopus REST API, INDEC IPC inflation engine, SAC isolation, CABA Law 941 compliance, and printable A4 QR noticeboards. For Sarmiento 151, built pdfplumber PDF extraction and 24/7 public utility monitoring (electricity, water, gas).",
-                impact: "100% financial transparency across 2 live consortiums. Real-time IPC inflation auditing across +1,300 expense vouchers and 1,097 unit settlement records with zero monthly hosting cost.",
-                architecture: ["Multi-Source ETL (API AWS Octopus + PyMuPDF / pdfplumber)", "INDEC IPC Inflation & SAC Isolation Engine", "Service Audit (check_servicios.py - Edesur/AySA/Metrogas)", "Flat File DB (gastos.json / prorrateo.json)", "Printable QR Noticeboard (cartelera_dashboard.html)", "Static UI (Vanilla CSS / ES6+ / ApexCharts)"],
+                solution: "Engineered a multi-property expense audit platform running live in production. For Sarmiento 360 (70 units, 12 audited months, 59 verified vouchers), audited AFIP CAE invoices and F.931 payroll taxes during administration turnover. For Alvear 963 and Sarmiento 151, integrated direct consumption of AWS Octopus REST API, INDEC IPC inflation engine, SAC isolation, CABA Law 941 compliance, and 24/7 public utility monitoring (Edesur, AySA, Metrogas, Telecom Flow).",
+                impact: "100% financial transparency across 3 live consortiums. Real-time IPC inflation auditing across +2,000 expense vouchers and 1,900 unit settlement records with zero monthly hosting cost.",
+                architecture: ["Multi-Source ETL (API AWS Octopus + PyMuPDF / pdfplumber)", "Document Audit Engine (AFIP CAE / F.931 / Bank Statements)", "INDEC IPC Inflation & SAC Isolation Engine", "Service Audit (check_servicios.py - Edesur/AySA/Metrogas/Telecom)", "Printable QR Noticeboard (cartelera_dashboard.html)", "Static UI (Vanilla CSS / ES6+ / ApexCharts)"],
+                demos: [
+                    {
+                        name: "Demo 1: Alvear 963",
+                        url: "https://www.alexismartyniuk.com.ar/Administracion_MTAlvear963",
+                        github: "https://github.com/a-martyniuk/Auditoria_Administracion_MTAlvear963",
+                        githubTitle: "View Alvear 963 code on GitHub"
+                    },
+                    {
+                        name: "Demo 2: Sarmiento 151",
+                        url: "https://www.alexismartyniuk.com.ar/sarmiento-151",
+                        github: "https://github.com/a-martyniuk/sarmiento-151",
+                        githubTitle: "View Sarmiento 151 code on GitHub"
+                    },
+                    {
+                        name: "Demo 3: Sarmiento 360",
+                        url: "https://www.alexismartyniuk.com.ar/sarmiento-360",
+                        github: "https://github.com/a-martyniuk/sarmiento-360",
+                        githubTitle: "View Sarmiento 360 code on GitHub"
+                    }
+                ],
                 github: "https://github.com/a-martyniuk/Auditoria_Administracion_MTAlvear963",
                 secondaryGithub: "https://github.com/a-martyniuk/sarmiento-151",
                 link: "https://www.alexismartyniuk.com.ar/Administracion_MTAlvear963",
                 secondaryLink: "https://www.alexismartyniuk.com.ar/sarmiento-151",
-                metric: "Audited: +$180M ARS"
+                metric: "Audited: +$250M ARS"
             },
             {
                 title: "AirMarket AI: Revenue Management & Dynamic Pricing",

@@ -418,6 +418,7 @@ export default function Home() {
                 secondaryGithub={proj.secondaryGithub}
                 link={proj.link}
                 secondaryLink={proj.secondaryLink}
+                demos={proj.demos}
                 linkType={proj.linkType}
                 metric={proj.metric}
                 video={proj.video}
@@ -717,7 +718,36 @@ export default function Home() {
               ))}
             </div>
 
-            {selectedProject?.link && (
+            {selectedProject?.demos && selectedProject.demos.length > 0 ? (
+              <div className="flex flex-col sm:flex-row gap-3 w-full">
+                {selectedProject.demos.map((demo, idx) => {
+                  const colors = [
+                    { border: 'border-emerald-500/30', bg: 'bg-emerald-500/10', text: 'text-emerald-400', hover: 'hover:border-emerald-500 hover:bg-emerald-500/20 hover:shadow-[0_0_20px_rgba(16,185,129,0.3)]', dot: 'bg-emerald-500', ping: 'bg-emerald-400' },
+                    { border: 'border-cyan-500/30', bg: 'bg-cyan-500/10', text: 'text-cyan-400', hover: 'hover:border-cyan-500 hover:bg-cyan-500/20 hover:shadow-[0_0_20px_rgba(6,182,212,0.3)]', dot: 'bg-cyan-500', ping: 'bg-cyan-400' },
+                    { border: 'border-amber-500/30', bg: 'bg-amber-500/10', text: 'text-amber-400', hover: 'hover:border-amber-500 hover:bg-amber-500/20 hover:shadow-[0_0_20px_rgba(245,158,11,0.3)]', dot: 'bg-amber-500', ping: 'bg-amber-400' }
+                  ][idx % 3];
+
+                  return (
+                    <a
+                      key={demo.name}
+                      href={demo.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`relative group overflow-hidden flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded border ${colors.border} ${colors.bg} ${colors.text} hover:text-white ${colors.hover} transition-all duration-300 font-mono text-xs uppercase tracking-widest font-bold`}
+                    >
+                      <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:animate-shimmer pointer-events-none" />
+                      <span className="relative flex h-2 w-2 shrink-0">
+                        {idx === 0 && <span className={`animate-ping absolute inline-flex h-full w-full rounded-full ${colors.ping} opacity-75`}></span>}
+                        <span className={`relative inline-flex rounded-full h-2 w-2 ${colors.dot}`}></span>
+                      </span>
+                      <Globe size={14} className={idx === 0 ? "animate-pulse" : ""} />
+                      <span>{demo.name}</span>
+                      <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                    </a>
+                  );
+                })}
+              </div>
+            ) : selectedProject?.link && (
               selectedProject.linkType === 'demo' ? (
                 <div className="flex flex-col sm:flex-row gap-3 w-full">
                   <a
@@ -731,24 +761,9 @@ export default function Home() {
                       <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                     </span>
                     <Globe size={14} className="animate-pulse" />
-                    <span>{selectedProject.secondaryLink ? 'Demo: Alvear 963' : t.pipeline.viewLiveDemo}</span>
+                    <span>{t.pipeline.viewLiveDemo}</span>
                     <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                   </a>
-
-                  {selectedProject.secondaryLink && (
-                    <a
-                      href={selectedProject.secondaryLink}
-                      target="_blank"
-                      className="relative group overflow-hidden flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 hover:text-white hover:border-cyan-500 hover:bg-cyan-500/20 transition-all duration-300 font-mono text-xs uppercase tracking-widest font-bold hover:shadow-[0_0_20px_rgba(6,182,212,0.3)]"
-                    >
-                      <span className="relative flex h-2 w-2 shrink-0">
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
-                      </span>
-                      <Globe size={14} />
-                      <span>Demo: Sarmiento 151</span>
-                      <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                    </a>
-                  )}
                 </div>
               ) : (
                 <a

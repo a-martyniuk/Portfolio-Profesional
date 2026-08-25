@@ -1,3 +1,10 @@
+export interface ProjectDemo {
+    name: string;
+    url: string;
+    github?: string;
+    githubTitle?: string;
+}
+
 export interface Project {
     title: string;
     description: string;
@@ -13,6 +20,7 @@ export interface Project {
     linkType?: 'demo' | 'article';
     github?: string;
     secondaryGithub?: string;
+    demos?: ProjectDemo[];
     metric?: string;
     video?: string;
 }

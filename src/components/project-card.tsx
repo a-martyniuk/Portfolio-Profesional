@@ -7,6 +7,8 @@ import Image from 'next/image';
 import { useAnalytics } from '@/lib/analytics';
 import { useLanguage } from '@/components/providers/language-provider';
 
+import { ProjectDemo } from '@/types/project';
+
 interface ProjectCardProps {
     title: string;
     description: string;
@@ -18,13 +20,14 @@ interface ProjectCardProps {
     linkType?: 'demo' | 'article';
     github?: string;
     secondaryGithub?: string;
+    demos?: ProjectDemo[];
     onClick?: () => void;
     horizontal?: boolean;
     metric?: string;
     video?: string;
 }
 
-export function ProjectCard({ title, description, image, alt, tags, link, secondaryLink, linkType = 'demo', github, secondaryGithub, onClick, horizontal = false, metric, video }: ProjectCardProps) {
+export function ProjectCard({ title, description, image, alt, tags, link, secondaryLink, linkType = 'demo', github, secondaryGithub, demos, onClick, horizontal = false, metric, video }: ProjectCardProps) {
     const { trackOracleClick, trackGitHubClick } = useAnalytics();
     const { t } = useLanguage();
 
@@ -89,7 +92,7 @@ export function ProjectCard({ title, description, image, alt, tags, link, second
                             🎥 Video
                         </span>
                     )}
-                    {link && (
+                    {(link || (demos && demos.length > 0)) && (
                         <span className={`px-2.5 py-1 rounded border font-bold flex items-center gap-1.5 ${
                             linkType === 'demo'
                             ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20 shadow-[0_0_8px_rgba(16,185,129,0.15)]'
@@ -101,7 +104,7 @@ export function ProjectCard({ title, description, image, alt, tags, link, second
                                     <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
                                 </span>
                             )}
-                            {linkType === 'demo' ? (secondaryLink ? '2 Demos Live' : 'Live') : '📰 Document'}
+                            {linkType === 'demo' ? (demos && demos.length > 1 ? `${demos.length} Demos Live` : (secondaryLink ? '2 Demos Live' : 'Live')) : '📰 Document'}
                         </span>
                     )}
                 </div>
@@ -123,37 +126,61 @@ export function ProjectCard({ title, description, image, alt, tags, link, second
                             {title}
                         </h3>
                         <div className="flex gap-1.5 shrink-0 items-center">
-                            {github && (
-                                <a
-                                    href={github}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    onClick={handleGitHubClick}
-                                    className="p-2 rounded border border-border hover:bg-muted text-muted-foreground hover:text-foreground transition-colors min-w-[36px] min-h-[36px] flex items-center justify-center"
-                                    title={secondaryGithub ? "Ver código Alvear 963 en GitHub" : "Ver código en GitHub"}
-                                >
-                                    <Github size={15} />
-                                </a>
+                            {demos && demos.length > 0 ? (
+                                demos.filter(d => d.github).map(d => (
+                                    <a
+                                        key={d.name}
+                                        href={d.github}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            if (d.github) {
+                                                const repoName = d.github.split('/').pop() || title;
+                                                trackGitHubClick(repoName);
+                                            }
+                                        }}
+                                        className="p-2 rounded border border-border hover:bg-muted text-muted-foreground hover:text-foreground transition-colors min-w-[36px] min-h-[36px] flex items-center justify-center"
+                                        title={d.githubTitle || `Ver código ${d.name} en GitHub`}
+                                    >
+                                        <Github size={15} />
+                                    </a>
+                                ))
+                            ) : (
+                                <>
+                                    {github && (
+                                        <a
+                                            href={github}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            onClick={handleGitHubClick}
+                                            className="p-2 rounded border border-border hover:bg-muted text-muted-foreground hover:text-foreground transition-colors min-w-[36px] min-h-[36px] flex items-center justify-center"
+                                            title="Ver código en GitHub"
+                                        >
+                                            <Github size={15} />
+                                        </a>
+                                    )}
+                                    {secondaryGithub && (
+                                        <a
+                                            href={secondaryGithub}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                trackGitHubClick(secondaryGithub.split('/').pop() || title);
+                                            }}
+                                            className="p-2 rounded border border-border hover:bg-muted text-muted-foreground hover:text-foreground transition-colors min-w-[36px] min-h-[36px] flex items-center justify-center"
+                                            title="Ver repositorio secundario en GitHub"
+                                        >
+                                            <Github size={15} />
+                                        </a>
+                                    )}
+                                </>
                             )}
-                            {secondaryGithub && (
-                                <a
-                                    href={secondaryGithub}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        trackGitHubClick(secondaryGithub.split('/').pop() || title);
-                                    }}
-                                    className="p-2 rounded border border-border hover:bg-muted text-muted-foreground hover:text-foreground transition-colors min-w-[36px] min-h-[36px] flex items-center justify-center"
-                                    title="Ver código Sarmiento 151 en GitHub"
-                                >
-                                    <Github size={15} />
-                                </a>
-                            )}
-                            {link && (
+                            {(link || (demos && demos.length > 0)) && (
                                 linkType === 'demo' ? (
                                     <a
-                                        href={link}
+                                        href={demos && demos.length > 0 ? demos[0].url : link}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         onClick={handleLinkClick}
@@ -165,7 +192,7 @@ export function ProjectCard({ title, description, image, alt, tags, link, second
                                             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                                         </span>
                                         <Globe size={13} className="animate-pulse" />
-                                        <span>{secondaryLink ? '2 Demos' : 'Demo'}</span>
+                                        <span>{demos && demos.length > 1 ? `${demos.length} Demos` : (secondaryLink ? '2 Demos' : 'Demo')}</span>
                                     </a>
                                 ) : (
                                     <a
@@ -187,8 +214,38 @@ export function ProjectCard({ title, description, image, alt, tags, link, second
                         {description}
                     </p>
 
-                    {/* Dual Demo Action Bar for Multi-Tenant Projects */}
-                    {secondaryLink && (
+                    {/* Action Bar for Multi-Tenant / Multi-Demo Projects */}
+                    {demos && demos.length > 0 ? (
+                        <div className="my-3 flex flex-wrap gap-2 pt-2 border-t border-border/40">
+                            {demos.map((demo, idx) => {
+                                const styles = [
+                                    'border-emerald-500/40 bg-emerald-500/10 text-emerald-400 hover:text-white hover:bg-emerald-500 hover:border-emerald-500 hover:shadow-[0_0_12px_rgba(16,185,129,0.3)]',
+                                    'border-cyan-500/40 bg-cyan-500/10 text-cyan-400 hover:text-white hover:bg-cyan-500 hover:border-cyan-500 hover:shadow-[0_0_12px_rgba(6,182,212,0.3)]',
+                                    'border-amber-500/40 bg-amber-500/10 text-amber-400 hover:text-white hover:bg-amber-500 hover:border-amber-500 hover:shadow-[0_0_12px_rgba(245,158,11,0.3)]'
+                                ][idx % 3];
+
+                                return (
+                                    <a
+                                        key={demo.name}
+                                        href={demo.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        onClick={(e) => e.stopPropagation()}
+                                        className={`px-3 py-1.5 rounded border ${styles} text-xs font-mono font-bold tracking-wide flex items-center gap-1.5 transition-all`}
+                                    >
+                                        {idx === 0 && (
+                                            <span className="relative flex h-2 w-2">
+                                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                                            </span>
+                                        )}
+                                        <Globe size={13} className={idx === 0 ? "animate-pulse" : ""} />
+                                        <span>{demo.name}</span>
+                                    </a>
+                                );
+                            })}
+                        </div>
+                    ) : secondaryLink && (
                         <div className="my-3 flex flex-wrap gap-2 pt-2 border-t border-border/40">
                             <a
                                 href={link}
@@ -202,7 +259,7 @@ export function ProjectCard({ title, description, image, alt, tags, link, second
                                     <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                                 </span>
                                 <Globe size={13} />
-                                <span>Demo 1: Alvear 963</span>
+                                <span>Demo 1</span>
                             </a>
                             <a
                                 href={secondaryLink}
@@ -212,7 +269,7 @@ export function ProjectCard({ title, description, image, alt, tags, link, second
                                 className="px-3 py-1.5 rounded border border-cyan-500/40 bg-cyan-500/10 text-cyan-400 hover:text-white hover:bg-cyan-500 hover:border-cyan-500 hover:shadow-[0_0_12px_rgba(6,182,212,0.3)] text-xs font-mono font-bold tracking-wide flex items-center gap-1.5 transition-all"
                             >
                                 <Globe size={13} />
-                                <span>Demo 2: Sarmiento 151</span>
+                                <span>Demo 2</span>
                             </a>
                         </div>
                     )}
