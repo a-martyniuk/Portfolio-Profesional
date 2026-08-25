@@ -266,16 +266,24 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
         mainProjects: [
             {
                 title: "Hypertrophy Tracker Pro: Telemetría Biomecánica & Diagnóstico Antropométrico",
-                description: "Plataforma web táctica y PWA de evaluación antropométrica de alta precisión. Incorpora algoritmos de diagnóstico de recomposición, benchmarks de Casey Butt / Steve Reeves, estimador US Navy, exportación de reportes en PDF y compartición sin autenticación para entrenadores.",
-                tags: ["React 19", "TypeScript", "Vite", "PWA", "Offline-First", "Firebase Firestore", "Recharts", "jsPDF", "Data Visualization", "Algorithms"],
+                description: "Plataforma web táctica y PWA de evaluación antropométrica de alta precisión. Integra algoritmos de diagnóstico de recomposición, prescripción biomecánica de volumen, techos genéticos de Casey Butt, cánones áureos de Steve Reeves, Time-to-Goal Engine, exportación de auditorías clínicas en PDF y compartición QR en vivo para entrenadores sin autenticación.",
+                tags: ["React 19", "TypeScript", "Vite", "PWA", "Offline-First", "Firebase Firestore", "Recharts", "jsPDF", "Biomechanics", "Algorithms", "Data Visualization"],
                 image: "/images/projects/hypertrophy-tracker.png",
                 alt: "Hypertrophy Tracker Pro - Dashboard Táctico Biomecánico y Diagnóstico Antropométrico",
-                challenge: "Los atletas y preparadores físicos carecían de una herramienta unificada y de baja latencia capaz de evaluar el desarrollo muscular relativo contra el límite genético natural (Casey Butt), calcular la simetría bilateral, estimar el porcentaje graso por múltiples métodos y exportar auditorías clínicas sin depender de conexión permanente a internet.",
-                solution: "Diseñé y construí una arquitectura frontend moderna y modular con React 19 y TypeScript. Implementé code-splitting con React.lazy para mantener el bundle inicial ultraliviano (<200 KB), almacenamiento offline-first en LocalStorage con sincronización silenciosa en Firestore, motor de cálculo para US Navy y Casey Butt, exportador de reportes PDF vectoriales y compartición de telemetría mediante QR y compresión URL-safe.",
-                impact: "Velocidad de carga instantánea en conexiones móviles, 100% de operatividad offline, trazabilidad biométrica de alta precisión y generación de auditorías descargables en un solo click.",
-                architecture: ["React 19 + TypeScript (Frontend Engine)", "Vite + Rollup Chunks (Code-Splitting & PWA)", "LocalStorage + Firestore (Offline-First Sync)", "Anthropometric Calculation Core (Casey Butt & US Navy)", "Vector PDF Generator (jsPDF + AutoTable)", "QR & URL Base64 Payload Sharing"],
+                challenge: "Los atletas y preparadores físicos carecían de una plataforma unificada, táctica y de baja latencia capaz de evaluar el desarrollo muscular relativo contra el límite genético natural (Casey Butt), calcular simetrías bilaterales, proyectar fechas de logro (Time-to-Goal de Eric Helms), prescribir volumen enfocado en estiramiento y exportar auditorías clínicas sin depender de conexión a internet.",
+                solution: "Diseñé y construí una arquitectura frontend moderna y modular con React 19 y TypeScript. Implementé code-splitting con React.lazy para mantener el bundle inicial ultraliviano (<200 KB), persistencia offline-first en LocalStorage con sincronización silenciosa en Firestore, motor de cálculo biomecánico multivariable (Casey Butt, US Navy, Mifflin/Katch/Harris), radar de armonía 360°, silueta SVG interactiva con mapa de calor neón, exportador de reportes PDF vectoriales y compartición de telemetría mediante QR y compresión URL-safe.",
+                impact: "Velocidad de carga instantánea en conexiones móviles (0ms latencia local), 100% de operatividad offline en gimnasios sin señal, prescripción inteligente de entrenamiento basada en asimetrías y trazabilidad biométrica de grado clínico.",
+                architecture: [
+                    "React 19 + TypeScript (Frontend Engine & Types)",
+                    "Vite + Rollup Chunks (Code-Splitting & PWA Service Worker)",
+                    "LocalStorage + Firestore (Offline-First Sync Engine)",
+                    "Biomechanical Core (Casey Butt, Steve Reeves & Eric Helms)",
+                    "SVG Heatmap & 360° Harmony Radar (Interactive HUD)",
+                    "Vector PDF Generator (jsPDF + AutoTable)",
+                    "QR & URL Base64 Payload Sharing (Authless Coach Access)"
+                ],
                 metric: "Offline-First: 0ms Latencia",
-                link: "https://www.alexismartyniuk.com.ar/hypertrophyracker/#/dashboard",
+                link: "https://www.alexismartyniuk.com.ar/hypertrophyracker",
                 linkType: "demo",
                 github: "https://github.com/a-martyniuk/hypertrophy-tracker"
             },
@@ -704,16 +712,24 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
         mainProjects: [
             {
                 title: "Hypertrophy Tracker Pro: Biomechanical Telemetry & Anthropometric Diagnostics",
-                description: "Tactical web platform and PWA for high-precision anthropometric evaluation. Features body recomposition diagnostic algorithms, Casey Butt / Steve Reeves genetic benchmarks, US Navy body fat estimator, vector PDF audit reports, and authless QR sharing for coaches.",
-                tags: ["React 19", "TypeScript", "Vite", "PWA", "Offline-First", "Firebase Firestore", "Recharts", "jsPDF", "Data Visualization", "Algorithms"],
+                description: "Tactical web platform and PWA for high-precision anthropometric evaluation. Features body recomposition diagnostics, stretch-mediated volume dosing, Casey Butt genetic ceilings, Steve Reeves golden canons, Time-to-Goal Engine, vector PDF clinical audits, and authless QR coach sharing.",
+                tags: ["React 19", "TypeScript", "Vite", "PWA", "Offline-First", "Firebase Firestore", "Recharts", "jsPDF", "Biomechanics", "Algorithms", "Data Visualization"],
                 image: "/images/projects/hypertrophy-tracker.png",
                 alt: "Hypertrophy Tracker Pro - Biomechanical HUD Dashboard and Anthropometric Diagnostics",
-                challenge: "Athletes and coaches lacked a unified, low-latency platform to benchmark muscular development against theoretical genetic limits (Casey Butt), audit bilateral symmetries, estimate body fat via multi-site anthropometry, and export clinical reports with seamless offline capability.",
-                solution: "Engineered a modular frontend architecture with React 19, TypeScript, and Vite. Implemented dynamic code-splitting via React.lazy (<200 KB initial chunk), optimistic offline-first LocalStorage persistence with background Firestore synchronization, Casey Butt and US Navy mathematical engines, vector PDF report generation, and safe Base64/QR telemetry sharing.",
-                impact: "Instant mobile loading times, 100% offline-ready operations, high-precision biometric traceability, and single-click downloadable PDF clinical audit reports.",
-                architecture: ["React 19 + TypeScript (Frontend Engine)", "Vite + Rollup Chunks (Code-Splitting & PWA)", "LocalStorage + Firestore (Offline-First Sync)", "Anthropometric Calculation Core (Casey Butt & US Navy)", "Vector PDF Generator (jsPDF + AutoTable)", "QR & URL Base64 Payload Sharing"],
+                challenge: "Athletes and physique coaches lacked a unified, low-latency tactical platform to benchmark muscular development against theoretical genetic limits (Casey Butt), audit bilateral symmetries, forecast milestone completion dates (Eric Helms Time-to-Goal), prescribe stretch-focused volume, and export clinical audit reports with seamless offline capability.",
+                solution: "Engineered a modular frontend architecture with React 19, TypeScript, and Vite. Implemented dynamic code-splitting via React.lazy (<200 KB initial chunk), optimistic offline-first LocalStorage persistence with background Firestore sync, Casey Butt / US Navy / Mifflin-St Jeor mathematical engines, 360° harmony radar, interactive neon SVG heatmap, vector PDF report compilation, and URL-Safe Base64 / QR telemetry sharing.",
+                impact: "Instant mobile loading times (0ms local latency), 100% offline-ready operations in dead-zone gyms, data-driven volume prioritization based on asymmetries, and clinical-grade biometric traceability.",
+                architecture: [
+                    "React 19 + TypeScript (Frontend Engine & Types)",
+                    "Vite + Rollup Chunks (Code-Splitting & PWA Service Worker)",
+                    "LocalStorage + Firestore (Offline-First Sync Engine)",
+                    "Biomechanical Core (Casey Butt, Steve Reeves & Eric Helms)",
+                    "SVG Heatmap & 360° Harmony Radar (Interactive HUD)",
+                    "Vector PDF Generator (jsPDF + AutoTable)",
+                    "QR & URL Base64 Payload Sharing (Authless Coach Access)"
+                ],
                 metric: "Offline-First: 0ms Latency",
-                link: "https://www.alexismartyniuk.com.ar/hypertrophyracker/#/dashboard",
+                link: "https://www.alexismartyniuk.com.ar/hypertrophyracker",
                 linkType: "demo",
                 github: "https://github.com/a-martyniuk/hypertrophy-tracker"
             },

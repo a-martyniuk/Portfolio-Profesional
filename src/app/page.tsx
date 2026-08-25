@@ -6,7 +6,7 @@ import { Navbar } from "@/components/navbar";
 import { Hero } from "@/components/hero";
 import { ProjectCard } from "@/components/project-card";
 import { PressCard } from "@/components/press-card";
-import { ScraperDataFlowDiagram, MeliAioDataFlowDiagram, BrandProtectionDataFlowDiagram, BagoMigrationDataFlowDiagram, CordobaDataFlowDiagram, SarmientoDataFlowDiagram, AirMarketDataFlowDiagram } from "@/components/project-diagrams";
+import { ScraperDataFlowDiagram, MeliAioDataFlowDiagram, BrandProtectionDataFlowDiagram, BagoMigrationDataFlowDiagram, CordobaDataFlowDiagram, SarmientoDataFlowDiagram, AirMarketDataFlowDiagram, HypertrophyArchitectureDiagram } from "@/components/project-diagrams";
 import { SkillChart } from "@/components/skill-chart";
 import { MetricsGrid } from "@/components/animated-metrics";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -762,6 +762,12 @@ export default function Home() {
             )}
           </div>
         </div>
+
+        {selectedProject && (selectedProject.title.includes("Hypertrophy") || selectedProject.title.includes("Telemetría") || selectedProject.title.includes("Biomechanical")) && (
+          <div className="mt-12 pt-12 border-t border-border/10">
+            <HypertrophyArchitectureDiagram language={language} />
+          </div>
+        )}
 
         {selectedProject && (selectedProject.title.includes("Digital Sales Tracking") || selectedProject.title.includes("Sell-Out")) && (
           <div className="mt-12 pt-12 border-t border-border/10">

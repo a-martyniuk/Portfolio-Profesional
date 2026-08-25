@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Server, Database, Cpu, Bot, Monitor, Key, RefreshCw, FileText, ArrowRight, ArrowDown, UserCheck, Wine, Clock, Activity } from "lucide-react";
+import { Server, Database, Cpu, Bot, Monitor, Key, RefreshCw, FileText, ArrowRight, ArrowDown, UserCheck, Wine, Clock, Activity, QrCode, ChevronRight } from "lucide-react";
 
 interface DFDStep {
     id: string;
@@ -1404,4 +1404,317 @@ function Globe(props: React.SVGProps<SVGSVGElement>) {
         </svg>
     );
 }
+
+export function HypertrophyArchitectureDiagram({ language }: { language: 'es' | 'en' }) {
+    const [activeStep, setActiveStep] = useState(0);
+    const [activeGalleryIndex, setActiveGalleryIndex] = useState(0);
+    const [viewMode, setViewMode] = useState<'architecture' | 'gallery'>('architecture');
+
+    const galleryItems = [
+        {
+            title: language === 'es' ? 'Diagnóstico Táctico Biomecánico' : 'Tactical Biomechanical Diagnosis',
+            badge: language === 'es' ? 'Algoritmo de Recomposición' : 'Recomposition Algorithm',
+            desc: language === 'es' ? 'Clasifica automáticamente la fase (Recomposición Óptima, Superávit Limpio, Mantenimiento) y audita el vector de crecimiento V-Taper.' : 'Automatically classifies phase (Optimal Recomposition, Clean Surplus, Maintenance) and audits V-Taper growth vectors.',
+            image: '/images/projects/hypertrophy/01_tactical_diagnosis_hero.png'
+        },
+        {
+            title: language === 'es' ? 'Silueta Dorada & Mapa de Calor' : 'Golden Silhouette & Heatmap',
+            badge: language === 'es' ? 'SVG Vectorial Neón' : 'Neon Vector SVG',
+            desc: language === 'es' ? 'Contornos anatómicos reactivos con iluminación de gradientes térmicos según los deltas de crecimiento muscular.' : 'Reactive anatomical contours with thermal gradient illumination based on muscle growth deltas.',
+            image: '/images/projects/hypertrophy/02_silhouette_heatmap.png'
+        },
+        {
+            title: language === 'es' ? 'Radar de Armonía 360°' : '360° Harmony Radar',
+            badge: language === 'es' ? 'Proporción Áurea Hexagonal' : 'Hexagonal Golden Ratio',
+            desc: language === 'es' ? 'Spider Chart interactivo que evalúa el equilibrio del físico frente al 100% del canon de Steve Reeves con scoring 0-100.' : 'Interactive spider chart benchmarking physical symmetry against 100% of the Steve Reeves canon with 0-100 scoring.',
+            image: '/images/projects/hypertrophy/03_harmony_radar_360.png'
+        },
+        {
+            title: language === 'es' ? 'Prescripción Táctica de Entrenamiento' : 'Tactical Training Prescription',
+            badge: language === 'es' ? 'Hipertrofia en Estiramiento' : 'Stretch-Mediated Hypertrophy',
+            desc: language === 'es' ? 'Algoritmo de priorización de volumen semanal (P1 Rezagado vs P3 Dominante) y selección de ejercicios en posición elongada.' : 'Weekly volume dosing algorithm (P1 Lagging vs P3 Dominant) with lengthened-position exercise prescriptions.',
+            image: '/images/projects/hypertrophy/07_training_prescription.png'
+        },
+        {
+            title: language === 'es' ? 'Auditoría de Ratios & Tríada de Steve Reeves' : 'Classic Ratios & Steve Reeves Triad',
+            badge: language === 'es' ? 'Cánones Clásicos' : 'Classic Canons',
+            desc: language === 'es' ? 'Evaluación de ratios áureos (V-Taper 1.618, Brazo/Muñeca 2.5x, WHtR 0.45 y Tríada 1:1:1 Brazo/Cuello/Gemelo).' : 'Evaluation of golden ratios (V-Taper 1.618, Arm/Wrist 2.5x, WHtR 0.45, and 1:1:1 Arm/Neck/Calf Triad).',
+            image: '/images/projects/hypertrophy/09_symmetry_ratios.png'
+        },
+        {
+            title: language === 'es' ? 'Simulador de Techo Genético (Casey Butt)' : 'Genetic Ceiling Simulator (Casey Butt)',
+            badge: language === 'es' ? 'Límite Natural por Hueso' : 'Skeletal Natural Limit',
+            desc: language === 'es' ? 'Fórmula biométrica de Casey Butt para calcular masa magra máxima y perímetros tope a partir de muñecas y tobillos.' : 'Biometric Casey Butt formula calculating maximum fat-free mass and muscle ceilings from wrist and ankle circumferences.',
+            image: '/images/projects/hypertrophy/11_casey_butt_potential.png'
+        },
+        {
+            title: language === 'es' ? 'Time-to-Goal Engine' : 'Time-to-Goal Engine',
+            badge: language === 'es' ? 'Modelos de Helms & McDonald' : 'Helms & McDonald Models',
+            desc: language === 'es' ? 'Proyección matemática de la fecha exacta de logro de objetivos físicos y dictamen de viabilidad biomecánica.' : 'Mathematical projection of target completion dates based on scientific monthly lean mass gains and feasibility audits.',
+            image: '/images/projects/hypertrophy/12_timetogoal_cards.png'
+        },
+        {
+            title: language === 'es' ? 'Calculadora Metabólica (BMR, NEAT, TDEE)' : 'Metabolic Engine (BMR, NEAT, TDEE)',
+            badge: language === 'es' ? 'Multiecuación Energética' : 'Energy Multiequation',
+            desc: language === 'es' ? 'Comparador multiecuación (Mifflin, Katch, Harris) con gasto diario real, multiplicador NEAT y desglose de entrenamiento.' : 'Multiequation engine (Mifflin, Katch, Harris) with daily expenditure, NEAT multipliers, and workout calibration.',
+            image: '/images/projects/hypertrophy/14_metabolic_tdee_results.png'
+        },
+        {
+            title: language === 'es' ? 'Compartir con Entrenador & Código QR' : 'Coach Share & Live QR Code',
+            badge: language === 'es' ? 'Cifrado URL-Safe' : 'URL-Safe Encryption',
+            desc: language === 'es' ? 'Ficha de telemetría compartible en tiempo real mediante QR y payload comprimido sin que el coach requiera registrarse.' : 'Real-time telemetry sheet shareable via dynamic QR codes and compressed payloads without requiring coach account creation.',
+            image: '/images/projects/hypertrophy/18_trainer_share_qr_modal.png'
+        },
+        {
+            title: language === 'es' ? 'Silueta Femenina & Modelos Adaptativos' : 'Female Silhouette & Adaptive Models',
+            badge: language === 'es' ? 'Antropometría Dual' : 'Dual Anthropometry',
+            desc: language === 'es' ? 'Ajuste adaptativo de algoritmos para proporciones femeninas (ratios de cadera/cintura, masa magra y mapa visual).' : 'Adaptive algorithm tuning for female anatomical proportions (hip/waist ratios, fat distribution, and active silhouette).',
+            image: '/images/projects/hypertrophy/17_female_silhouette_mode.png'
+        }
+    ];
+
+    const stepsEs: DFDStep[] = [
+        {
+            id: 'algorithms',
+            title: '01. Algoritmos Biomecánicos & Antropometría',
+            icon: <Cpu className="w-5 h-5 text-amber-400" />,
+            summary: 'Motor matemático de evaluación corporal y predicción de hipertrofia sin dependencias externas.',
+            rules: [
+                'Modelo de Casey Butt: Predice el peso corporal máximo magro y perímetros límite naturales a partir de la estructura ósea (muñecas, tobillos y estatura).',
+                'Cánones Clásicos & Steve Reeves: Audita la Tríada 1:1:1 (Brazo = Cuello = Gemelo) y el Ratio V-Taper de conicidad de torso (1.45x - 1.62x).',
+                'Predictor Time-to-Goal (Helms & McDonald): Calcula la tasa de síntesis mensual sostenible según nivel de experiencia para proyectar la fecha de logro.',
+                'Estimador US Navy Multivariable: Cálculo del % de grasa corporal ajustado por género mediante circunferencias estratégicas.'
+            ]
+        },
+        {
+            id: 'offline-first',
+            title: '02. Arquitectura Offline-First & Sincronización',
+            icon: <Database className="w-5 h-5 text-amber-400" />,
+            summary: 'Operatividad 100% local con sincronización asíncrona hacia Firebase Firestore.',
+            rules: [
+                'Cero Latencia (0ms): Todas las operaciones de cálculo y renderizado se ejecutan en el hilo local del navegador mediante LocalStorage reactivo.',
+                'PWA Service Worker: Estrategia Cache-First que permite abrir la app y registrar medidas en gimnasios sin cobertura de red.',
+                'Sincronización Híbrida Silenciosa: Sube automáticamente los registros locales al iniciar sesión con Firebase Auth sin bloquear la UI.',
+                'Portabilidad Soberana: Motor de exportación e importación en formato JSON estandarizado para backup local.'
+            ]
+        },
+        {
+            id: 'hud-neon',
+            title: '03. Motor Gráfico HUD & Silueta Vectorial Neón',
+            icon: <Monitor className="w-5 h-5 text-amber-400" />,
+            summary: 'Telemetría anatómica reactiva y visualización espacial de datos biométricos.',
+            rules: [
+                'Silueta SVG Interactiva: Mapeo vectorial de grupos musculares con selección Tap-to-Measure que auto-enfoca inputs en móviles.',
+                'Mapa de Calor Dinámico: Gradientes cromáticos que diferencian Hipertrofia (>+2.5%), Crecimiento (+1%), Mantenimiento y Reducción.',
+                'Spider Chart Hexagonal 360°: Renderizado Recharts de 6 ejes de simetría con cálculo en vivo del Índice Global de Armonía (0-100).',
+                'Micro-interacciones Fluídas: Transiciones CSS aceleradas por GPU y feedback táctil de alta densidad.'
+            ]
+        },
+        {
+            id: 'sharing-reports',
+            title: '04. Cifrado de Telemetría & Compartición QR',
+            icon: <QrCode className="w-5 h-5 text-amber-400" />,
+            summary: 'Exportación de auditorías clínicas y conexión instantánea entre atleta y preparador físico.',
+            rules: [
+                'Generador de Informes PDF: Compilación de auditorías clínicas vectoriales en cliente con jsPDF + AutoTable sin coste de servidor.',
+                'Payload URL-Safe Base64: Empaquetamiento y compresión de mediciones en la URL para compartir reportes sin base de datos.',
+                'Código QR Dinámico: Generación en tiempo real de QR escaneable por el entrenador para auditar la ficha en vivo sin registro.',
+                'Modo Entrenador: Vista pública optimizada con desglose de asimetrías y recomendaciones biomecánicas.'
+            ]
+        }
+    ];
+
+    const stepsEn: DFDStep[] = [
+        {
+            id: 'algorithms',
+            title: '01. Biomechanical & Anthropometric Algorithms',
+            icon: <Cpu className="w-5 h-5 text-amber-400" />,
+            summary: 'Native client-side mathematical engine for body evaluation and hypertrophy predictions.',
+            rules: [
+                'Casey Butt Model: Predicts maximum natural lean body mass and bone-based muscular circumferences from wrist, ankle, and height metrics.',
+                'Classic Canons & Steve Reeves: Audits the 1:1:1 Triad (Arm = Neck = Calf) and torso taper ratio (1.45x - 1.62x V-Taper).',
+                'Time-to-Goal Predictor (Helms & McDonald): Computes monthly sustainable gain rates by experience level to forecast target dates.',
+                'Multivariable US Navy Estimator: Gender-calibrated body fat percentage calculation using anatomical circumferences.'
+            ]
+        },
+        {
+            id: 'offline-first',
+            title: '02. Offline-First Architecture & Cloud Sync',
+            icon: <Database className="w-5 h-5 text-amber-400" />,
+            summary: '100% local operation with asynchronous synchronization to Firebase Firestore.',
+            rules: [
+                'Zero Latency (0ms): All computations and reactive renders execute on the local thread via reactive LocalStorage.',
+                'PWA Service Worker: Cache-First strategy ensuring full access and measurement logging in dead-zone gym environments.',
+                'Silent Hybrid Sync: Automatically uploads local records upon Firebase Auth sign-in without UI freezing.',
+                'Sovereign Data Portability: Standardized JSON export and import engine for local backup management.'
+            ]
+        },
+        {
+            id: 'hud-neon',
+            title: '03. HUD Graphic Engine & Neon Vector Silhouette',
+            icon: <Monitor className="w-5 h-5 text-amber-400" />,
+            summary: 'Reactive anatomical telemetry and spatial visualization of biometric data.',
+            rules: [
+                'Interactive SVG Silhouette: Vector mapping of muscle groups with Tap-to-Measure auto-focus on mobile viewports.',
+                'Dynamic Heatmap: Chromatic gradients classifying Hypertrophy (>+2.5%), Growth (+1%), Maintenance, and Reduction.',
+                '360° Hexagonal Spider Chart: Recharts 6-axis symmetry radar with real-time Global Harmony Index scoring (0-100).',
+                'Fluid Micro-interactions: GPU-accelerated CSS transitions with tactical neon feedback.'
+            ]
+        },
+        {
+            id: 'sharing-reports',
+            title: '04. Telemetry Encryption & Live QR Sharing',
+            icon: <QrCode className="w-5 h-5 text-amber-400" />,
+            summary: 'Clinical audit report exports and seamless athlete-to-coach connectivity.',
+            rules: [
+                'Client-Side PDF Generator: Builds vector audit reports locally using jsPDF + AutoTable with zero server overhead.',
+                'URL-Safe Base64 Payload: Encodes and compresses biometric snapshots into sharable URLs without requiring database lookups.',
+                'Dynamic QR Code: Real-time scannable QR allowing coaches to audit live athlete sheets without creating accounts.',
+                'Coach Mode: Public high-density view detailing asymmetries, deltas, and biomechanical training volume.'
+            ]
+        }
+    ];
+
+    const steps = language === 'es' ? stepsEs : stepsEn;
+    const activeData = steps[activeStep];
+    const activeGallery = galleryItems[activeGalleryIndex];
+
+    return (
+        <div className="space-y-8 font-sans">
+            {/* Header & View Mode Switcher */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border/10 pb-4">
+                <div className="flex flex-col gap-1">
+                    <div className="flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                        <span className="text-[11px] font-mono tracking-widest text-amber-400 uppercase font-semibold">
+                            {language === 'es' ? 'ARQUITECTURA DE SISTEMA & TELEMETRÍA' : 'SYSTEM ARCHITECTURE & TELEMETRY'}
+                        </span>
+                    </div>
+                    <h5 className="text-sm font-bold text-foreground">
+                        Hypertrophy Tracker Pro Core Engine
+                    </h5>
+                </div>
+
+                <div className="flex items-center gap-1.5 p-1 rounded-lg bg-background border border-border/40 w-fit">
+                    <button
+                        onClick={() => setViewMode('architecture')}
+                        className={`px-3 py-1.5 rounded text-xs font-medium transition-all ${
+                            viewMode === 'architecture'
+                                ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40 shadow-sm'
+                                : 'text-muted-foreground hover:text-foreground'
+                        }`}
+                    >
+                        {language === 'es' ? '⚙️ Arquitectura & Algoritmos' : '⚙️ Architecture & Algorithms'}
+                    </button>
+                    <button
+                        onClick={() => setViewMode('gallery')}
+                        className={`px-3 py-1.5 rounded text-xs font-medium transition-all ${
+                            viewMode === 'gallery'
+                                ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40 shadow-sm'
+                                : 'text-muted-foreground hover:text-foreground'
+                        }`}
+                    >
+                        {language === 'es' ? '🖼️ Módulos en Vivo (16:9 Retina)' : '🖼️ Live Modules (16:9 Retina)'}
+                    </button>
+                </div>
+            </div>
+
+            {viewMode === 'architecture' ? (
+                /* Architecture Steps View */
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    {/* Step selector */}
+                    <div className="lg:col-span-4 flex flex-col gap-2">
+                        {steps.map((step, idx) => (
+                            <button
+                                key={step.id}
+                                onClick={() => setActiveStep(idx)}
+                                className={`text-left p-3.5 rounded-lg border transition-all flex items-center justify-between ${
+                                    activeStep === idx
+                                        ? 'bg-amber-500/10 border-amber-500/40 shadow-[0_0_15px_rgba(245,158,11,0.15)] text-foreground'
+                                        : 'bg-background/40 border-border/40 hover:border-amber-500/30 text-muted-foreground hover:text-foreground'
+                                }`}
+                            >
+                                <div className="flex items-center gap-3">
+                                    <div className={`p-2 rounded ${activeStep === idx ? 'bg-amber-500/20 text-amber-400' : 'bg-muted/40 text-muted-foreground'}`}>
+                                        {step.icon}
+                                    </div>
+                                    <span className="text-xs font-medium">{step.title}</span>
+                                </div>
+                                <ChevronRight className={`w-4 h-4 transition-transform ${activeStep === idx ? 'rotate-90 text-amber-400' : 'opacity-40'}`} />
+                            </button>
+                        ))}
+                    </div>
+
+                    {/* Step details */}
+                    <div className="lg:col-span-8 p-5 rounded-xl bg-background/50 border border-border/40 space-y-4">
+                        <div className="space-y-1">
+                            <h6 className="text-sm font-bold text-foreground flex items-center gap-2">
+                                {activeData.icon}
+                                {activeData.title}
+                            </h6>
+                            <p className="text-xs text-muted-foreground">{activeData.summary}</p>
+                        </div>
+
+                        <div className="space-y-2.5 border-t border-border/20 pt-4">
+                            <span className="text-[10px] font-mono font-bold tracking-widest text-amber-400 uppercase">
+                                {language === 'es' ? '// REGLAS DE INGENIERÍA & ESPECIFICACIONES' : '// ENGINEERING RULES & SPECS'}
+                            </span>
+                            <ul className="space-y-2">
+                                {activeData.rules.map((rule, idx) => (
+                                    <li key={idx} className="text-xs text-muted-foreground leading-relaxed flex gap-2.5">
+                                        <span className="text-amber-400 select-none font-bold">▸</span>
+                                        <span>{rule}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            ) : (
+                /* Interactive Gallery View */
+                <div className="space-y-5">
+                    {/* Chip selector */}
+                    <div className="flex flex-wrap gap-2">
+                        {galleryItems.map((item, idx) => (
+                            <button
+                                key={idx}
+                                onClick={() => setActiveGalleryIndex(idx)}
+                                className={`px-3 py-1.5 rounded-md text-xs transition-all font-medium ${
+                                    activeGalleryIndex === idx
+                                        ? 'bg-amber-500 text-black font-semibold shadow-[0_0_12px_rgba(245,158,11,0.4)]'
+                                        : 'bg-background border border-border/40 hover:border-amber-500/30 text-muted-foreground hover:text-foreground'
+                                }`}
+                            >
+                                {item.title}
+                            </button>
+                        ))}
+                    </div>
+
+                    {/* Preview Box */}
+                    <div className="rounded-xl overflow-hidden border border-border/40 bg-background/60 shadow-xl space-y-4 p-4">
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-border/20 pb-3">
+                            <div>
+                                <h6 className="text-sm font-bold text-foreground">{activeGallery.title}</h6>
+                                <p className="text-xs text-muted-foreground mt-0.5">{activeGallery.desc}</p>
+                            </div>
+                            <span className="px-2.5 py-1 rounded bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[11px] font-mono w-fit">
+                                {activeGallery.badge}
+                            </span>
+                        </div>
+
+                        <div className="relative aspect-video w-full rounded-lg overflow-hidden border border-border/20 bg-black/40">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                                src={activeGallery.image}
+                                alt={activeGallery.title}
+                                className="w-full h-full object-contain"
+                            />
+                        </div>
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+}
+
 
