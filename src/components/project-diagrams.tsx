@@ -1460,6 +1460,12 @@ export function HypertrophyArchitectureDiagram({ language }: { language: 'es' | 
             image: '/images/projects/hypertrophy/14_metabolic_tdee_results.png'
         },
         {
+            title: language === 'es' ? 'Duelo & Comparativa Head-to-Head' : 'Head-to-Head Athlete Duel',
+            badge: language === 'es' ? 'Radar Dual & Versus' : 'Dual Radar & Versus',
+            desc: language === 'es' ? 'Enfrentamiento anatómico relativo en tiempo real (Tú vs Steve Reeves, Frank Zane o Atleta por QR) con radar dual superpuesto y matriz de ventajas.' : 'Real-time relative anatomical battle (You vs Steve Reeves, Frank Zane, or Athlete via QR) with dual overlaid radar and tactical delta matrix.',
+            image: '/images/projects/hypertrophy/20_versus_athlete_comparison.png'
+        },
+        {
             title: language === 'es' ? 'Compartir con Entrenador & Código QR' : 'Coach Share & Live QR Code',
             badge: language === 'es' ? 'Cifrado URL-Safe' : 'URL-Safe Encryption',
             desc: language === 'es' ? 'Ficha de telemetría compartible en tiempo real mediante QR y payload comprimido sin que el coach requiera registrarse.' : 'Real-time telemetry sheet shareable via dynamic QR codes and compressed payloads without requiring coach account creation.',
