@@ -1597,7 +1597,7 @@ export function HypertrophyArchitectureDiagram({ language }: { language: 'es' | 
                         </span>
                     </div>
                     <h5 className="text-sm font-bold text-foreground">
-                        Hypertrophy Tracker Pro Core Engine
+                        Hypertrophy Tracker Core Engine
                     </h5>
                 </div>
 
