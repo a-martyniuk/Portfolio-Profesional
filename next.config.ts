@@ -85,26 +85,38 @@ const nextConfig: NextConfig = {
         source: "/mdq-911-intelligence/:path*",
         destination: "https://mdq-911-intelligence.vercel.app/mdq-911-intelligence/:path*",
       },
-      // Hypertrophy Tracker Subpath Reverse Proxy to live production endpoint
+      // Hypertrophy Tracker Subpath Reverse Proxy & Fallbacks
       {
         source: "/hypertrophyracker/assets/:path*",
-        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/hypertrophyracker/assets/:path*",
+        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/assets/:path*",
       },
       {
         source: "/hypertrophyracker/:path*",
-        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/hypertrophyracker/:path*",
+        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/:path*",
       },
       {
         source: "/hypertrophyracker",
         destination: "https://hypertrophyracker.alexismartyniuk.com.ar/",
       },
       {
+        source: "/hypertrophytracker/assets/:path*",
+        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/assets/:path*",
+      },
+      {
+        source: "/hypertrophytracker/:path*",
+        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/:path*",
+      },
+      {
+        source: "/hypertrophytracker",
+        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/",
+      },
+      {
         source: "/hypertrophy-tracker/assets/:path*",
-        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/hypertrophyracker/assets/:path*",
+        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/assets/:path*",
       },
       {
         source: "/hypertrophy-tracker/:path*",
-        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/hypertrophyracker/:path*",
+        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/:path*",
       },
       {
         source: "/hypertrophy-tracker",
@@ -121,6 +133,20 @@ const nextConfig: NextConfig = {
       {
         source: "/manifest.webmanifest",
         destination: "https://hypertrophyracker.alexismartyniuk.com.ar/manifest.webmanifest",
+      },
+    ];
+  },
+  async redirects() {
+    return [
+      {
+        source: "/hypertrophytracker",
+        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/",
+        permanent: false,
+      },
+      {
+        source: "/hypertrophy-tracker",
+        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/",
+        permanent: false,
       },
     ];
   },

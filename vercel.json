@@ -66,11 +66,11 @@
     },
     {
       "source": "/hypertrophyracker/assets/:path*",
-      "destination": "https://hypertrophyracker.alexismartyniuk.com.ar/hypertrophyracker/assets/:path*"
+      "destination": "https://hypertrophyracker.alexismartyniuk.com.ar/assets/:path*"
     },
     {
       "source": "/hypertrophyracker/:path*",
-      "destination": "https://hypertrophyracker.alexismartyniuk.com.ar/hypertrophyracker/:path*"
+      "destination": "https://hypertrophyracker.alexismartyniuk.com.ar/:path*"
     },
     {
       "source": "/hypertrophyracker",
@@ -81,12 +81,28 @@
       "destination": "https://hypertrophyracker.alexismartyniuk.com.ar/"
     },
     {
+      "source": "/hypertrophytracker/assets/:path*",
+      "destination": "https://hypertrophyracker.alexismartyniuk.com.ar/assets/:path*"
+    },
+    {
+      "source": "/hypertrophytracker/:path*",
+      "destination": "https://hypertrophyracker.alexismartyniuk.com.ar/:path*"
+    },
+    {
+      "source": "/hypertrophytracker",
+      "destination": "https://hypertrophyracker.alexismartyniuk.com.ar/"
+    },
+    {
+      "source": "/hypertrophytracker/",
+      "destination": "https://hypertrophyracker.alexismartyniuk.com.ar/"
+    },
+    {
       "source": "/hypertrophy-tracker/assets/:path*",
-      "destination": "https://hypertrophyracker.alexismartyniuk.com.ar/hypertrophyracker/assets/:path*"
+      "destination": "https://hypertrophyracker.alexismartyniuk.com.ar/assets/:path*"
     },
     {
       "source": "/hypertrophy-tracker/:path*",
-      "destination": "https://hypertrophyracker.alexismartyniuk.com.ar/hypertrophyracker/:path*"
+      "destination": "https://hypertrophyracker.alexismartyniuk.com.ar/:path*"
     },
     {
       "source": "/hypertrophy-tracker",

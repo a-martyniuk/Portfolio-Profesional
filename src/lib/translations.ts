@@ -292,7 +292,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                     "QR & URL Base64 Payload Sharing (Authless Coach Access)"
                 ],
                 metric: "Offline-First: 0ms Latencia",
-                link: "https://www.alexismartyniuk.com.ar/hypertrophyracker",
+                link: "https://hypertrophyracker.alexismartyniuk.com.ar/",
                 linkType: "demo",
                 github: "https://github.com/a-martyniuk/hypertrophy-tracker"
             },
@@ -759,7 +759,7 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                     "QR & URL Base64 Payload Sharing (Authless Coach Access)"
                 ],
                 metric: "Offline-First: 0ms Latency",
-                link: "https://www.alexismartyniuk.com.ar/hypertrophyracker",
+                link: "https://hypertrophyracker.alexismartyniuk.com.ar/",
                 linkType: "demo",
                 github: "https://github.com/a-martyniuk/hypertrophy-tracker"
             },
