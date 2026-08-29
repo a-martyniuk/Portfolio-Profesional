@@ -87,24 +87,28 @@ const nextConfig: NextConfig = {
       },
       // Hypertrophy Tracker Subpath Reverse Proxy to live production endpoint
       {
+        source: "/hypertrophyracker/assets/:path*",
+        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/hypertrophyracker/assets/:path*",
+      },
+      {
+        source: "/hypertrophyracker/:path*",
+        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/hypertrophyracker/:path*",
+      },
+      {
         source: "/hypertrophyracker",
         destination: "https://hypertrophyracker.alexismartyniuk.com.ar/",
       },
       {
-        source: "/hypertrophyracker/:path*",
-        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/:path*",
+        source: "/hypertrophy-tracker/assets/:path*",
+        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/hypertrophyracker/assets/:path*",
+      },
+      {
+        source: "/hypertrophy-tracker/:path*",
+        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/hypertrophyracker/:path*",
       },
       {
         source: "/hypertrophy-tracker",
         destination: "https://hypertrophyracker.alexismartyniuk.com.ar/",
-      },
-      {
-        source: "/hypertrophy-tracker/:path*",
-        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/:path*",
-      },
-      {
-        source: "/assets/:path*",
-        destination: "https://hypertrophyracker.alexismartyniuk.com.ar/assets/:path*",
       },
       {
         source: "/sw.js",

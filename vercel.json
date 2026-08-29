@@ -65,6 +65,14 @@
       "destination": "https://mdq-911-intelligence.vercel.app/mdq-911-intelligence/:path*"
     },
     {
+      "source": "/hypertrophyracker/assets/:path*",
+      "destination": "https://hypertrophyracker.alexismartyniuk.com.ar/hypertrophyracker/assets/:path*"
+    },
+    {
+      "source": "/hypertrophyracker/:path*",
+      "destination": "https://hypertrophyracker.alexismartyniuk.com.ar/hypertrophyracker/:path*"
+    },
+    {
       "source": "/hypertrophyracker",
       "destination": "https://hypertrophyracker.alexismartyniuk.com.ar/"
     },
@@ -73,8 +81,12 @@
       "destination": "https://hypertrophyracker.alexismartyniuk.com.ar/"
     },
     {
-      "source": "/hypertrophyracker/:path*",
-      "destination": "https://hypertrophyracker.alexismartyniuk.com.ar/:path*"
+      "source": "/hypertrophy-tracker/assets/:path*",
+      "destination": "https://hypertrophyracker.alexismartyniuk.com.ar/hypertrophyracker/assets/:path*"
+    },
+    {
+      "source": "/hypertrophy-tracker/:path*",
+      "destination": "https://hypertrophyracker.alexismartyniuk.com.ar/hypertrophyracker/:path*"
     },
     {
       "source": "/hypertrophy-tracker",
@@ -83,10 +95,6 @@
     {
       "source": "/hypertrophy-tracker/",
       "destination": "https://hypertrophyracker.alexismartyniuk.com.ar/"
-    },
-    {
-      "source": "/hypertrophy-tracker/:path*",
-      "destination": "https://hypertrophyracker.alexismartyniuk.com.ar/:path*"
     }
   ]
 }
