@@ -73,12 +73,12 @@ export function ArchifyViewer({
             href={src}
             target="_blank"
             rel="noopener noreferrer"
-            title={language === 'es' ? 'Abrir en pestaña completa' : 'Open in new tab'}
+            title={language === 'es' ? 'Abrir diagrama independiente en nueva pestaña' : 'Open standalone diagram in new tab'}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium border border-border/50 bg-background hover:bg-muted hover:border-primary/40 text-foreground transition-all duration-200"
           >
             <ExternalLink className="w-3.5 h-3.5 text-cyan-400" />
             <span className="hidden md:inline">
-              {language === 'es' ? 'Abrir Fullscreen' : 'Open Fullscreen'}
+              {language === 'es' ? 'Abrir en Pestaña' : 'Open in Tab'}
             </span>
           </a>
 
@@ -122,7 +122,6 @@ export function ArchifyViewer({
           title={title}
           onLoad={() => setIsLoading(false)}
           className="w-full h-full border-0 rounded-2xl"
-          sandbox="allow-scripts allow-same-origin allow-popups allow-downloads"
         />
       </div>
 
