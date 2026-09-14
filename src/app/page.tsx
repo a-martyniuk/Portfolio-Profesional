@@ -6,7 +6,8 @@ import { Navbar } from "@/components/navbar";
 import { Hero } from "@/components/hero";
 import { ProjectCard } from "@/components/project-card";
 import { PressCard } from "@/components/press-card";
-import { ScraperDataFlowDiagram, MeliAioDataFlowDiagram, BrandProtectionDataFlowDiagram, BagoMigrationDataFlowDiagram, CordobaDataFlowDiagram, SarmientoDataFlowDiagram, AirMarketDataFlowDiagram, HypertrophyArchitectureDiagram } from "@/components/project-diagrams";
+import { ScraperDataFlowDiagram, MeliAioDataFlowDiagram, BrandProtectionDataFlowDiagram, BagoMigrationDataFlowDiagram, CordobaDataFlowDiagram, SarmientoDataFlowDiagram, AirMarketDataFlowDiagram, HypertrophyArchitectureDiagram, GitopsWorkflowDiagram } from "@/components/project-diagrams";
+import { ArchifyViewer } from "@/components/ui/archify-viewer";
 import { SkillChart } from "@/components/skill-chart";
 import { MetricsGrid } from "@/components/animated-metrics";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -33,6 +34,7 @@ interface DFDStep {
 
 function DataFlowDiagram({ language }: { language: 'es' | 'en' }) {
   const [activeStep, setActiveStep] = useState(0);
+  const [viewMode, setViewMode] = useState<'diagram' | 'rules'>('diagram');
 
   const stepsEs: DFDStep[] = [
     {
@@ -161,89 +163,125 @@ function DataFlowDiagram({ language }: { language: 'es' | 'en' }) {
 
   return (
     <div className="space-y-6 font-sans">
-      <div className="flex flex-col gap-2">
-        <h4 className="text-sm font-bold uppercase tracking-widest text-primary">
-          {language === 'es' ? "Diagrama de Flujo de Datos (DFD) Interactivo" : "Interactive Data Flow Diagram (DFD)"}
-        </h4>
-        <p className="text-xs text-muted-foreground leading-relaxed">
-          {language === 'es' 
-            ? "Hacé clic en cada fase del pipeline Medallion para ver las reglas de negocio reales aplicadas en Microsoft Fabric."
-            : "Click on each phase of the Medallion pipeline to reveal the actual business rules applied in Microsoft Fabric."
-          }
-        </p>
-      </div>
-
-      {/* DFD Flow Timeline */}
-      <div className="flex flex-col lg:flex-row items-center justify-between gap-4 p-4 rounded-2xl border border-border/40 bg-muted/10">
-        {steps.map((step, index) => {
-          const isActive = index === activeStep;
-          return (
-            <React.Fragment key={step.id}>
-              {/* Step Node */}
-              <button
-                onClick={() => setActiveStep(index)}
-                className={`flex-1 w-full lg:w-auto p-4 rounded-xl border text-left transition-all relative ${
-                  isActive
-                    ? 'bg-primary/10 border-primary text-primary shadow-[0_0_15px_rgba(6,182,212,0.4)]'
-                    : 'bg-background border-border hover:border-primary/40 text-foreground hover:bg-muted/10'
-                }`}
-              >
-                <div className="flex items-center gap-3">
-                  <div className={`p-2 rounded-lg border transition-colors ${isActive ? 'bg-primary/20 border-primary/40' : 'bg-muted/40 border-border'}`}>
-                    {step.icon}
-                  </div>
-                  <div>
-                    <h5 className="font-heading font-bold text-xs uppercase tracking-wider">{step.title}</h5>
-                    <p className="text-[10px] text-muted-foreground truncate max-w-[150px]">{step.id.toUpperCase()}</p>
-                  </div>
-                </div>
-              </button>
-
-              {/* Connector Arrow (not after the last step) */}
-              {index < steps.length - 1 && (
-                <div className="text-muted-foreground/30 flex items-center justify-center shrink-0">
-                  <span className="hidden lg:block"><ArrowRight size={16} /></span>
-                  <span className="lg:hidden"><ArrowDown size={16} /></span>
-                </div>
-              )}
-            </React.Fragment>
-          );
-        })}
-      </div>
-
-      {/* Selected Node Details Card */}
-      <div className="p-6 rounded-2xl border border-border/50 bg-accent/20 backdrop-blur-md relative overflow-hidden transition-all duration-300">
-        <div className="absolute top-[-50%] left-[-20%] h-full w-full bg-primary/5 blur-[50px] -z-10" />
-        <div className="flex items-start gap-4">
-          <div className="p-2 rounded-lg bg-primary/10 text-primary border border-primary/20 shrink-0">
-            {activeData.icon}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border/10 pb-4">
+        <div className="flex flex-col gap-1">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+            <span className="text-[11px] font-mono tracking-widest text-cyan-400 uppercase font-semibold">
+              {language === 'es' ? 'PIPELINE MEDALLION & SPARK' : 'MEDALLION PIPELINE & SPARK'}
+            </span>
           </div>
-          <div className="space-y-4 flex-1">
-            <div>
-              <h5 className="font-heading font-extrabold text-sm text-foreground uppercase tracking-wider">
-                {activeData.title}
-              </h5>
-              <p className="text-xs text-muted-foreground leading-relaxed mt-1">
-                {activeData.summary}
-              </p>
-            </div>
+          <h4 className="text-sm font-bold uppercase tracking-widest text-primary">
+            {language === 'es' ? "Diagrama de Flujo de Datos (DFD) Interactivo" : "Interactive Data Flow Diagram (DFD)"}
+          </h4>
+        </div>
 
-            <div className="space-y-2 border-t border-border/10 pt-4">
-              <h6 className="text-[10px] font-mono font-bold tracking-widest text-primary uppercase">
-                {language === 'es' ? "// REGLAS DE NEGOCIO DETALLADAS" : "// DETAILED BUSINESS RULES"}
-              </h6>
-              <ul className="space-y-2">
-                {activeData.rules.map((rule, i) => (
-                  <li key={i} className="text-xs text-muted-foreground leading-relaxed flex gap-2">
-                    <span className="text-primary select-none mt-0.5">▸</span>
-                    <span>{rule}</span>
-                  </li>
-                ))}
-              </ul>
+        <div className="flex items-center gap-1.5 p-1 rounded-lg bg-background border border-border/40 w-fit">
+          <button
+            onClick={() => setViewMode('diagram')}
+            className={`px-3 py-1.5 rounded text-xs font-medium transition-all ${
+              viewMode === 'diagram'
+                ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 shadow-sm'
+                : 'text-muted-foreground hover:text-foreground'
+            }`}
+          >
+            {language === 'es' ? '⚡ Diagrama Interactivo' : '⚡ Interactive Diagram'}
+          </button>
+          <button
+            onClick={() => setViewMode('rules')}
+            className={`px-3 py-1.5 rounded text-xs font-medium transition-all ${
+              viewMode === 'rules'
+                ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 shadow-sm'
+                : 'text-muted-foreground hover:text-foreground'
+            }`}
+          >
+            {language === 'es' ? '📋 Reglas Medallion' : '📋 Medallion Rules'}
+          </button>
+        </div>
+      </div>
+
+      {viewMode === 'diagram' ? (
+        <ArchifyViewer
+          src="/diagrams/sellout-pipeline.dataflow.html"
+          title={language === 'es' ? "Pipeline Sell-Out Medallion (Microsoft Fabric & PySpark)" : "Sell-Out Medallion Pipeline (Microsoft Fabric & PySpark)"}
+          subtitle={language === 'es' ? "Ingesta Drive, Normalización Silver, Cruce Dimensional y Apertura de Combos" : "Drive Ingest, Silver Normalization, Dimensional Matching, and Combo Exploding"}
+          diagramType="dataflow"
+          language={language}
+        />
+      ) : (
+        <div className="space-y-6">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-4 p-4 rounded-2xl border border-border/40 bg-muted/10">
+            {steps.map((step, index) => {
+              const isActive = index === activeStep;
+              return (
+                <React.Fragment key={step.id}>
+                  {/* Step Node */}
+                  <button
+                    onClick={() => setActiveStep(index)}
+                    className={`flex-1 w-full lg:w-auto p-4 rounded-xl border text-left transition-all relative ${
+                      isActive
+                        ? 'bg-primary/10 border-primary text-primary shadow-[0_0_15px_rgba(6,182,212,0.4)]'
+                        : 'bg-background border-border hover:border-primary/40 text-foreground hover:bg-muted/10'
+                    }`}
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className={`p-2 rounded-lg border transition-colors ${isActive ? 'bg-primary/20 border-primary/40' : 'bg-muted/40 border-border'}`}>
+                        {step.icon}
+                      </div>
+                      <div>
+                        <h5 className="font-heading font-bold text-xs uppercase tracking-wider">{step.title}</h5>
+                        <p className="text-[10px] text-muted-foreground truncate max-w-[150px]">{step.id.toUpperCase()}</p>
+                      </div>
+                    </div>
+                  </button>
+
+                  {/* Connector Arrow (not after the last step) */}
+                  {index < steps.length - 1 && (
+                    <div className="text-muted-foreground/30 flex items-center justify-center shrink-0">
+                      <span className="hidden lg:block"><ArrowRight size={16} /></span>
+                      <span className="lg:hidden"><ArrowDown size={16} /></span>
+                    </div>
+                  )}
+                </React.Fragment>
+              );
+            })}
+          </div>
+
+          {/* Selected Node Details Card */}
+          <div className="p-6 rounded-2xl border border-border/50 bg-accent/20 backdrop-blur-md relative overflow-hidden transition-all duration-300">
+            <div className="absolute top-[-50%] left-[-20%] h-full w-full bg-primary/5 blur-[50px] -z-10" />
+            <div className="flex items-start gap-4">
+              <div className="p-2 rounded-lg bg-primary/10 text-primary border border-primary/20 shrink-0">
+                {activeData.icon}
+              </div>
+              <div className="space-y-4 flex-1">
+                <div>
+                  <h5 className="font-heading font-extrabold text-sm text-foreground uppercase tracking-wider">
+                    {activeData.title}
+                  </h5>
+                  <p className="text-xs text-muted-foreground leading-relaxed mt-1">
+                    {activeData.summary}
+                  </p>
+                </div>
+
+                <div className="space-y-2 border-t border-border/10 pt-4">
+                  <h6 className="text-[10px] font-mono font-bold tracking-widest text-primary uppercase">
+                    {language === 'es' ? "// REGLAS DE NEGOCIO DETALLADAS" : "// DETAILED BUSINESS RULES"}
+                  </h6>
+                  <ul className="space-y-2">
+                    {activeData.rules.map((rule, i) => (
+                      <li key={i} className="text-xs text-muted-foreground leading-relaxed flex gap-2">
+                        <span className="text-primary select-none mt-0.5">▸</span>
+                        <span>{rule}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
@@ -829,6 +867,12 @@ export default function Home() {
         {selectedProject && (selectedProject.title.includes("AirMarket") || selectedProject.title.includes("airbnb-market-intelligence")) && (
           <div className="mt-12 pt-12 border-t border-border/10">
             <AirMarketDataFlowDiagram language={language} />
+          </div>
+        )}
+
+        {selectedProject && (selectedProject.title.includes("GitOps") || selectedProject.title.includes("Azure SQL Version Control")) && (
+          <div className="mt-12 pt-12 border-t border-border/10">
+            <GitopsWorkflowDiagram language={language} />
           </div>
         )}
       </Modal>

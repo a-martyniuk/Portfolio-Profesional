@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Hypertrophy Tracker - Offline-First PWA Architecture",
+    "output": "public/diagrams/hypertrophy-pwa.architecture.html",
+    "quality_profile": "showcase",
+    "viewBox": [1020, 480],
+    "views": [
+      {
+        "id": "offline-core",
+        "label": "Nucleo Local & Calculo Biomecanico",
+        "focus": ["client_app", "sw_cache", "local_storage", "math_core", "hud_visual"],
+        "note": "Operacion 100% desconectada con latencia 0ms y proyecciones matematicas locales."
+      },
+      {
+        "id": "cloud-sync",
+        "label": "Sincronizacion Silenciosa en la Nube",
+        "focus": ["client_app", "firebase_auth", "math_core", "firestore_db"],
+        "note": "Autenticacion ligera y persistencia asincrona en Google Firebase Firestore."
+      },
+      {
+        "id": "export-sharing",
+        "label": "Telemetria & Exportacion",
+        "focus": ["math_core", "pdf_engine", "qr_share"],
+        "note": "Generacion de informes clinicos vectoriales y enlace directo con coaches mediante QR."
+      }
+    ]
+  },
+  "components": [
+    { "id": "client_app", "type": "frontend", "label": "React 19 PWA", "sublabel": "TypeScript + Vite", "brand": "react", "pos": [50, 220], "size": [140, 64], "tag": "Chunk <200KB" },
+    { "id": "sw_cache", "type": "frontend", "label": "Service Worker", "sublabel": "Cache-First Strategy", "pos": [50, 90], "size": [140, 64], "tag": "Offline PWA" },
+    { "id": "local_storage", "type": "database", "label": "Reactive Store", "sublabel": "LocalStorage API", "pos": [280, 220], "size": [140, 64], "tag": "0ms Latency" },
+    { "id": "math_core", "type": "backend", "label": "Motor Biomecanico", "sublabel": "Casey Butt & Helms", "pos": [510, 220], "size": [150, 64], "tag": "Calculo Local" },
+    { "id": "hud_visual", "type": "frontend", "label": "HUD Vectorial", "sublabel": "Silueta Neon & Radar", "pos": [510, 90], "size": [150, 64], "tag": "SVG / Canvas" },
+    { "id": "firebase_auth", "type": "security", "label": "Firebase Auth", "sublabel": "Google / OAuth 2.0", "brand": "firebase", "pos": [760, 90], "size": [140, 64], "tag": "Auth Hibrido" },
+    { "id": "firestore_db", "type": "database", "label": "Cloud Firestore", "sublabel": "Sync Asincrona", "brand": "firebase", "pos": [760, 220], "size": [140, 64], "tag": "NoSQL Cloud" },
+    { "id": "qr_share", "type": "external", "label": "Coach Share QR", "sublabel": "Payload URL-Safe", "pos": [510, 350], "size": [150, 64], "tag": "Sin Login" },
+    { "id": "pdf_engine", "type": "backend", "label": "Generador PDF", "sublabel": "jsPDF Vectorial", "pos": [760, 350], "size": [140, 64], "tag": "Auditoria" }
+  ],
+  "boundaries": [
+    { "kind": "region", "label": "Entorno Local del Cliente (Offline-First)", "wraps": ["client_app", "sw_cache", "local_storage", "math_core", "hud_visual", "qr_share"] },
+    { "kind": "security-group", "label": "Google Firebase Services", "wraps": ["firebase_auth", "firestore_db"] }
+  ],
+  "connections": [
+    { "id": "app-to-sw", "from": "client_app", "to": "sw_cache", "label": "cache-first", "fromSide": "top", "toSide": "bottom" },
+    { "id": "app-to-store", "from": "client_app", "to": "local_storage", "label": "persistencia 0ms", "variant": "emphasis", "labelDy": -16 },
+    { "id": "store-to-math", "from": "local_storage", "to": "math_core", "label": "telemetria cruda", "variant": "emphasis", "labelDy": -16 },
+    { "id": "math-to-hud", "from": "math_core", "to": "hud_visual", "label": "ratios & deltas", "fromSide": "top", "toSide": "bottom", "variant": "emphasis" },
+    { "id": "math-to-firestore", "from": "math_core", "to": "firestore_db", "label": "sync nube", "variant": "emphasis", "labelDy": -16 },
+    { "id": "math-to-qr", "from": "math_core", "to": "qr_share", "label": "telemetria QR", "fromSide": "bottom", "toSide": "top", "variant": "security", "labelDy": 18, "labelDx": -45 },
+    { "id": "math-to-pdf", "from": "math_core", "to": "pdf_engine", "label": "reporte clinico", "fromSide": "bottom", "toSide": "left" },
+    { "id": "auth-to-firestore", "from": "firebase_auth", "to": "firestore_db", "label": "security rules", "fromSide": "bottom", "toSide": "top", "variant": "security", "labelDy": 18 }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Arquitectura Offline-First & Rendimiento",
+      "items": [
+        "PWA impulsada por Vite con fragmentacion de codigo en bundles menores a 200 KB",
+        "Estrategia Cache-First que asegura ejecucion con 0ms de latencia sin senal"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Nucleo de Biomecanica & HUD Reactivo",
+      "items": [
+        "Motor matematico: Techo de Casey Butt, Canones de Steve Reeves y proyecciones Helms",
+        "Silueta neon reactiva SVG con iluminacion por gradientes termicos y radar 360"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Sincronizacion & Comparticion Segura",
+      "items": [
+        "Sincronizacion asincrona hacia Firestore al autenticar via Firebase Auth",
+        "Comparticion en vivo con coaches via QR cifrado URL-Safe y exportacion PDF vectorial"
+      ]
+    }
+  ]
+}

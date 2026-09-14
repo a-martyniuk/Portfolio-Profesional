@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Server, Database, Cpu, Bot, Monitor, Key, RefreshCw, FileText, ArrowRight, ArrowDown, UserCheck, Wine, Clock, Activity, QrCode, ChevronRight } from "lucide-react";
+import { Server, Database, Cpu, Bot, Monitor, Key, RefreshCw, FileText, ArrowRight, ArrowDown, UserCheck, Wine, Clock, Activity, QrCode, ChevronRight, GitBranch, Shield, Lock, CheckCircle2, Terminal } from "lucide-react";
+import { ArchifyViewer } from "@/components/ui/archify-viewer";
 
 interface DFDStep {
     id: string;
@@ -13,6 +14,7 @@ interface DFDStep {
 
 export function ScraperDataFlowDiagram({ language }: { language: 'es' | 'en' }) {
     const [activeStep, setActiveStep] = useState(0);
+    const [viewMode, setViewMode] = useState<'diagram' | 'rules'>('diagram');
 
     const stepsEs: DFDStep[] = [
         {
@@ -137,83 +139,120 @@ export function ScraperDataFlowDiagram({ language }: { language: 'es' | 'en' }) 
 
     return (
         <div className="space-y-6 font-sans">
-            <div className="flex flex-col gap-2">
-                <h4 className="text-sm font-bold uppercase tracking-widest text-primary">
-                    {language === 'es' ? "Diagrama de Flujo de Datos (DFD) - Scraper" : "Data Flow Diagram (DFD) - Scraper"}
-                </h4>
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                    {language === 'es' 
-                        ? "Haz clic en cada fase para ver las reglas y lógica de la tubería ETL."
-                        : "Click on each phase to reveal the crawler ETL pipeline rules."
-                    }
-                </p>
-            </div>
-
-            <div className="flex flex-col lg:flex-row items-center justify-between gap-4 p-4 rounded-2xl border border-border/40 bg-muted/10">
-                {steps.map((step, index) => {
-                    const isActive = index === activeStep;
-                    return (
-                        <React.Fragment key={step.id}>
-                            <button
-                                onClick={() => setActiveStep(index)}
-                                className={`flex-1 w-full lg:w-auto p-4 rounded-xl border text-left transition-all relative ${
-                                    isActive
-                                        ? 'bg-primary/10 border-primary text-primary shadow-[0_0_15px_rgba(6,182,212,0.4)]'
-                                        : 'bg-background border-border hover:border-primary/40 text-foreground hover:bg-muted/10'
-                                }`}
-                            >
-                                <div className="flex items-center gap-3">
-                                    <div className={`p-2 rounded-lg border transition-colors ${isActive ? 'bg-primary/20 border-primary/40' : 'bg-muted/40 border-border'}`}>
-                                        {step.icon}
-                                    </div>
-                                    <div>
-                                        <h5 className="font-heading font-bold text-xs uppercase tracking-wider">{step.title}</h5>
-                                        <p className="text-[10px] text-muted-foreground truncate max-w-[150px]">{step.id.toUpperCase()}</p>
-                                    </div>
-                                </div>
-                            </button>
-                            {index < steps.length - 1 && (
-                                <div className="text-muted-foreground/30 flex items-center justify-center shrink-0">
-                                    <span className="hidden lg:block"><ArrowRight size={16} /></span>
-                                    <span className="lg:hidden"><ArrowDown size={16} /></span>
-                                </div>
-                            )}
-                        </React.Fragment>
-                    );
-                })}
-            </div>
-
-            <div className="p-6 rounded-2xl border border-border/50 bg-accent/20 backdrop-blur-md relative overflow-hidden transition-all duration-300">
-                <div className="absolute top-[-50%] left-[-20%] h-full w-full bg-primary/5 blur-[50px] -z-10" />
-                <div className="flex items-start gap-4">
-                    <div className="p-2 rounded-lg bg-primary/10 text-primary border border-primary/20 shrink-0">
-                        {activeData.icon}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border/10 pb-4">
+                <div className="flex flex-col gap-1">
+                    <div className="flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+                        <span className="text-[11px] font-mono tracking-widest text-cyan-400 uppercase font-semibold">
+                            {language === 'es' ? 'PIPELINE ETL INMOBILIARIO' : 'REAL ESTATE ETL PIPELINE'}
+                        </span>
                     </div>
-                    <div className="space-y-4 flex-1">
-                        <div>
-                            <h5 className="font-heading font-extrabold text-sm text-foreground uppercase tracking-wider">
-                                {activeData.title}
-                            </h5>
-                            <p className="text-xs text-muted-foreground leading-relaxed mt-1">
-                                {activeData.summary}
-                            </p>
-                        </div>
-                        <div className="space-y-2 border-t border-border/10 pt-4">
-                            <h6 className="text-[10px] font-mono font-bold tracking-widest text-primary uppercase">
-                                {language === 'es' ? "// REGLAS DE NEGOCIO Y PROCESAMIENTO" : "// BUSINESS LOGIC & PROCESSING"}
-                            </h6>
-                            <ul className="space-y-2">
-                                {activeData.rules.map((rule, i) => (
-                                    <li key={i} className="text-xs text-muted-foreground leading-relaxed flex gap-2">
-                                        <span className="text-primary select-none mt-0.5">▸</span>
-                                        <span>{rule}</span>
-                                    </li>
-                                ))}
-                            </ul>
+                    <h4 className="text-sm font-bold uppercase tracking-widest text-primary">
+                        {language === 'es' ? "Diagrama de Flujo de Datos (DFD) - Scraper" : "Data Flow Diagram (DFD) - Scraper"}
+                    </h4>
+                </div>
+
+                <div className="flex items-center gap-1.5 p-1 rounded-lg bg-background border border-border/40 w-fit">
+                    <button
+                        onClick={() => setViewMode('diagram')}
+                        className={`px-3 py-1.5 rounded text-xs font-medium transition-all ${
+                            viewMode === 'diagram'
+                                ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 shadow-sm'
+                                : 'text-muted-foreground hover:text-foreground'
+                        }`}
+                    >
+                        {language === 'es' ? '⚡ Diagrama Interactivo' : '⚡ Interactive Diagram'}
+                    </button>
+                    <button
+                        onClick={() => setViewMode('rules')}
+                        className={`px-3 py-1.5 rounded text-xs font-medium transition-all ${
+                            viewMode === 'rules'
+                                ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 shadow-sm'
+                                : 'text-muted-foreground hover:text-foreground'
+                        }`}
+                    >
+                        {language === 'es' ? '📋 Reglas ETL por Fase' : '📋 ETL Rules by Phase'}
+                    </button>
+                </div>
+            </div>
+
+            {viewMode === 'diagram' ? (
+                <ArchifyViewer
+                    src="/diagrams/caba-scraper.dataflow.html"
+                    title={language === 'es' ? "Pipeline Inmobiliario CABA (Playwright + Supabase)" : "CABA Real Estate Pipeline (Playwright + Supabase)"}
+                    subtitle={language === 'es' ? "Extracción paralela, deduplicación de huellas y ranking de valor en Buenos Aires" : "Parallelized scraping, fingerprint deduplication, and market bargain ranking"}
+                    diagramType="dataflow"
+                    language={language}
+                />
+            ) : (
+                <div className="space-y-6">
+                    <div className="flex flex-col lg:flex-row items-center justify-between gap-4 p-4 rounded-2xl border border-border/40 bg-muted/10">
+                        {steps.map((step, index) => {
+                            const isActive = index === activeStep;
+                            return (
+                                <React.Fragment key={step.id}>
+                                    <button
+                                        onClick={() => setActiveStep(index)}
+                                        className={`flex-1 w-full lg:w-auto p-4 rounded-xl border text-left transition-all relative ${
+                                            isActive
+                                                ? 'bg-primary/10 border-primary text-primary shadow-[0_0_15px_rgba(6,182,212,0.4)]'
+                                                : 'bg-background border-border hover:border-primary/40 text-foreground hover:bg-muted/10'
+                                        }`}
+                                    >
+                                        <div className="flex items-center gap-3">
+                                            <div className={`p-2 rounded-lg border transition-colors ${isActive ? 'bg-primary/20 border-primary/40' : 'bg-muted/40 border-border'}`}>
+                                                {step.icon}
+                                            </div>
+                                            <div>
+                                                <h5 className="font-heading font-bold text-xs uppercase tracking-wider">{step.title}</h5>
+                                                <p className="text-[10px] text-muted-foreground truncate max-w-[150px]">{step.id.toUpperCase()}</p>
+                                            </div>
+                                        </div>
+                                    </button>
+                                    {index < steps.length - 1 && (
+                                        <div className="text-muted-foreground/30 flex items-center justify-center shrink-0">
+                                            <span className="hidden lg:block"><ArrowRight size={16} /></span>
+                                            <span className="lg:hidden"><ArrowDown size={16} /></span>
+                                        </div>
+                                    )}
+                                </React.Fragment>
+                            );
+                        })}
+                    </div>
+
+                    <div className="p-6 rounded-2xl border border-border/50 bg-accent/20 backdrop-blur-md relative overflow-hidden transition-all duration-300">
+                        <div className="absolute top-[-50%] left-[-20%] h-full w-full bg-primary/5 blur-[50px] -z-10" />
+                        <div className="flex items-start gap-4">
+                            <div className="p-2 rounded-lg bg-primary/10 text-primary border border-primary/20 shrink-0">
+                                {activeData.icon}
+                            </div>
+                            <div className="space-y-4 flex-1">
+                                <div>
+                                    <h5 className="font-heading font-extrabold text-sm text-foreground uppercase tracking-wider">
+                                        {activeData.title}
+                                    </h5>
+                                    <p className="text-xs text-muted-foreground leading-relaxed mt-1">
+                                        {activeData.summary}
+                                    </p>
+                                </div>
+                                <div className="space-y-2 border-t border-border/10 pt-4">
+                                    <h6 className="text-[10px] font-mono font-bold tracking-widest text-primary uppercase">
+                                        {language === 'es' ? "// REGLAS DE NEGOCIO Y PROCESAMIENTO" : "// BUSINESS LOGIC & PROCESSING"}
+                                    </h6>
+                                    <ul className="space-y-2">
+                                        {activeData.rules.map((rule, i) => (
+                                            <li key={i} className="text-xs text-muted-foreground leading-relaxed flex gap-2">
+                                                <span className="text-primary select-none mt-0.5">▸</span>
+                                                <span>{rule}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            )}
         </div>
     );
 }
@@ -1408,7 +1447,7 @@ function Globe(props: React.SVGProps<SVGSVGElement>) {
 export function HypertrophyArchitectureDiagram({ language }: { language: 'es' | 'en' }) {
     const [activeStep, setActiveStep] = useState(0);
     const [activeGalleryIndex, setActiveGalleryIndex] = useState(0);
-    const [viewMode, setViewMode] = useState<'architecture' | 'gallery'>('architecture');
+    const [viewMode, setViewMode] = useState<'diagram' | 'architecture' | 'gallery'>('diagram');
 
     const galleryItems = [
         {
@@ -1603,6 +1642,16 @@ export function HypertrophyArchitectureDiagram({ language }: { language: 'es' | 
 
                 <div className="flex items-center gap-1.5 p-1 rounded-lg bg-background border border-border/40 w-fit">
                     <button
+                        onClick={() => setViewMode('diagram')}
+                        className={`px-3 py-1.5 rounded text-xs font-medium transition-all ${
+                            viewMode === 'diagram'
+                                ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40 shadow-sm'
+                                : 'text-muted-foreground hover:text-foreground'
+                        }`}
+                    >
+                        {language === 'es' ? '⚡ Diagrama de Arquitectura' : '⚡ Architecture Diagram'}
+                    </button>
+                    <button
                         onClick={() => setViewMode('architecture')}
                         className={`px-3 py-1.5 rounded text-xs font-medium transition-all ${
                             viewMode === 'architecture'
@@ -1610,7 +1659,7 @@ export function HypertrophyArchitectureDiagram({ language }: { language: 'es' | 
                                 : 'text-muted-foreground hover:text-foreground'
                         }`}
                     >
-                        {language === 'es' ? '⚙️ Arquitectura & Algoritmos' : '⚙️ Architecture & Algorithms'}
+                        {language === 'es' ? '⚙️ Lógica & Algoritmos' : '⚙️ Logic & Algorithms'}
                     </button>
                     <button
                         onClick={() => setViewMode('gallery')}
@@ -1625,7 +1674,15 @@ export function HypertrophyArchitectureDiagram({ language }: { language: 'es' | 
                 </div>
             </div>
 
-            {viewMode === 'architecture' ? (
+            {viewMode === 'diagram' ? (
+                <ArchifyViewer
+                    src="/diagrams/hypertrophy-pwa.architecture.html"
+                    title={language === 'es' ? "Arquitectura PWA Offline-First: Hypertrophy Tracker" : "Offline-First PWA Architecture: Hypertrophy Tracker"}
+                    subtitle={language === 'es' ? "Motor biomecánico en cliente, Service Worker y sincronización híbrida" : "Client-side biomechanical engine, Service Worker, and hybrid sync"}
+                    diagramType="architecture"
+                    language={language}
+                />
+            ) : viewMode === 'architecture' ? (
                 /* Architecture Steps View */
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
                     {/* Step selector */}
@@ -1715,6 +1772,264 @@ export function HypertrophyArchitectureDiagram({ language }: { language: 'es' | 
                                 alt={activeGallery.title}
                                 className="w-full h-full object-contain"
                             />
+                        </div>
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+}
+
+export function GitopsWorkflowDiagram({ language }: { language: 'es' | 'en' }) {
+    const [activeStep, setActiveStep] = useState(0);
+    const [viewMode, setViewMode] = useState<'diagram' | 'rules'>('diagram');
+
+    const stepsEs: DFDStep[] = [
+        {
+            id: "pr",
+            title: "01. Developer Pull Request",
+            icon: <GitBranch className="w-5 h-5 text-emerald-400" />,
+            summary: "Creación de Pull Request en rama feature con scripts T-SQL validados y testeados localmente contra Azure SQL.",
+            rules: [
+                "Control de Ramas: Exige commits firmados y revisión de código por pares previa a merge.",
+                "Estandarización T-SQL: Nombres de objetos bajo nomenclatura corporativa y sintaxis compatible con Azure SQL.",
+                "Trazabilidad de Cambios: Cada PR debe enlazar al issue correspondiente en el tablero de trabajo."
+            ]
+        },
+        {
+            id: "cicd",
+            title: "02. Disparo GitHub Actions",
+            icon: <Terminal className="w-5 h-5 text-emerald-400" />,
+            summary: "Disparo automático del runner seguro en GitHub Actions configurado con Workload Identity / Azure Service Principal.",
+            rules: [
+                "Autenticación Segura: Conexión mediante Service Principal con mínimos privilegios (VIEW ANY DEFINITION).",
+                "Secretos Cifrados: Cadena de conexión protegida en GitHub Secrets, rotada periódicamente.",
+                "Aislamiento de Runner: Entorno efímero contenedorizado con dependencias mínimas requeridas."
+            ]
+        },
+        {
+            id: "smo",
+            title: "03. Extracción SMO",
+            icon: <Database className="w-5 h-5 text-emerald-400" />,
+            summary: "Extracción programática de esquemas DDL mediante PowerShell y SMO (SQL Server Management Objects) en archivos modulares.",
+            rules: [
+                "Extracción Modular: Generación de archivos .sql independientes por tabla, stored procedure, función y vista.",
+                "Desacoplamiento: Scripter configurado con ScriptDrops = false e IncludeHeaders = true.",
+                "Manejo de Errores: Captura granular de excepciones SQL y logging estructurado de fallos."
+            ]
+        },
+        {
+            id: "sanitizer",
+            title: "04. Sanitizador Determinista",
+            icon: <Lock className="w-5 h-5 text-emerald-400" />,
+            summary: "Limpieza determinista de metadatos variables (timestamps volátiles, collations no portables, hashes transitorios).",
+            rules: [
+                "Inmutabilidad de Diff: Eliminación de timestamps de generación para evitar diffs ruidosos en Git.",
+                "Normalización de Sintaxis: Unificación de saltos de línea (CRLF a LF) y espaciado de cabeceras.",
+                "Auditoría de Sensibilidad: Verificación de que ningún script contenga contraseñas o secretos en texto plano."
+            ]
+        },
+        {
+            id: "commit",
+            title: "05. Commit Criptográfico Git",
+            icon: <CheckCircle2 className="w-5 h-5 text-emerald-400" />,
+            summary: "Commit firmado con hash SHA-256 en la rama de auditoría inmutable de esquemas de Azure SQL.",
+            rules: [
+                "Firma GPG: Verificación de identidad automatizada del bot de sincronización en Git.",
+                "Historial Inalterable: Rama protegida contra rebase o force push (append-only history).",
+                "Versionado Semántico: Etiquetado de versión correlativo al release de producción."
+            ]
+        },
+        {
+            id: "alert",
+            title: "06. Auditoría ISO 27001 & Alerta",
+            icon: <Shield className="w-5 h-5 text-emerald-400" />,
+            summary: "Generación de telemetría de conformidad ISO 27001 y notificación proactiva en Teams / Azure Monitor.",
+            rules: [
+                "Cumplimiento Normativo: Registro inmutable de DDL para satisfacer los requisitos del control A.12 de ISO 27001.",
+                "Notificación Inmediata: Webhook a canal seguro ante cualquier modificación no autorizada o desvío de esquema.",
+                "Trazabilidad Forense: Enlace unívoco entre el commit Git, el PR de origen y el estado físico de la base de datos."
+            ]
+        }
+    ];
+
+    const stepsEn: DFDStep[] = [
+        {
+            id: "pr",
+            title: "01. Developer Pull Request",
+            icon: <GitBranch className="w-5 h-5 text-emerald-400" />,
+            summary: "Creation of Pull Request on feature branch with locally tested and validated T-SQL scripts for Azure SQL.",
+            rules: [
+                "Branch Protection: Requires signed commits and mandatory peer code review prior to merge.",
+                "T-SQL Standardization: Object naming adheres to corporate standards and Azure SQL syntax.",
+                "Change Traceability: Each PR must reference its corresponding task or issue on the backlog."
+            ]
+        },
+        {
+            id: "cicd",
+            title: "02. GitHub Actions Trigger",
+            icon: <Terminal className="w-5 h-5 text-emerald-400" />,
+            summary: "Automatic workflow trigger in GitHub Actions runner configured with secure Azure Service Principal.",
+            rules: [
+                "Secure Authentication: Connects via Service Principal with least-privilege (VIEW ANY DEFINITION).",
+                "Encrypted Secrets: Connection strings stored securely in GitHub Secrets with scheduled rotation.",
+                "Runner Isolation: Ephemeral containerized runner with minimal execution dependencies."
+            ]
+        },
+        {
+            id: "smo",
+            title: "03. SMO Schema Extraction",
+            icon: <Database className="w-5 h-5 text-emerald-400" />,
+            summary: "Programmatic DDL schema extraction via PowerShell and SMO (SQL Server Management Objects) into modular files.",
+            rules: [
+                "Modular Extraction: Generates discrete .sql files per table, stored procedure, function, and view.",
+                "Decoupled Scripter: Scripter configured with ScriptDrops = false and IncludeHeaders = true.",
+                "Robust Error Handling: Granular capture of SQL exceptions with structured error logging."
+            ]
+        },
+        {
+            id: "sanitizer",
+            title: "04. Deterministic Sanitizer",
+            icon: <Lock className="w-5 h-5 text-emerald-400" />,
+            summary: "Deterministic scrubbing of variable metadata (volatile timestamps, transient collations, generated hashes).",
+            rules: [
+                "Diff Immutability: Strips generation timestamps to eliminate noisy diffs in Git history.",
+                "Syntax Normalization: Enforces unified line breaks (CRLF to LF) and header indentation.",
+                "Sensitive Data Audit: Confirms no plain-text passwords or connection secrets exist in DDL files."
+            ]
+        },
+        {
+            id: "commit",
+            title: "05. Cryptographic Git Commit",
+            icon: <CheckCircle2 className="w-5 h-5 text-emerald-400" />,
+            summary: "Signed commit with SHA-256 hash pushed to the immutable Azure SQL schema audit branch.",
+            rules: [
+                "GPG Signing: Automated cryptographic identity verification for the synchronization bot.",
+                "Unalterable History: Branch protected against rebasing or force push (append-only history).",
+                "Semantic Versioning: Correlates release tags with production release checkpoints."
+            ]
+        },
+        {
+            id: "alert",
+            title: "06. ISO 27001 Audit & Alert",
+            icon: <Shield className="w-5 h-5 text-emerald-400" />,
+            summary: "ISO 27001 compliance telemetry record generation and proactive notification to Teams / Azure Monitor.",
+            rules: [
+                "Regulatory Compliance: Immutable DDL logs satisfying ISO 27001 Control A.12 requirements.",
+                "Instant Notification: Webhook notification to secure channel upon unauthorized drift or schema changes.",
+                "Forensic Traceability: One-to-one link between Git commit, author PR, and physical database schema."
+            ]
+        }
+    ];
+
+    const steps = language === 'es' ? stepsEs : stepsEn;
+    const activeData = steps[activeStep];
+
+    return (
+        <div className="space-y-6 font-sans">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border/10 pb-4">
+                <div className="flex flex-col gap-1">
+                    <div className="flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                        <span className="text-[11px] font-mono tracking-widest text-emerald-400 uppercase font-semibold">
+                            {language === 'es' ? 'GITOPS & DATABASE-AS-CODE' : 'GITOPS & DATABASE-AS-CODE'}
+                        </span>
+                    </div>
+                    <h4 className="text-sm font-bold uppercase tracking-widest text-primary">
+                        {language === 'es' ? "Pipeline de Versionado Azure SQL & Auditoría ISO 27001" : "Azure SQL Version Control & ISO 27001 Audit Pipeline"}
+                    </h4>
+                </div>
+
+                <div className="flex items-center gap-1.5 p-1 rounded-lg bg-background border border-border/40 w-fit">
+                    <button
+                        onClick={() => setViewMode('diagram')}
+                        className={`px-3 py-1.5 rounded text-xs font-medium transition-all ${
+                            viewMode === 'diagram'
+                                ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 shadow-sm'
+                                : 'text-muted-foreground hover:text-foreground'
+                        }`}
+                    >
+                        {language === 'es' ? '⚡ Diagrama Interactivo' : '⚡ Interactive Diagram'}
+                    </button>
+                    <button
+                        onClick={() => setViewMode('rules')}
+                        className={`px-3 py-1.5 rounded text-xs font-medium transition-all ${
+                            viewMode === 'rules'
+                                ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 shadow-sm'
+                                : 'text-muted-foreground hover:text-foreground'
+                        }`}
+                    >
+                        {language === 'es' ? '📋 Fases & Reglas ISO 27001' : '📋 Phases & ISO 27001 Rules'}
+                    </button>
+                </div>
+            </div>
+
+            {viewMode === 'diagram' ? (
+                <ArchifyViewer
+                    src="/diagrams/azure-gitops.workflow.html"
+                    title={language === 'es' ? "Pipeline GitOps & Database-as-Code (Azure SQL)" : "GitOps & Database-as-Code Pipeline (Azure SQL)"}
+                    subtitle={language === 'es' ? "Extracción DDL SMO, sanitización T-SQL y auditoría inmutable ISO 27001" : "SMO DDL extraction, T-SQL sanitization, and immutable ISO 27001 audit"}
+                    diagramType="workflow"
+                    language={language}
+                />
+            ) : (
+                <div className="space-y-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 p-4 rounded-2xl border border-border/40 bg-muted/10">
+                        {steps.map((step, index) => {
+                            const isActive = index === activeStep;
+                            return (
+                                <button
+                                    key={step.id}
+                                    onClick={() => setActiveStep(index)}
+                                    className={`p-3.5 rounded-xl border text-left transition-all relative ${
+                                        isActive
+                                            ? 'bg-emerald-500/10 border-emerald-500 text-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.25)]'
+                                            : 'bg-background border-border hover:border-emerald-500/40 text-foreground hover:bg-muted/10'
+                                    }`}
+                                >
+                                    <div className="flex items-center gap-3">
+                                        <div className={`p-2 rounded-lg border transition-colors ${isActive ? 'bg-emerald-500/20 border-emerald-500/40' : 'bg-muted/40 border-border'}`}>
+                                            {step.icon}
+                                        </div>
+                                        <div>
+                                            <h5 className="font-heading font-bold text-xs uppercase tracking-wider">{step.title}</h5>
+                                            <p className="text-[10px] text-muted-foreground truncate max-w-[150px]">{step.id.toUpperCase()}</p>
+                                        </div>
+                                    </div>
+                                </button>
+                            );
+                        })}
+                    </div>
+
+                    <div className="p-6 rounded-2xl border border-border/50 bg-accent/20 backdrop-blur-md relative overflow-hidden transition-all duration-300">
+                        <div className="absolute top-[-50%] left-[-20%] h-full w-full bg-emerald-500/5 blur-[50px] -z-10" />
+                        <div className="flex items-start gap-4">
+                            <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shrink-0">
+                                {activeData.icon}
+                            </div>
+                            <div className="space-y-4 flex-1">
+                                <div>
+                                    <h5 className="font-heading font-extrabold text-sm text-foreground uppercase tracking-wider">
+                                        {activeData.title}
+                                    </h5>
+                                    <p className="text-xs text-muted-foreground leading-relaxed mt-1">
+                                        {activeData.summary}
+                                    </p>
+                                </div>
+                                <div className="space-y-2 border-t border-border/10 pt-4">
+                                    <h6 className="text-[10px] font-mono font-bold tracking-widest text-emerald-400 uppercase">
+                                        {language === 'es' ? "// ESPECIFICACIÓN TÉCNICA & POLÍTICAS DE AUDITORÍA" : "// TECHNICAL SPECIFICATION & AUDIT POLICIES"}
+                                    </h6>
+                                    <ul className="space-y-2">
+                                        {activeData.rules.map((rule, i) => (
+                                            <li key={i} className="text-xs text-muted-foreground leading-relaxed flex gap-2">
+                                                <span className="text-emerald-400 select-none mt-0.5">▸</span>
+                                                <span>{rule}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

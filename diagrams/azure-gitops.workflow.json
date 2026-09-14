@@ -1,0 +1,69 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Azure SQL GitOps & Version Control Workflow",
+    "output": "public/diagrams/azure-gitops.workflow.html",
+    "viewBox": [1100, 674],
+    "visual_preset": "signal-flow",
+    "quality_profile": "showcase",
+    "views": [
+      {
+        "id": "delivery-path",
+        "label": "Flujo de Entrega a Produccion",
+        "focus": ["pr_commit", "pr_review", "dacpac_build", "staging_verify", "gate_approval", "prod_deploy", "health_check"],
+        "note": "Ciclo completo desde la rama del desarrollador hasta el despliegue en Azure SQL."
+      },
+      {
+        "id": "governance-gates",
+        "label": "Puertas de Calidad & Aprobacion DBA",
+        "focus": ["staging_verify", "test_failed", "gate_approval", "prod_deploy"],
+        "note": "Verificacion en entorno efimero de staging y compuerta formal de aprobacion."
+      },
+      {
+        "id": "rollback-safety",
+        "label": "Ruta de Rollback & Contingencia",
+        "focus": ["prod_deploy", "rollback", "test_failed"],
+        "note": "Mecanismo de recuperacion automatica ante degradacion de salud o errores de transaccion."
+      }
+    ]
+  },
+  "lanes": [
+    { "id": "git", "label": "Control de Versiones (GitHub)" },
+    { "id": "ci", "label": "Integracion Continua (Actions)" },
+    { "id": "deploy", "label": "Despliegue Azure SQL Prod" },
+    { "id": "recovery", "label": "Politicas & Rollback", "variant": "exception" }
+  ],
+  "phases": [
+    { "id": "authoring", "label": "Cambio & PR", "fromCol": 0, "toCol": 1 },
+    { "id": "validation", "label": "Compilacion & QA", "fromCol": 2, "toCol": 3, "variant": "emphasis" },
+    { "id": "release", "label": "Produccion & Auditoria", "fromCol": 4, "toCol": 5, "variant": "dashed" }
+  ],
+  "groups": [
+    { "id": "ci_checks", "label": "Quality Gates CI", "lane": "ci", "fromCol": 2, "toCol": 3, "variant": "emphasis" },
+    { "id": "recovery_path", "label": "Recuperacion Automatica", "lane": "recovery", "fromCol": 3, "toCol": 4, "variant": "security" }
+  ],
+  "mainPath": ["pr_commit", "pr_review", "dacpac_build", "staging_verify", "gate_approval", "prod_deploy", "health_check"],
+  "nodes": [
+    { "id": "pr_commit", "lane": "git", "col": 0, "type": "frontend", "label": "Feature Branch", "sublabel": "Script de migracion", "width": 132 },
+    { "id": "pr_review", "lane": "git", "col": 1, "type": "frontend", "label": "Pull Request", "sublabel": "Peer review + linting", "width": 132 },
+    { "id": "dacpac_build", "lane": "ci", "col": 2, "type": "backend", "label": "Build SqlPackage", "sublabel": "Compilacion dacpac", "tag": "Determinista", "width": 132 },
+    { "id": "staging_verify", "lane": "ci", "col": 3, "type": "security", "label": "Test Staging", "sublabel": "Deploy efimero y pruebas", "tag": "Regresion", "width": 132 },
+    { "id": "gate_approval", "lane": "deploy", "col": 3, "type": "security", "label": "Aprobacion DBA", "sublabel": "Gate de arquitectura", "tag": "Human Gate", "width": 132 },
+    { "id": "prod_deploy", "lane": "deploy", "col": 4, "type": "cloud", "label": "Azure SQL Prod", "sublabel": "Despliegue Blue/Green", "tag": "Cero Downtime", "width": 132 },
+    { "id": "health_check", "lane": "deploy", "col": 5, "type": "backend", "label": "Audit Post-Deploy", "sublabel": "Integridad y telemetria", "width": 132 },
+    { "id": "test_failed", "lane": "recovery", "col": 3, "type": "security", "label": "Merge Bloqueado", "sublabel": "Drift o error sintaxis", "width": 132 },
+    { "id": "rollback", "lane": "recovery", "col": 4, "type": "messagebus", "label": "Auto-Rollback", "sublabel": "Reversion inmediata", "tag": "SRE / DBA", "width": 132 }
+  ],
+  "edges": [
+    { "id": "commit-to-pr", "from": "pr_commit", "to": "pr_review", "variant": "default" },
+    { "id": "pr-to-build", "from": "pr_review", "to": "dacpac_build", "label": "trigger CI", "variant": "emphasis" },
+    { "id": "build-to-staging", "from": "dacpac_build", "to": "staging_verify", "variant": "default" },
+    { "id": "staging-to-gate", "from": "staging_verify", "to": "gate_approval", "label": "tests ok", "variant": "emphasis", "fromSide": "bottom", "toSide": "top" },
+    { "id": "staging-to-failed", "from": "staging_verify", "to": "test_failed", "label": "fallo tests", "variant": "security", "role": "error" },
+    { "id": "gate-to-deploy", "from": "gate_approval", "to": "prod_deploy", "label": "aprobado", "variant": "security" },
+    { "id": "deploy-to-health", "from": "prod_deploy", "to": "health_check", "variant": "default" },
+    { "id": "deploy-to-rollback", "from": "prod_deploy", "to": "rollback", "label": "desvio salud", "variant": "security", "role": "error", "fromSide": "bottom", "toSide": "top" },
+    { "id": "rollback-to-failed", "from": "rollback", "to": "test_failed", "label": "revertido", "variant": "dashed", "role": "return" }
+  ]
+}

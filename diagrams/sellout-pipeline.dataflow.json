@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "Sell-Out & Digital Shelf Ingestion Pipeline",
+    "output": "public/diagrams/sellout-pipeline.dataflow.html",
+    "viewBox": [1080, 520],
+    "quality_profile": "showcase",
+    "views": [
+      {
+        "id": "ingestion-path",
+        "label": "Ruta de Ingesta & Validacion",
+        "focus": ["retail_portals", "ftp_sources", "landing_stage", "schema_guard"],
+        "note": "Ingesta incremental diaria y control estricto de esquema en la capa Landing."
+      },
+      {
+        "id": "medallion-core",
+        "label": "Procesamiento Medallion & Combos",
+        "focus": ["silver_transform", "combo_exploder", "gold_deltalake", "orphan_audit"],
+        "note": "Normalizacion Silver, desagregacion de combos y persistencia Gold en OneLake."
+      },
+      {
+        "id": "serving-layer",
+        "label": "Capa Analitica & Alertas",
+        "focus": ["gold_deltalake", "combo_exploder", "powerbi_semantic", "orphan_audit", "teams_alerts"],
+        "note": "Exposicion en modelos semanticos Power BI y monitoreo proactivo de SLAs."
+      }
+    ]
+  },
+  "stages": [
+    { "label": "Fuentes Retail" },
+    { "label": "Landing Ingest" },
+    { "label": "Capa Silver" },
+    { "label": "Capa Gold" },
+    { "label": "Consumo & Alertas" }
+  ],
+  "nodes": [
+    { "id": "retail_portals", "type": "external", "label": "Portales B2B", "sublabel": "Farmacity / Coto", "stage": 0, "row": 0, "tag": "Web B2B" },
+    { "id": "ftp_sources", "type": "cloud", "label": "Drive & FTP Ingest", "sublabel": "Carga incremental", "stage": 0, "row": 2, "tag": "Batch Diario" },
+    { "id": "landing_stage", "type": "cloud", "label": "Landing Lakehouse", "sublabel": "Microsoft Fabric", "stage": 1, "row": 1, "tag": "SLA 09:00 AM" },
+    { "id": "schema_guard", "type": "security", "label": "Schema Guard", "sublabel": "Validador 11 Columnas", "stage": 2, "row": 0, "tag": "Fail-Fast" },
+    { "id": "silver_transform", "type": "backend", "label": "PySpark Silver", "sublabel": "Tipado & normalizacion", "stage": 2, "row": 2, "tag": "sl_bdf_sellouts" },
+    { "id": "orphan_audit", "type": "security", "label": "Auditoria Huerfanos", "sublabel": "Sin match EAN/Cliente", "stage": 3, "row": 0, "tag": "Cuarentena" },
+    { "id": "combo_exploder", "type": "backend", "label": "Apertura Combos", "sublabel": "PySpark Bundle Split", "stage": 3, "row": 1, "tag": "Preserva Monto" },
+    { "id": "gold_deltalake", "type": "database", "label": "Gold Delta Lake", "sublabel": "OneLake Star Schema", "stage": 3, "row": 2, "tag": "gl_bdf_sellouts" },
+    { "id": "teams_alerts", "type": "external", "label": "Alertas Teams", "sublabel": "Notificaciones de SLA", "stage": 4, "row": 0, "tag": "Webhooks" },
+    { "id": "powerbi_semantic", "type": "backend", "label": "Power BI Semantic", "sublabel": "Modelos DirectLake", "stage": 4, "row": 1, "tag": "Reportes BI" }
+  ],
+  "flows": [
+    { "id": "portals-to-landing", "from": "retail_portals", "to": "landing_stage", "label": "ventas retail", "classification": "batch" },
+    { "id": "ftp-to-landing", "from": "ftp_sources", "to": "landing_stage", "label": "archivos ftp", "classification": "crudo" },
+    { "id": "landing-to-schema", "from": "landing_stage", "to": "schema_guard", "label": "valida 11 cols", "classification": "auditoria", "variant": "security" },
+    { "id": "landing-to-silver", "from": "landing_stage", "to": "silver_transform", "label": "datos validados", "classification": "normalizado", "variant": "emphasis" },
+    { "id": "schema-to-orphans", "from": "schema_guard", "to": "orphan_audit", "label": "inconsistencias", "classification": "cuarentena", "variant": "security", "route": "straight" },
+    { "id": "silver-to-combos", "from": "silver_transform", "to": "combo_exploder", "label": "split packs", "classification": "catalogo", "fromSide": "top", "toSide": "left", "via": [[530, 271]], "labelAt": [600, 260] },
+    { "id": "silver-to-gold", "from": "silver_transform", "to": "gold_deltalake", "label": "lineas directas", "classification": "match directo", "variant": "emphasis", "route": "straight" },
+    { "id": "orphans-to-alerts", "from": "orphan_audit", "to": "teams_alerts", "label": "alerta desvios", "classification": "webhook", "variant": "dashed", "route": "straight" },
+    { "id": "combos-to-powerbi", "from": "combo_exploder", "to": "powerbi_semantic", "label": "combos expandidos", "classification": "sin duplicacion", "variant": "emphasis", "route": "straight", "labelDy": -23 },
+    { "id": "gold-to-powerbi", "from": "gold_deltalake", "to": "powerbi_semantic", "label": "hechos sell-out", "classification": "bi", "variant": "emphasis" }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Ingesta Confiable (Landing)",
+      "items": [
+        "Planificacion automatizada diaria a las 09:00 AM ART en Microsoft Fabric",
+        "Schema Enforcement estricto: aborta si faltan columnas requeridas",
+        "Mapeo dinamico de cliente desde el prefijo del archivo de origen"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Medallion & Apertura de Combos",
+      "items": [
+        "Capa Silver normaliza mayusculas y forza EAN a string para evitar notacion cientifica",
+        "Apertura de combos en PySpark desagrega componentes manteniendo monto solo en fila 1",
+        "Cero duplicidad de facturacion en los reportes comerciales de Power BI"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Auditoria & Calidad Continua",
+      "items": [
+        "Cruce dimensional secuencial: primero por EAN, con fallback por codigo de cliente",
+        "Registros huerfanos aislados en tablas de auditoria para reingesta",
+        "Alertas automaticas de desvios hacia canales de soporte"
+      ]
+    }
+  ]
+}
