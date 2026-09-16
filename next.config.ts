@@ -100,19 +100,19 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/mseg",
-        destination: "https://mdq-911-intelligence.vercel.app/mseg",
+        destination: "https://mseg.vercel.app/mseg",
       },
       {
         source: "/mseg/:path*",
-        destination: "https://mdq-911-intelligence.vercel.app/mseg/:path*",
+        destination: "https://mseg.vercel.app/mseg/:path*",
       },
       {
         source: "/mdq-911-intelligence",
-        destination: "https://mdq-911-intelligence.vercel.app/mseg",
+        destination: "https://mseg.vercel.app/mseg",
       },
       {
         source: "/mdq-911-intelligence/:path*",
-        destination: "https://mdq-911-intelligence.vercel.app/mseg/:path*",
+        destination: "https://mseg.vercel.app/mseg/:path*",
       },
       // Hypertrophy Tracker Subpath Reverse Proxy & Fallbacks
       {
