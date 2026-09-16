@@ -57,12 +57,20 @@
       "destination": "https://auditoria-administracion-mt-alvear9-two.vercel.app/"
     },
     {
+      "source": "/mseg",
+      "destination": "https://mdq-911-intelligence.vercel.app/mseg"
+    },
+    {
+      "source": "/mseg/:path*",
+      "destination": "https://mdq-911-intelligence.vercel.app/mseg/:path*"
+    },
+    {
       "source": "/mdq-911-intelligence",
-      "destination": "https://mdq-911-intelligence.vercel.app/mdq-911-intelligence"
+      "destination": "https://mdq-911-intelligence.vercel.app/mseg"
     },
     {
       "source": "/mdq-911-intelligence/:path*",
-      "destination": "https://mdq-911-intelligence.vercel.app/mdq-911-intelligence/:path*"
+      "destination": "https://mdq-911-intelligence.vercel.app/mseg/:path*"
     },
     {
       "source": "/hypertrophyracker/assets/:path*",

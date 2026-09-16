@@ -99,12 +99,20 @@ const nextConfig: NextConfig = {
         destination: "https://auditoria-administracion-mt-alvear9-two.vercel.app/:path*",
       },
       {
+        source: "/mseg",
+        destination: "https://mdq-911-intelligence.vercel.app/mseg",
+      },
+      {
+        source: "/mseg/:path*",
+        destination: "https://mdq-911-intelligence.vercel.app/mseg/:path*",
+      },
+      {
         source: "/mdq-911-intelligence",
-        destination: "https://mdq-911-intelligence.vercel.app/mdq-911-intelligence",
+        destination: "https://mdq-911-intelligence.vercel.app/mseg",
       },
       {
         source: "/mdq-911-intelligence/:path*",
-        destination: "https://mdq-911-intelligence.vercel.app/mdq-911-intelligence/:path*",
+        destination: "https://mdq-911-intelligence.vercel.app/mseg/:path*",
       },
       // Hypertrophy Tracker Subpath Reverse Proxy & Fallbacks
       {
