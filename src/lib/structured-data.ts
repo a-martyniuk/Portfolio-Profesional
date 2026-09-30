@@ -17,18 +17,31 @@ export function generatePersonSchema() {
             "Oracle Data Integrator",
             "Snowflake",
             "Microsoft Fabric",
+            "Microsoft Fabric Lakehouse",
+            "Direct Lake Power BI",
+            "Medallion Architecture",
             "AWS",
             "Python",
+            "PySpark",
             "PL/SQL",
             "PostgreSQL",
             "Business Intelligence",
-            "Data Warehousing"
+            "Data Warehousing",
+            "BMC Control-M",
+            "Triskell PPM",
+            "Mawida GRC",
+            "Data Platform Banking"
         ],
         alumniOf: {
             "@type": "EducationalOrganization",
             name: "IUPFA - Instituto Universitario PFA"
         },
         worksFor: [
+            {
+                "@type": "Organization",
+                name: "GYF Inteligencia Digital / Infolytics",
+                description: "Plataforma de datos y tableros de gestión TI para Banco del Chubut sobre Microsoft Fabric"
+            },
             {
                 "@type": "Organization",
                 name: "BeOn Digital Transformation Partners",

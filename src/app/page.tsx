@@ -295,7 +295,7 @@ export default function Home() {
 
   const getProjectCategory = (projTitle: string): 'cloud' | 'scraping' | 'analytics' => {
     const title = projTitle.toLowerCase();
-    if (title.includes('sell-out') || title.includes('baf') || title.includes('bagó') || title.includes('bago') || title.includes('gitops') || title.includes('version control')) {
+    if (title.includes('sell-out') || title.includes('baf') || title.includes('bagó') || title.includes('bago') || title.includes('gitops') || title.includes('version control') || title.includes('banco del chubut') || title.includes('control-m') || title.includes('triskell')) {
       return 'cloud';
     }
     if (title.includes('pepsico') || title.includes('brand protection') || title.includes('scraper')) {

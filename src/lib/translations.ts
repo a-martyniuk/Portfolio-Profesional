@@ -310,6 +310,54 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 video: "/videos/pipeline-medallion.mp4"
             },
             {
+                title: "Plataforma de Datos & Tableros de Gestión TI (Banco del Chubut)",
+                description: "Plataforma centralizada de analítica y monitoreo de Gestión de TI para el Banco del Chubut sobre Microsoft Fabric. Arquitectura Medallion (Bronze → Silver → Gold) con 8 Data Pipelines orquestados que unifican 6 fuentes operativas heterogéneas (MySQL, PostgreSQL, REST APIs OAuth2/API Key) en modelos dimensionales Star Schema consumidos por Power BI en modo Direct Lake.",
+                tags: ["Microsoft Fabric", "PySpark", "Delta Lake", "Medallion Architecture", "Star Schema", "Direct Lake", "Power BI", "REST APIs", "OAuth2", "Data Pipeline", "ETL / ELT", "Data Lakehouse"],
+                image: "/images/projects/bco-chubut-platform.png",
+                alt: "Plataforma de Datos Banco del Chubut - Microsoft Fabric Lakehouse con Power BI Direct Lake",
+                challenge: "La Gerencia de TI del Banco del Chubut operaba con fuentes de datos fragmentadas (MySQL, PostgreSQL, APIs REST de proveedores) sin una plataforma unificada de analítica, lo que impedía la visibilidad consolidada de operaciones batch, auditorías GRC, portafolio de proyectos y gestión de activos de TI.",
+                solution: "Diseñé e implementé una plataforma de datos centralizada sobre Microsoft Fabric con arquitectura Medallion (Bronze → Silver → Gold). Desarrollé 8 Data Pipelines orquestados mediante PySpark Notebooks que unifican 6 fuentes heterogéneas con autenticación OAuth2 y API Key, modelado dimensional Star Schema con claves sustitutas, SCD Type 1, watermarks incrementales y un pipeline maestro de orquestación (pl_master_daily) con auditoría automatizada de calidad de datos.",
+                impact: "Consolidación de 8 dominios de datos en una única plataforma analítica, eliminación de reportes manuales y disponibilidad de tableros de gestión en tiempo real vía Power BI Direct Lake para la toma de decisiones de la Gerencia de TI.",
+                architecture: ["Fuentes Heterogéneas (MySQL, PostgreSQL, REST APIs)", "Bronze Layer (Raw Ingestion + Watermarks)", "Silver Layer (Cleansing + SCD Type 1)", "Gold Layer (Star Schema + Surrogate Keys)", "Pipeline Maestro (pl_master_daily)", "Power BI Direct Lake (Tableros de Gestión)", "Auditoría de Calidad de Datos", "Backup Automático de Artefactos"],
+                metric: "Pipelines: 8 Dominios Integrados"
+            },
+            {
+                title: "Pipeline de Operaciones Batch Control-M (Banco del Chubut)",
+                description: "Ingesta automatizada de la Automation API REST v9.21 de BMC Control-M para auditoría y monitoreo de procesos batch bancarios. Pipeline dual (histórico PDF + API delta diaria) con unificación determinística de reintentos por ventana Spark, watermarks incrementales y modelo Gold con 214.334 ejecuciones conciliadas con 99% de paridad contra reportes de control.",
+                tags: ["Microsoft Fabric", "PySpark", "BMC Control-M", "REST API", "Delta Lake", "Medallion Architecture", "Batch Monitoring", "Data Reconciliation", "Watermarks"],
+                image: "/images/projects/bco-chubut-ctm.png",
+                alt: "Pipeline de Control-M Banco del Chubut - Monitoreo de operaciones batch bancarias",
+                challenge: "El equipo de operaciones carecía de visibilidad centralizada sobre las 214K+ ejecuciones batch gestionadas por BMC Control-M, dependiendo de reportes PDF manuales sin capacidad de análisis histórico ni detección proactiva de fallos.",
+                solution: "Implementé un pipeline dual que combina la ingesta histórica de reportes PDF parseados con la API REST delta diaria de Control-M v9.21. Desarrollé lógica de unificación determinística de reintentos mediante ventanas Spark (window functions), watermarks incrementales para ingesta idempotente y un modelo Gold conciliado al 99% contra los reportes de control originales.",
+                impact: "214.334 ejecuciones batch auditadas y conciliadas con 99% de paridad contra reportes de control, habilitando análisis de tendencias, detección de anomalías y monitoreo proactivo de SLAs operativos.",
+                architecture: ["BMC Control-M API REST v9.21", "PDF Parser (Histórico)", "Bronze Layer (Dual Ingestion)", "Silver Layer (Deduplication + Window Functions)", "Gold Layer (Reconciled Facts)", "Watermarks Incrementales", "Auditoría de Paridad (99%)"],
+                metric: "Auditadas: 214K+ Ejecuciones"
+            },
+            {
+                title: "Auditoría GRC & Pipeline de Hallazgos Mawida (Banco del Chubut)",
+                description: "Pipeline de ingesta y modelado dimensional de observaciones de Auditoría Interna, Externa y BCRA desde Mawida GRC (PostgreSQL on-premises). Modelo estrella con 8 dimensiones, suite de 10 vistas SQL de control operacional, lógica de clasificación por tipo de origen (BCRA/Externo vs Interno), tramos de vencimiento y sanitización de centinelas. Datos 100% conciliados con 0 huérfanos.",
+                tags: ["Microsoft Fabric", "PySpark", "PostgreSQL", "On-Premises Gateway", "Star Schema", "Dimensional Modeling", "GRC Compliance", "BCRA Regulatory", "Data Quality"],
+                image: "/images/projects/bco-chubut-mawida.png",
+                alt: "Pipeline Mawida GRC Banco del Chubut - Auditoría de hallazgos regulatorios BCRA",
+                challenge: "Los hallazgos de auditoría (Interna, Externa y BCRA) residían en Mawida GRC sobre PostgreSQL on-premises sin integración con la plataforma analítica, dificultando el seguimiento de vencimientos, la clasificación por origen regulatorio y la conciliación de datos.",
+                solution: "Desarrollé un pipeline de ingesta desde PostgreSQL on-premises vía Gateway hacia Microsoft Fabric, con modelado dimensional estrella de 8 dimensiones, 10 vistas SQL de control operacional, lógica de clasificación por tipo de origen (BCRA/Externo vs Interno), tramos de vencimiento y sanitización de valores centinela. Logré conciliación 100% con 0 registros huérfanos.",
+                impact: "1.941 hallazgos activos integrados y 100% conciliados con 0 huérfanos, habilitando seguimiento regulatorio BCRA en tiempo real y control de vencimientos automatizado.",
+                architecture: ["Mawida GRC (PostgreSQL On-Premises)", "On-Premises Data Gateway", "Bronze Layer (Raw Ingestion)", "Silver Layer (Sentinel Sanitization)", "Gold Layer (Star Schema 8 Dimensiones)", "10 Vistas SQL de Control", "Clasificación Origen (BCRA/Externo/Interno)", "Auditoría de Conciliación (0 Huérfanos)"],
+                metric: "Hallazgos: 1.941 Base Activa"
+            },
+            {
+                title: "Pipeline de Portafolio & Proyectos TI — Triskell PPM (Banco del Chubut)",
+                description: "Ingesta automatizada de la API REST Stateless de Triskell Software PPM para seguimiento de iniciativas TI, presupuesto y EVM (CPI/SPI). Snapshot diario acumulativo con modelo dimensional de hechos de iniciativa, hitos y portafolios. Autenticación Base64 + API Key con resolución de claves foráneas de portafolio vía Stored Selectors.",
+                tags: ["Microsoft Fabric", "PySpark", "REST API", "EVM Analytics", "Star Schema", "Project Portfolio Management", "Delta Lake", "Watermarks", "Direct Lake"],
+                image: "/images/projects/bco-chubut-triskell.png",
+                alt: "Pipeline Triskell PPM Banco del Chubut - Portafolio de proyectos TI con EVM",
+                challenge: "El seguimiento del portafolio de proyectos TI dependía exclusivamente de la interfaz web de Triskell PPM, sin integración analítica para métricas de valor ganado (EVM), cumplimiento de hitos ni visibilidad consolidada de presupuesto.",
+                solution: "Implementé un pipeline de ingesta automatizada desde la API REST Stateless de Triskell PPM con autenticación Base64 + API Key. Desarrollé un modelo dimensional con snapshots diarios acumulativos de hechos de iniciativa, hitos y portafolios, resolviendo claves foráneas de portafolio mediante Stored Selectors y habilitando métricas EVM (CPI/SPI) en tiempo real.",
+                impact: "Visibilidad en tiempo real de CPI/SPI (Earned Value Management) para el portafolio completo de proyectos TI, automatizando el seguimiento de hitos y presupuesto sin intervención manual.",
+                architecture: ["Triskell PPM API REST (Stateless)", "Autenticación Base64 + API Key", "Bronze Layer (Daily Snapshots)", "Silver Layer (FK Resolution + Cleansing)", "Gold Layer (Initiative Facts + Milestones)", "Stored Selectors (Portfolio FK)", "Power BI Direct Lake (EVM Dashboards)"],
+                metric: "EVM: CPI / SPI en Tiempo Real"
+            },
+            {
                 title: "PepsiCo: Ingestor Multimarketplace (BeOn)",
                 description: "Ingesta automatizada y normalización de catálogos, stock y precios de marketplaces (iFood BR, Rappi LATAM, DiDi Food MX) para análisis competitivo de marcas PepsiCo.",
                 tags: ["Python", "REST APIs", "API Integration", "Web Scraping", "Batch Processing", "Data Ingestion Pipeline", "Data Quality", "PyTest"],
@@ -524,10 +572,22 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
         ],
         experience: [
             {
+                title: "Senior Data Engineer",
+                company: "GYF Inteligencia Digital / Infolytics",
+                location: "Buenos Aires, Argentina (Remoto)",
+                period: "Ago 2026 – Actualidad",
+                description: [
+                    "Diseño e implementación de plataforma de datos centralizada sobre Microsoft Fabric (Lakehouse Medallion Architecture) para la Gerencia de TI del Banco del Chubut S.A.",
+                    "Desarrollo de 8 Data Pipelines orquestados (PySpark Notebooks) que unifican 6 fuentes heterogéneas: MySQL (ODBC/Gateway), PostgreSQL (On-Premises Gateway), REST APIs (OAuth2, API Key stateless) y BMC Control-M Automation API.",
+                    "Modelado dimensional en estrella (Star Schema) con claves sustitutas, SCD Type 1, watermarks incrementales y vistas SQL de control. Power BI en modo Direct Lake.",
+                    "Implementación de pipeline maestro de orquestación (pl_master_daily), sistema de auditoría automatizada de calidad de datos y respaldo automático de artefactos del Workspace (Notebooks, Pipelines, Semantic Models)."
+                ]
+            },
+            {
                 title: "Senior Data Engineer (Proyecto Acotado)",
                 company: "BeOn Digital Transformation Partners",
                 location: "Buenos Aires, Argentina",
-                period: "Feb 2026 – Actualidad",
+                period: "Feb 2026 – Jul 2026",
                 description: [
                     "Diseño de pipelines en Fabric (PySpark) y arquitecturas híbridas bajo Medallion (Bronze/Silver/Gold) en OneLake, estructurando modelos Star Schema y Snowflake.",
                     "Refactorización del modelo analítico de compliance y sell-out (Danone, Unilever, PepsiCo), migrando consultas a procedimientos T-SQL parametrizados e idempotentes con control transaccional.",
@@ -777,6 +837,54 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
                 video: "/videos/pipeline-medallion.mp4"
             },
             {
+                title: "IT Management Data Platform & Dashboards (Banco del Chubut)",
+                description: "Centralized IT Management analytics and monitoring platform for Banco del Chubut built on Microsoft Fabric. Medallion Architecture (Bronze → Silver → Gold) with 8 orchestrated Data Pipelines unifying 6 heterogeneous operational sources (MySQL, PostgreSQL, REST APIs OAuth2/API Key) into Star Schema dimensional models consumed by Power BI via Direct Lake mode.",
+                tags: ["Microsoft Fabric", "PySpark", "Delta Lake", "Medallion Architecture", "Star Schema", "Direct Lake", "Power BI", "REST APIs", "OAuth2", "Data Pipeline", "ETL / ELT", "Data Lakehouse"],
+                image: "/images/projects/bco-chubut-platform.png",
+                alt: "Banco del Chubut Data Platform - Microsoft Fabric Lakehouse with Power BI Direct Lake",
+                challenge: "The IT Management division at Banco del Chubut operated with fragmented data sources (MySQL, PostgreSQL, vendor REST APIs) without a unified analytics platform, preventing consolidated visibility into batch operations, GRC audits, project portfolio and IT asset management.",
+                solution: "Designed and implemented a centralized data platform on Microsoft Fabric with Medallion Architecture (Bronze → Silver → Gold). Developed 8 orchestrated Data Pipelines via PySpark Notebooks unifying 6 heterogeneous sources with OAuth2 and API Key authentication, Star Schema dimensional modeling with surrogate keys, SCD Type 1, incremental watermarks and a master orchestration pipeline (pl_master_daily) with automated data quality auditing.",
+                impact: "Consolidated 8 data domains into a single analytics platform, eliminated manual reporting and enabled real-time management dashboards via Power BI Direct Lake for IT Management decision making.",
+                architecture: ["Heterogeneous Sources (MySQL, PostgreSQL, REST APIs)", "Bronze Layer (Raw Ingestion + Watermarks)", "Silver Layer (Cleansing + SCD Type 1)", "Gold Layer (Star Schema + Surrogate Keys)", "Master Pipeline (pl_master_daily)", "Power BI Direct Lake (Management Dashboards)", "Data Quality Audit", "Automatic Artifact Backup"],
+                metric: "Pipelines: 8 Domains Integrated"
+            },
+            {
+                title: "Control-M Batch Operations Pipeline (Banco del Chubut)",
+                description: "Automated ingestion from BMC Control-M Automation API REST v9.21 for banking batch process auditing and monitoring. Dual pipeline (historical PDF + daily delta API) with deterministic rerun unification via Spark windowing, incremental watermarks and Gold model with 214K+ executions reconciled at 99% parity against control reports.",
+                tags: ["Microsoft Fabric", "PySpark", "BMC Control-M", "REST API", "Delta Lake", "Medallion Architecture", "Batch Monitoring", "Data Reconciliation", "Watermarks"],
+                image: "/images/projects/bco-chubut-ctm.png",
+                alt: "Control-M Pipeline Banco del Chubut - Banking batch operations monitoring",
+                challenge: "The operations team lacked centralized visibility over 214K+ batch executions managed by BMC Control-M, relying on manual PDF reports without historical analysis capabilities or proactive failure detection.",
+                solution: "Implemented a dual pipeline combining historical parsed PDF ingestion with daily delta REST API from Control-M v9.21. Developed deterministic rerun unification logic via Spark window functions, incremental watermarks for idempotent ingestion and a Gold model reconciled at 99% parity against original control reports.",
+                impact: "214K+ batch executions audited and reconciled at 99% parity against control reports, enabling trend analysis, anomaly detection and proactive operational SLA monitoring.",
+                architecture: ["BMC Control-M API REST v9.21", "PDF Parser (Historical)", "Bronze Layer (Dual Ingestion)", "Silver Layer (Deduplication + Window Functions)", "Gold Layer (Reconciled Facts)", "Incremental Watermarks", "Parity Audit (99%)"],
+                metric: "Audited: 214K+ Executions"
+            },
+            {
+                title: "GRC Audit & Mawida Findings Pipeline (Banco del Chubut)",
+                description: "Ingestion and dimensional modeling pipeline for Internal, External and BCRA Audit findings from Mawida GRC (on-premises PostgreSQL). Star schema with 8 dimensions, suite of 10 operational control SQL views, origin-type classification logic (BCRA/External vs Internal), expiration time buckets and sentinel sanitization. Data 100% reconciled with 0 orphans.",
+                tags: ["Microsoft Fabric", "PySpark", "PostgreSQL", "On-Premises Gateway", "Star Schema", "Dimensional Modeling", "GRC Compliance", "BCRA Regulatory", "Data Quality"],
+                image: "/images/projects/bco-chubut-mawida.png",
+                alt: "Mawida GRC Pipeline Banco del Chubut - BCRA regulatory findings audit",
+                challenge: "Audit findings (Internal, External and BCRA) resided in Mawida GRC on-premises PostgreSQL without analytics platform integration, hindering expiration tracking, regulatory origin classification and data reconciliation.",
+                solution: "Developed an ingestion pipeline from on-premises PostgreSQL via Gateway to Microsoft Fabric, with Star Schema dimensional modeling across 8 dimensions, 10 operational control SQL views, origin-type classification logic (BCRA/External vs Internal), expiration time buckets and sentinel value sanitization. Achieved 100% reconciliation with 0 orphan records.",
+                impact: "1,941 active findings integrated and 100% reconciled with 0 orphans, enabling real-time BCRA regulatory tracking and automated expiration monitoring.",
+                architecture: ["Mawida GRC (PostgreSQL On-Premises)", "On-Premises Data Gateway", "Bronze Layer (Raw Ingestion)", "Silver Layer (Sentinel Sanitization)", "Gold Layer (Star Schema 8 Dimensions)", "10 Control SQL Views", "Origin Classification (BCRA/External/Internal)", "Reconciliation Audit (0 Orphans)"],
+                metric: "Findings: 1,941 Active Base"
+            },
+            {
+                title: "IT Portfolio & Projects Pipeline — Triskell PPM (Banco del Chubut)",
+                description: "Automated ingestion from Triskell Software PPM Stateless REST API for IT initiatives tracking, budgeting and EVM (CPI/SPI). Cumulative daily snapshot with dimensional model for initiative facts, milestones and portfolios. Base64 + API Key authentication with portfolio foreign key resolution via Stored Selectors.",
+                tags: ["Microsoft Fabric", "PySpark", "REST API", "EVM Analytics", "Star Schema", "Project Portfolio Management", "Delta Lake", "Watermarks", "Direct Lake"],
+                image: "/images/projects/bco-chubut-triskell.png",
+                alt: "Triskell PPM Pipeline Banco del Chubut - IT project portfolio with EVM",
+                challenge: "IT project portfolio tracking relied solely on the Triskell PPM web interface, lacking analytics integration for Earned Value Management (EVM) metrics, milestone compliance or consolidated budget visibility.",
+                solution: "Implemented an automated ingestion pipeline from Triskell PPM Stateless REST API with Base64 + API Key authentication. Developed a dimensional model with cumulative daily snapshots for initiative facts, milestones and portfolios, resolving portfolio foreign keys via Stored Selectors and enabling real-time EVM (CPI/SPI) metrics.",
+                impact: "Real-time CPI/SPI (Earned Value Management) visibility across the entire IT project portfolio, automating milestone and budget tracking without manual intervention.",
+                architecture: ["Triskell PPM API REST (Stateless)", "Base64 + API Key Authentication", "Bronze Layer (Daily Snapshots)", "Silver Layer (FK Resolution + Cleansing)", "Gold Layer (Initiative Facts + Milestones)", "Stored Selectors (Portfolio FK)", "Power BI Direct Lake (EVM Dashboards)"],
+                metric: "EVM: CPI / SPI Real-Time"
+            },
+            {
                 title: "PepsiCo: Multi-Marketplace Ingestor (BeOn)",
                 description: "Automated ingestion and normalization of catalogs, stock, and pricing from marketplaces (iFood BR, Rappi LATAM, DiDi Food MX) for competitive brand analysis for PepsiCo.",
                 tags: ["Python", "REST APIs", "API Integration", "Web Scraping", "Batch Processing", "Data Ingestion Pipeline", "Data Quality", "PyTest"],
@@ -991,10 +1099,22 @@ export const translations: Record<'es' | 'en', TranslationDict> = {
         ],
         experience: [
             {
+                title: "Senior Data Engineer",
+                company: "GYF Inteligencia Digital / Infolytics",
+                location: "Buenos Aires, Argentina (Remote)",
+                period: "Aug 2026 – Present",
+                description: [
+                    "Designed and implemented a centralized data platform on Microsoft Fabric (Lakehouse Medallion Architecture) for the IT Management division of Banco del Chubut S.A.",
+                    "Developed 8 orchestrated Data Pipelines (PySpark Notebooks) unifying 6 heterogeneous sources: MySQL (ODBC/Gateway), PostgreSQL (On-Premises Gateway), REST APIs (OAuth2, stateless API Key) and BMC Control-M Automation API.",
+                    "Star Schema dimensional modeling with surrogate keys, SCD Type 1, incremental watermarks and control SQL views. Power BI in Direct Lake mode.",
+                    "Implemented master orchestration pipeline (pl_master_daily), automated data quality audit pipeline and automatic Workspace artifact backup system (Notebooks, Pipelines, Semantic Models)."
+                ]
+            },
+            {
                 title: "Senior Data Engineer (Time-Bounded Project)",
                 company: "BeOn Digital Transformation Partners",
                 location: "Buenos Aires, Argentina",
-                period: "Feb 2026 – Present",
+                period: "Feb 2026 – Jul 2026",
                 description: [
                     "Designed Fabric pipelines (PySpark) and hybrid architectures under Medallion (Bronze/Silver/Gold) on OneLake, structuring Star Schema and Snowflake models.",
                     "Refactored compliance and sell-out analytical models (Danone, Unilever, PepsiCo), migrating queries to parameterized, idempotent T-SQL stored procedures with transactional control.",
