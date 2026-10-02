@@ -51,6 +51,14 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
+        source: "/kanban",
+        destination: "https://google-tasks-kanban.vercel.app/",
+      },
+      {
+        source: "/kanban/:path*",
+        destination: "https://google-tasks-kanban.vercel.app/:path*",
+      },
+      {
         source: "/sarmiento-360",
         destination: "https://sarmiento-360.vercel.app/",
       },
