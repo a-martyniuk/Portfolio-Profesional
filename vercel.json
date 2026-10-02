@@ -1,6 +1,14 @@
 {
   "rewrites": [
     {
+      "source": "/kanban/:path*",
+      "destination": "https://google-tasks-kanban.vercel.app/:path*"
+    },
+    {
+      "source": "/kanban",
+      "destination": "https://google-tasks-kanban.vercel.app/"
+    },
+    {
       "source": "/sarmiento-360/:path*",
       "destination": "https://sarmiento-360.vercel.app/:path*"
     },
